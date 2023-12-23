@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "cXAQA1dRhxMGzAcAeDqOBXkrimu4AQpp3wtV63/SASk=",
+  "Source": "WebApiCadaGotaCuenta",
+  "BasePath": "_content/WebApiCadaGotaCuenta",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApiCadaGotaCuenta\\wwwroot",
+      "Source": "WebApiCadaGotaCuenta",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\Curso\\ProyectoFinal\\WebApiCadaGotaCuenta\\WebApiCadaGotaCuenta\\wwwroot\\",
+      "BasePath": "_content/WebApiCadaGotaCuenta",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\Curso\\ProyectoFinal\\WebApiCadaGotaCuenta\\WebApiCadaGotaCuenta\\wwwroot\\logErrores.txt",
+      "SourceId": "WebApiCadaGotaCuenta",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\Curso\\ProyectoFinal\\WebApiCadaGotaCuenta\\WebApiCadaGotaCuenta\\wwwroot\\",
+      "BasePath": "_content/WebApiCadaGotaCuenta",
+      "RelativePath": "logErrores.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logErrores.txt"
+    }
+  ]
+}

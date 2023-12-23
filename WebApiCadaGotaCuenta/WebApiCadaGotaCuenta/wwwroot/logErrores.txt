@@ -1,0 +1,54 @@
+::1
+21/12/2023 21:45:54
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+21/12/2023 21:47:04
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+22/12/2023 20:34:58
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+22/12/2023 20:39:33
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+22/12/2023 20:41:20
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+22/12/2023 20:42:26
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+22/12/2023 21:08:36
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+22/12/2023 21:30:48
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+23/12/2023 14:15:28
+/api/Usuarios/login
+POST
+System.Private.CoreLib
+Value cannot be null. (Parameter 's')
