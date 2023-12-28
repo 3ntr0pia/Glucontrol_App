@@ -1,0 +1,145 @@
+// login-main.component.css
+.logo{
+    width: 10em;
+}
+
+// login-main.component.html
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-6">
+            <login-info></login-info>
+        </div>
+       <div class="col-6">
+        <img src="assets/logo.png" class='w-50' alt="">
+        <login-form></login-form>
+       </div>
+        
+
+      </div>
+    </div>
+  </section>
+
+
+// login-main.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'login-main',
+  templateUrl: './login-main.component.html',
+  styleUrls: ['./login-main.component.css']
+})
+export class LoginMainComponent {
+
+}
+
+
+// register-main.component.css
+
+
+// register-main.component.html
+<p>main works!</p>
+
+
+// register-main.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'register-main',
+  templateUrl: './register-main.component.html',
+  styleUrls: ['./register-main.component.css']
+})
+export class RegisterMainComponent {
+
+}
+
+
+// register.module.ts
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RegisterMainComponent } from './pages/main/register-main.component';
+import { Routes } from '@angular/router';
+const routes: Routes = [
+  {
+    path: '',
+    component: RegisterMainComponent
+  }
+];
+
+@NgModule({
+  declarations: [RegisterMainComponent],
+  imports: [CommonModule],
+  exports: [RegisterMainComponent],
+})
+export class RegisterModule {}
+
+
+// app.component.css
+
+
+// app.component.html
+<login-main></login-main>
+
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'DiabetesNoteBook';
+}
+
+
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LoginModule,
+    RegisterModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+// app-routing.module.ts
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { 
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  { 
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+  },
+  
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+
+
