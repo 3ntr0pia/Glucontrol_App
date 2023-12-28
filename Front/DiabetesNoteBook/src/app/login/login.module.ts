@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
 import { InfoComponent } from './components/info/info.component';
-import { MainComponent } from './pages/main/main.component';
+import { LoginMainComponent } from './pages/main/login-main.component';
 
 @NgModule({
-  declarations: [FormComponent, InfoComponent, MainComponent],
+  declarations: [FormComponent, InfoComponent,LoginMainComponent],
   imports: [CommonModule, FormsModule],
-  exports: [MainComponent],
+  exports: [LoginMainComponent],
 })
 export class LoginModule {}
