@@ -1,0 +1,7 @@
+<h1> paso 3</h1>
+<form (ngSubmit)="siguientePaso.emit(datosRegistro)">
+    <label for="">email</label>
+    <input type="email" [(ngModel)]="datosRegistro.email" name="email" required>
+    <input type="password" [(ngModel)]="datosRegistro.password" name="password" required>
+    <button type="submit">Siguiente</button>
+  </form>

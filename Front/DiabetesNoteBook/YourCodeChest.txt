@@ -1,37 +1,75 @@
-// login-main.component.css
-.logo{
-    width: 10em;
-}
-
-// login-main.component.html
-
-<section class="vh-100">
-    <div class="container py-5 h-100">
-      <div class="row d-flex align-items-center justify-content-center h-100">
-        <div class="col-6">
-            <login-info></login-info>
-        </div>
-       <div class="col-6">
-        <img src="assets/logo.png" class='w-50' alt="">
-        <login-form></login-form>
-       </div>
-        
-
-      </div>
-    </div>
-  </section>
+// paso1.component.css
 
 
-// login-main.component.ts
-import { Component } from '@angular/core';
+// paso1.component.html
+<h1> paso 1</h1>
+<form (ngSubmit)="siguientePaso.emit(datosRegistro)">
+    <label for="">email</label>
+    <input type="email" [(ngModel)]="datosRegistro.email" name="email" required>
+    <input type="password" [(ngModel)]="datosRegistro.password" name="password" required>
+    <button type="submit">Siguiente</button>
+  </form>
+
+// paso1.component.ts
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { IRegister } from '../../interfaces/register.interface';
 
 @Component({
-  selector: 'login-main',
-  templateUrl: './login-main.component.html',
-  styleUrls: ['./login-main.component.css']
+  selector: 'register-paso1',
+  templateUrl: './paso1.component.html',
+  styleUrls: ['./paso1.component.css']
 })
-export class LoginMainComponent {
+export class Paso1Component {
 
+  @Output() siguientePaso = new EventEmitter<IRegister>();
+
+  datosRegistro! : IRegister ;
+
+}
+
+
+// paso2.component.css
+
+
+// paso2.component.html
+<h1> paso 2</h1>
+
+// paso2.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
+import { IRegister } from '../../interfaces/register.interface';
+
+@Component({
+  selector: 'register-paso2',
+  templateUrl: './paso2.component.html',
+  styleUrls: ['./paso2.component.css']
+})
+export class Paso2Component {
+  @Output() siguientePaso = new EventEmitter<IRegister>();
+
+  datosRegistro! : IRegister ;
+}
+
+
+// paso3.component.css
+
+
+// paso3.component.html
+<h1> paso 3</h1>
+
+
+// paso3.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
+import { IRegister } from '../../interfaces/register.interface';
+
+@Component({
+  selector: 'register-paso3',
+  templateUrl: './paso3.component.html',
+  styleUrls: ['./paso3.component.css']
+})
+export class Paso3Component {
+  @Output() siguientePaso = new EventEmitter<IRegister>();
+
+  datosRegistro! : IRegister ;
 }
 
 
@@ -39,11 +77,29 @@ export class LoginMainComponent {
 
 
 // register-main.component.html
-<p>main works!</p>
-
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col">
+        <h2> Bienvenido a nuestra comunidad</h2>
+        <p>Aqui podrás registrarte para que la aplicacion tome todas tus medidas</p>    
+        </div>
+        
+        <div  class="col">
+        <div [ngSwitch]='paso'>
+            <register-paso1 *ngSwitchCase='1' (siguientePaso)='siguientePaso($event)'></register-paso1>
+            <register-paso2 *ngSwitchCase='2' (siguientePaso)='siguientePaso($event)'></register-paso2>
+            <register-paso3 *ngSwitchCase='3' (siguientePaso)='siguientePaso($event)'></register-paso3>
+            
+        </div>
+    
+    </div>
+</div>
 
 // register-main.component.ts
 import { Component } from '@angular/core';
+import { Actividad, IRegister, Sexo, TipoDiabetes } from '../../interfaces/register.interface';
 
 @Component({
   selector: 'register-main',
@@ -52,94 +108,44 @@ import { Component } from '@angular/core';
 })
 export class RegisterMainComponent {
 
-}
 
 
-// register.module.ts
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RegisterMainComponent } from './pages/main/register-main.component';
-import { Routes } from '@angular/router';
-const routes: Routes = [
-  {
-    path: '',
-    component: RegisterMainComponent
-  }
-];
+  datosRegistro : IRegister = {
+    nombre: "",
+    apellido: "",
+    apellido2: "",
+    email: "",
+    password: "",
+    password2: "",
+    mediciones : {
+      edad : 0,
+      peso : 0,
+      altura : 0,
+      sexo : Sexo.hombre,
+      actividad : Actividad.sedentario,
+      tipoDiabetes : {
+        tipo : TipoDiabetes.tipo1,
+        fecha_diagnostico : new Date(),
+        medicacion: [],
+        insulina: false
+      }
+    }
+  };
 
-@NgModule({
-  declarations: [RegisterMainComponent],
-  imports: [CommonModule],
-  exports: [RegisterMainComponent],
-})
-export class RegisterModule {}
-
-
-// app.component.css
-
-
-// app.component.html
-<login-main></login-main>
-
-// app.component.ts
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'DiabetesNoteBook';
-}
-
-
-// app.module.ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginModule } from './login/login.module';
-import { RegisterModule } from './register/register.module';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LoginModule,
-    RegisterModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-
-
-// app-routing.module.ts
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { 
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
-  },
-  { 
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
-  },
+  paso : number = 1;
   
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
+  siguientePaso(info : IRegister):void{
+    //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;
+    Object.assign(this.datosRegistro, info); // SE CARGA SOLO LA PARTE QUE SE HA MODIFICADO
+    this.paso++;
+  }
+  pasoAnterior():void{
+    this.paso--;
+  }
+  registrar():void{
+    console.log(this.datosRegistro);
+  }
+  
+};
 
 
