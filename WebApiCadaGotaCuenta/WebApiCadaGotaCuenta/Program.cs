@@ -1,12 +1,13 @@
+using CapaDominio.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
-using WebApiCadaGotaCuenta.Filters;
-using WebApiCadaGotaCuenta.Models;
-using WebApiCadaGotaCuenta.Services;
+using CapaAplicacion.Services;
+using CapaAplicacion.Filters;
+using CapaAplicacion.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionString;
@@ -39,6 +40,10 @@ builder.Services.AddDbContext<GlucoControlContext>(options =>
 builder.Services.AddTransient<OperacionesService>();
 builder.Services.AddTransient<HashService>();
 builder.Services.AddTransient<TokenService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<INuevoUsuarioService, NuevoUsuarioService>();
+builder.Services.AddScoped<INuevaPersonaService, NuevaPersonaService>();
+builder.Services.AddTransient<IConfirmarEmailService, ConfirmarEmailService>();
 
 builder.Services.AddCors(options =>
 {
@@ -86,7 +91,9 @@ builder.Services.AddSwaggerGen(c =>
                         },
                         new string[]{}
                     }
-                });
+    });
+
+
 });
 
 var app = builder.Build();

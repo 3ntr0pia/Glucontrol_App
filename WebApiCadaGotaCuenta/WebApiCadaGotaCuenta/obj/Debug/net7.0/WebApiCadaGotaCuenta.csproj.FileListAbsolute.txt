@@ -8,7 +8,9 @@ C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuent
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\WebApiCadaGotaCuenta.pdb
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Humanizer.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\MailKit.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -53,6 +55,7 @@ C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuent
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\MimeKit.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\NuGet.Common.dll
@@ -79,6 +82,7 @@ C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuent
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Memory.Data.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Runtime.Caching.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Security.Permissions.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\System.Windows.Extensions.dll
@@ -231,8 +235,17 @@ C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuent
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaAplicacion.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaDominio.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaInfraestructura.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaWebUI.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaAplicacion.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaDominio.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaInfraestructura.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\bin\Debug\net7.0\CapaWebUI.pdb
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\obj\Debug\net7.0\WebApiCadaGotaCuenta.csproj.AssemblyReference.cache
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\obj\Debug\net7.0\WebApiCadaGotaCuenta.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\WebApiCadaGotaCuenta\obj\Debug\net7.0\WebApiCadaGotaCuenta.AssemblyInfoInputs.cache

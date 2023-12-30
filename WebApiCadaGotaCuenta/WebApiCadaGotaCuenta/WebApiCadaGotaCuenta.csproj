@@ -8,18 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
 	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middlewares\" />
+    <ProjectReference Include="..\CapaAplicacion\CapaAplicacion.csproj" />
+    <ProjectReference Include="..\CapaDominio\CapaDominio.csproj" />
+    <ProjectReference Include="..\CapaInfraestructura\CapaInfraestructura.csproj" />
+    <ProjectReference Include="..\CapaWebUI\CapaWebUI.csproj" />
   </ItemGroup>
 
 </Project>

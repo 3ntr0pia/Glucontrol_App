@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace CapaAplicacion.Validators
+{
+    public class PasswordValidacion : ValidationAttribute
+    {
+        private readonly string nuevoPatron = @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
+
+        public PasswordValidacion()
+        {
+
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            string password = value as string;
+
+            if (password == null)
+            {
+                return new ValidationResult($"La contraseña debe estar presente");
+            }
+            else
+            {
+                Regex regex = new Regex(nuevoPatron);
+
+                if (regex.IsMatch(password))
+                {
+                    return ValidationResult.Success;
+                }
+                else
+                {
+                    return new ValidationResult($"El formato de la contraseña no es válido. Debe cumplir con el nuevo patrón.");
+                }
+            }
+        }
+    }
+}

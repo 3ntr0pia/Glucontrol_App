@@ -52,3 +52,93 @@ An error occurred while saving the entity changes. See the inner exception for d
 POST
 System.Private.CoreLib
 Value cannot be null. (Parameter 's')
+
+24/12/2023 11:07:04
+
+
+System.Net.Mail
+Failure sending mail.
+
+24/12/2023 11:14:48
+
+
+System.Net.Mail
+Failure sending mail.
+
+24/12/2023 12:44:53
+
+
+System.Net.Mail
+The SMTP server requires a secure connection or the client was not authenticated. The server response was: Authentication required
+::1
+29/12/2023 12:36:01
+/api/Usuarios/register
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'CapaAplicacion.Interfaces.INuevoUsuarioService' while attempting to activate 'CapaInfraestructura.Controllers.UsuariosController'.
+::1
+29/12/2023 12:45:38
+/api/Usuarios/register
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'CapaAplicacion.Interfaces.INuevaPersonaService' while attempting to activate 'CapaInfraestructura.Controllers.UsuariosController'.
+::1
+29/12/2023 18:34:47
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+29/12/2023 18:35:44
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+29/12/2023 18:36:34
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+29/12/2023 18:38:03
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+29/12/2023 20:59:21
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+29/12/2023 21:31:22
+/api/Usuarios/register
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+29/12/2023 23:38:46
+/api/Usuarios/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'CapaAplicacion.Interfaces.IConfirmarEmailService' while attempting to activate 'CapaInfraestructura.Controllers.UsuariosController'.
+::1
+30/12/2023 16:58:28
+/api/Usuarios/login
+POST
+Microsoft.IdentityModel.Tokens
+IDX10720: Unable to create KeyedHashAlgorithm for algorithm 'HS256', the key size must be greater than: '256' bits, key has '192' bits. (Parameter 'keyBytes')
+::1
+30/12/2023 17:03:32
+/api/Usuarios/login
+POST
+Microsoft.IdentityModel.Tokens
+IDX10720: Unable to create KeyedHashAlgorithm for algorithm 'http://www.w3.org/2001/04/xmldsig-more#hmac-sha256', the key size must be greater than: '256' bits, key has '192' bits. (Parameter 'keyBytes')
+::1
+30/12/2023 17:20:08
+/api/Usuarios/login
+POST
+Microsoft.IdentityModel.Tokens
+IDX10720: Unable to create KeyedHashAlgorithm for algorithm 'HS256', the key size must be greater than: '256' bits, key has '192' bits. (Parameter 'keyBytes')
