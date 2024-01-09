@@ -1,16 +1,28 @@
 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-    <form (ngSubmit)="login()">
-      <div class="form-outline mb-4">
-        <label class="usuario-form" for="form1Example13">Email address</label>
-        <input type="email" id="usuario-form" class="form-control form-control-lg"  name='usuario' [(ngModel)]="usuario"/>
-      </div>
-      <div class="form-outline mb-4">
-        <label class="form-label" for="password-form">Password</label>
-        <input type="password" id="password-form" class="form-control form-control-lg" name='password' [(ngModel)]="password"/>
-      </div>
-      <button class='btn btn-primary'> Iniciar Sesion</button>
-      <div class="d-flex justify-content-around align-items-center mb-4">
-        <a href="#!">He olvidado la contraseña?</a>
-      </div>
-    </form>
-  </div>
+  <form (ngSubmit)="login()">
+    <div class="form-outline mb-4">
+      <label class="usuario-form" for="usuario-form">Email address</label>
+      <input
+        type="email"
+        id="usuario-form"
+        class="form-control form-control-lg"
+        name="usuario"
+        [(ngModel)]="usuario"
+      />
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="password-form">Password</label>
+      <input
+        type="password"
+        id="password-form"
+        class="form-control form-control-lg"
+        name="password"
+        [(ngModel)]="password"
+      />
+    </div>
+    <button class="btn btn-primary">Iniciar Sesion</button>
+    <div class="d-flex justify-content-around align-items-center mb-4">
+      <a href="#!">He olvidado la contraseña?</a>
+    </div>
+  </form>
+</div>
