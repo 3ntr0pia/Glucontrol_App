@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Actividad, IRegister, Sexo, TipoDiabetes } from '../../interfaces/register.interface';
+import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
+import { IRegister } from '../../interfaces/register.interface';
 
 @Component({
   selector: 'register-main',
@@ -8,9 +9,14 @@ import { Actividad, IRegister, Sexo, TipoDiabetes } from '../../interfaces/regis
 })
 export class RegisterMainComponent {
 
+  public Sexo = Sexo;
+  public Actividad = Actividad;
+  public TipoDiabetes = TipoDiabetes;
+  
 
 
   datosRegistro : IRegister = {
+    avatar: '',
     nombre: "",
     apellido: "",
     apellido2: "",
@@ -21,10 +27,10 @@ export class RegisterMainComponent {
       edad : 0,
       peso : 0,
       altura : 0,
-      sexo : Sexo.hombre,
-      actividad : Actividad.sedentario,
+      sexo : this.Sexo.hombre,
+      actividad : this.Actividad.sedentario,
       tipoDiabetes : {
-        tipo : TipoDiabetes.tipo1,
+        tipo : this.TipoDiabetes.tipo1,
         fecha_diagnostico : new Date(),
         medicacion: [],
         insulina: false
@@ -37,7 +43,11 @@ export class RegisterMainComponent {
   siguientePaso(info : IRegister):void{
     //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;
     Object.assign(this.datosRegistro, info); // SE CARGA SOLO LA PARTE QUE SE HA MODIFICADO
-    this.paso++;
+    console.log(this.datosRegistro);
+    if(this.paso<3){
+      this.paso++;
+    }
+    
   }
   pasoAnterior():void{
     this.paso--;
@@ -45,5 +55,7 @@ export class RegisterMainComponent {
   registrar():void{
     console.log(this.datosRegistro);
   }
+
+  
   
 };

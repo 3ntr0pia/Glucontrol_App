@@ -1,7 +1,76 @@
-<h1> paso 1</h1>
-<form (ngSubmit)="siguientePaso.emit(datosRegistro)">
-    <label for="">email</label>
-    <input type="email" [(ngModel)]="datosRegistro.email" name="email" required>
-    <input type="password" [(ngModel)]="datosRegistro.password" name="password" required>
-    <button type="submit">Siguiente</button>
-  </form>
+<div class="wrapper">
+
+  <div class="avatar">
+
+    
+
+  </div>
+
+
+  <div class="formulario">
+
+    <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id='nombre' type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel" required
+          class="form-control">
+        <span class="form-text text-danger" *ngIf="!nombre.valid && nombre.touched">
+          Nombre obligatorio
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="apellido">Primer Apellido</label>
+        <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido='ngModel' name="apellido"
+          required class="form-control">
+        <span class="form-text text-danger" *ngIf="!apellido.valid && apellido.touched">
+          Apellido obligatorio
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="apellido2">Segundo Apellido</label>
+        <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
+          #apellido2='ngModel' required class="form-control">
+        <span class="form-text text-danger" *ngIf="!apellido2.valid && apellido2.touched">
+          Apellido obligatorio
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email='ngModel' required
+          class="form-control">
+        <span class="form-text text-danger" *ngIf="!email.valid && email.touched">
+          Email obligatorio
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password='ngModel'
+          required class="form-control">
+        <span class="form-text text-danger" *ngIf="!password.valid && password.touched">
+          Password obligatorio
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="password2">Repita su contraseña</label>
+        <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
+          #password2='ngModel' required class="form-control">
+        <span class="form-text text-danger" *ngIf="!password2.valid && password2.touched">
+          Password obligatorio
+        </span>
+        <span class="form-text text-danger" *ngIf="password2.value != password.value">
+          Las contraseñas no coinciden
+        </span>
+      </div>
+      <button type="submit" [disabled]="formularioInvalido()" class="btn btn-primary">Siguiente</button>
+      <span class="form-text text-danger"
+        *ngIf="!datosRegistro.nombre || !datosRegistro.apellido || !datosRegistro.apellido2 || !datosRegistro.email || !datosRegistro.password || !datosRegistro.password2">
+        Todos los campos son obligatorios
+      </span>
+    </form>
+
+  </div>
+
+
+
+
+</div>
