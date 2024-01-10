@@ -37,6 +37,8 @@ export class Paso3Component {
     },
   };
 
+  medicacion : string = '';
+
   formularioInvalido(): boolean {
     return (
       !this.datosRegistro.mediciones.edad ||
@@ -45,10 +47,28 @@ export class Paso3Component {
     );
   }
 
-  separarMedicacion(medicacion: string): void {
-    medicacion.split(',');
-    this.datosRegistro.mediciones.tipoDiabetes.medicacion.push(medicacion);
+   actualizarMedicacion():void{
+    const nuevaMedicacion = this.medicacion.split(',').map(m => m.trim()).filter(m => m.length > 0);
+    
+    nuevaMedicacion.forEach(nombre => {
+      const existeMedicacion = this.datosRegistro.mediciones.tipoDiabetes.medicacion.find(m => m.nombre === nombre);
+      if(!existeMedicacion){
+        this.datosRegistro.mediciones.tipoDiabetes.medicacion.push({
+          nombre: nombre,
+          color: this.generarPastillaAletoria(),
+          forma: "pastilla"
+        });
+      }
+    });
+    this.datosRegistro.mediciones.tipoDiabetes.medicacion = this.datosRegistro.mediciones.tipoDiabetes.medicacion.filter(medicamento =>
+      nuevaMedicacion.includes(medicamento.nombre)
+    );
   }
-
+  generarPastillaAletoria(): string {
+    const colores = ['red', 'blue', 'green', 'yellow', 'pink', 'purple'];
+    const forms = ['pildora', 'pastilla'];
+    const indice = Math.floor(Math.random() * colores.length);
+    return colores[indice];
+  }
 
 }
