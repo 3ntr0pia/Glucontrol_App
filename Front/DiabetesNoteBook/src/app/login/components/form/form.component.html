@@ -1,28 +1,30 @@
 <section class="sectionLogin">
+  <p class="error-form">Error al introducir Email o Contraseña</p>
   <form (ngSubmit)="login()">
     <div class="input">
       <label class="usuario-form" for="usuario-form">Email address</label>
       <input
         type="email"
         id="usuario-form"
-        class="form-control form-control-lg"
         name="usuario"
+        placeholder="ejemplo@ejemplo.com"
         [(ngModel)]="usuario"
       />
     </div>
     <div class="input">
-      <label class="form-label" for="password-form">Password</label>
+      <label for="password-form">Password</label>
       <input
         type="password"
         id="password-form"
-        class="form-control form-control-lg"
         name="password"
         [(ngModel)]="password"
       />
     </div>
-    <button class="btnInicio">Iniciar Sesion</button>
+    <div>
+      <button class="btnInicio">Iniciar Sesion</button>
+    </div>
     <div class="aForgetPass">
-      <a href="#!">He olvidado la contraseña?</a>
+      <a href="#!">He olvidado la contraseña</a><a href="#!">Registrarse</a>
     </div>
   </form>
 </section>
