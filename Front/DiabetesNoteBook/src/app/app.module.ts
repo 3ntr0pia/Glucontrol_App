@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -16,7 +17,8 @@ import { RegisterModule } from './register/register.module';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    RegisterModule
+    RegisterModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
