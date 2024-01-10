@@ -1,3 +1,21 @@
-.logo{
-    width: 10em;
+.loging {
+  position: relative;
+  top: 5rem;
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.slider {
+  position: relative;
+  left: 4rem;
+}
+.loging-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

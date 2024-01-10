@@ -1,0 +1,35 @@
+.sectionLogin {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  row-gap: 2rem;
+  color: #002d52;
+}
+.input input {
+  background-color: #effbff;
+  border: 1px solid #002d52;
+}
+.input input ::shadow {
+  background-color: #68c2f1;
+}
+
+.btnInicio {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #68c2f1;
+  font-size: large;
+}
+.btnInicio:hover {
+  border: 1px solid #002d52;
+}
+.aForgetPass a {
+  text-decoration: none;
+  color: #002d52;
+}
+
+.aForgetPass a:hover {
+  text-decoration: underline;
+}

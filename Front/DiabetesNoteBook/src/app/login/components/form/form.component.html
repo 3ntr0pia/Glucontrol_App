@@ -1,6 +1,6 @@
-<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+<section class="sectionLogin">
   <form (ngSubmit)="login()">
-    <div class="form-outline mb-4">
+    <div class="input">
       <label class="usuario-form" for="usuario-form">Email address</label>
       <input
         type="email"
@@ -10,7 +10,7 @@
         [(ngModel)]="usuario"
       />
     </div>
-    <div class="form-outline mb-4">
+    <div class="input">
       <label class="form-label" for="password-form">Password</label>
       <input
         type="password"
@@ -20,9 +20,9 @@
         [(ngModel)]="password"
       />
     </div>
-    <button class="btn btn-primary">Iniciar Sesion</button>
-    <div class="d-flex justify-content-around align-items-center mb-4">
+    <button class="btnInicio">Iniciar Sesion</button>
+    <div class="aForgetPass">
       <a href="#!">He olvidado la contraseña?</a>
     </div>
   </form>
-</div>
+</section>
