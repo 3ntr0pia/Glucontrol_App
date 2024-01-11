@@ -18,7 +18,7 @@ string secret;
 bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 if (!isDevelopment)
 {
-    connectionString = builder.Configuration["CONNECTION_STRING"];
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     secret = builder.Configuration["ClaveJWT"];
 }
 else
