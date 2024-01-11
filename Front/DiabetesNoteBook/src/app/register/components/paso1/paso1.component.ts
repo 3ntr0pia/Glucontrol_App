@@ -12,13 +12,13 @@ export class Paso1Component {
   @Output() siguientePaso = new EventEmitter<IRegister>();
 
   @Input() datosRegistro : IRegister = {
+    username: '',
     avatar: '',
     nombre: "",
     apellido: "",
     apellido2: "",
     email: "",
     password: "",
-    password2: "",
     mediciones : {
       edad : 0,
       peso : 0,
@@ -27,8 +27,7 @@ export class Paso1Component {
       actividad : Actividad.sedentario,
       tipoDiabetes : {
         tipo : TipoDiabetes.tipo1,
-        fecha_diagnostico : new Date(),
-        medicacion: [],
+        medicacion: "",
         insulina: false
       }
     }
@@ -39,9 +38,8 @@ export class Paso1Component {
            !this.datosRegistro.apellido ||
            !this.datosRegistro.apellido2 ||
            !this.datosRegistro.email ||
-           !this.datosRegistro.password ||
-           !this.datosRegistro.password2 ||
-           this.datosRegistro.password !== this.datosRegistro.password2;
+           !this.datosRegistro.password ;
+           
   }
  
   

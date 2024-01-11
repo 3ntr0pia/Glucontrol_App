@@ -11,6 +11,14 @@
 
     <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
       <div class="form-group">
+        <label for="username">Username</label>
+        <input id='username' type="username" [(ngModel)]="datosRegistro.username" name="username" #username="ngModel" required
+          class="form-control">
+        <span class="form-text text-danger" *ngIf="!username.valid && nombre.touched">
+          Nombre de Usuario obligatorio
+        </span>
+      </div>
+      <div class="form-group">
         <label for="nombre">Nombre</label>
         <input id='nombre' type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel" required
           class="form-control">
@@ -52,7 +60,7 @@
       </div>
       <div class="form-group">
         <label for="password2">Repita su contraseña</label>
-        <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
+        <input id="password2" type="password" [(ngModel)]="datosRegistro.password" name="password2"
           #password2='ngModel' required class="form-control">
         <span class="form-text text-danger" *ngIf="!password2.valid && password2.touched">
           Password obligatorio
@@ -63,7 +71,7 @@
       </div>
       <button type="submit" [disabled]="formularioInvalido()" class="btn btn-primary">Siguiente</button>
       <span class="form-text text-danger"
-        *ngIf="!datosRegistro.nombre || !datosRegistro.apellido || !datosRegistro.apellido2 || !datosRegistro.email || !datosRegistro.password || !datosRegistro.password2">
+        *ngIf="!datosRegistro.nombre || !datosRegistro.apellido || !datosRegistro.apellido2 || !datosRegistro.email || !datosRegistro.password ">
         Todos los campos son obligatorios
       </span>
     </form>

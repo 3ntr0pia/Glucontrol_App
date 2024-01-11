@@ -220,3 +220,69 @@ Unable to resolve service for type 'DiabetesNoteBook.Services.OperationsService'
 PUT
 Microsoft.Extensions.DependencyInjection.Abstractions
 Unable to resolve service for type 'DiabetesNoteBook.Services.OperationsService' while attempting to activate 'DiabetesNoteBook.Controllers.ChangePasswordControllers'.
+127.0.0.1
+11/01/2024 11:29:40
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:34:31
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:36:15
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:37:30
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:38:58
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:42:29
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:46:26
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:49:09
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 11:59:14
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 12:07:37
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+127.0.0.1
+11/01/2024 12:26:32
+/api/Users/registro
+POST
+Core Microsoft SqlClient Data Provider
+A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
