@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
 import { IRegister } from '../../interfaces/register.interface';
+import { AvatarService } from 'src/app/services/avatar.service';
 
 @Component({
   selector: 'register-paso1',
@@ -19,6 +20,7 @@ export class Paso1Component {
     apellido2: "",
     email: "",
     password: "",
+    password2: "",
     mediciones : {
       edad : 0,
       peso : 0,
@@ -33,6 +35,21 @@ export class Paso1Component {
     }
   };
 
+  password2 : string = "";
+  avatar : string = '';
+  hasError:boolean = false;
+  defaultAvatar : string ="assets/avatar.png";
+
+
+  constructor(private avatarService: AvatarService) {}
+
+  generarAvatar() {
+    
+    this.datosRegistro.avatar = this.avatarService.getRandomAvatar();
+    
+  }
+  
+
   formularioInvalido(): boolean {
     return !this.datosRegistro.nombre ||
            !this.datosRegistro.apellido ||
@@ -41,6 +58,14 @@ export class Paso1Component {
            !this.datosRegistro.password ;
            
   }
- 
+  validarPassword(password: string): boolean {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[\W_]/.test(password);
+  
+    return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar;
+  }
   
 }

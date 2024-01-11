@@ -22,7 +22,7 @@ export class Paso2Component {
     apellido2: "",
     email: "",
     password: "",
-    
+    password2: "",
     mediciones : {
       edad : 0,
       peso : 0,

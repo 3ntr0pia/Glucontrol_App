@@ -3,6 +3,7 @@ import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
 import { IRegister } from '../../interfaces/register.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { IFinalRegister } from '../../interfaces/finalregister.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'register-main',
@@ -16,12 +17,13 @@ export class RegisterMainComponent {
 
   datosRegistro: IRegister = {
     username: '',
-    avatar: 'avatarTest',
+    avatar: '',
     nombre: '',
     apellido: '',
     apellido2: '',
     email: '',
     password: '',
+    password2: "",
     mediciones: {
       edad: 0,
       peso: 0,
@@ -36,12 +38,8 @@ export class RegisterMainComponent {
     },
   };
 
-  
-
-
-
-
   paso: number = 1;
+ 
 
   siguientePaso(info: IRegister): void {
     //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;
@@ -55,17 +53,20 @@ export class RegisterMainComponent {
     this.paso--;
   }
 
-  constructor(private registerService: AuthServiceService) {}
+  
 
-  registroUsuario(datosFinales : IFinalRegister) {
+  constructor(private registerService: AuthServiceService, private router: Router) {}
+
+  registroUsuario(datosFinales: IFinalRegister) {
     this.registerService.registerUser(datosFinales).subscribe({
       next: (data) => {
         console.log(data);
+        this.router.navigate(['/login']);
       },
       error: (err) => console.log(err),
       complete: () => console.log('Operation completed')
     });
-    }
+  }
 
   
 }

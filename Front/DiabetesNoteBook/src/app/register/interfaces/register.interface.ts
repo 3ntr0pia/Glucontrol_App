@@ -8,7 +8,7 @@ export interface IRegister{
     apellido2: string;
     email: string;
     password: string;
-    
+    password2: string;
     mediciones : IMediciones;
 }
 

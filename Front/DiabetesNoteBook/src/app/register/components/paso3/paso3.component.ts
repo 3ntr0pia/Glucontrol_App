@@ -16,13 +16,14 @@ export class Paso3Component {
   public TipoDiabetes = TipoDiabetes;
 
   @Input() datosRegistro: IRegister = {
-    avatar: 'avatarTest',
+    avatar: '',
     username: '',
     nombre: '',
     apellido: '',
     apellido2: '',
     email: '',
     password: '',
+    password2: "",
     mediciones: {
       edad: 0,
       peso: 0,

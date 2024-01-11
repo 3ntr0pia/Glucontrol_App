@@ -337,3 +337,12 @@ MailKit
 5.1.3 more information, go to
 5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321
 5.1.3 specifications. p2-20020a05600c1d8200b0040e629cee7esm921711wms.35 - gsmtp
+127.0.0.1
+11/01/2024 19:00:02
+/api/Users/registro
+POST
+MailKit
+5.1.3 The recipient address <asdasdasdasd> is not a valid RFC 5321 address.
+5.1.3 For more information, go to
+5.1.3  https://support.google.com/a/answer/3221692 and review RFC 5321
+5.1.3 specifications. c11-20020a05600c0a4b00b0040d53588d94sm6735852wmq.46 - gsmtp
