@@ -14,17 +14,17 @@ export class AvatarService {
     'curly',
     'elvis',
     'long',
-    'ponytail',
+    'ponyTail',
     'slaughter',
     'stylish',
   ];
   heads: string[] = ['normal', 'thin', 'wide'];
   mouths: string[] = ['default', 'missingTooth'];
   mustaches: string[] = ['freddy', 'horshoe', 'pencilThin', 'pencilThinBeard'];
-  blushes: boolean = false;
+  blushes: string  = 'default';
   
   eyes: string[] = ['confident', 'happy', 'normal'];
-  glasses: string[] = ['none', 'sunglasses', 'round', 'smart'];
+  glasses: string = 'normal';
   skinColor: string[] = ['836055', 'f5d0c5', 'ffcb7e'];
   
   getRandomBoolean() {
@@ -56,6 +56,6 @@ export class AvatarService {
     let glassesProbability: number = this.getRandomInt(0, 100);
     let hairColor: string = this.getRandomColor();
 
-    return `https://api.dicebear.com/7.x/miniavs/svg?bodyColor=${bodyColors}&eyes=${eyes}&hair=${hair}&hairColor=${hairColor}&head=${head}&mouth=${mouth}&skin=${skin}&backgroundColor=${backgroundColor}`;
+    return `https://api.dicebear.com/7.x/miniavs/svg?blushes=${blush}&blushesProbability=${blushesProbability}&bodyColor=${bodyColors}&eyes=${eyes}&glasses=${glasses}&glassesProbability=${glassesProbability}&hair=${hair}&hairColor=${hairColor}&head=${head}&mouth=${mouth}&mustache=${mustache}&mustacheProbability=${mustacheProbability}&skin=${skin}&backgroundColor=${backgroundColor}`;
   }
 }

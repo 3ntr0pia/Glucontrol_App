@@ -67,8 +67,8 @@
 
   <div class="avatar">
     <img *ngIf="datosRegistro.avatar; else defaultImage" class="avatar-img" [src]="datosRegistro.avatar" alt="Avatar">
-    <ng-template #defaultImage><img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"></ng-template>
-    <!-- <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"> -->
+    <ng-template #defaultImage>
+      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"></ng-template>
     <button class='btn btn-primary' (click)="generarAvatar()">Generar</button>
   </div>
   
