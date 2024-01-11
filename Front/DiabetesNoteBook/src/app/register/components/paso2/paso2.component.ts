@@ -15,6 +15,7 @@ export class Paso2Component {
   public TipoDiabetes = TipoDiabetes;
   
   @Input() datosRegistro : IRegister = {
+    username: '',
     avatar: '',
     nombre: "",
     apellido: "",
@@ -30,7 +31,8 @@ export class Paso2Component {
       actividad : this.Actividad.sedentario,
       tipoDiabetes : {
         tipo : this.TipoDiabetes.tipo1,
-        medicacion: [],
+        
+        medicacion: "",
         insulina: false
       }
     }

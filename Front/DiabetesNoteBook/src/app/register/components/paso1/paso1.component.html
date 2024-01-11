@@ -52,10 +52,13 @@
         <span class="form-text text-danger" *ngIf="password2.value != password.value">
           Las contraseñas no coinciden
         </span>
+        <span class="form-text text-danger" *ngIf="!validarPassword(datosRegistro.password)">
+          La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula, un número y un carácter especial.
+        </span>
       </div>
       <button type="submit" [disabled]="formularioInvalido()" class="btn btn-primary">Siguiente</button>
       <span class="form-text text-danger"
-        *ngIf="!datosRegistro.nombre || !datosRegistro.apellido || !datosRegistro.apellido2 || !datosRegistro.email || !datosRegistro.password || !datosRegistro.password2">
+        *ngIf="!datosRegistro.nombre || !datosRegistro.apellido || !datosRegistro.apellido2 || !datosRegistro.email || !datosRegistro.password || !password2">
         Todos los campos son obligatorios
       </span>
     </form>
@@ -63,11 +66,12 @@
   </div>
 
   <div class="avatar">
-
-    <img class="imagen" [src]="avatar">
-
-    <button (click)="generarAvatar()">Generar</button>
+    <img *ngIf="datosRegistro.avatar; else defaultImage" class="avatar-img" [src]="datosRegistro.avatar" alt="Avatar">
+    <ng-template #defaultImage>
+      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"></ng-template>
+    <button class='btn btn-primary' (click)="generarAvatar()">Generar</button>
   </div>
+  
 
 
 </div>

@@ -1,16 +1,15 @@
 .loging {
   position: relative;
-  top: 5rem;
+  top: 4rem;
   width: 100vw;
   height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 .slider {
   position: relative;
-  left: 4rem;
+  left: 2rem;
+  top: 10rem;
 }
 .loging-form {
   position: relative;
@@ -18,4 +17,41 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.loging-form img {
+  width: 50%;
+}
+@media (width < 1150px) {
+  .loging {
+    top: 10rem;
+  }
+}
+
+@media (width < 750px) {
+  .loging {
+    top: 10rem;
+  }
+  .slider {
+    visibility: hidden;
+  }
+  .loging-form {
+    top: 2rem;
+    right: 10rem;
+  }
+  .loging-form img {
+    width: 100%;
+  }
+}
+/* @media (395 < width < 525px) {
+  .loging {
+    left: 59rem;
+  }
+} */
+@media (width < 395px) {
+  .loging {
+    left: 5rem;
+  }
+  .loging-form img {
+    width: 110%;
+  }
 }

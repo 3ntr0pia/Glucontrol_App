@@ -1,0 +1,14 @@
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\bin\Debug\net7.0\CapaDominio.deps.json
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\bin\Debug\net7.0\CapaDominio.runtimeconfig.json
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\bin\Debug\net7.0\CapaDominio.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\bin\Debug\net7.0\CapaDominio.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.AssemblyInfo.cs
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\refint\CapaDominio.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\CapaDominio.genruntimeconfig.cache
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaDominio\obj\Debug\net7.0\ref\CapaDominio.dll

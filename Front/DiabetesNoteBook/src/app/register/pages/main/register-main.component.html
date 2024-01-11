@@ -14,7 +14,8 @@
             <register-paso2 *ngSwitchCase='2' [datosRegistro]="datosRegistro"
                 (siguientePaso)='siguientePaso($event)'></register-paso2>
             <register-paso3 *ngSwitchCase='3' [datosRegistro]="datosRegistro"
-                (registrar)='registrar()'></register-paso3>
+                (registrar)='registroUsuario($event)'></register-paso3>
+
 
         </div>
 

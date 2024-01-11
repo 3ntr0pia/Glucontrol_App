@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { UserModule } from './user/user.module';
-import { AvatarService } from './services/avatar.service';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -23,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     UserModule,
     HttpClientModule
   ],
-  providers: [AvatarService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
