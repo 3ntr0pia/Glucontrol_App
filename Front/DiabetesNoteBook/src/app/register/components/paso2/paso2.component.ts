@@ -30,7 +30,6 @@ export class Paso2Component {
       actividad : this.Actividad.sedentario,
       tipoDiabetes : {
         tipo : this.TipoDiabetes.tipo1,
-        fecha_diagnostico : new Date(),
         medicacion: [],
         insulina: false
       }

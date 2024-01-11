@@ -30,7 +30,7 @@ export class Paso3Component {
       actividad: this.Actividad.sedentario,
       tipoDiabetes: {
         tipo: this.TipoDiabetes.tipo1,
-        fecha_diagnostico: new Date(),
+        
         medicacion: [],
         insulina: false,
       },
@@ -48,6 +48,7 @@ export class Paso3Component {
   }
 
    actualizarMedicacion():void{
+    if(this.datosRegistro.mediciones.tipoDiabetes.medicacion.length < 6){
     const nuevaMedicacion = this.medicacion.split(',').map(m => m.trim()).filter(m => m.length > 0);
     
     nuevaMedicacion.forEach(nombre => {
@@ -55,20 +56,31 @@ export class Paso3Component {
       if(!existeMedicacion){
         this.datosRegistro.mediciones.tipoDiabetes.medicacion.push({
           nombre: nombre,
-          color: this.generarPastillaAletoria(),
-          forma: "pastilla"
+          color: this.generarColorAleatorio(),
+          forma: this.generarFormaAleatorio(),
+          rotacion: this.generarRotacionAleatorio()
         });
       }
     });
     this.datosRegistro.mediciones.tipoDiabetes.medicacion = this.datosRegistro.mediciones.tipoDiabetes.medicacion.filter(medicamento =>
       nuevaMedicacion.includes(medicamento.nombre)
     );
+    
+    };
   }
-  generarPastillaAletoria(): string {
-    const colores = ['red', 'blue', 'green', 'yellow', 'pink', 'purple'];
-    const forms = ['pildora', 'pastilla'];
-    const indice = Math.floor(Math.random() * colores.length);
-    return colores[indice];
+  generarColorAleatorio(){
+    const colores = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white'];
+    return colores[Math.floor(Math.random() * colores.length)];
   }
 
+  generarFormaAleatorio(){
+    const formas = ['pastilla', 'capsula'];
+    return formas[Math.floor(Math.random() * formas.length)];
+  }
+
+  generarRotacionAleatorio(){
+    const valorRotacion = ["rotate(90deg)", "rotate(180deg)", "rotate(270deg)", "rotate(360deg)", "rotate(450deg)", "rotate(540deg)", "rotate(630deg)", "rotate(720deg)", "rotate(810deg)", "rotate(900deg)", "rotate(990deg)", "rotate(1080deg)", "rotate(1170deg)", "rotate(1260deg)", "rotate(1350deg)", "rotate(1440deg)", "rotate(1530deg)", "rotate(1620deg)", "rotate(1710deg)", "rotate(1800deg)"]
+    return valorRotacion[Math.floor(Math.random() * valorRotacion.length)];
+
+}
 }

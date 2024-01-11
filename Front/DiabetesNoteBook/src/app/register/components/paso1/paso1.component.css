@@ -10,3 +10,21 @@ input{
     outline: none;
     transition: all 0.3s ease;
 }
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form{
+    width: 50%;
+   
+
+}
+
+.imagen{
+    width: 50%;
+    background-color: rgb(255, 0, 0);
+}

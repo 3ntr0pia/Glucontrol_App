@@ -23,7 +23,6 @@ export interface IMediciones{
 
 export interface IDiabetes{
     tipo : TipoDiabetes;
-    fecha_diagnostico : Date;
     medicacion: IPill[];
     insulina: boolean;
 }
@@ -32,4 +31,5 @@ export interface IPill {
     nombre : string;
     color : string;
     forma: string;
+    rotacion: string;
 }

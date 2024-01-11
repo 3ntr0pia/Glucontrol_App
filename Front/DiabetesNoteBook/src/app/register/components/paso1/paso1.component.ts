@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
 import { IRegister } from '../../interfaces/register.interface';
+import { AvatarService } from 'src/app/services/avatar.service';
 
 @Component({
   selector: 'register-paso1',
@@ -27,7 +28,7 @@ export class Paso1Component {
       actividad : Actividad.sedentario,
       tipoDiabetes : {
         tipo : TipoDiabetes.tipo1,
-        fecha_diagnostico : new Date(),
+        
         medicacion: [],
         insulina: false
       }
@@ -44,5 +45,14 @@ export class Paso1Component {
            this.datosRegistro.password !== this.datosRegistro.password2;
   }
  
+  constructor(private avatarService: AvatarService) { }
+  avatar : string = '';
+  hasError:boolean = false;
+
+  generarAvatar() {
+    const randomSeed = Math.random().toString(36).substring(7);
+    const sprites = 'miniavs'; 
+    this.avatar = this.avatarService.getAvatar(randomSeed, sprites);
+  }
   
 }

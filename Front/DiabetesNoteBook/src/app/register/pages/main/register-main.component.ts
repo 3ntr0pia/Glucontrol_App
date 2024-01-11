@@ -31,14 +31,13 @@ export class RegisterMainComponent {
       actividad : this.Actividad.sedentario,
       tipoDiabetes : {
         tipo : this.TipoDiabetes.tipo1,
-        fecha_diagnostico : new Date(),
         medicacion: [],
         insulina: false
       }
     }
   };
 
-  paso : number = 3;
+  paso : number = 2;
   
   siguientePaso(info : IRegister):void{
     //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;

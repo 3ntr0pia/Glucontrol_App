@@ -1,12 +1,4 @@
 <div class="wrapper">
-
-  <div class="avatar">
-
-    
-
-  </div>
-
-
   <div class="formulario">
 
     <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
@@ -70,7 +62,12 @@
 
   </div>
 
+  <div class="avatar">
 
+    <img class="imagen" [src]="avatar">
+
+    <button (click)="generarAvatar()">Generar</button>
+  </div>
 
 
 </div>
