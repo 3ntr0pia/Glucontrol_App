@@ -2,6 +2,7 @@
   position: relative;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  justify-items: center;
   color: #002d52;
 }
 .error-form {
@@ -43,4 +44,24 @@
 
 .aForgetPass a:hover {
   text-decoration: underline;
+}
+@media (width < 750px) {
+  .btnInicio {
+    left: 5rem;
+  }
+}
+@media (390px < width < 560px) {
+  .btnInicio {
+    left: 3rem;
+  }
+  .aForgetPass {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (width < 390px) {
+  .btnInicio {
+    left: 2rem;
+  }
 }
