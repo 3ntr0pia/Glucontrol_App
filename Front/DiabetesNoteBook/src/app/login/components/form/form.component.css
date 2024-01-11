@@ -1,0 +1,46 @@
+.sectionLogin {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: #002d52;
+}
+.error-form {
+  visibility: hidden;
+  color: red;
+  font-style: italic;
+}
+.input input {
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-shadow: #d9dbda;
+  text-transform: lowercase;
+  background-color: #effbff;
+  border: 0.5px solid #002d52;
+}
+
+.btnInicio {
+  position: relative;
+  top: 0.7rem;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #effbff;
+  font-size: large;
+}
+.btnInicio:hover {
+  background-color: #80f9c0;
+}
+
+.aForgetPass a {
+  position: relative;
+  top: 1.2rem;
+  margin: 0.25rem;
+  text-decoration: none;
+  color: #002d52;
+}
+
+.aForgetPass a:hover {
+  text-decoration: underline;
+}

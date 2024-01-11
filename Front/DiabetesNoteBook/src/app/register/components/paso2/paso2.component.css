@@ -1,0 +1,48 @@
+.contenedor {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.der {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.izq {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.izq i{
+    font-size: 2rem;
+}
+
+.monigote {
+    width: 80%; 
+    object-fit: contain;
+    height: auto; 
+}
+
+.bajo {
+    
+    transform: scaleY(0.9);
+    
+}
+
+.medio {
+    transform: scaleY(1);
+}
+
+.alto {
+    
+    transform: scaleY(1.2);
+}

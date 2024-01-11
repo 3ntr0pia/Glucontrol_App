@@ -1,0 +1,151 @@
+// paso1.component.css
+
+
+// paso1.component.html
+<h1> paso 1</h1>
+<form (ngSubmit)="siguientePaso.emit(datosRegistro)">
+    <label for="">email</label>
+    <input type="email" [(ngModel)]="datosRegistro.email" name="email" required>
+    <input type="password" [(ngModel)]="datosRegistro.password" name="password" required>
+    <button type="submit">Siguiente</button>
+  </form>
+
+// paso1.component.ts
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { IRegister } from '../../interfaces/register.interface';
+
+@Component({
+  selector: 'register-paso1',
+  templateUrl: './paso1.component.html',
+  styleUrls: ['./paso1.component.css']
+})
+export class Paso1Component {
+
+  @Output() siguientePaso = new EventEmitter<IRegister>();
+
+  datosRegistro! : IRegister ;
+
+}
+
+
+// paso2.component.css
+
+
+// paso2.component.html
+<h1> paso 2</h1>
+
+// paso2.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
+import { IRegister } from '../../interfaces/register.interface';
+
+@Component({
+  selector: 'register-paso2',
+  templateUrl: './paso2.component.html',
+  styleUrls: ['./paso2.component.css']
+})
+export class Paso2Component {
+  @Output() siguientePaso = new EventEmitter<IRegister>();
+
+  datosRegistro! : IRegister ;
+}
+
+
+// paso3.component.css
+
+
+// paso3.component.html
+<h1> paso 3</h1>
+
+
+// paso3.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
+import { IRegister } from '../../interfaces/register.interface';
+
+@Component({
+  selector: 'register-paso3',
+  templateUrl: './paso3.component.html',
+  styleUrls: ['./paso3.component.css']
+})
+export class Paso3Component {
+  @Output() siguientePaso = new EventEmitter<IRegister>();
+
+  datosRegistro! : IRegister ;
+}
+
+
+// register-main.component.css
+
+
+// register-main.component.html
+<div class="container">
+    
+    <div class="row">
+        
+        <div class="col">
+        <h2> Bienvenido a nuestra comunidad</h2>
+        <p>Aqui podrás registrarte para que la aplicacion tome todas tus medidas</p>    
+        </div>
+        
+        <div  class="col">
+        <div [ngSwitch]='paso'>
+            <register-paso1 *ngSwitchCase='1' (siguientePaso)='siguientePaso($event)'></register-paso1>
+            <register-paso2 *ngSwitchCase='2' (siguientePaso)='siguientePaso($event)'></register-paso2>
+            <register-paso3 *ngSwitchCase='3' (siguientePaso)='siguientePaso($event)'></register-paso3>
+            
+        </div>
+    
+    </div>
+</div>
+
+// register-main.component.ts
+import { Component } from '@angular/core';
+import { Actividad, IRegister, Sexo, TipoDiabetes } from '../../interfaces/register.interface';
+
+@Component({
+  selector: 'register-main',
+  templateUrl: './register-main.component.html',
+  styleUrls: ['./register-main.component.css']
+})
+export class RegisterMainComponent {
+
+
+
+  datosRegistro : IRegister = {
+    nombre: "",
+    apellido: "",
+    apellido2: "",
+    email: "",
+    password: "",
+    password2: "",
+    mediciones : {
+      edad : 0,
+      peso : 0,
+      altura : 0,
+      sexo : Sexo.hombre,
+      actividad : Actividad.sedentario,
+      tipoDiabetes : {
+        tipo : TipoDiabetes.tipo1,
+        fecha_diagnostico : new Date(),
+        medicacion: [],
+        insulina: false
+      }
+    }
+  };
+
+  paso : number = 1;
+  
+  siguientePaso(info : IRegister):void{
+    //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;
+    Object.assign(this.datosRegistro, info); // SE CARGA SOLO LA PARTE QUE SE HA MODIFICADO
+    this.paso++;
+  }
+  pasoAnterior():void{
+    this.paso--;
+  }
+  registrar():void{
+    console.log(this.datosRegistro);
+  }
+  
+};
+
+

@@ -1,0 +1,26 @@
+<form (ngSubmit)="registrar.emit(datosRegistro)" class="form">
+  <div class="form-group">
+    <label for="tipo">Tipo de diabetes</label>
+    <select [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo" name="tipo" required class="form-control">
+      <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
+      <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
+      <option [value]="TipoDiabetes.gestacional">Gestacional</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="fecha_diagnostico">Fecha de diagnóstico</label>
+    <input type="date" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.fecha_diagnostico" name="fecha_diagnostico"
+      required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="medicacion">Medicación</label>
+    <input type="text" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.medicacion" name="medicacion" required
+      class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="insulina">¿Toma insulina?</label>
+    <input type="checkbox" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina" name="insulina" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Completar Registro</button>
+</form>
+
