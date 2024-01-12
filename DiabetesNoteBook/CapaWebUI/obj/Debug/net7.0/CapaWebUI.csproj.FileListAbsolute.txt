@@ -1,0 +1,11 @@
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\bin\Debug\net7.0\CapaWebUI.deps.json
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\bin\Debug\net7.0\CapaWebUI.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\bin\Debug\net7.0\CapaWebUI.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\CapaWebUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\CapaWebUI.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\CapaWebUI.AssemblyInfo.cs
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\CapaWebUI.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\CapaWebUI.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\refint\CapaWebUI.dll
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\CapaWebUI.pdb
+C:\Users\PC\Desktop\Curso\ProyectoFinal\WebApiCadaGotaCuenta\CapaWebUI\obj\Debug\net7.0\ref\CapaWebUI.dll

@@ -1,4 +1,4 @@
-<form (ngSubmit)="registrar.emit(datosRegistro)" class="form">
+<form (ngSubmit)="registroUsuario()" class="form">
   <div class="form-group">
     <label for="tipo">Tipo de diabetes</label>
     <select [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo" name="tipo" required class="form-control">
@@ -7,11 +7,7 @@
       <option [value]="TipoDiabetes.gestacional">Gestacional</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="fecha_diagnostico">Fecha de diagnóstico</label>
-    <input type="date" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.fecha_diagnostico" name="fecha_diagnostico"
-      required class="form-control">
-  </div>
+  
   <div class="form-group">
     <label for="medicacion">Medicación</label>
     <input type="text" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.medicacion" name="medicacion" required

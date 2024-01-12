@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "Uj+kWK9smeEzhGjhQ5Z0YQY/3RJmdTXMf+7v/sPJAjo=",
+  "Source": "DiabetesNoteBook",
+  "BasePath": "_content/DiabetesNoteBook",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DiabetesNoteBook\\wwwroot",
+      "Source": "DiabetesNoteBook",
+      "ContentRoot": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\",
+      "BasePath": "_content/DiabetesNoteBook",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\logErrores.txt",
+      "SourceId": "DiabetesNoteBook",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\",
+      "BasePath": "_content/DiabetesNoteBook",
+      "RelativePath": "logErrores.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logErrores.txt"
+    }
+  ]
+}

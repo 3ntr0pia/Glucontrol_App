@@ -2,6 +2,7 @@ import { Sexo, Actividad, TipoDiabetes } from './register.enum';
 
 export interface IRegister{
     avatar: string;
+    username: string;
     nombre: string;
     apellido: string;
     apellido2: string;
@@ -23,7 +24,6 @@ export interface IMediciones{
 
 export interface IDiabetes{
     tipo : TipoDiabetes;
-    fecha_diagnostico : Date;
-    medicacion: string[];
+    medicacion: string;
     insulina: boolean;
 }
