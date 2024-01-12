@@ -3,11 +3,11 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   justify-items: center;
-  color: #002d52;
+  color: var(--main--colorForeground);
 }
 .error-form {
   visibility: hidden;
-  color: red;
+  color: var(--main--colorErrorOrDenegate);
   font-style: italic;
 }
 .input input {
@@ -17,7 +17,7 @@
   border-radius: 10px;
   text-shadow: #d9dbda;
   text-transform: lowercase;
-  background-color: #effbff;
+  background-color: var(--main--colorBackGroundElements);
   border: 0.5px solid #002d52;
 }
 
@@ -27,11 +27,11 @@
   padding: 0.2rem;
   border: none;
   border-radius: 5px;
-  background-color: #effbff;
+  background-color: var(--main--colorBackGroundElements);
   font-size: large;
 }
 .btnInicio:hover {
-  background-color: #80f9c0;
+  background-color: var(--main--colorHoverBtnAccept);
 }
 
 .aForgetPass a {

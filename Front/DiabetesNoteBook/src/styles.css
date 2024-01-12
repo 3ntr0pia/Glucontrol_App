@@ -1,4 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --main--colorBackGround: #68c2f1;
+  --main--colorForeground: #002d52;
+  --main--colorBackGroundElements: #effbff;
+  --main--colorHoverBtnAccept: #80f9c0;
+  --main--colorErrorOrDenegate: #ee7b7c;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("assets/fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 * {
   margin: 0;
   padding: 0;
@@ -7,5 +21,5 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-color: #68c2f1;
+  background-color: var(--main--colorBackGround);
 }
