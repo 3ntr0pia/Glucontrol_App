@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { ILogin } from '../../interfaces/login.interface';
 
 @Component({
   selector: 'login-form',
@@ -9,10 +12,25 @@ export class FormComponent {
 
   usuario : string = '';
   password : string = '';
-  
+  error : string = '';
+
+  constructor(private authService: AuthServiceService, private router: Router ) { }
+
   login() {
-    console.log(this.usuario);
-    console.log(this.password);
+    const datoLogin : ILogin = {
+      UserName: this.usuario,
+      Password: this.password
+    }
+    this.authService.loginUser(datoLogin).subscribe(
+      (res) => {
+        console.log(res);
+        this.router.navigate(['/user-dashboard']);
+      },
+      (err) => {
+        this.error = err.error;
+        console.log(this.error);
+      }
+    );
   }
 
 }

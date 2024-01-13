@@ -52,10 +52,12 @@ export class Paso1Component {
 
   formularioInvalido(): boolean {
     return !this.datosRegistro.nombre ||
+           !this.datosRegistro.username ||
            !this.datosRegistro.apellido ||
            !this.datosRegistro.apellido2 ||
            !this.datosRegistro.email ||
-           !this.datosRegistro.password ;
+           !this.datosRegistro.password ||
+           !this.datosRegistro.avatar ;
            
   }
   validarPassword(password: string): boolean {

@@ -7,27 +7,27 @@
     
 }
 
-.der {
+.formulario {
     width: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    
 }
 
-.izq {
-    
+.persona {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.izq i{
+.persona i{
     font-size: 2rem;
 }
 
 .monigote {
-    width: 80%; 
+    width: 60%; 
     object-fit: contain;
     height: auto; 
 }

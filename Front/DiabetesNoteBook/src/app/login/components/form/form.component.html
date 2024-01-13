@@ -2,7 +2,7 @@
   <p class="error-form">Error al introducir Email o Contraseña</p>
   <form (ngSubmit)="login()">
     <div class="input">
-      <label class="usuario-form" for="usuario-form">Email address</label>
+      <label class="usuario-form" for="usuario-form">Nombre de Usuario</label>
       <input
         type="email"
         id="usuario-form"
@@ -12,7 +12,7 @@
       />
     </div>
     <div class="input">
-      <label for="password-form">Password</label>
+      <label for="password-form">Contraseña</label>
       <input
         type="password"
         id="password-form"
@@ -21,10 +21,11 @@
       />
     </div>
     <div>
-      <button class="btnInicio">Iniciar Sesion</button>
+      <button class="btnInicio">Iniciar Sesion</button> 
+      <span>{{error}}</span>
     </div>
     <div class="aForgetPass">
-      <a href="#!">He olvidado la contraseña</a><a href="#!">Registrarse</a>
+      <a href="#!">He olvidado la contraseña</a><a routerLink="/register">Registrarse</a>
     </div>
   </form>
 </section>

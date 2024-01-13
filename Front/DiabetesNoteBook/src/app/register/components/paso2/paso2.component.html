@@ -1,20 +1,18 @@
 <div class="contenedor">
 
 
-    <div class="der">
+    <div class="formulario">
         <form (ngSubmit)="siguientePaso.emit(datosRegistro)" class="formulario">
             <div class="mb-3">
                 <label for="edad" class="form-label">Edad</label>
                 <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.edad" name="edad"
                     required>
             </div>
-
             <div class="mb-3">
                 <label for="altura" class="form-label">Altura</label>
                 <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.altura" name="altura"
                     required>
             </div>
-
             <div class="mb-3">
                 <label for="peso" class="form-label">Peso</label>
                 <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.peso" name="peso"
@@ -27,26 +25,29 @@
                     <option [value]="Sexo.mujer">Femenino</option>
                 </select>
             </div>
-
-            <button type="submit" class="btn btn-primary">Siguiente</button>
+            <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad">
+                Debe rellenar todos los campos
+            </span>
+            <button type="submit" class="btn btn-primary" [disabled]="formularioInvalido()">Siguiente</button>
 
         </form>
 
     </div>
 
 
-    <div class="izq">
+    <div class="persona">
         <i class="bi" [ngClass]="{
          'bi-gender-female': datosRegistro.mediciones.sexo == Sexo.mujer,
           'bi-gender-male' : datosRegistro.mediciones.sexo == Sexo.hombre   
         }"></i>
-        <img [src]="obtenerIMC()" class='monigote' alt="representacion del peso" 
-        [ngClass]="{
+        <img [src]="obtenerIMC()" class='monigote' alt="representacion del peso" [ngClass]="{
             'bajo' : datosRegistro.mediciones.altura < 150,
             'medio': datosRegistro.mediciones.altura >= 150 && datosRegistro.mediciones.altura < 180,
             'alto': datosRegistro.mediciones.altura >= 180
         }">
-        
+        <span class='imc' [ngStyle]="{
+            'color' : imcColor()
+        }" >{{imc}}</span>
     </div>
 
 </div>

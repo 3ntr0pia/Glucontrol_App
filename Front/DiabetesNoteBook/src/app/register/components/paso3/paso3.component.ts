@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { IRegister } from '../../interfaces/register.interface';
 import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
 import { IFinalRegister } from '../../interfaces/finalregister.interface';
@@ -14,6 +14,7 @@ export class Paso3Component {
   public Sexo = Sexo;
   public Actividad = Actividad;
   public TipoDiabetes = TipoDiabetes;
+  public medicacion : string = '';
 
   @Input() datosRegistro: IRegister = {
     avatar: '',
@@ -86,10 +87,41 @@ export class Paso3Component {
     );
   }
 
-  // separarMedicacion(medicacion: string): void {
-  //   medicacion.split(',');
-  //   this.datosRegistro.mediciones.tipoDiabetes.medicacion.push(medicacion);
-  // }
+//   actualizarMedicacion():void{
+//     if(this.datosRegistro.mediciones.tipoDiabetes.medicacion.length < 6){
+//     const nuevaMedicacion = this.medicacion.split(',').map(m => m.trim()).filter(m => m.length > 0);
+    
+//     nuevaMedicacion.forEach(nombre => {
+//       const existeMedicacion = this.datosRegistro.mediciones.tipoDiabetes.medicacion.find(m => m.nombre === nombre);
+//       if(!existeMedicacion){
+//         this.datosRegistro.mediciones.tipoDiabetes.medicacion.push({
+//           nombre: nombre,
+//           color: this.generarColorAleatorio(),
+//           forma: this.generarFormaAleatorio(),
+//           rotacion: this.generarRotacionAleatorio()
+//         });
+//       }
+//     });
+//     this.datosRegistro.mediciones.tipoDiabetes.medicacion = this.datosRegistro.mediciones.tipoDiabetes.medicacion.filter(medicamento =>
+//       nuevaMedicacion.includes(medicamento.nombre)
+//     );
+    
+//     };
+//   }
+//   generarColorAleatorio(){
+//     const colores = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white'];
+//     return colores[Math.floor(Math.random() * colores.length)];
+//   }
 
+//   generarFormaAleatorio(){
+//     const formas = ['pastilla', 'capsula'];
+//     return formas[Math.floor(Math.random() * formas.length)];
+//   }
+
+//   generarRotacionAleatorio(){
+//     const valorRotacion = ["rotate(90deg)", "rotate(180deg)", "rotate(270deg)", "rotate(360deg)", "rotate(450deg)", "rotate(540deg)", "rotate(630deg)", "rotate(720deg)", "rotate(810deg)", "rotate(900deg)", "rotate(990deg)", "rotate(1080deg)", "rotate(1170deg)", "rotate(1260deg)", "rotate(1350deg)", "rotate(1440deg)", "rotate(1530deg)", "rotate(1620deg)", "rotate(1710deg)", "rotate(1800deg)"]
+//     return valorRotacion[Math.floor(Math.random() * valorRotacion.length)];
+
+// }
 
 }

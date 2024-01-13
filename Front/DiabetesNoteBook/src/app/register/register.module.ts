@@ -8,6 +8,7 @@ import { Paso2Component } from './components/paso2/paso2.component';
 import { Paso3Component } from './components/paso3/paso3.component';
 import { AvatarService } from '../services/avatar.service';
 
+
 @NgModule({
   declarations: [RegisterMainComponent, Paso1Component, Paso2Component, Paso3Component],
   imports: [CommonModule, RegisterRoutingModule, FormsModule],
