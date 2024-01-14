@@ -40,7 +40,7 @@
           required class="form-control"
           [placeholder]='!password.valid && password.touched ? "Password obligatorio" : "Inserte su contraseña..."'>
       </div>
-      <span class="form-text text-danger" *ngIf="!validarPassword(datosRegistro.password)">
+      <span class="form-text text-danger " *ngIf="!validarPassword(datosRegistro.password)">
         La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula, un número y un
         carácter especial.
       </span>

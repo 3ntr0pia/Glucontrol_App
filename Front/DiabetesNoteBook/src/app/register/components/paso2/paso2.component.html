@@ -25,6 +25,15 @@
                     <option [value]="Sexo.mujer">Femenino</option>
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="actividad" class="form-label">Actividad</label>
+                <select class="form-select" [(ngModel)]="datosRegistro.mediciones.actividad" name="actividad" required>
+                    <option [value]="Actividad.sedentario">Sedentario</option>
+                    <option [value]="Actividad.ligero">Ligero</option>
+                    <option [value]="Actividad.moderado">Moderado</option>
+                    <option [value]="Actividad.intenso">Intenso</option>
+                </select>
+            </div>
             <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad">
                 Debe rellenar todos los campos
             </span>

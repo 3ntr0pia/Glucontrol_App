@@ -4,6 +4,7 @@
   </article>
   <article class="loging-form">
     <img src="assets/logo.png" alt="" />
-    <login-form></login-form>
+    <login-form *ngIf='!validacion'></login-form>
+    <app-recordar *ngIf='validacion'></app-recordar>
   </article>
 </section>
