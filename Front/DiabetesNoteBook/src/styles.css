@@ -12,6 +12,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-size: clamp(0.563rem, 2vw + 1rem, 2.25rem);
 }
 * {
   margin: 0;
@@ -22,4 +23,5 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--main--colorBackGround);
+  font-family: "Open Sans";
 }

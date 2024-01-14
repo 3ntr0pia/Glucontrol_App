@@ -1,77 +1,124 @@
-<div class="wrapper">
-  <div class="formulario">
-
+<section class="wrapper">
+  <article class="form">
     <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
-      <div class="form-group">
+      <div>
         <label for="nombre">Nombre</label>
-        <input id='nombre' type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel" required
-          class="form-control">
-        <span class="form-text text-danger" *ngIf="!nombre.valid && nombre.touched">
+        <input
+          id="nombre"
+          type="nombre"
+          [(ngModel)]="datosRegistro.nombre"
+          name="nombre"
+          #nombre="ngModel"
+          required
+        />
+        <span class="error-form" *ngIf="!nombre.valid && nombre.touched">
           Nombre obligatorio
         </span>
       </div>
-      <div class="form-group">
+      <div>
         <label for="apellido">Primer Apellido</label>
-        <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido='ngModel' name="apellido"
-          required class="form-control">
-        <span class="form-text text-danger" *ngIf="!apellido.valid && apellido.touched">
+        <input
+          id="apellido"
+          type="apellido"
+          [(ngModel)]="datosRegistro.apellido"
+          #apellido="ngModel"
+          name="apellido"
+          required
+        />
+        <span class="error-form" *ngIf="!apellido.valid && apellido.touched">
           Apellido obligatorio
         </span>
       </div>
-      <div class="form-group">
+      <div>
         <label for="apellido2">Segundo Apellido</label>
-        <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
-          #apellido2='ngModel' required class="form-control">
-        <span class="form-text text-danger" *ngIf="!apellido2.valid && apellido2.touched">
+        <input
+          id="apellido2"
+          type="apellido2"
+          [(ngModel)]="datosRegistro.apellido2"
+          name="apellido2"
+          #apellido2="ngModel"
+          required
+        />
+        <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched">
           Apellido obligatorio
         </span>
       </div>
-      <div class="form-group">
+      <div class="div-email">
         <label for="email">Email</label>
-        <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email='ngModel' required
-          class="form-control">
-        <span class="form-text text-danger" *ngIf="!email.valid && email.touched">
+        <input
+          id="email"
+          class="input-email"
+          type="email"
+          [(ngModel)]="datosRegistro.email"
+          name="email"
+          #email="ngModel"
+          required
+        />
+        <span class="error-form" *ngIf="!email.valid && email.touched">
           Email obligatorio
         </span>
       </div>
-      <div class="form-group">
+      <div>
         <label for="password">password</label>
-        <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password='ngModel'
-          required class="form-control">
-        <span class="form-text text-danger" *ngIf="!password.valid && password.touched">
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="datosRegistro.password"
+          name="password"
+          #password="ngModel"
+          required
+        />
+        <span class="error-form" *ngIf="!password.valid && password.touched">
           Password obligatorio
         </span>
       </div>
-      <div class="form-group">
+      <div>
         <label for="password2">Repita su contraseña</label>
-        <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
-          #password2='ngModel' required class="form-control">
-        <span class="form-text text-danger" *ngIf="!password2.valid && password2.touched">
+        <input
+          id="password2"
+          type="password"
+          [(ngModel)]="datosRegistro.password2"
+          name="password2"
+          #password2="ngModel"
+          required
+        />
+        <span class="error-form" *ngIf="!password2.valid && password2.touched">
           Password obligatorio
         </span>
-        <span class="form-text text-danger" *ngIf="password2.value != password.value">
+        <span class="error-form" *ngIf="password2.value != password.value">
           Las contraseñas no coinciden
         </span>
-        <span class="form-text text-danger" *ngIf="!validarPassword(datosRegistro.password)">
-          La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula, un número y un carácter especial.
+        <span *ngIf="!validarPassword(datosRegistro.password)">
+          La contraseña debe tener al menos 8 caracteres, incluyendo una
+          mayúscula, una minúscula, un número y un carácter especial.
         </span>
       </div>
-      <button type="submit" [disabled]="formularioInvalido()" class="btn btn-primary">Siguiente</button>
-      <span class="form-text text-danger"
-        *ngIf="!datosRegistro.nombre || !datosRegistro.apellido || !datosRegistro.apellido2 || !datosRegistro.email || !datosRegistro.password || !password2">
+      <button type="submit" [disabled]="formularioInvalido()">Siguiente</button>
+      <span
+        *ngIf="
+          !datosRegistro.nombre ||
+          !datosRegistro.apellido ||
+          !datosRegistro.apellido2 ||
+          !datosRegistro.email ||
+          !datosRegistro.password ||
+          !password2
+        "
+      >
         Todos los campos son obligatorios
       </span>
     </form>
+  </article>
 
-  </div>
-
-  <div class="avatar">
-    <img *ngIf="datosRegistro.avatar; else defaultImage" class="avatar-img" [src]="datosRegistro.avatar" alt="Avatar">
+  <article class="avatar">
+    <img
+      *ngIf="datosRegistro.avatar; else defaultImage"
+      class="avatar-img"
+      [src]="datosRegistro.avatar"
+      alt="Avatar"
+    />
     <ng-template #defaultImage>
-      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"></ng-template>
-    <button class='btn btn-primary' (click)="generarAvatar()">Generar</button>
-  </div>
-  
-
-
-</div>
+      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"
+    /></ng-template>
+    <button (click)="generarAvatar()">Generar</button>
+  </article>
+</section>
