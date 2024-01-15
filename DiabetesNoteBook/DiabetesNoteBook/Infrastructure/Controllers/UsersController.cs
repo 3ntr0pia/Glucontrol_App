@@ -21,10 +21,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IEmailService _emailService;
         private readonly IConfirmEmailService _confirmEmailService;
         private readonly IUserDeregistrationService _userDeregistrationService;
+        private readonly IDeleteUserService _deleteUserService;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
             IOperationsService operationsService, INewRegister newRegisterService,
-            IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService)
+            IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService, IDeleteUserService deleteUserService)
         {
             _context = context;
             _hashService = hashService;
@@ -34,6 +35,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _confirmEmailService = confirmEmailService;
             _newRegisterService = newRegisterService;
             _userDeregistrationService = userDeregistrationService;
+            _deleteUserService = deleteUserService;
         }
 
         [AllowAnonymous]
@@ -223,23 +225,39 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
         }
 
-        //[HttpDelete("elimnarUsuario")]
-        //public async Task<ActionResult> DeleteUser([FromBody] DTODeleteUser Id)
-        //{
+        [HttpDelete("elimnarUsuario")]
+        public async Task<ActionResult> DeleteUser([FromBody] DTODeleteUser Id)
+        {
 
-        //    try
-        //    {
+            try
+            {
+                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == Id.Id);
 
-                
+                if (userExist == null)
+                {
+                    return Unauthorized("Usuario no encontrado");
+                }
 
-        //        return Ok();
-        //    }
-        //    catch
-        //    {
-        //        return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
-        //    }
+                await _deleteUserService.DeleteUser(new DTODeleteUser
+                {
+                    Id = Id.Id
+                });
 
-        //}
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Borrar usuario",
+                    UserId = userExist.Id
+                });
+
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
+            }
+
+        }
 
     }
 }

@@ -71,10 +71,6 @@ public partial class DiabetesNoteBookContext : DbContext
             entity.Property(e => e.FechaAccion).HasColumnType("datetime");
             entity.Property(e => e.Ip).HasMaxLength(50);
             entity.Property(e => e.Operacion).HasMaxLength(50);
-
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Operaciones)
-                .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK_IdUsuarios");
         });
 
         modelBuilder.Entity<Persona>(entity =>

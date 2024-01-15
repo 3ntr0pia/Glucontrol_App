@@ -27,7 +27,5 @@ public partial class Usuario
 
     public DateTime? FechaEnlaceCambioPass { get; set; }
 
-    public virtual ICollection<Operacione> Operaciones { get; set; } = new List<Operacione>();
-
     public virtual ICollection<Persona> Personas { get; set; } = new List<Persona>();
 }
