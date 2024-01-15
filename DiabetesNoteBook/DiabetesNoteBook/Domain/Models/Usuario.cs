@@ -21,11 +21,11 @@ public partial class Usuario
 
     public bool ConfirmacionEmail { get; set; }
 
+    public bool BajaUsuario { get; set; }
+
     public string? EnlaceCambioPass { get; set; }
 
     public DateTime? FechaEnlaceCambioPass { get; set; }
-
-    public virtual ICollection<Operacione> Operaciones { get; set; } = new List<Operacione>();
 
     public virtual ICollection<Persona> Personas { get; set; } = new List<Persona>();
 }
