@@ -155,6 +155,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     return Unauthorized("Usuario no confirmado, por favor acceda a su correo y valida su registro.");
                 }
 
+                if (usuarioDB.BajaUsuario == true)
+                {
+                    return Unauthorized("El usuario se encuentra dado de baja.");
+                }
+
                 var resultadoHash = _hashService.Hash(usuario.Password, usuarioDB.Salt);
 
                 if (usuarioDB.Password == resultadoHash.Hash)
@@ -232,6 +237,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 if (userExist == null)
                 {
                     return Unauthorized("Usuario no encontrado");
+                }
+
+                if (userExist.BajaUsuario == false)
+                {
+                    return Unauthorized("El usuario no se encuentra dado de baja, por favor, solicita la baja primero.");
                 }
 
                 await _deleteUserService.DeleteUser(new DTODeleteUser
