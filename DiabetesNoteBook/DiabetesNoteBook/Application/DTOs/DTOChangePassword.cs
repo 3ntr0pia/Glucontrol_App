@@ -13,6 +13,7 @@
 
     public class DTOUsuarioChangePasswordMailConEnlace
     {
-        public string Password { get; set; }
+        public string Email { get; set; }
+        public string NewPass { get; set; }
     }
 }

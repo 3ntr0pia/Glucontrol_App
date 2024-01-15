@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DiabetesNoteBook.Domain.Models;
-using DiabetesNoteBook.Infrastructure.Interfaces;
-using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.DTOs;
+using DiabetesNoteBook.Application.Interfaces;
+using DiabetesNoteBook.Infrastructure.Interfaces;
 
 namespace DiabetesNoteBook.Application.Services
 {
@@ -29,5 +29,8 @@ namespace DiabetesNoteBook.Application.Services
 
             await _changePassword.SaveNewPassword(usuarioDB);
         }
+
+        
+
     }
 }

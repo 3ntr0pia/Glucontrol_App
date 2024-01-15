@@ -21,6 +21,8 @@ public partial class Usuario
 
     public bool ConfirmacionEmail { get; set; }
 
+    public bool BajaUsuario { get; set; }
+
     public string? EnlaceCambioPass { get; set; }
 
     public DateTime? FechaEnlaceCambioPass { get; set; }

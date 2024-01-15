@@ -5,6 +5,7 @@ using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Services;
+using DiabetesNoteBook.Application.Filters;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
@@ -20,10 +21,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly INewRegister _newRegisterService;
         private readonly IEmailService _emailService;
         private readonly IConfirmEmailService _confirmEmailService;
+        private readonly FiltroExcepcion _filtroDeExcepcion;
+        private readonly IDeleteUserService _deleteUserService;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
             IOperationsService operationsService, INewRegister newRegisterService,
-            IEmailService emailService, IConfirmEmailService confirmEmailService)
+            IEmailService emailService, IConfirmEmailService confirmEmailService, FiltroExcepcion filtroDeExcepcion, IDeleteUserService deleteUserService)
         {
             _context = context;
             _hashService = hashService;
@@ -32,6 +35,8 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _emailService = emailService;
             _confirmEmailService = confirmEmailService;
             _newRegisterService = newRegisterService;
+            _filtroDeExcepcion = filtroDeExcepcion;
+            _deleteUserService = deleteUserService;
         }
 
         [AllowAnonymous]
@@ -178,6 +183,45 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             catch
             {
                 return BadRequest("En estos momentos no se ha podido realizar el login, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [HttpDelete("eliminarUsuario")]
+        public async Task<ActionResult> UserDelete([FromBody] DTODeleteUser Id)
+        {
+
+            try
+            {
+
+                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == Id.Id);
+
+                if (userExist == null)
+                {
+                    return Unauthorized("Usuario no encontrado");
+                }
+
+                if (userExist.BajaUsuario == true)
+                {
+                    return Unauthorized("Usuario dado de baja con anterioridad");
+                }
+
+                await _deleteUserService.DeleteUserService(new DTODeleteUser
+                {
+                    Id = Id.Id
+                });
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Borrar usuario",
+                    UserId = userExist.Id
+                });
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
             }
 
         }
