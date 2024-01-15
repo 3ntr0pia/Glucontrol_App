@@ -35,6 +35,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _changePassMail = changePassMail;
         }
 
+        [AllowAnonymous]
         [HttpPut("changePassword")]
         public async Task<ActionResult> ChangePassword([FromBody] DTOCambioPassPorId userData)
         {
@@ -45,6 +46,13 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 if (usuarioDB == null)
                 {
                     return Unauthorized("Operación no autorizada");
+                }
+
+                var resultadoHash = _hashService.Hash(userData.NewPass, usuarioDB.Salt);
+
+                if (usuarioDB.Password == resultadoHash.Hash)
+                {
+                    return Unauthorized("La nueva contraseña no puede ser la misma.");
                 }
 
                 await _changePassService.ChangePassId(new DTOCambioPassPorId
@@ -115,9 +123,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         {
             try
             {
-                DateTime fecha = DateTime.Now;
-
                 var userTokenExiste = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == cambiopass.Email);
+
+                var resultadoHash = _hashService.Hash(cambiopass.NewPass, userTokenExiste.Salt);
+
+                if (userTokenExiste.Password == resultadoHash.Hash)
+                {
+                    return Unauthorized("La nueva contraseña no puede ser la misma.");
+                }
+
+                DateTime fecha = DateTime.Now;
 
                 if (userTokenExiste.EnlaceCambioPass != null && userTokenExiste.FechaEnlaceCambioPass >= fecha)
                 {
