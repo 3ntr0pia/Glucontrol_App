@@ -3,15 +3,15 @@ using DiabetesNoteBook.Infrastructure.Interfaces;
 
 namespace DiabetesNoteBook.Infrastructure.Repositories
 {
-    public class DeleteUser : IDeleteUser
+    public class UserDeregistration : IUserDeregistration
     {
         private readonly DiabetesNoteBookContext _context;
 
-        public DeleteUser(DiabetesNoteBookContext context)
+        public UserDeregistration(DiabetesNoteBookContext context)
         {
             _context = context;
         }
-        public async Task DeleteUserRepository(Usuario delete)
+        public async Task UserDeregistrationSave(Usuario delete)
         {
             _context.Operaciones.RemoveRange(delete.Operaciones);
             _context.Personas.RemoveRange(delete.Personas);

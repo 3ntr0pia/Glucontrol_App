@@ -5,7 +5,6 @@ using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Services;
-using DiabetesNoteBook.Application.Filters;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
@@ -21,12 +20,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly INewRegister _newRegisterService;
         private readonly IEmailService _emailService;
         private readonly IConfirmEmailService _confirmEmailService;
-        private readonly FiltroExcepcion _filtroDeExcepcion;
-        private readonly IDeleteUserService _deleteUserService;
+        private readonly IUserDeregistrationService _userDeregistrationService;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
             IOperationsService operationsService, INewRegister newRegisterService,
-            IEmailService emailService, IConfirmEmailService confirmEmailService, FiltroExcepcion filtroDeExcepcion, IDeleteUserService deleteUserService)
+            IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService)
         {
             _context = context;
             _hashService = hashService;
@@ -35,8 +33,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _emailService = emailService;
             _confirmEmailService = confirmEmailService;
             _newRegisterService = newRegisterService;
-            _filtroDeExcepcion = filtroDeExcepcion;
-            _deleteUserService = deleteUserService;
+            _userDeregistrationService = userDeregistrationService;
         }
 
         [AllowAnonymous]
@@ -164,7 +161,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 if (usuarioDB.Password == resultadoHash.Hash)
                 {
-                    var response = _tokenService.GenerarToken(usuarioDB);
+                    var response = await _tokenService.GenerarToken(usuarioDB);
 
                     await _operationsService.AddOperacion(new DTOOperation
                     {
@@ -187,8 +184,8 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
         }
 
-        [HttpDelete("eliminarUsuario")]
-        public async Task<ActionResult> UserDelete([FromBody] DTODeleteUser Id)
+        [HttpPut("bajaUsuario")]
+        public async Task<ActionResult> UserDeregistration([FromBody] DTOUserDeregistration Id)
         {
 
             try
@@ -206,14 +203,14 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     return Unauthorized("Usuario dado de baja con anterioridad");
                 }
 
-                await _deleteUserService.DeleteUserService(new DTODeleteUser
+                await _userDeregistrationService.UserDeregistration(new DTOUserDeregistration
                 {
                     Id = Id.Id
                 });
 
                 await _operationsService.AddOperacion(new DTOOperation
                 {
-                    Operacion = "Borrar usuario",
+                    Operacion = "Baja usuario",
                     UserId = userExist.Id
                 });
 
@@ -221,10 +218,28 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             }
             catch
             {
-                return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
+                return BadRequest("En estos momentos no se ha podido dar de baja el usuario, por favor, intentelo más tarde.");
             }
 
         }
+
+        //[HttpDelete("elimnarUsuario")]
+        //public async Task<ActionResult> DeleteUser([FromBody] DTODeleteUser Id)
+        //{
+
+        //    try
+        //    {
+
+                
+
+        //        return Ok();
+        //    }
+        //    catch
+        //    {
+        //        return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
+        //    }
+
+        //}
 
     }
 }

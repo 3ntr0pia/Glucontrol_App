@@ -6,23 +6,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DiabetesNoteBook.Application.Services
 {
-    public class DeleteService : IDeleteUserService
+    public class UserDeregistrationService : IUserDeregistrationService
     {
         private readonly DiabetesNoteBookContext _context;
-        private readonly IDeleteUser _deleteUser;
+        private readonly IUserDeregistration _userDeregistration;
 
-        public DeleteService(DiabetesNoteBookContext context, IDeleteUser deleteUser)
+        public UserDeregistrationService(DiabetesNoteBookContext context, IUserDeregistration userDeregistration)
         {
             _context = context;
-            _deleteUser = deleteUser;
+            _userDeregistration = userDeregistration;
         }
 
-        public async Task DeleteUserService(DTODeleteUser delete)
+        public async Task UserDeregistration(DTOUserDeregistration delete)
         {
 
             var usuarioDB = await _context.Usuarios.Include(x => x.Personas).FirstOrDefaultAsync(x => x.Id == delete.Id);
 
-            await _deleteUser.DeleteUserRepository(usuarioDB);
+            await _userDeregistration.UserDeregistrationSave(usuarioDB);
         }
     }
 }

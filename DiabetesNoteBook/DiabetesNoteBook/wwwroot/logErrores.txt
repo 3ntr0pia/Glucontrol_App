@@ -226,3 +226,9 @@ Unable to resolve service for type 'DiabetesNoteBook.Services.OperationsService'
 POST
 Microsoft.Extensions.DependencyInjection.Abstractions
 Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IChangePassMail' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.ChangePasswordControllers'.
+::1
+15/01/2024 11:23:49
+/api/Users/login
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Filters.FiltroExcepcion' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.

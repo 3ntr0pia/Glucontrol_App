@@ -2,8 +2,8 @@
 
 namespace DiabetesNoteBook.Application.Interfaces
 {
-    public interface IDeleteUserService
+    public interface IUserDeregistrationService
     {
-        Task DeleteUserService(DTODeleteUser delete);
+        Task UserDeregistration(DTOUserDeregistration delete);
     }
 }

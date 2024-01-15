@@ -3,6 +3,7 @@ using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace DiabetesNoteBook.Application.Services
 {
@@ -24,6 +25,12 @@ namespace DiabetesNoteBook.Application.Services
             var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
 
             var resultadoHash = _hashService.Hash(userData.NewPass);
+
+            //if (usuarioDB.Password = resultadoHash)
+            //{
+            //    return BadRequest(" La contraseña no puede ser la misma.");
+            //}
+
             usuarioDB.Password = resultadoHash.Hash;
             usuarioDB.Salt = resultadoHash.Salt;
 

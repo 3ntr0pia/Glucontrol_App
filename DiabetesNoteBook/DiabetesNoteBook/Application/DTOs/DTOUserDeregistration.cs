@@ -1,6 +1,6 @@
 ﻿namespace DiabetesNoteBook.Application.DTOs
 {
-    public class DTODeleteUser
+    public class DTOUserDeregistration
     {
         public int Id { get; set; }
     }
