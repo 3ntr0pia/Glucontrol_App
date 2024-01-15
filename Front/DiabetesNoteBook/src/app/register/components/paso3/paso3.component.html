@@ -24,7 +24,11 @@
         <label for="insulina">¿Toma insulina?</label>
         <input type="checkbox" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina" name="insulina" required>
       </div>
-      <button type="submit" class="btn btn-primary">Completar Registro</button>
+      <div class="form-group">
+        <label for="medicacion">Acepto recibir un mail de confirmacion</label>
+        <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required>
+      </div>
+      <button type="submit" [disabled]="!aceptar" class="btn btn-primary">Completar Registro</button>
     </form>
 
 

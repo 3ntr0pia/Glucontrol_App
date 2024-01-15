@@ -15,6 +15,9 @@ export class Paso3Component {
   public Actividad = Actividad;
   public TipoDiabetes = TipoDiabetes;
   public medicacion : string = '';
+  public aceptar : boolean = false;
+
+
 
   @Input() datosRegistro: IRegister = {
     avatar: '',
