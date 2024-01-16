@@ -232,9 +232,9 @@ Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.ICha
 POST
 Microsoft.Extensions.DependencyInjection.Abstractions
 Unable to resolve service for type 'DiabetesNoteBook.Application.Filters.FiltroExcepcion' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
-127.0.0.1
-15/01/2024 19:50:51
-/api/Users/registro
-POST
-MimeKit
-No address found.
+::1
+16/01/2024 12:14:23
+/api/Users/cambiardatosusuario/76
+PUT
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IChangeUserDataService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.

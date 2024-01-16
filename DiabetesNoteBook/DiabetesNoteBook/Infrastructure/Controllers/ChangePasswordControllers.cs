@@ -83,6 +83,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             {
                 var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == usuario.Email);
 
+                if (usuarioDB.BajaUsuario == true)
+                {
+                    return Unauthorized("Usuario dado de baja con anterioridad");
+                }
+
                 if (usuarioDB != null)
                 {
                     DateTime fecha = DateTime.Now.AddHours(+1);

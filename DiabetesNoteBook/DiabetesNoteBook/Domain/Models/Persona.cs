@@ -27,11 +27,13 @@ public partial class Persona
 
     public string Actividad { get; set; } = null!;
 
-    public string Medicacion { get; set; } = null!;
-
     public bool Insulina { get; set; }
 
+    public string? Medicacion { get; set; }
+
     public virtual ICollection<Medicione> Mediciones { get; set; } = new List<Medicione>();
+
+    public virtual ICollection<PersonaMedicacion> PersonaMedicacions { get; set; } = new List<PersonaMedicacion>();
 
     public virtual Usuario User { get; set; } = null!;
 }

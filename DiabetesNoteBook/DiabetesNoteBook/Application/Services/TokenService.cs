@@ -23,6 +23,7 @@ namespace DiabetesNoteBook.Application.Services
 
             var personaDB = await _context.Personas.FirstOrDefaultAsync(x => x.UserId == credencialesUsuario.Id);
             var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == credencialesUsuario.Id);
+
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Role, credencialesUsuario.Rol)
