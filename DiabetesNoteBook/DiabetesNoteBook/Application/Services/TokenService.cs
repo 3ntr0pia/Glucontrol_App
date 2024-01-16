@@ -22,6 +22,7 @@ namespace DiabetesNoteBook.Application.Services
         {
 
             var personaDB = await _context.Personas.FirstOrDefaultAsync(x => x.UserId == credencialesUsuario.Id);
+            var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == credencialesUsuario.Id);
 
             var claims = new List<Claim>()
             {
@@ -44,7 +45,8 @@ namespace DiabetesNoteBook.Application.Services
                 Id = credencialesUsuario.Id,
                 Nombre = personaDB.Nombre,
                 PrimerApellido = personaDB.PrimerApellido,
-                SegundoApellido = personaDB.SegundoApellido
+                SegundoApellido = personaDB.SegundoApellido,
+                Avatar = usuarioDB.Avatar
             };
         }
     }

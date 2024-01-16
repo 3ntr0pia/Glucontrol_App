@@ -22,10 +22,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IConfirmEmailService _confirmEmailService;
         private readonly IUserDeregistrationService _userDeregistrationService;
         private readonly IDeleteUserService _deleteUserService;
+        private readonly IChangeUserDataService _changeUserDataService;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
-            IOperationsService operationsService, INewRegister newRegisterService,
-            IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService, IDeleteUserService deleteUserService)
+            IOperationsService operationsService, INewRegister newRegisterService, 
+            IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService,
+            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService)
         {
             _context = context;
             _hashService = hashService;
@@ -36,6 +38,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _newRegisterService = newRegisterService;
             _userDeregistrationService = userDeregistrationService;
             _deleteUserService = deleteUserService;
+            _changeUserDataService = changeUserDataService;
         }
 
         [AllowAnonymous]
@@ -265,6 +268,82 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             catch
             {
                 return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [HttpGet("usuarioPorId/{Id}")]
+        public async Task<ActionResult> UserById([FromRoute] DTOById userData)
+        {
+
+            try
+            {
+                var userExist = await _context.Usuarios.FindAsync(userData.Id);
+
+                if (userExist == null)
+                {
+                    return NotFound("Usuario no encontrado");
+                }
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Consulta usuario por id",
+                    UserId = userExist.Id
+                });
+
+
+                return Ok(userExist);
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido consultar el usuario, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [AllowAnonymous]
+        [HttpPut("cambiardatosusuarioypersona")]
+        public async Task<ActionResult> UserPUT([FromBody] DTOChangeUserData userData)
+        {
+
+            try
+            {
+                var usuarioUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
+
+                //if (userData.UserName == usuarioUpdate.UserName)
+                //{
+                //    return NotFound("El usuario ya existe.");
+                //}
+
+                await _changeUserDataService.ChangeUserData(new DTOChangeUserData
+                {
+                    Id = userData.Id,
+                    Avatar = userData.Avatar,
+                    UserName = userData.UserName,
+                    Nombre = userData.Nombre,
+                    PrimerApellido = userData.PrimerApellido,
+                    SegundoApellido = userData.SegundoApellido,
+                    Sexo = userData.Sexo,
+                    Edad = userData.Edad,
+                    Peso = userData.Peso,
+                    Altura = userData.Altura,
+                    Actividad = userData.Actividad,
+                    Medicacion = userData.Medicacion,
+                    TipoDiabetes = userData.TipoDiabetes,
+                    Insulina = userData.Insulina
+                });
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Actualizar usuario",
+                    UserId = usuarioUpdate.Id
+                });
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido actualizar el usuario, por favor, intentelo más tarde.");
             }
 
         }

@@ -26,11 +26,6 @@ namespace DiabetesNoteBook.Application.Services
 
             var resultadoHash = _hashService.Hash(userData.NewPass);
 
-            //if (usuarioDB.Password = resultadoHash)
-            //{
-            //    return BadRequest(" La contraseña no puede ser la misma.");
-            //}
-
             usuarioDB.Password = resultadoHash.Hash;
             usuarioDB.Salt = resultadoHash.Salt;
 

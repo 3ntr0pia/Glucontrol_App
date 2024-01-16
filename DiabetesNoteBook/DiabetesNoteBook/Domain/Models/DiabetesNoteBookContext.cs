@@ -15,11 +15,15 @@ public partial class DiabetesNoteBookContext : DbContext
     {
     }
 
+    public virtual DbSet<Medicacione> Medicaciones { get; set; }
+
     public virtual DbSet<Medicione> Mediciones { get; set; }
 
     public virtual DbSet<Operacione> Operaciones { get; set; }
 
     public virtual DbSet<Persona> Personas { get; set; }
+
+    public virtual DbSet<PersonaMedicacion> PersonaMedicacions { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -29,6 +33,13 @@ public partial class DiabetesNoteBookContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Medicacione>(entity =>
+        {
+            entity.HasKey(e => e.IdMedicacion).HasName("PK__Medicaci__BD8A7D38ECC18427");
+
+            entity.Property(e => e.Nombre).HasMaxLength(100);
+        });
+
         modelBuilder.Entity<Medicione>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07B1378F0B");
@@ -79,7 +90,6 @@ public partial class DiabetesNoteBookContext : DbContext
 
             entity.Property(e => e.Actividad).HasMaxLength(100);
             entity.Property(e => e.Altura).HasColumnType("decimal(5, 2)");
-            entity.Property(e => e.Medicacion).HasMaxLength(100);
             entity.Property(e => e.Nombre).HasMaxLength(100);
             entity.Property(e => e.Peso).HasColumnType("decimal(6, 3)");
             entity.Property(e => e.PrimerApellido).HasMaxLength(100);
@@ -91,6 +101,23 @@ public partial class DiabetesNoteBookContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserId");
+        });
+
+        modelBuilder.Entity<PersonaMedicacion>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__PersonaM__3214EC073AB95C9A");
+
+            entity.ToTable("PersonaMedicacion");
+
+            entity.HasOne(d => d.IdMedicacionNavigation).WithMany(p => p.PersonaMedicacions)
+                .HasForeignKey(d => d.IdMedicacion)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_IdMedicacion");
+
+            entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.PersonaMedicacions)
+                .HasForeignKey(d => d.IdPersona)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_IdPersona");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
