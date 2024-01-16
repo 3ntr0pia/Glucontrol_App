@@ -5,8 +5,6 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import * as THREE from 'three';
-import { gsap, Power4 } from 'gsap';
 
 @Component({
   selector: 'app-notfound',
