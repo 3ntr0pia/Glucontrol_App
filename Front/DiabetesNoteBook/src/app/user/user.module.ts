@@ -10,9 +10,10 @@ import { NuevoRegistroComponent } from './components/nuevo-registro/nuevo-regist
 import { RegistrosAnterioresComponent } from './components/registros-anteriores/registros-anteriores.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { SharedModule } from '../shared/shared.module';
+import { VademecumComponent } from './components/vademecum/vademecum.component';
 
 @NgModule({
-  declarations: [MainComponent, NavbarComponent, MisDatosComponent, NuevoRegistroComponent, RegistrosAnterioresComponent, AyudaComponent],
+  declarations: [MainComponent, NavbarComponent, MisDatosComponent, NuevoRegistroComponent, RegistrosAnterioresComponent, AyudaComponent, VademecumComponent],
   imports: [CommonModule, UserRoutingModule,FormsModule,SharedModule],
   exports: [MainComponent],
 })

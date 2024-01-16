@@ -5,6 +5,7 @@ import { MisDatosComponent } from './components/mis-datos/mis-datos.component';
 import { NuevoRegistroComponent } from './components/nuevo-registro/nuevo-registro.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { RegistrosAnterioresComponent } from './components/registros-anteriores/registros-anteriores.component';
+import { VademecumComponent } from './components/vademecum/vademecum.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'nuevo-registro', component: NuevoRegistroComponent },
       { path: 'mis-datos', component: MisDatosComponent },
       { path: 'registros-anteriores', component: RegistrosAnterioresComponent },
+      { path: 'vademecum', component: VademecumComponent },
       { path: 'ayuda', component: AyudaComponent },
       
     ]
