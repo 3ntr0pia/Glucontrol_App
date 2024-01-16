@@ -8,16 +8,7 @@
                 <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.edad" name="edad"
                     required>
             </div>
-            <div class="mb-3">
-                <label for="altura" class="form-label">Altura</label>
-                <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.altura" name="altura"
-                    required>
-            </div>
-            <div class="mb-3">
-                <label for="peso" class="form-label">Peso</label>
-                <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.peso" name="peso"
-                    required>
-            </div>
+            
             <div class="mb-3">
                 <label for="sexo" class="form-label">Sexo Biológico</label>
                 <select class="form-select" [(ngModel)]="datosRegistro.mediciones.sexo" name="sexo" required>
@@ -42,21 +33,14 @@
         </form>
 
     </div>
-
+    
 
     <div class="persona">
         <i class="bi" [ngClass]="{
          'bi-gender-female': datosRegistro.mediciones.sexo == Sexo.mujer,
           'bi-gender-male' : datosRegistro.mediciones.sexo == Sexo.hombre   
         }"></i>
-        <img [src]="obtenerIMC()" class='monigote' alt="representacion del peso" [ngClass]="{
-            'bajo' : datosRegistro.mediciones.altura < 150,
-            'medio': datosRegistro.mediciones.altura >= 150 && datosRegistro.mediciones.altura < 180,
-            'alto': datosRegistro.mediciones.altura >= 180
-        }">
-        <span class='imc' [ngStyle]="{
-            'color' : imcColor()
-        }" >{{imc}}</span>
+        <app-calculadora-imc (emitirAltura)="setAltura($event)" (emitirPeso)="setPeso($event)"></app-calculadora-imc>
     </div>
 
 </div>

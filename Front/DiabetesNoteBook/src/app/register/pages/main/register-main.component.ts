@@ -38,7 +38,7 @@ export class RegisterMainComponent {
     },
   };
 
-  paso: number = 3;
+  paso: number = 1;
  
 
   siguientePaso(info: IRegister): void {

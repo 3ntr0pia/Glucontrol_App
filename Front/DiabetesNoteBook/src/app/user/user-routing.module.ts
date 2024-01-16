@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { MisDatosComponent } from './components/mis-datos/mis-datos.component';
 import { NuevoRegistroComponent } from './components/nuevo-registro/nuevo-registro.component';
-import { RegistrosAnterioresComponent } from './components/registros-anteriores/registros-anteriores.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
+import { RegistrosAnterioresComponent } from './components/registros-anteriores/registros-anteriores.component';
 
 
 const routes: Routes = [

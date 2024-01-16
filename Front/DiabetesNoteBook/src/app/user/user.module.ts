@@ -9,10 +9,11 @@ import { MisDatosComponent } from './components/mis-datos/mis-datos.component';
 import { NuevoRegistroComponent } from './components/nuevo-registro/nuevo-registro.component';
 import { RegistrosAnterioresComponent } from './components/registros-anteriores/registros-anteriores.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [MainComponent, NavbarComponent, MisDatosComponent, NuevoRegistroComponent, RegistrosAnterioresComponent, AyudaComponent],
-  imports: [CommonModule, UserRoutingModule,FormsModule],
+  imports: [CommonModule, UserRoutingModule,FormsModule,SharedModule],
   exports: [MainComponent],
 })
 export class UserModule {}
