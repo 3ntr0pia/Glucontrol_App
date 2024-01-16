@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal/modal.component';
-import { CalculadoraImcComponent } from './calculadora-imc/calculadora-imc.component';
-import { FormsModule } from '@angular/forms';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { SharedRoutingModule } from './shared-routing.module';
 
 @NgModule({
-  declarations: [ModalComponent, CalculadoraImcComponent],
-  imports: [CommonModule , FormsModule],
-  exports: [ModalComponent,CalculadoraImcComponent],
+  declarations: [ModalComponent, NotfoundComponent],
+  imports: [CommonModule,SharedRoutingModule],
+  exports: [ModalComponent],
 })
 export class SharedModule {}

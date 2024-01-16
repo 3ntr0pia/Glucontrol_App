@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+img{
+    max-width: 100%;  /* Para asegurar que la imagen no sea más ancha que el contenedor */
+    height: auto;     /* Para mantener la proporción de aspecto de la imagen */
+    margin-bottom: 20px;
+    margin-top: 20px  /* Espacio adicional debajo de la imagen */
+}
+
+h1 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 30px;
+}
