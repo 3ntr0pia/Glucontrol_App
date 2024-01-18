@@ -25,23 +25,3 @@
 }
 
 
-.avatar{
-    width: 50%;
-    display: flex;
-    
-    align-items: center;
-    flex-direction: column;
-    justify-content: start;
-    
-}
-
-.avatar-img{
-    width: 50%;
-    border-radius: 100%;
-    margin-bottom: 1rem;
-    
-}
-.avatar-default{
-    width: 70%;
-    
-}

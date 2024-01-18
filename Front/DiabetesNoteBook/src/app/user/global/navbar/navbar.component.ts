@@ -11,7 +11,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 export class NavbarComponent {
 
   @Input() usuarioLogeado : IUserLoginResponse | null = null;
-
+  
 
 
   constructor(private authService : AuthServiceService , private router : Router  ) { }
