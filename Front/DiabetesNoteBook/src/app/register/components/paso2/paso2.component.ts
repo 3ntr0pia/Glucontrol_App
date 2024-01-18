@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
 import { IRegister } from '../../interfaces/register.interface';
 
@@ -48,6 +48,8 @@ export class Paso2Component {
    
   }
   
+  
+
   obtenerIMC(): string {
     const imc = this.calcularIMC();
     if (imc < 18.5) {
@@ -89,5 +91,12 @@ export class Paso2Component {
            !this.datosRegistro.mediciones.sexo ||
            !this.datosRegistro.mediciones.actividad ||
            !this.datosRegistro.mediciones.tipoDiabetes.tipo;
+  }
+
+  setAltura(altura: number): void {
+    this.datosRegistro.mediciones.altura = altura;
+  }
+  setPeso(peso: number): void {
+    this.datosRegistro.mediciones.peso = peso;
   }
 }

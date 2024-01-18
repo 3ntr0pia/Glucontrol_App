@@ -51,6 +51,14 @@ builder.Services.AddTransient<INewStringGuid, NewStringGuid>();
 builder.Services.AddTransient<IOperationsService, OperationsService>();
 builder.Services.AddTransient<IAddOperation, AddOperation>();
 builder.Services.AddTransient<IChangePassword, ChangePassword>();
+builder.Services.AddTransient<IChangePassMail, ChangePassEnlace>();
+builder.Services.AddTransient<IChangePasswordMail, ChangePasswordMail>();
+builder.Services.AddTransient<IUserDeregistration, UserDeregistration>();
+builder.Services.AddTransient<IUserDeregistrationService, UserDeregistrationService>();
+builder.Services.AddTransient<IDeleteUserService, DeleteUserService>();
+builder.Services.AddTransient<IDeleteUser, DeleteUserRepository>();
+builder.Services.AddTransient<IChangeUserDataService, ChangeUserDataService>();
+builder.Services.AddTransient<IChangeUserData, ChangeUserData>();
 
 builder.Services.AddCors(options =>
 {

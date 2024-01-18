@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DiabetesNoteBook.Domain.Models;
-using DiabetesNoteBook.Infrastructure.Interfaces;
-using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.DTOs;
+using DiabetesNoteBook.Application.Interfaces;
+using DiabetesNoteBook.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace DiabetesNoteBook.Application.Services
 {
@@ -24,10 +25,14 @@ namespace DiabetesNoteBook.Application.Services
             var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
 
             var resultadoHash = _hashService.Hash(userData.NewPass);
+
             usuarioDB.Password = resultadoHash.Hash;
             usuarioDB.Salt = resultadoHash.Salt;
 
             await _changePassword.SaveNewPassword(usuarioDB);
         }
+
+        
+
     }
 }

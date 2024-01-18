@@ -22,43 +22,58 @@ namespace DiabetesNoteBook.Application.Services
 
         public async Task NewRegister(DTORegister userData)
         {
-            var resultadoHash = _hashService.Hash(userData.Password);
 
-            var newUsuario = new Usuario
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                Avatar = userData.Avatar,
-                UserName = userData.UserName,
-                Email = userData.Email,
-                Password = resultadoHash.Hash,
-                Salt = resultadoHash.Salt,
-                Rol = "user"
-            };
+                try
+                {
 
-            // Guardar el usuario
-            await _newRegisterRepository.SaveNewRegisterUser(newUsuario);
+                    var resultadoHash = _hashService.Hash(userData.Password);
 
-            // Obtener el usuario después de guardarlo
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.UserName == userData.UserName);
+                    var newUsuario = new Usuario
+                    {
+                        Avatar = userData.Avatar,
+                        UserName = userData.UserName,
+                        Email = userData.Email,
+                        Password = resultadoHash.Hash,
+                        Salt = resultadoHash.Salt,
+                        Rol = "user"
+                    };
 
-            var nuevaPersona = new Persona
-            {
-                Nombre = userData.Nombre,
-                PrimerApellido = userData.PrimerApellido,
-                SegundoApellido = userData.SegundoApellido,
-                Sexo = userData.Sexo,
-                Edad = userData.Edad,
-                Peso = userData.Peso,
-                Altura = userData.Altura,
-                Actividad = userData.Actividad,
-                Medicacion = userData.Medicacion,
-                TipoDiabetes = userData.TipoDiabetes,
-                Insulina = userData.Insulina,
-                UserId = usuario.Id
-            };
+                    // Guardar el usuario
+                    await _newRegisterRepository.SaveNewRegisterUser(newUsuario);
 
-            // Guardar la persona
-            await _newRegisterRepository.SaveNewRegisterPerson(nuevaPersona);
+                    // Obtener el usuario después de guardarlo
+                    var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.UserName == userData.UserName);
 
+                    var nuevaPersona = new Persona
+                    {
+                        Nombre = userData.Nombre,
+                        PrimerApellido = userData.PrimerApellido,
+                        SegundoApellido = userData.SegundoApellido,
+                        Sexo = userData.Sexo,
+                        Edad = userData.Edad,
+                        Peso = userData.Peso,
+                        Altura = userData.Altura,
+                        Actividad = userData.Actividad,
+                        Medicacion = userData.Medicacion,
+                        TipoDiabetes = userData.TipoDiabetes,
+                        Insulina = userData.Insulina,
+                        UserId = usuario.Id
+                    };
+
+                    // Guardar la persona
+                    await _newRegisterRepository.SaveNewRegisterPerson(nuevaPersona);
+
+                    transaction.Commit();
+                }
+                catch
+                {
+
+                    transaction.Rollback();
+
+                }
+            }
         }
     }
 }

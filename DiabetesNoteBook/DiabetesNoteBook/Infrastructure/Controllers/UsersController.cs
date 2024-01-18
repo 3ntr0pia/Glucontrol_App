@@ -20,10 +20,14 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly INewRegister _newRegisterService;
         private readonly IEmailService _emailService;
         private readonly IConfirmEmailService _confirmEmailService;
+        private readonly IUserDeregistrationService _userDeregistrationService;
+        private readonly IDeleteUserService _deleteUserService;
+        private readonly IChangeUserDataService _changeUserDataService;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
-            IOperationsService operationsService, INewRegister newRegisterService,
-            IEmailService emailService, IConfirmEmailService confirmEmailService)
+            IOperationsService operationsService, INewRegister newRegisterService, 
+            IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService,
+            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService)
         {
             _context = context;
             _hashService = hashService;
@@ -32,6 +36,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _emailService = emailService;
             _confirmEmailService = confirmEmailService;
             _newRegisterService = newRegisterService;
+            _userDeregistrationService = userDeregistrationService;
+            _deleteUserService = deleteUserService;
+            _changeUserDataService = changeUserDataService;
         }
 
         [AllowAnonymous]
@@ -151,11 +158,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     return Unauthorized("Usuario no confirmado, por favor acceda a su correo y valida su registro.");
                 }
 
+                if (usuarioDB.BajaUsuario == true)
+                {
+                    return Unauthorized("El usuario se encuentra dado de baja.");
+                }
+
                 var resultadoHash = _hashService.Hash(usuario.Password, usuarioDB.Salt);
 
                 if (usuarioDB.Password == resultadoHash.Hash)
                 {
-                    var response = _tokenService.GenerarToken(usuarioDB);
+                    var response = await _tokenService.GenerarToken(usuarioDB);
 
                     await _operationsService.AddOperacion(new DTOOperation
                     {
@@ -174,6 +186,160 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             catch
             {
                 return BadRequest("En estos momentos no se ha podido realizar el login, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [HttpPut("bajaUsuario")]
+        public async Task<ActionResult> UserDeregistration([FromBody] DTOUserDeregistration Id)
+        {
+
+            try
+            {
+
+                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == Id.Id);
+
+                if (userExist == null)
+                {
+                    return Unauthorized("Usuario no encontrado");
+                }
+
+                if (userExist.BajaUsuario == true)
+                {
+                    return Unauthorized("Usuario dado de baja con anterioridad");
+                }
+
+                await _userDeregistrationService.UserDeregistration(new DTOUserDeregistration
+                {
+                    Id = Id.Id
+                });
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Baja usuario",
+                    UserId = userExist.Id
+                });
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido dar de baja el usuario, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [HttpDelete("elimnarUsuario")]
+        public async Task<ActionResult> DeleteUser([FromBody] DTODeleteUser Id)
+        {
+
+            try
+            {
+                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == Id.Id);
+
+                if (userExist == null)
+                {
+                    return Unauthorized("Usuario no encontrado");
+                }
+
+                if (userExist.BajaUsuario == false)
+                {
+                    return Unauthorized("El usuario no se encuentra dado de baja, por favor, solicita la baja primero.");
+                }
+
+                await _deleteUserService.DeleteUser(new DTODeleteUser
+                {
+                    Id = Id.Id
+                });
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Borrar usuario",
+                    UserId = userExist.Id
+                });
+
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [HttpGet("usuarioPorId/{Id}")]
+        public async Task<ActionResult> UserById([FromRoute] DTOById userData)
+        {
+
+            try
+            {
+                var userExist = await _context.Usuarios.FindAsync(userData.Id);
+
+                if (userExist == null)
+                {
+                    return NotFound("Usuario no encontrado");
+                }
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Consulta usuario por id",
+                    UserId = userExist.Id
+                });
+
+
+                return Ok(userExist);
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido consultar el usuario, por favor, intentelo más tarde.");
+            }
+
+        }
+
+        [AllowAnonymous]
+        [HttpPut("cambiardatosusuarioypersona")]
+        public async Task<ActionResult> UserPUT([FromBody] DTOChangeUserData userData)
+        {
+
+            try
+            {
+                var usuarioUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
+
+                //if (userData.UserName == usuarioUpdate.UserName)
+                //{
+                //    return NotFound("El usuario ya existe.");
+                //}
+
+                await _changeUserDataService.ChangeUserData(new DTOChangeUserData
+                {
+                    Id = userData.Id,
+                    Avatar = userData.Avatar,
+                    UserName = userData.UserName,
+                    Nombre = userData.Nombre,
+                    PrimerApellido = userData.PrimerApellido,
+                    SegundoApellido = userData.SegundoApellido,
+                    Sexo = userData.Sexo,
+                    Edad = userData.Edad,
+                    Peso = userData.Peso,
+                    Altura = userData.Altura,
+                    Actividad = userData.Actividad,
+                    Medicacion = userData.Medicacion,
+                    TipoDiabetes = userData.TipoDiabetes,
+                    Insulina = userData.Insulina
+                });
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Actualizar usuario",
+                    UserId = usuarioUpdate.Id
+                });
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido actualizar el usuario, por favor, intentelo más tarde.");
             }
 
         }

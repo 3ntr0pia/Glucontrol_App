@@ -1,0 +1,78 @@
+.wrapper{
+    width: 80vw;
+    height: 100vh;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 0px 0px; 
+    grid-template-areas:
+    
+    "avatar formulario"
+    "calculadora formulario"; 
+}
+
+.avatar{
+    grid-area: avatar;
+    position: relative; 
+}
+
+.bocadillo {
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; 
+    
+}
+
+.bocadillo svg {
+    position: relative;
+    width: 70%; 
+    height: auto; 
+}
+
+.contenido-bocadillo {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-65%, -50%); 
+    width: 80%; 
+    text-align: center; 
+}
+.contenido-bocadillo h1{
+    font-size: 100%;
+}
+
+.contenido-bocadillo button{
+    margin:1em;
+}
+
+
+.calculadora{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.calculadora h1{
+    text-align: center;
+}
+.formulario{
+    grid-area: formulario;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+}
+
+form{
+   display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+}

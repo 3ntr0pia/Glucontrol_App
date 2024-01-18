@@ -63,6 +63,38 @@ namespace DiabetesNoteBook.Application.Services
         public async Task SendEmailAsyncChangePassword(DTOEmail userData)
         {
 
+            var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == userData.ToEmail);
+
+            DateTime fecha = DateTime.Now.AddHours(+1);
+            Guid miGuid = Guid.NewGuid();
+            string textoEnlace = Convert.ToBase64String(miGuid.ToByteArray());
+            textoEnlace = textoEnlace.Replace("=", "").Replace("+", "").Replace("/", "").Replace("?", "").Replace("&", "").Replace("!", "").Replace("¡", "");
+            usuarioDB.EnlaceCambioPass = textoEnlace;
+            usuarioDB.FechaEnlaceCambioPass = fecha;
+
+            var ruta = $"Para restablecer su contraseña haga click en este enlace: <a href='{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/api/ChangePasswordControllers/changePasswordMail/{textoEnlace}'>Recuperar contraseña</a>";
+
+            await _newStringGuid.SaveNewStringGuid(usuarioDB);
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("Email:UserName").Value));
+            email.To.Add(MailboxAddress.Parse(userData.ToEmail));
+            email.Subject = "Recuperar contraseña";
+            email.Body = new TextPart(TextFormat.Html)
+            {
+                Text = ruta
+            };
+
+            using var smtp = new SmtpClient();
+            await smtp.ConnectAsync(
+                _config.GetSection("Email:Host").Value,
+                Convert.ToInt32(_config.GetSection("Email:Port").Value),
+                SecureSocketOptions.StartTls
+            );
+
+            await smtp.AuthenticateAsync(_config.GetSection("Email:UserName").Value, _config.GetSection("Email:PassWord").Value);
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
 
         }
 

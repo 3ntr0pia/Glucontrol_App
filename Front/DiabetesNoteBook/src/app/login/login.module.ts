@@ -6,12 +6,13 @@ import { InfoComponent } from './components/info/info.component';
 import { LoginMainComponent } from './pages/main/login-main.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { RecordarComponent } from './components/recordar/recordar.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 @NgModule({
-  declarations: [FormComponent, InfoComponent,LoginMainComponent, RecordarComponent],
-  imports: [CommonModule, FormsModule, LoginRoutingModule,HttpClientModule],
+  declarations: [FormComponent, InfoComponent,LoginMainComponent],
+  imports: [CommonModule, FormsModule, LoginRoutingModule,HttpClientModule,SharedModule],
   exports: [LoginMainComponent],
 })
 export class LoginModule {}

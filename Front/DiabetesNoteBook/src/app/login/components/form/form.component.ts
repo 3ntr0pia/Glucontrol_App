@@ -12,10 +12,20 @@ export class FormComponent {
 
   usuario : string = '';
   password : string = '';
+  mail: string = '';
   error : string = '';
 
   constructor(private authService: AuthServiceService, private router: Router ) { }
 
+  recordar : boolean = false;
+  mostrarModal : boolean = false;
+  mensajeModal: string = '';
+  
+
+  verOlvidado(){
+    this.recordar = true;
+  }
+  
   login() {
     const datoLogin : ILogin = {
       UserName: this.usuario,
@@ -33,4 +43,19 @@ export class FormComponent {
     );
   }
 
+  recordarPassword(){
+    this.recordar = false;
+    this.mensajeModal = 'Tu solicitud de recuperación de contraseña ha sido enviada. Por favor, revisa tu correo electrónico.';
+    this.mostrarModal = true;
+  }
+
+
+  formularioInvalido() {
+    const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!regexEmail.test(this.mail)) {
+      return true;
+    }
+    return false;
+  }
 }
+
