@@ -31,17 +31,18 @@ export class FormComponent {
       UserName: this.usuario,
       Password: this.password
     }
-    this.authService.loginUser(datoLogin).subscribe(
-      (res) => {
-        console.log(res);
+    
+    this.authService.loginUser(datoLogin).subscribe( {
+      next: (res) => {
         this.router.navigate(['/user-dashboard']);
       },
-      (err) => {
+      error: (err) => {
         this.error = err.error;
         console.log(this.error);
       }
-    );
-  }
+    });
+    }
+  
 
   recordarPassword(){
     this.recordar = false;

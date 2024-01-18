@@ -1,0 +1,9 @@
+img {
+  width: 5em;
+}
+
+card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -14,8 +14,10 @@ export class UsuarioService {
   constructor( private http : HttpClient) { }
 
 
-  getUsuarioInfo (id : number) : Observable<IUsuarioUpdate> {
-    return this.http.get<IUsuarioUpdate>(`${this.API_URL}/Users/usuarioPorId/${id}`);
+  getUsuarioYPersonaInfo (idUsuario : number , idPersona : number) : Observable<IUsuarioUpdate> {
+    let usuario = this.http.get<IUsuarioUpdate>(`${this.API_URL}/Users/usuarioPorId/${idUsuario}`);
+    let persona = this.http.get<IUsuarioUpdate>(`${this.API_URL}/Users/personaPorId/${idPersona}`);
+    return usuario && persona;
   }
 
   actualizarUsuario (usuario : IUsuarioUpdate) : Observable<IUsuarioUpdate> {

@@ -1,5 +1,4 @@
-
-
+import { Sexo } from 'src/app/interfaces/register.enum';
 
 export interface IUsuarioUpdate {
     id:              number;
@@ -8,7 +7,7 @@ export interface IUsuarioUpdate {
     nombre:          string;
     primerApellido:  string;
     segundoApellido: string;
-    sexo:            string;
+    sexo:            Sexo;
     edad:            number;
     peso:            number;
     altura:          number;

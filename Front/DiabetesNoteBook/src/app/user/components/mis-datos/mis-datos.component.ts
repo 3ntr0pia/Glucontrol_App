@@ -10,6 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
 import { IUsuarioUpdate } from '../../interfaces/usuario.interface';
+import { Actividad, Sexo, TipoDiabetes } from 'src/app/interfaces/register.enum';
 
 @Component({
   selector: 'app-mis-datos',
@@ -17,6 +18,11 @@ import { IUsuarioUpdate } from '../../interfaces/usuario.interface';
   styleUrls: ['./mis-datos.component.css'],
 })
 export class MisDatosComponent implements OnInit {
+
+  public Sexo = Sexo;
+  public Actividad = Actividad;
+  public TipoDiabetes = TipoDiabetes;
+
   usuarioLogeado: IUserLoginResponse | null = null;
   usuario: IUsuarioUpdate = {
     id: 0,
@@ -25,7 +31,7 @@ export class MisDatosComponent implements OnInit {
     nombre: '',
     primerApellido: '',
     segundoApellido: '',
-    sexo: '',
+    sexo: Sexo.hombre,
     edad: 0,
     peso: 0,
     altura: 0,
@@ -43,12 +49,12 @@ export class MisDatosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.user.subscribe((user) => {
-      this.usuarioLogeado = user;
-      if (this.usuarioLogeado) {
-        this.getUsuarioInfo(this.usuarioLogeado.id);
-      }
-    });
+    // this.authService.user.subscribe((user) => {
+    //   this.usuarioLogeado = user;
+    //   if (this.usuarioLogeado) {
+    //   //   this.getUsuarioInfo(this.usuarioLogeado.id);
+    //   // }
+    // });
   }
 
   setAvatar(avatar: string): void {
@@ -56,11 +62,11 @@ export class MisDatosComponent implements OnInit {
     console.log(this.nuevoAvatar);
   }
 
-  getUsuarioInfo(usuarioId: number): void {
-    this.usuarioService.getUsuarioInfo(usuarioId).subscribe({
+  getUsuarioInfo(usuarioId: number , personaPorId : number): void {
+    this.usuarioService.getUsuarioYPersonaInfo(usuarioId, personaPorId).subscribe({
       next: (res) => {
         this.usuario = res;
-        console.log(res);
+        console.log(this.usuario);
       },
       error: (err) => {
         console.error(err);

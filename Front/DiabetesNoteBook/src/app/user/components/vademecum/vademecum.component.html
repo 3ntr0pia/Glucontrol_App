@@ -1,1 +1,8 @@
-<p>vademecum works!</p>
+<div class="card-list">
+
+    <div class="card" *ngFor="let med of arrayMed">
+        <p>{{med.nombre}}</p>
+        <img [src]="med.fotos[0].url" alt="">
+    </div>
+
+</div>

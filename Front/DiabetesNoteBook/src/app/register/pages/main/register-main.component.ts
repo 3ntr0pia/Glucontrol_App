@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
+import {
+  Sexo,
+  Actividad,
+  TipoDiabetes,
+} from '../../../interfaces/register.enum';
 import { IRegister } from '../../interfaces/register.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { IFinalRegister } from '../../interfaces/finalregister.interface';
@@ -23,7 +27,7 @@ export class RegisterMainComponent {
     apellido2: '',
     email: '',
     password: '',
-    password2: "",
+    password2: '',
     mediciones: {
       edad: 0,
       peso: 0,
@@ -32,14 +36,13 @@ export class RegisterMainComponent {
       actividad: this.Actividad.sedentario,
       tipoDiabetes: {
         tipo: this.TipoDiabetes.tipo1,
-        medicacion: "",
+        medicacion: '',
         insulina: false,
       },
     },
   };
 
   paso: number = 1;
- 
 
   siguientePaso(info: IRegister): void {
     //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;
@@ -53,9 +56,10 @@ export class RegisterMainComponent {
     this.paso--;
   }
 
-  
-
-  constructor(private registerService: AuthServiceService, private router: Router) {}
+  constructor(
+    private registerService: AuthServiceService,
+    private router: Router
+  ) {}
 
   registroUsuario(datosFinales: IFinalRegister) {
     this.registerService.registerUser(datosFinales).subscribe({
@@ -64,11 +68,7 @@ export class RegisterMainComponent {
         this.router.navigate(['/login']);
       },
       error: (err) => console.log(err),
-      complete: () => console.log('Operation completed')
+      complete: () => console.log('Operation completed'),
     });
   }
-
-  
 }
-
-

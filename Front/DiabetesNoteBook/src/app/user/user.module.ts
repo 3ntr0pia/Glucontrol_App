@@ -13,8 +13,16 @@ import { SharedModule } from '../shared/shared.module';
 import { VademecumComponent } from './components/vademecum/vademecum.component';
 
 @NgModule({
-  declarations: [MainComponent, NavbarComponent, MisDatosComponent, NuevoRegistroComponent, RegistrosAnterioresComponent, AyudaComponent, VademecumComponent],
-  imports: [CommonModule, UserRoutingModule,FormsModule,SharedModule],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    MisDatosComponent,
+    NuevoRegistroComponent,
+    RegistrosAnterioresComponent,
+    AyudaComponent,
+    VademecumComponent,
+  ],
+  imports: [CommonModule, UserRoutingModule, FormsModule, SharedModule],
   exports: [MainComponent],
 })
 export class UserModule {}
