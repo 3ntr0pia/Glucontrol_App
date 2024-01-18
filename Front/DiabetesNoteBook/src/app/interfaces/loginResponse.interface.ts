@@ -1,7 +1,7 @@
 export interface IUserLoginResponse {
     token: string;
     rol : string;
-    idUsuario: number;
+    id: number;
     avatar: string;
     nombre : string;
     primerApellido : string;
