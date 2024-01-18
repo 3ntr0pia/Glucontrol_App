@@ -16,9 +16,6 @@
     position: relative; 
 }
 
-
-
-
 .bocadillo {
     position: absolute; 
     width: 100%; 
@@ -26,37 +23,23 @@
     top: 0;
     left: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; 
+    align-items: center; 
     
 }
 
-.generarAvatar{
-    position: relative; 
-    width: 40%; 
-    height: 0%; 
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}	
-
 .bocadillo svg {
     position: relative;
-    width: 90%; 
+    width: 70%; 
     height: auto; 
 }
 
 .contenido-bocadillo {
     position: absolute; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    width: 100%; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-65%, -50%); 
+    width: 80%; 
     text-align: center; 
 }
 .contenido-bocadillo h1{

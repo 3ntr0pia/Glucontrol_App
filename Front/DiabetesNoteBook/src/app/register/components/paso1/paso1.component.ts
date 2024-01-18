@@ -36,11 +36,19 @@ export class Paso1Component {
   };
 
   password2 : string = "";
+  avatar : string = '';
   hasError:boolean = false;
-  
-  setAvatar(avatar: string): void {
-    this.datosRegistro.avatar = avatar;
+  defaultAvatar : string ="assets/avatar.png";
+
+
+  constructor(private avatarService: AvatarService) {}
+
+  generarAvatar() {
+    
+    this.datosRegistro.avatar = this.avatarService.getRandomAvatar();
+    
   }
+  
 
   formularioInvalido(): boolean {
     return !this.datosRegistro.nombre ||

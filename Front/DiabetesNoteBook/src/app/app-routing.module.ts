@@ -15,10 +15,6 @@ const routes: Routes = [
     path: 'user-dashboard',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
-  { 
-    path: 'not-found',
-    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
-  },
   
 ];
 
