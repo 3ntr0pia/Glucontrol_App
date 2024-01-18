@@ -1,107 +1,27 @@
-.container-paso1 {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 6rem;
+.formulario{
+    width: 50%;
+  
 }
 
-.formulario {
-  width: 50%;
+.formulario input{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-.formulario input {
-  width: 100%;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid var(--main--colorBackGroundElements);
-  padding: 0 10px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-  outline: none;
-  transition: all 0.3s ease;
-  padding: 0.5rem;
-  border-radius: 10px;
-  text-shadow: #d9dbda;
-  text-transform: lowercase;
-  border: 0.5px solid #002d52;
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(237, 254, 255, 0.904);
+    padding: 3em;
 }
 
-.error-form {
-  color: var(--main--colorErrorOrDenegate);
-  font-style: italic;
-}
-#error-allform {
-  visibility: hidden;
-  font-size: 12px;
-  font-weight: 600;
-  padding-left: 0.5rem;
-  color: var(--main--colorErrorOrDenegate);
-  font-style: italic;
-}
-.btn-next {
-  position: relative;
-  top: 0.7rem;
-  padding: 0.3rem;
-  border: none;
-  border-radius: 5px;
-  color: var(--main--colorForeground);
-  background-color: var(--main--colorBackGroundElements);
-  font-size: large;
-}
-.btn-next:hover {
-  background-color: var(--main--colorHoverBtnAccept);
-}
 
-.avatar {
-  position: relative;
-  top: 4rem;
-  width: 50%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-around;
-  gap: 2rem;
-}
-
-.avatar-img {
-  width: 50%;
-  border-radius: 100%;
-  margin-bottom: 1rem;
-}
-.avatar-default {
-  width: 55%;
-}
-.btn-generate {
-  position: relative;
-  top: 0.7rem;
-  padding: 0.3rem;
-  border: none;
-  border-radius: 5px;
-  color: var(--main--colorForeground);
-  background-color: var(--main--colorBackGroundElements);
-  font-size: large;
-}
-.btn-generate:hover {
-  background-color: var(--main--colorHoverBtnAccept);
-}
-
-@media (width < 900px) {
-  .container-paso1 {
-    flex-direction: column;
-    justify-content: center;
-    align-items: space-between;
-    flex-wrap: wrap;
-    gap: 4rem;
-  }
-  .formulario {
-    margin-top: 5rem;
-    margin-left: 9rem;
-  }
-  .avatar {
-    order: -1;
-    left: 10rem;
-  }
-}

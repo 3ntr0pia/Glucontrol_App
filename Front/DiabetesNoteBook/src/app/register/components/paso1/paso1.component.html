@@ -1,156 +1,73 @@
-<article class="container-paso1">
-  <section class="formulario">
+<div class="wrapper">
+  <div class="formulario">
+
     <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
-      <div>
-        <label for="nombre"
-          >Nombre
-          <span class="error-form" *ngIf="!nombre.valid && nombre.touched"
-            >Nombre obligatorio</span
-          ></label
-        >
-        <input
-          id="nombre"
-          type="nombre"
-          [(ngModel)]="datosRegistro.nombre"
-          name="nombre"
-          #nombre="ngModel"
-          required
-        />
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id='nombre' type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel" required
+          class="form-control"
+          [placeholder]='!nombre.valid && nombre.touched ? "Nombre obligatorio" : "Inserte su nombre..."'>
+
       </div>
-      <div>
-        <label for="userName"
-          >Nombre de usuario
-          <span class="error-form" *ngIf="!userName.valid && userName.touched"
-            >Nombre de usuario obligatorio</span
-          ></label
-        >
-        <input
-          id="userName"
-          type="userName"
-          [(ngModel)]="datosRegistro.username"
-          name="userName"
-          #userName="ngModel"
-          required
-        />
+      <div class="form-group">
+        <label for="userName">Nombre de usuario</label>
+        <input id='userName' type="userName" [(ngModel)]="datosRegistro.username" name="userName" #userName="ngModel"
+          required class="form-control"
+          [placeholder]='!userName.valid && userName.touched ? "Nombre de usuario obligatorio" : "Inserte su nombre de usuario..."'>
       </div>
-      <div>
-        <label for="apellido"
-          >Primer Apellido
-          <span class="error-form" *ngIf="!apellido.valid && apellido.touched"
-            >Primer apellido obligatorio</span
-          ></label
-        >
-        <input
-          id="apellido"
-          type="apellido"
-          [(ngModel)]="datosRegistro.apellido"
-          #apellido="ngModel"
-          name="apellido"
-          required
-        />
+      <div class="form-group">
+        <label for="apellido">Primer Apellido</label>
+        <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido='ngModel' name="apellido"
+          required class="form-control"
+          [placeholder]='!apellido.valid && apellido.touched ? "Primer apellido obligatorio" : "Inserte su primer apellido..."'>
       </div>
-      <div>
-        <label for="apellido2"
-          >Segundo Apellido
-          <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched"
-            >Segundo apellido obligatorio</span
-          ></label
-        >
-        <input
-          id="apellido2"
-          type="apellido2"
-          [(ngModel)]="datosRegistro.apellido2"
-          name="apellido2"
-          #apellido2="ngModel"
-          required
-        />
+      <div class="form-group">
+        <label for="apellido2">Segundo Apellido</label>
+        <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
+          #apellido2='ngModel' required class="form-control"
+          [placeholder]='!apellido2.valid && apellido2.touched ? "Segundo apellido obligatorio" : "Inserte su segundo apellido..."'>
       </div>
-      <div>
-        <label for="email"
-          >Email
-          <span class="error-form" *ngIf="!email.valid && email.touched"
-            >Email obligatorio</span
-          ></label
-        >
-        <input
-          id="email"
-          type="email"
-          [(ngModel)]="datosRegistro.email"
-          name="email"
-          #email="ngModel"
-          required
-        />
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email='ngModel' required
+          class="form-control"
+          [placeholder]='!email.valid && email.touched ? "Email obligatorio" : "Inserte su email..."'>
+
       </div>
-      <div>
-        <label for="password"
-          >Contraseña
-          <span class="error-form" *ngIf="!password.valid && password.touched"
-            >Password obligatorio</span
-          ></label
-        >
-        <input
-          id="password"
-          type="password"
-          [(ngModel)]="datosRegistro.password"
-          name="password"
-          #password="ngModel"
-          required
-        />
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password='ngModel'
+          required class="form-control"
+          [placeholder]='!password.valid && password.touched ? "Password obligatorio" : "Inserte su contraseña..."'>
       </div>
-      <span
-        class="error-form"
-        *ngIf="
-          password.touched &&
-          password.invalid &&
-          !validarPassword(datosRegistro.password)
-        "
-      >
-        La contraseña debe tener al menos 8 caracteres, incluyendo una
-        mayúscula, una minúscula, un número y un carácter especial.
+      <span class="form-text text-danger " *ngIf="!validarPassword(datosRegistro.password)">
+        La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula, un número y un
+        carácter especial.
       </span>
-      <div>
-        <label for="password2"
-          >Repita su contraseña
-          <span class="error-form" *ngIf="!password2.valid && password2.touched"
-            >Password obligatorio</span
-          ></label
-        >
-        <input
-          id="password2"
-          type="password"
-          [(ngModel)]="datosRegistro.password2"
-          name="password2"
-          #password2="ngModel"
-          required
-        />
-        <span
-          *ngIf="
-            password2.touched &&
-            password2.value !== password.value &&
-            password.valid
-          "
-        >
+      <div class="form-group">
+        <label for="password2">Repita su contraseña</label>
+        <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
+          #password2='ngModel' required class="form-control"
+          [placeholder]='!password2.valid && password2.touched ? "Password obligatorio" : "..."'
+          >
+        <span class="form-text text-danger" *ngIf="password2.value != password.value && password.valid">
+          Las contraseñas no coinciden
         </span>
+        
+        
       </div>
-      <button class="btn-next" type="submit" [disabled]="formularioInvalido()">
-        Siguiente
-      </button>
-      <span id="error-allform" *ngIf="formularioInvalido()">
-        Debe rellenar todos los campos
+      <button type="submit" [disabled]="formularioInvalido()" class="btn btn-primary">Siguiente</button>
+      <span class="form-text text-danger"
+      *ngIf = "formularioInvalido()">
+      Debe rellenar todos los campos
       </span>
     </form>
-  </section>
-  <section class="avatar">
+
+  </div>
+  <div class="avatar">
     <h2>Genera tu avatar</h2>
-    <img
-      *ngIf="datosRegistro.avatar; else defaultImage"
-      class="avatar-img"
-      [src]="datosRegistro.avatar"
-      alt="Avatar"
-    />
-    <ng-template #defaultImage>
-      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"
-    /></ng-template>
-    <button class="btn-generate" (click)="generarAvatar()">Generar</button>
-  </section>
-</article>
+    <app-generador-avatar (avatarGenerado)="setAvatar($event)" ></app-generador-avatar>
+    
+  </div>
+  
+</div>

@@ -14,7 +14,7 @@ import { VademecumComponent } from './components/vademecum/vademecum.component';
 
 @NgModule({
   declarations: [MainComponent, NavbarComponent, MisDatosComponent, NuevoRegistroComponent, RegistrosAnterioresComponent, AyudaComponent, VademecumComponent],
-  imports: [CommonModule, UserRoutingModule,FormsModule,SharedModule],
+  imports: [CommonModule, UserRoutingModule,FormsModule,SharedModule ],
   exports: [MainComponent],
 })
 export class UserModule {}
