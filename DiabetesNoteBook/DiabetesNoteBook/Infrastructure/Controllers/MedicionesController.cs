@@ -2,6 +2,7 @@
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
 using DiabetesNoteBook.Domain.Models;
+using DiabetesNoteBook.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +17,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly DiabetesNoteBookContext _context;
         private readonly IOperationsService _operationsService;
         private readonly INuevaMedicionService _medicion;
+        private readonly IDeleteMedicionService _deleteMedicion;
+        
 
-        public MedicionesController(DiabetesNoteBookContext context, IOperationsService operationsService,INuevaMedicionService nuevaMedicion)
+        public MedicionesController(DiabetesNoteBookContext context, IOperationsService operationsService,INuevaMedicionService nuevaMedicion,IDeleteMedicionService deleteMedicion)
         {
             _context = context;
             _operationsService = operationsService;
             _medicion = nuevaMedicion;
+            _deleteMedicion = deleteMedicion;
+           
         }
         [HttpPost]
         [AllowAnonymous]
@@ -49,12 +54,32 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                
                
             });
-
-
-          
+            await _operationsService.AddOperacion(new DTOOperation
+            {
+                Operacion = "Persona agregada",
+                UserId = existePersona.Id
+            });
             return Ok("Medicion guardada con exito");
         }
-
+        [HttpDelete("eliminarmedicion")]
+        public async Task<ActionResult> DeleteMedicion(DTOEliminarMedicion Id) 
+        {
+            var medicionExist = await _context.Mediciones.FirstOrDefaultAsync(x => x.Id == Id.Id);
+            if(medicionExist == null)
+            {
+                return BadRequest("La medicion que intenta eliminar no se encuentra");
+            }
+            await _deleteMedicion.DeleteMedicion(new DTOEliminarMedicion
+            {
+                Id = Id.Id
+            });
+            await _operationsService.AddOperacion(new DTOOperation
+            {
+                Operacion = "Eliminar medicion",
+                UserId = medicionExist.Id
+            });
+            return Ok("Eliminacion realizada con exito");
+        }
 
     }
 }
