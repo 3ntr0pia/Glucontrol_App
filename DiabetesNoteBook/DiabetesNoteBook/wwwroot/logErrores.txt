@@ -238,3 +238,15 @@ Unable to resolve service for type 'DiabetesNoteBook.Application.Filters.FiltroE
 PUT
 Microsoft.Extensions.DependencyInjection.Abstractions
 Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IChangeUserDataService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+127.0.0.1
+18/01/2024 19:06:14
+/api/Mediciones
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+127.0.0.1
+18/01/2024 19:08:34
+/api/Mediciones
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
