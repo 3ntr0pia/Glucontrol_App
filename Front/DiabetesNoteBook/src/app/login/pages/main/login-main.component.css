@@ -27,7 +27,7 @@
   }
 }
 
-@media (width < 750px) {
+@media (width < 870px) {
   .loging {
     top: 10rem;
   }

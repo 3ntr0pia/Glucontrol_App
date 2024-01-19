@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   background-color: var(--main--colorBackGround);
   margin: 15% auto;
   padding: 20px;
@@ -25,11 +25,9 @@
   font-weight: 700;
 }
 
-.modal-content figure img {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+.modal-content img {
+  width: 4rem;
+  height: 4rem;
 }
 
 .modal-content p {
@@ -37,8 +35,6 @@
   text-wrap: wrap;
 }
 .modal-content button {
-  position: relative;
-  top: 0.7rem;
   padding: 0.2rem;
   border: none;
   border-radius: 5px;
@@ -48,4 +44,25 @@
 }
 .modal-content button:hover {
   background-color: var(--main--colorHoverBtnAccept);
+}
+
+@media (width < 870px) {
+  .modal-content {
+    font-weight: 200;
+    font-size: medium;
+    gap: 0rem;
+  }
+  .modal-content button {
+    top: -3rem;
+  }
+}
+
+@media (width < 560px) {
+  .modal-content {
+    font-weight: 100;
+    font-size: small;
+  }
+  .modal-content button {
+    top: -5rem;
+  }
 }
