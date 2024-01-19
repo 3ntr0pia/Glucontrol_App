@@ -6,31 +6,32 @@ import { ILogin } from '../../interfaces/login.interface';
 @Component({
   selector: 'login-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-
-  usuario : string = '';
-  password : string = '';
+  usuario: string = '';
+  password: string = '';
   mail: string = '';
-  error : string = '';
+  error: string = '';
 
-  constructor(private authService: AuthServiceService, private router: Router ) { }
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {}
 
-  recordar : boolean = false;
-  mostrarModal : boolean = false;
+  recordar: boolean = false;
+  mostrarModal: boolean = false;
   mensajeModal: string = '';
-  
 
-  verOlvidado(){
+  verOlvidado() {
     this.recordar = true;
   }
-  
+
   login() {
-    const datoLogin : ILogin = {
+    const datoLogin: ILogin = {
       UserName: this.usuario,
-      Password: this.password
-    }
+      Password: this.password,
+    };
     this.authService.loginUser(datoLogin).subscribe(
       (res) => {
         console.log(res);
@@ -43,12 +44,12 @@ export class FormComponent {
     );
   }
 
-  recordarPassword(){
-    this.recordar = false;
-    this.mensajeModal = 'Tu solicitud de recuperación de contraseña ha sido enviada. Por favor, revisa tu correo electrónico.';
+  recordarPassword() {
+    this.recordar = true;
+    this.mensajeModal =
+      'Tu solicitud de recuperación de contraseña ha sido enviada. Por favor, revisa tu correo electrónico.';
     this.mostrarModal = true;
   }
-
 
   formularioInvalido() {
     const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -58,4 +59,3 @@ export class FormComponent {
     return false;
   }
 }
-
