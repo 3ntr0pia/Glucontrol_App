@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IMedicamento } from '../../interfaces/medicamento.interface';
 import { VademecumService } from 'src/app/services/vademecum.service';
 
@@ -7,10 +7,7 @@ import { VademecumService } from 'src/app/services/vademecum.service';
   templateUrl: './vademecum.component.html',
   styleUrls: ['./vademecum.component.css']
 })
-export class VademecumComponent implements OnInit{
-
-
-
+export class VademecumComponent {
   med : string = "lorazepam, Ibuprofeno, Paracetamol, Omeprazol, Amoxicilina, Diazepam, Trankimazin, Alprazolam, Dalsy, Nolotil,"
 
   arrayMed : IMedicamento[] = []
@@ -26,8 +23,7 @@ export class VademecumComponent implements OnInit{
     nombresMedicamentos.forEach(nombre => {
       this.vademecum.getMedicamentoInfo(nombre).subscribe(
         (res ) => {
-          this.arrayMed.push(res);
-          console.log(this.arrayMed);
+          
         },
         (err) => {
           console.log(err);
@@ -35,7 +31,5 @@ export class VademecumComponent implements OnInit{
       );
     });
   }
-
-  
 
 }

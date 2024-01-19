@@ -66,8 +66,12 @@
   </div>
   <div class="avatar">
     <h2>Genera tu avatar</h2>
-    <app-generador-avatar (avatarGenerado)="setAvatar($event)" ></app-generador-avatar>
-    
+    <img *ngIf="datosRegistro.avatar; else defaultImage" class="avatar-img" [src]="datosRegistro.avatar" alt="Avatar">
+    <ng-template #defaultImage>
+      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"></ng-template>
+    <button class='btn btn-primary' (click)="generarAvatar()">Generar</button>
   </div>
-  
+
+
+
 </div>
