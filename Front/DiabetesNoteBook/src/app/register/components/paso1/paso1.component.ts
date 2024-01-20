@@ -32,7 +32,7 @@ export class Paso1Component {
       actividad: Actividad.sedentario,
       tipoDiabetes: {
         tipo: TipoDiabetes.tipo1,
-        medicacion: '',
+        medicacion: [],
         insulina: false,
       },
     },

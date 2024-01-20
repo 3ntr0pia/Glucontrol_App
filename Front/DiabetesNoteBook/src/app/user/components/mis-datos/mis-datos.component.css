@@ -6,7 +6,6 @@
     grid-template-rows: repeat(2, 1fr); 
     gap: 0px 0px; 
     grid-template-areas:
-    
     "avatar formulario"
     "calculadora formulario"; 
 }
@@ -17,6 +16,15 @@
 }
 
 
+.datos
+{
+    grid-area: formulario;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+}
 
 
 .bocadillo {
@@ -79,10 +87,6 @@
 }
 .formulario{
     grid-area: formulario;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap:1em;
+   
 }
 

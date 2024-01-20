@@ -23,6 +23,6 @@ export interface IMediciones {
 
 export interface IDiabetes {
   tipo: TipoDiabetes;
-  medicacion: string;
+  medicacion: string[];
   insulina: boolean;
 }

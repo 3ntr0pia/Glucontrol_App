@@ -6,4 +6,29 @@ card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
+}
+
+
+.wrapper {
+  padding: 2em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+  
+}
+
+.addMedicamento{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
 }

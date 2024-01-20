@@ -2,7 +2,9 @@ export interface IUserLoginResponse {
     token: string;
     rol : string;
     id: number;
+    idPersona : number;
     avatar: string;
+    userId : string;
     nombre : string;
     primerApellido : string;
     segundoApellido : string;

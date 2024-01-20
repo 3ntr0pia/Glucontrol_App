@@ -264,69 +264,78 @@
 
     </div>
   </div>
-  <div class="formulario">
-    <form>
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input id='nombre' type="nombre" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required
-          class="form-control"
-          [placeholder]='usuario.nombre'>
-
-      </div>
-      <div class="form-group">
-        <label for="userName">Nombre de usuario</label>
-        <input id='userName' type="userName" [(ngModel)]="usuario.userName" name="userName" #userName="ngModel" required
-          class="form-control"
-          [placeholder]='!userName.valid && userName.touched ? "Nombre de usuario obligatorio" : "Inserte su nombre de usuario..."'>
-      </div>
-      <div class="form-group">
-        <label for="apellido">Primer Apellido</label>
-        <input id="apellido" type="apellido" [(ngModel)]="usuario.primerApellido" #apellido='ngModel' name="apellido"
-          required class="form-control"
-          [placeholder]='!apellido.valid && apellido.touched ? "Primer apellido obligatorio" : "Inserte su primer apellido..."'>
-      </div>
-      <div class="form-group">
-        <label for="apellido2">Segundo Apellido</label>
-        <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" name="apellido2"
-          #apellido2='ngModel' required class="form-control"
-          [placeholder]='!apellido2.valid && apellido2.touched ? "Segundo apellido obligatorio" : "Inserte su segundo apellido..."'>
-      </div>
-      <div class="mb-3">
-        <label for="edad" class="form-label">Edad</label>
-        <input type="number" class="form-control" [(ngModel)]="usuario.edad" name="edad" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="sexo" class="form-label">Sexo Biológico</label>
-        <select class="form-select" [(ngModel)]="usuario.sexo" name="sexo" required>
-          <option [value]="Sexo.hombre">Masculino</option>
-          <option [value]="Sexo.mujer">Femenino</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="actividad" class="form-label">Actividad</label>
-        <select class="form-select" [(ngModel)]="usuario.actividad" name="actividad" required>
-          <option [value]="Actividad.sedentario">Sedentario</option>
-          <option [value]="Actividad.ligero">Ligero</option>
-          <option [value]="Actividad.moderado">Moderado</option>
-          <option [value]="Actividad.intenso">Intenso</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="tipo">Tipo de diabetes</label>
-        <select [(ngModel)]="usuario.tipoDiabetes" name="tipo" required class="form-control">
-          <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
-          <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
-          <option [value]="TipoDiabetes.gestacional">Gestacional</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="insulina">¿Toma insulina?</label>
-        <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required>
-      </div>
-
-    </form>
+  
+  <div class="datos">
+    <h1>Tus datos de usuario</h1>
+    <div class="formulario">
+    
+      <form (ngSubmit)="actualizarUsuario()">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input id='nombre' type="nombre" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required
+            class="form-control"
+            [placeholder]='usuario.nombre'>
+  
+        </div>
+        <div class="form-group">
+          <label for="userName">Nombre de usuario</label>
+          <input id='userName' type="userName" [(ngModel)]="usuario.userName" name="userName" #userName="ngModel" required
+            class="form-control"
+            [placeholder]='usuario.userName'>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Primer Apellido</label>
+          <input id="apellido" type="apellido" [(ngModel)]="usuario.primerApellido" #apellido='ngModel' name="apellido"
+            required class="form-control"
+            [placeholder]='!apellido.valid && apellido.touched ? "Primer apellido obligatorio" : "Inserte su primer apellido..."'>
+        </div>
+        <div class="form-group">
+          <label for="apellido2">Segundo Apellido</label>
+          <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" name="apellido2"
+            #apellido2='ngModel' required class="form-control"
+            [placeholder]='!apellido2.valid && apellido2.touched ? "Segundo apellido obligatorio" : "Inserte su segundo apellido..."'>
+        </div>
+        <div class="mb-3">
+          <label for="edad" class="form-label">Edad</label>
+          <input type="number" class="form-control" [(ngModel)]="usuario.edad" name="edad" required>
+        </div>
+  
+        <div class="mb-3">
+          <label for="sexo" class="form-label">Sexo Biológico</label>
+          <select class="form-select" [(ngModel)]="usuario.sexo" name="sexo" required>
+            <option [value]="Sexo.hombre">Masculino</option>
+            <option [value]="Sexo.mujer">Femenino</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="actividad" class="form-label">Actividad</label>
+          <select class="form-select" [(ngModel)]="usuario.actividad" name="actividad" required>
+            <option [value]="Actividad.sedentario">Sedentario</option>
+            <option [value]="Actividad.ligero">Ligero</option>
+            <option [value]="Actividad.moderado">Moderado</option>
+            <option [value]="Actividad.intenso">Intenso</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tipo">Tipo de diabetes</label>
+          <select [(ngModel)]="usuario.tipoDiabetes" name="tipo" required class="form-control">
+            <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
+            <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
+            <option [value]="TipoDiabetes.gestacional">Gestacional</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="insulina">¿Toma insulina?</label>
+          <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required>
+        </div>
+        <button class='btn btn-secondary' >Guardar Cambios</button>
+        <button class='btn btn-primary'>Reestablecer</button>
+      </form>
+      
+    </div>
+    
   </div>
+ 
   <div class="calculadora">
     <h1>Calcula tu IMC</h1>
     <app-calculadora-imc></app-calculadora-imc>

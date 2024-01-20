@@ -23,12 +23,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
         [AllowAnonymous]
         [HttpGet("personaPorId/{Id}")]
-        public async Task<ActionResult> UserById([FromRoute] DTOById userData)
+        public async Task<ActionResult> PersonById([FromRoute] DTOById userData)
         {
 
             try
             {
-                var personExist = await _context.Personas.FirstOrDefaultAsync(x => x.UserId == userData.Id);
+                var personExist = await _context.Personas.FirstOrDefaultAsync(x => x.Id == userData.Id);
 
                 if (personExist == null)
                 {

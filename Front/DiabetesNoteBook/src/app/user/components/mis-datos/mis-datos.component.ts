@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Chart } from 'chart.js';
@@ -49,12 +51,12 @@ export class MisDatosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.authService.user.subscribe((user) => {
-    //   this.usuarioLogeado = user;
-    //   if (this.usuarioLogeado) {
-    //   //   this.getUsuarioInfo(this.usuarioLogeado.id);
-    //   // }
-    // });
+    this.authService.user.subscribe((user) => {
+      this.usuarioLogeado = user;
+      if (this.usuarioLogeado) {
+        this.getUsuarioInfo(this.usuarioLogeado.id, this.usuarioLogeado.idPersona);
+      }
+    });
   }
 
   setAvatar(avatar: string): void {
@@ -65,7 +67,10 @@ export class MisDatosComponent implements OnInit {
   getUsuarioInfo(usuarioId: number , personaPorId : number): void {
     this.usuarioService.getUsuarioYPersonaInfo(usuarioId, personaPorId).subscribe({
       next: (res) => {
-        this.usuario = res;
+        //Con spread (...) podemos copiar los valores de un objeto a otro y mezclarlos en el usuario
+        this.usuario = {...res[0], ...res[1]};
+       
+        this.usuario.medicacion = ['Lorazepam', 'Paracetamol'];
         console.log(this.usuario);
       },
       error: (err) => {
@@ -74,11 +79,13 @@ export class MisDatosComponent implements OnInit {
     });
   }
 
+ 
+
   actualizarUsuario(): void {
     this.usuario.avatar = this.nuevoAvatar;
     this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: (res) => {
-        console.log(res);
+        console.log('Usuario actualizado:', res);
       },
       error: (err) => {
         console.error(err);

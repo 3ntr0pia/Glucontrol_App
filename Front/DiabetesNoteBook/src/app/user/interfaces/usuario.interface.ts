@@ -1,7 +1,7 @@
 import { Sexo } from 'src/app/interfaces/register.enum';
 
 export interface IUsuarioUpdate {
-    id:              number;
+    id?:              number;
     avatar:          string;
     userName:        string;
     nombre:          string;

@@ -2,6 +2,7 @@
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiabetesNoteBook.Application.Services
@@ -22,7 +23,7 @@ namespace DiabetesNoteBook.Application.Services
 
             var usuarioUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == changeUserData.Id);
 
-            var personaUpdate = await _context.Personas.AsTracking().FirstOrDefaultAsync(x => x.UserId == changeUserData.Id);
+            var personaUpdate = await _context.Personas.AsTracking().FirstOrDefaultAsync(x => x.Id == changeUserData.Id); //Ajustado a id de persona
 
             usuarioUpdate.Avatar = changeUserData.Avatar;
             usuarioUpdate.UserName = changeUserData.UserName;

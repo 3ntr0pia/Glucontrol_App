@@ -56,7 +56,7 @@ namespace DiabetesNoteBook.Application.Services
                         Peso = userData.Peso,
                         Altura = userData.Altura,
                         Actividad = userData.Actividad,
-                        Medicacion = userData.Medicacion,
+                        //Medicacion = userData.Medicacion,
                         TipoDiabetes = userData.TipoDiabetes,
                         Insulina = userData.Insulina,
                         UserId = usuario.Id

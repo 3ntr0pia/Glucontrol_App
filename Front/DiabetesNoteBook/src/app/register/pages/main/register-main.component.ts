@@ -36,7 +36,7 @@ export class RegisterMainComponent {
       actividad: this.Actividad.sedentario,
       tipoDiabetes: {
         tipo: this.TipoDiabetes.tipo1,
-        medicacion: '',
+        medicacion: [],
         insulina: false,
       },
     },

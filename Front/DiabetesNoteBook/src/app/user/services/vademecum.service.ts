@@ -17,10 +17,12 @@ export class VademecumService {
 
   constructor(private http: HttpClient) {}
 
-  getMedicamentoInfo(nombre: string): Observable<IMedicamento> {
-    return this.http
-      .get<IRespuestaServicio>(this.connectionString + nombre)
-      .pipe(map((respuesta) => respuesta.resultados[0]));
+
+
+  getMedicamentoInfo(nombre: string): Observable<IRespuestaServicio> {
+    return this.http.get<IRespuestaServicio>(`${this.connectionString}${nombre}`)
+
+  
   }
   getMedicamentoUser(id: string) {
     return this.http.get(`${this.API_URL}/Medicamentos/${id}`);

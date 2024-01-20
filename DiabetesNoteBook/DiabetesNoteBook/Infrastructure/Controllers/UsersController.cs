@@ -75,7 +75,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     Peso = userData.Peso,
                     Altura = userData.Altura,
                     Actividad = userData.Actividad,
-                    Medicacion = userData.Medicacion,
+                    //Medicacion = userData.Medicacion,
                     TipoDiabetes = userData.TipoDiabetes,
                     Insulina = userData.Insulina
                 });

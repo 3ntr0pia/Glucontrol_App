@@ -5,7 +5,7 @@ namespace DiabetesNoteBook.Application.DTOs
     public class DTOChangeUserData
     {
         public int? Id { get; set; }
-        public string Avatar { get; set; }
+        public string? Avatar { get; set; }
         [UserValidation]
         public string UserName { get; set; }
         public string Nombre { get; set; }

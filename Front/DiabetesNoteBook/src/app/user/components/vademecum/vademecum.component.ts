@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IMedicamento } from '../../interfaces/medicamento.interface';
+import { IMedicamento, IRespuestaServicio } from '../../interfaces/medicamento.interface';
 import { VademecumService } from 'src/app/user/services/vademecum.service';
 
 @Component({
@@ -8,31 +8,38 @@ import { VademecumService } from 'src/app/user/services/vademecum.service';
   styleUrls: ['./vademecum.component.css'],
 })
 export class VademecumComponent {
-  med: string =
-    'lorazepam, Ibuprofeno, Paracetamol, Omeprazol, Amoxicilina, Diazepam, Trankimazin, Alprazolam, Dalsy, Nolotil,';
+  medicamentosFromBackend: string[] = [
+    'lorazepam',
+    'paracetamol',
+    'ibuprofeno',
+  ];
 
-  arrayMed: IMedicamento[] = [];
+  medicamentoSeleccionado : string = '';
+  medicamentosArray: IMedicamento[] = [];
+  Receta: boolean = true;
+  Genericos: boolean = false;
   constructor(private vademecum: VademecumService) {}
 
-  ngOnInit(): void {
-    this.crearArrayMedicamentos();
+  ngOnInit(): void {}
+
+  medicamentoChange(){
+    if(this.medicamentoSeleccionado){
+      this.buscarMedicamentos(this.medicamentoSeleccionado);
+    }
   }
 
-  crearArrayMedicamentos(): void {
-    let nombresMedicamentos = this.med
-      .split(',')
-      .map((m) => m.trim())
-      .filter((m) => m);
-    nombresMedicamentos.forEach((nombre) => {
-      this.vademecum.getMedicamentoInfo(nombre).subscribe({
-        next: (res) => {
-          this.arrayMed = [...this.arrayMed, res];
-          console.log(this.arrayMed);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+  buscarMedicamentos(nombre: string) {
+    nombre = this.medicamentoSeleccionado;
+    this.vademecum.getMedicamentoInfo(nombre).subscribe({
+      next: (res : IRespuestaServicio) => {
+        this.medicamentosArray = res.resultados;
+        console.log(this.medicamentosArray);
+      },
+      error: (error) => {
+        console.log(error);
+    }
     });
+    
+    
   }
 }

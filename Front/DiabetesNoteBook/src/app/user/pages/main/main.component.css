@@ -1,18 +1,29 @@
-.wrapper{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-   
-   
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "navbar content content"
+    "navbar content content"
+    "navbar content content";
+
+  overflow: hidden;
 }
 
-.navbar{
-    width: 25%;
-    height: 100%;
-    background-color: blue;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
+.navbar {
+grid-area: navbar;
+  width: 100%;
+  height: 100vh;
+  background-color: blue;
+  position: sticky;
+}
+
+.content{
+    grid-row: 2 / 3;
+    overflow-y: auto;
+    grid-area: content;
+    height: 100vh;
 }

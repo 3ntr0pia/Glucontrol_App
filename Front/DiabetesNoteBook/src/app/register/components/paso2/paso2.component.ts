@@ -41,7 +41,7 @@ export class Paso2Component {
       tipoDiabetes: {
         tipo: this.TipoDiabetes.tipo1,
 
-        medicacion: '',
+        medicacion: [],
         insulina: false,
       },
     },
