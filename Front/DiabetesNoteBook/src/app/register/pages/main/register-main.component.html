@@ -1,4 +1,4 @@
-<section class="wrapper">
+<section class="main-register">
   <article class="info">
     <a routerLink="/login" ><img src="assets/logo.png" alt="logo" class="logo" /></a>
     <h2>Bienvenido a nuestra comunidad</h2>
@@ -8,6 +8,7 @@
   <article class="form">
     <div [ngSwitch]="paso">
       <register-paso1
+        class="paso1"
         *ngSwitchCase="1"
         (siguientePaso)="siguientePaso($event)"
         [datosRegistro]="datosRegistro"
