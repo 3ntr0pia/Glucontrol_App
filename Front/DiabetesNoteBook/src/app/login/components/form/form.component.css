@@ -4,6 +4,7 @@
   grid-template-rows: auto 1fr auto;
   justify-items: center;
   color: var(--main--colorForeground);
+  font-family: "Akinson-Hyperlegible-Regular";
 }
 .error-form {
   visibility: hidden;

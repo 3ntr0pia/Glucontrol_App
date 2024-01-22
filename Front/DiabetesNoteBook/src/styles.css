@@ -6,9 +6,12 @@
   --main--colorErrorOrDenegate: #940505;
 }
 @font-face {
-  font-family: "Open Sans";
-  src: url("assets/fonts/OpenSans-Regular.woff2") format("woff2"),
-    url("assets/fonts/OpenSans-Regular.woff") format("woff");
+  font-family: "Atkinson-Hyperlegible-Regular";
+  src: url("/assets/fonts/Atkinson-Hyperlegible-Regular-102a.woff2")
+      format("woff2"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
+    url("/src/assets/fonts/Atkinson-Hyperlegible-Regular-102.ttf")
+      format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -22,5 +25,5 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--main--colorBackGround);
-  font-family: "Open Sans";
+  font-family: "Atikinson-Hyperlegible-Regular";
 }
