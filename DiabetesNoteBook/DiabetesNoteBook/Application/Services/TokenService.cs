@@ -43,7 +43,6 @@ namespace DiabetesNoteBook.Application.Services
                 Token = tokenString,
                 Rol = credencialesUsuario.Rol,
                 Id = credencialesUsuario.Id,
-                IdPersona = personaDB.Id,
                 Nombre = personaDB.Nombre,
                 PrimerApellido = personaDB.PrimerApellido,
                 SegundoApellido = personaDB.SegundoApellido,

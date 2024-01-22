@@ -5,11 +5,11 @@ namespace DiabetesNoteBook.Application.DTOs
     public class DTORegister
     {
         public string Avatar { get; set; }
-        //[UserValidation]
+        [UserValidation]
         public string UserName { get; set; }
-        //[EmailValidation]
+        [EmailValidation]
         public string Email { get; set; }
-        //[PassValidation]
+        [PassValidation]
         public string Password { get; set; }
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }
@@ -20,7 +20,7 @@ namespace DiabetesNoteBook.Application.DTOs
         public decimal Altura { get; set; }
         public string Actividad { get; set; }
         public string TipoDiabetes { get; set; }
-        public string[]? Medicacion { get; set; }
+        public string Medicacion { get; set; }
         public bool Insulina { get; set; }
     }
 }

@@ -18,7 +18,7 @@ string secret;
 bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 if (!isDevelopment)
 {
-    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    connectionString = builder.Configuration["CONNECTION_STRING"];
     secret = builder.Configuration["ClaveJWT"];
 }
 else
@@ -61,6 +61,8 @@ builder.Services.AddTransient<IChangeUserDataService, ChangeUserDataService>();
 builder.Services.AddTransient<IChangeUserData, ChangeUserData>();
 builder.Services.AddTransient<ISaveNuevaMedicion,SaveNuevaMedicionRepository>();
 builder.Services.AddTransient<INuevaMedicionService,NuevaMedicionService>();
+builder.Services.AddTransient<IDeleteMedicion, DeleteMedicionRepository>();
+builder.Services.AddTransient<IDeleteMedicionService, DeleteMedicionService>();
 
 builder.Services.AddCors(options =>
 {
@@ -128,7 +130,6 @@ app.UseCors();
 app.UseStaticFiles();
 
 app.UseAuthorization();
-
 
 app.MapControllers();
 

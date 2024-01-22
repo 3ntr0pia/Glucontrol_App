@@ -12127,24 +12127,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\3ntr0pia\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\guill\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+      "projectUniqueName": "D:\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
       "projectName": "DiabetesNoteBook",
-      "projectPath": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
-      "packagesPath": "C:\\Users\\3ntr0pia\\.nuget\\packages\\",
-      "outputPath": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\obj\\",
+      "projectPath": "D:\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+      "packagesPath": "C:\\Users\\guill\\.nuget\\packages\\",
+      "outputPath": "D:\\DiabetesNoteBook\\DiabetesNoteBook\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\3ntr0pia\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\guill\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12226,7 +12221,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

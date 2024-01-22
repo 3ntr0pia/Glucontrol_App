@@ -9,7 +9,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Authorize]
     public class PersonController : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
@@ -23,12 +23,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
         [AllowAnonymous]
         [HttpGet("personaPorId/{Id}")]
-        public async Task<ActionResult> PersonById([FromRoute] DTOById userData)
+        public async Task<ActionResult> UserById([FromRoute] DTOById userData)
         {
 
             try
             {
-                var personExist = await _context.Personas.FirstOrDefaultAsync(x => x.Id == userData.Id);
+                var personExist = await _context.Personas.FirstOrDefaultAsync(x => x.UserId == userData.Id);
 
                 if (personExist == null)
                 {

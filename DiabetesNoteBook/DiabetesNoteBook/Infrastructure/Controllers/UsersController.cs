@@ -10,7 +10,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
@@ -46,7 +46,8 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         public async Task<ActionResult> UserRegistration([FromBody] DTORegister userData)
         {
 
-            
+            try
+            {
                 var usuarioDBUser = _context.Usuarios.FirstOrDefault(x => x.UserName == userData.UserName);
 
                 if (usuarioDBUser != null)
@@ -75,7 +76,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     Peso = userData.Peso,
                     Altura = userData.Altura,
                     Actividad = userData.Actividad,
-                    //Medicacion = userData.Medicacion,
+                    Medicacion = userData.Medicacion,
                     TipoDiabetes = userData.TipoDiabetes,
                     Insulina = userData.Insulina
                 });
@@ -94,8 +95,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 });
 
                 return Ok();
-            
-            
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido realizar le registro, por favor, intentelo más tarde.");
+            }
         }
 
         [AllowAnonymous]
