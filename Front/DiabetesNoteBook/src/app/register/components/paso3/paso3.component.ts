@@ -6,13 +6,9 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { IRegister } from '../../interfaces/register.interface';
-import {
-  Sexo,
-  Actividad,
-  TipoDiabetes,
-} from '../../../interfaces/register.enum';
-import { IFinalRegister } from '../../interfaces/finalregister.interface';
+import { IRegister } from '../../../interfaces/register.interface';
+import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
+import { IFinalRegister } from '../../../interfaces/finalregister.interface';
 
 @Component({
   selector: 'register-paso3',
@@ -27,7 +23,7 @@ export class Paso3Component {
   public TipoDiabetes = TipoDiabetes;
   public medicacion: string = '';
   public aceptar: boolean = false;
-  public medicacionString : string = '';
+  public medicacionString: string = '';
 
   @Input() datosRegistro: IRegister = {
     avatar: '',
@@ -99,8 +95,6 @@ export class Paso3Component {
       !this.datosRegistro.mediciones.altura
     );
   }
-
- 
 
   addMedicacion() {
     this.medicacionString.split(',').forEach((medicamento) => {

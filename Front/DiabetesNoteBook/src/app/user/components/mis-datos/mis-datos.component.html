@@ -333,11 +333,11 @@
       </form>
       
     </div>
-    
+    <p>{{error}}</p>
   </div>
  
   <div class="calculadora">
     <h1>Calcula tu IMC</h1>
-    <app-calculadora-imc></app-calculadora-imc>
+    <app-calculadora-imc (emitirAltura)="nuevaAltura" (emitirPeso)="nuevoPeso"></app-calculadora-imc>
   </div>
 </div>

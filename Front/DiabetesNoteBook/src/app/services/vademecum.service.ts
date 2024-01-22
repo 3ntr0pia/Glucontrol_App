@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../environments/environment';
 import { Observable, map } from 'rxjs';
 import {
   IMedicamento,
@@ -17,12 +17,10 @@ export class VademecumService {
 
   constructor(private http: HttpClient) {}
 
-
-
   getMedicamentoInfo(nombre: string): Observable<IRespuestaServicio> {
-    return this.http.get<IRespuestaServicio>(`${this.connectionString}${nombre}`)
-
-  
+    return this.http.get<IRespuestaServicio>(
+      `${this.connectionString}${nombre}`
+    );
   }
   getMedicamentoUser(id: string) {
     return this.http.get(`${this.API_URL}/Medicamentos/${id}`);

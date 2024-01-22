@@ -5,12 +5,8 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import {
-  Sexo,
-  Actividad,
-  TipoDiabetes,
-} from '../../../interfaces/register.enum';
-import { IRegister } from '../../interfaces/register.interface';
+import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
+import { IRegister } from '../../../interfaces/register.interface';
 
 @Component({
   selector: 'register-paso2',

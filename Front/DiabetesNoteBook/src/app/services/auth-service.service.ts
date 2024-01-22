@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { IRegister } from '../register/interfaces/register.interface';
+import { IRegister } from '../interfaces/register.interface';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { IFinalRegister } from '../register/interfaces/finalregister.interface';
-import { ILogin } from '../login/interfaces/login.interface';
-import { IUserLoginResponse } from '../interfaces/loginResponse.interface';
+import { IFinalRegister } from '../interfaces/finalregister.interface';
+import { ILogin, IUserLoginResponse } from '../interfaces/loginResponse.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +51,12 @@ export class AuthServiceService {
           })
         )
     );
+  }
+ //Esto recarga los datos del localstorage, por si se ha modificado algun dato del usuario
+  updateUser(user: IUserLoginResponse): void {
+    localStorage.setItem('user', JSON.stringify(user));
+    //Con next podemos emitir un nuevo valor, en este caso el usuario que se ha modificado
+    this.currentUserSubject.next(user);
   }
 
   //Metodo para cerrar sesion

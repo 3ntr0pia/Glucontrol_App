@@ -1,0 +1,168 @@
+// finalregister.interface.ts
+export interface IFinalRegister {
+  avatar: string;
+  userName: string;
+  email: string;
+  password: string;
+  nombre: string;
+  primerApellido: string;
+  segundoApellido: string;
+  sexo: string;
+  edad: number;
+  peso: number;
+  altura: number;
+  actividad: string;
+  tipoDiabetes: string;
+  medicacion?: string[];
+  insulina: boolean;
+}
+
+
+// loginResponse.interface.ts
+export interface ILogin {
+  UserName: string;
+  Password: string;
+}
+
+export interface IUserLoginResponse {
+    token: string;
+    rol : string;
+    id: number;
+    idPersona : number;
+    avatar: string;
+    userId : string;
+    nombre : string;
+    primerApellido : string;
+    segundoApellido : string;
+  }
+  
+  export interface IUserLogout {
+    email: string;
+  }
+  
+  export interface IUserChangePassword {
+    email: string;
+    oldPassword?: string;
+    newPassword: string;
+  }
+  
+
+// medicamento.interface.ts
+export interface IRespuestaServicio {
+  totalFilas: number;
+  pagina: number;
+  tamanioPagina: number;
+  resultados: IMedicamento[];
+}
+export interface IMedicamento {
+  nregistro: string;
+  nombre: string;
+  labtitular: string;
+  cpresc: string;
+  estado: {
+    aut: number;
+  };
+  comerc: boolean;
+  receta: boolean;
+  generico: boolean;
+  conduc: boolean;
+  triangulo: boolean;
+  huerfano: boolean;
+  biosimilar: boolean;
+  nosustituible: {
+    id: number;
+    nombre: string;
+  };
+  psum: boolean;
+  notas: boolean;
+  materialesInf: boolean;
+  ema: boolean;
+  docs: IDocumento[];
+  fotos: IFoto[];
+  viasAdministracion: IViaAdministracion[];
+  formaFarmaceutica: IFormaFarmaceutica;
+  formaFarmaceuticaSimplificada: IFormaFarmaceutica;
+  vtm: {
+    id: number;
+    nombre: string;
+  };
+  dosis: string;
+}
+
+export interface IDocumento {
+  tipo: number;
+  url: string;
+  secc: boolean;
+  fecha: number;
+  urlHtml?: string;
+}
+
+export interface IFoto {
+  tipo: string;
+  url: string;
+  fecha: number;
+}
+
+export interface IViaAdministracion {
+  id: number;
+  nombre: string;
+}
+
+export interface IFormaFarmaceutica {
+  id: number;
+  nombre: string;
+}
+
+
+// register.interface.ts
+import { Sexo, Actividad, TipoDiabetes } from '../enums/register.enum';
+
+export interface IRegister {
+  avatar: string;
+  username: string;
+  nombre: string;
+  apellido: string;
+  apellido2: string;
+  email: string;
+  password: string;
+  password2: string;
+  mediciones: IMediciones;
+}
+
+export interface IMediciones {
+  edad: number;
+  peso: number;
+  altura: number;
+  sexo: Sexo;
+  actividad: Actividad;
+  tipoDiabetes: IDiabetes;
+}
+
+export interface IDiabetes {
+  tipo: TipoDiabetes;
+  medicacion: string[];
+  insulina: boolean;
+}
+
+
+// usuario.interface.ts
+import { Sexo } from 'src/app/enums/register.enum';
+
+export interface IUsuarioUpdate {
+  id?: number;
+  avatar: string;
+  userName: string;
+  nombre: string;
+  primerApellido: string;
+  segundoApellido: string;
+  sexo: Sexo;
+  edad: number;
+  peso: number;
+  altura: number;
+  actividad: string;
+  tipoDiabetes: string;
+  medicacion: string[];
+  insulina: boolean;
+}
+
+

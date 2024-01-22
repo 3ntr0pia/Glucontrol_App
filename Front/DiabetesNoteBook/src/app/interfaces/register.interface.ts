@@ -1,4 +1,4 @@
-import { Sexo, Actividad, TipoDiabetes } from '../../interfaces/register.enum';
+import { Sexo, Actividad, TipoDiabetes } from '../enums/register.enum';
 
 export interface IRegister {
   avatar: string;

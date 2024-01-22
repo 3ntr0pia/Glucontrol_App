@@ -1,3 +1,8 @@
+export interface ILogin {
+  UserName: string;
+  Password: string;
+}
+
 export interface IUserLoginResponse {
     token: string;
     rol : string;

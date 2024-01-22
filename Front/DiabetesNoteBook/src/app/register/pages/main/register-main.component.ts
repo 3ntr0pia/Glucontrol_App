@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import {
-  Sexo,
-  Actividad,
-  TipoDiabetes,
-} from '../../../interfaces/register.enum';
-import { IRegister } from '../../interfaces/register.interface';
+import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
+import { IRegister } from '../../../interfaces/register.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { IFinalRegister } from '../../interfaces/finalregister.interface';
+import { IFinalRegister } from '../../../interfaces/finalregister.interface';
 import { Router } from '@angular/router';
 
 @Component({

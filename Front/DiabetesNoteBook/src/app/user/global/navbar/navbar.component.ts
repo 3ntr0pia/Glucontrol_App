@@ -16,6 +16,12 @@ export class NavbarComponent {
     private router: Router
   ) {}
 
+  ngOnInit() {
+    this.authService.user.subscribe(user => {
+      this.usuarioLogeado = user;
+    });
+  }
+
   logout() {
     this.authService.logoutUser();
     this.router.navigate(['/login']);

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ILogin } from 'src/app/interfaces/loginResponse.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { ILogin } from '../../interfaces/login.interface';
+
 
 @Component({
   selector: 'login-form',

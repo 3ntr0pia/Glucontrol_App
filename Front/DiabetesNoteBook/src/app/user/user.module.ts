@@ -11,8 +11,8 @@ import { RegistrosAnterioresComponent } from './components/registros-anteriores/
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { SharedModule } from '../shared/shared.module';
 import { VademecumComponent } from './components/vademecum/vademecum.component';
-import { FiltroGenericosPipe } from './pipes/filtro-genericos.pipe';
-import { FiltroSinRecetaPipe } from './pipes/filtro-sin-receta.pipe';
+import { FiltroGenericosPipe } from '../pipes/filtro-genericos.pipe';
+import { FiltroSinRecetaPipe } from '../pipes/filtro-sin-receta.pipe';
 
 @NgModule({
   declarations: [

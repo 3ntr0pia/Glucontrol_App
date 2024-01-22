@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { IMedicamento, IRespuestaServicio } from '../../interfaces/medicamento.interface';
-import { VademecumService } from 'src/app/user/services/vademecum.service';
+import {
+  IMedicamento,
+  IRespuestaServicio,
+} from '../../../interfaces/medicamento.interface';
+import { VademecumService } from 'src/app/services/vademecum.service';
 
 @Component({
   selector: 'app-vademecum',
@@ -14,7 +17,7 @@ export class VademecumComponent {
     'ibuprofeno',
   ];
 
-  medicamentoSeleccionado : string = '';
+  medicamentoSeleccionado: string = '';
   medicamentosArray: IMedicamento[] = [];
   Receta: boolean = true;
   Genericos: boolean = false;
@@ -22,8 +25,8 @@ export class VademecumComponent {
 
   ngOnInit(): void {}
 
-  medicamentoChange(){
-    if(this.medicamentoSeleccionado){
+  medicamentoChange() {
+    if (this.medicamentoSeleccionado) {
       this.buscarMedicamentos(this.medicamentoSeleccionado);
     }
   }
@@ -31,15 +34,13 @@ export class VademecumComponent {
   buscarMedicamentos(nombre: string) {
     nombre = this.medicamentoSeleccionado;
     this.vademecum.getMedicamentoInfo(nombre).subscribe({
-      next: (res : IRespuestaServicio) => {
+      next: (res: IRespuestaServicio) => {
         this.medicamentosArray = res.resultados;
         console.log(this.medicamentosArray);
       },
       error: (error) => {
         console.log(error);
-    }
+      },
     });
-    
-    
   }
 }
