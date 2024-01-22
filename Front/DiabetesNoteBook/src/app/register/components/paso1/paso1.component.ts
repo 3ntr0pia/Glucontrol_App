@@ -56,6 +56,11 @@ export class Paso1Component {
       !this.datosRegistro.avatar
     );
   }
+
+  setAvatar(avatar: string): void {
+    this.datosRegistro.avatar = avatar;
+  }
+  
   validarPassword(password: string): boolean {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
