@@ -17,6 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* font-family: "Atkinson-Hyperlegible-Regular"; */
 }
 .loging-form img {
   width: 50%;
@@ -27,7 +28,7 @@
   }
 }
 
-@media (width < 750px) {
+@media (width < 870px) {
   .loging {
     top: 10rem;
   }

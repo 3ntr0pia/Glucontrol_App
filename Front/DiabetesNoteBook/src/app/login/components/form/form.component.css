@@ -4,6 +4,7 @@
   grid-template-rows: auto 1fr auto;
   justify-items: center;
   color: var(--main--colorForeground);
+  font-family: "Akinson-Hyperlegible-Regular";
 }
 .error-form {
   visibility: hidden;
@@ -29,6 +30,7 @@
   border-radius: 5px;
   background-color: var(--main--colorBackGroundElements);
   font-size: large;
+  color: var(--main--colorForeground);
 }
 .btnInicio:hover {
   background-color: var(--main--colorHoverBtnAccept);

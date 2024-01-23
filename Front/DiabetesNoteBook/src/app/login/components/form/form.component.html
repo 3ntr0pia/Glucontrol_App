@@ -21,18 +21,21 @@
       />
     </div>
     <div>
-      <button class="btnInicio">Iniciar Sesion</button> 
-      <span>{{error}}</span>
+      <button class="btnInicio">Iniciar Sesión</button>
+      <span class="error-form">{{ error }}</span>
     </div>
     <div class="aForgetPass">
-      <a (click)="verOlvidado()">He olvidado la contraseña</a><a routerLink="/register">Registrarse</a>
+      <a (click)="verOlvidado()">He olvidado la contraseña</a
+      ><a routerLink="/register">Registrarse</a>
     </div>
   </form>
 </section>
 <section *ngIf="recordar" class="sectionLogin">
   <form (ngSubmit)="recordarPassword()">
     <div class="input">
-      <label class="usuario-form" for="usuario-form">Email de Recuperacion</label>
+      <label class="usuario-form" for="usuario-form"
+        >Email de Recuperación</label
+      >
       <input
         type="email"
         id="mail-form"
@@ -43,8 +46,14 @@
       />
     </div>
     <div>
-      <button [disabled]='formularioInvalido()' class="btnInicio">Enviar</button>
+      <button [disabled]="formularioInvalido()" class="btnInicio">
+        Enviar
+      </button>
     </div>
   </form>
 </section>
-<app-modal *ngIf="mostrarModal"  [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"></app-modal>
+<app-modal
+  *ngIf="mostrarModal"
+  [mensaje]="mensajeModal"
+  (cerrar)="mostrarModal = false"
+></app-modal>

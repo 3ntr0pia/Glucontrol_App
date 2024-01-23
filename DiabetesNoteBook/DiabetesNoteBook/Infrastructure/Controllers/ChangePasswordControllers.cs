@@ -11,7 +11,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ChangePasswordControllers : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;

@@ -18,7 +18,7 @@ string secret;
 bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 if (!isDevelopment)
 {
-    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    connectionString = builder.Configuration["CONNECTION_STRING"];
     secret = builder.Configuration["ClaveJWT"];
 }
 else
@@ -129,7 +129,7 @@ app.UseCors();
 
 app.UseStaticFiles();
 
-
+app.UseAuthorization();
 
 app.MapControllers();
 
