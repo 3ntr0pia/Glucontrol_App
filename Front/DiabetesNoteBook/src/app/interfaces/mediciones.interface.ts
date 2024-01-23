@@ -1,7 +1,7 @@
-export interface IMediciones {
+export interface IMedicionesAzucar {
     id: number;
     fecha: Date;
-    regimen: string;
+    regimen: Regimen;
     preMedicion: number;
     postMedicion: number;
     glucemiaCapilar: number;
@@ -12,4 +12,16 @@ export interface IMediciones {
     postDeporte: number;
     notas: string;
     idPersona: number;
+}
+
+export enum Regimen {
+    Desayuno = 'Desayuno',
+    Comida = 'Comida',
+    Merienda = 'Merienda',
+    Cena = 'Cena',
+}
+
+export enum Comida {
+    antes = 'antes',
+    despues = 'despues',
 }
