@@ -258,7 +258,7 @@
       </svg>
       <div class="contenido-bocadillo">
         <h1>¿No te gusta tu avatar? Genera uno nuevo</h1>
-        <app-generador-avatar class='generarAvatar' (avatarGenerado)="setAvatar($event)"></app-generador-avatar>
+        <app-generador-avatar class='generarAvatar' (avatarGenerado)="avatarHandler($event)"></app-generador-avatar>
 
       </div>
 
@@ -338,6 +338,6 @@
  
   <div class="calculadora">
     <h1>Calcula tu IMC</h1>
-    <app-calculadora-imc (emitirAltura)="nuevaAltura" (emitirPeso)="nuevoPeso"></app-calculadora-imc>
+    <app-calculadora-imc (emitirAltura)="alturaHandler($event)" (emitirPeso)="pesoHandler($event)" [alturaRecibida]="usuario.altura" [pesoRecibido]="usuario.peso"></app-calculadora-imc>
   </div>
 </div>

@@ -1,18 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
-import { Chart } from 'chart.js';
-import { UsuarioService } from '../../../services/usuario.service';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
-import { IUsuarioUpdate } from '../../../interfaces/usuario.interface';
+import { Component, OnInit } from '@angular/core';
 import { Sexo, Actividad, TipoDiabetes } from 'src/app/enums/register.enum';
+import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
+import { IUsuarioUpdate } from 'src/app/interfaces/usuario.interface';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -63,9 +54,15 @@ export class MisDatosComponent implements OnInit {
     });
   }
 
-  setAvatar(avatar: string): void {
+  avatarHandler(avatar: string): void {
     this.nuevoAvatar = avatar;
-    console.log(this.nuevoAvatar);
+  }
+
+  alturaHandler(altura: number): void {
+    this.nuevaAltura = altura;
+  }
+  pesoHandler(peso: number): void {
+    this.nuevoPeso = peso;
   }
 
   getUsuarioInfo(usuarioId: number): void {
@@ -89,7 +86,6 @@ export class MisDatosComponent implements OnInit {
           insulina: res[1].insulina,
         };
         //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
-        console.log(this.usuario.id);
         this.usuario.medicacion = ['Lorazepam', 'Paracetamol'];
       },
       error: (err) => {
@@ -102,10 +98,27 @@ export class MisDatosComponent implements OnInit {
     if (this.nuevoAvatar !== '') {
       this.usuario.avatar = this.nuevoAvatar;
     }
+    if (this.nuevaAltura !== 0 && this.nuevoPeso !== 0) {
+      this.usuario.altura = this.nuevaAltura;
+      this.usuario.peso = this.nuevoPeso;
+    }
+    if (!this.validarFormulario(this.usuario)) {
+      this.error = 'Formulario invalido';
+      return;
+    }
     this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: (res) => {
-        console.log('Usuario actualizado:');
-        //Cuando se actualiza el usuario, se actualiza el usuario logeado
+        console.log('Usuario actualizado:', res);
+
+        this.usuarioLogeado = {
+          ...this.usuarioLogeado!,
+          avatar: this.usuario.avatar,
+          nombre: this.usuario.nombre,
+          primerApellido: this.usuario.primerApellido,
+          segundoApellido: this.usuario.segundoApellido,
+        };
+
+        this.authService.updateUser(this.usuarioLogeado);
       },
       error: (err) => {
         console.error(err);
