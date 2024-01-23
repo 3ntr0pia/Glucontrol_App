@@ -1,0 +1,11 @@
+wrapper{
+    width: 80vw;
+    height: 100vh;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 0px 0px; 
+    grid-template-areas:
+    "formulario tabla"
+    "grafica tabla"; 
+}
