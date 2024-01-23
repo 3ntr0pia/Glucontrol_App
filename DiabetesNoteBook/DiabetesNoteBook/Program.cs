@@ -61,6 +61,8 @@ builder.Services.AddTransient<IChangeUserDataService, ChangeUserDataService>();
 builder.Services.AddTransient<IChangeUserData, ChangeUserData>();
 builder.Services.AddTransient<ISaveNuevaMedicion,SaveNuevaMedicionRepository>();
 builder.Services.AddTransient<INuevaMedicionService,NuevaMedicionService>();
+builder.Services.AddTransient<IDeleteMedicion, DeleteMedicionRepository>();
+builder.Services.AddTransient<IDeleteMedicionService, DeleteMedicionService>();
 
 builder.Services.AddCors(options =>
 {

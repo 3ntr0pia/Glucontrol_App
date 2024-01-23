@@ -56,11 +56,12 @@ namespace DiabetesNoteBook.Application.Services
                         Peso = userData.Peso,
                         Altura = userData.Altura,
                         Actividad = userData.Actividad,
-                        Medicacion = userData.Medicacion,
+                        Medicacion = String.Join(",",userData.Medicacion),
                         TipoDiabetes = userData.TipoDiabetes,
                         Insulina = userData.Insulina,
                         UserId = usuario.Id
                     };
+                    
 
                     // Guardar la persona
                     await _newRegisterRepository.SaveNewRegisterPerson(nuevaPersona);
