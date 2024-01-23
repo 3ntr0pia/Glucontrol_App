@@ -1,16 +1,20 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-calculadora-imc',
   templateUrl: './calculadora-imc.component.html',
   styleUrls: ['./calculadora-imc.component.css']
 })
-export class CalculadoraImcComponent {
+export class CalculadoraImcComponent implements OnInit {
   
   @Output() emitirAltura : EventEmitter<number> = new EventEmitter();
   @Output() emitirPeso : EventEmitter<number> = new EventEmitter();
-  altura : number = 0;
-  peso : number = 0;
+
+  @Input() alturaRecibida : number = 0;
+  @Input() pesoRecibido : number = 0;
+
+  // altura : number = 0;
+  // peso : number = 0;
 
   get imc(): number {
     let calculo = this.calcularIMC();
@@ -21,6 +25,13 @@ export class CalculadoraImcComponent {
     }
     
    }
+
+   ngOnInit(): void {
+    this.obtenerIMC();
+    
+   }
+
+
    
    obtenerIMC(): string {
      const imc = this.calcularIMC();
@@ -52,15 +63,17 @@ export class CalculadoraImcComponent {
    }
  
    calcularIMC(): number {
-     let alturaEnMetros = this.altura / 100;
-     return this.peso / Math.pow(alturaEnMetros, 2);
+     let alturaEnMetros = this.alturaRecibida / 100;
+     return this.pesoRecibido / Math.pow(alturaEnMetros, 2);
    }
 
 
    enviarAltura(){
-      this.emitirAltura.emit(this.altura);
+      this.emitirAltura.emit(this.alturaRecibida);
+      
    }
     enviarPeso(){
-      this.emitirPeso.emit(this.peso); 
+      this.emitirPeso.emit(this.pesoRecibido); 
+     
     }
 }

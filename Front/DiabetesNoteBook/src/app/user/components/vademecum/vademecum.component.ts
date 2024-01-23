@@ -12,7 +12,7 @@ import { VademecumService } from 'src/app/services/vademecum.service';
 })
 export class VademecumComponent {
   medicamentosFromBackend: string[] = [
-    'lorazepam',
+    'novorapid',
     'paracetamol',
     'ibuprofeno',
   ];

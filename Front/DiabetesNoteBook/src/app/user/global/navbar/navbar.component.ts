@@ -14,12 +14,15 @@ export class NavbarComponent {
   constructor(
     private authService: AuthServiceService,
     private router: Router
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
     this.authService.user.subscribe(user => {
       this.usuarioLogeado = user;
     });
+    
   }
 
   logout() {

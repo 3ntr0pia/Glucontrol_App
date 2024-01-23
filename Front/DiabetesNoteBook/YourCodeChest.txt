@@ -1,168 +1,236 @@
-// finalregister.interface.ts
-export interface IFinalRegister {
-  avatar: string;
-  userName: string;
-  email: string;
-  password: string;
-  nombre: string;
-  primerApellido: string;
-  segundoApellido: string;
-  sexo: string;
-  edad: number;
-  peso: number;
-  altura: number;
-  actividad: string;
-  tipoDiabetes: string;
-  medicacion?: string[];
-  insulina: boolean;
-}
+// mis-datos.component.ts
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { Chart } from 'chart.js';
+import { UsuarioService } from '../../../services/usuario.service';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
+import { IUsuarioUpdate } from '../../../interfaces/usuario.interface';
+import { Sexo, Actividad, TipoDiabetes } from 'src/app/enums/register.enum';
 
 
-// loginResponse.interface.ts
-export interface ILogin {
-  UserName: string;
-  Password: string;
-}
+@Component({
+  selector: 'app-mis-datos',
+  templateUrl: './mis-datos.component.html',
+  styleUrls: ['./mis-datos.component.css'],
+})
+export class MisDatosComponent implements OnInit {
+  public Sexo = Sexo;
+  public Actividad = Actividad;
+  public TipoDiabetes = TipoDiabetes;
+  public nuevaAltura = 0;
+  public nuevoPeso = 0;
 
-export interface IUserLoginResponse {
-    token: string;
-    rol : string;
-    id: number;
-    idPersona : number;
-    avatar: string;
-    userId : string;
-    nombre : string;
-    primerApellido : string;
-    segundoApellido : string;
-  }
-  
-  export interface IUserLogout {
-    email: string;
-  }
-  
-  export interface IUserChangePassword {
-    email: string;
-    oldPassword?: string;
-    newPassword: string;
-  }
-  
-
-// medicamento.interface.ts
-export interface IRespuestaServicio {
-  totalFilas: number;
-  pagina: number;
-  tamanioPagina: number;
-  resultados: IMedicamento[];
-}
-export interface IMedicamento {
-  nregistro: string;
-  nombre: string;
-  labtitular: string;
-  cpresc: string;
-  estado: {
-    aut: number;
+  usuarioLogeado: IUserLoginResponse | null = null;
+  usuario: IUsuarioUpdate = {
+    id: 0,
+    avatar: '',
+    userName: '',
+    nombre: '',
+    primerApellido: '',
+    segundoApellido: '',
+    sexo: Sexo.hombre,
+    edad: 0,
+    peso: 0,
+    altura: 0,
+    actividad: '',
+    tipoDiabetes: '',
+    medicacion: [],
+    insulina: false,
   };
-  comerc: boolean;
-  receta: boolean;
-  generico: boolean;
-  conduc: boolean;
-  triangulo: boolean;
-  huerfano: boolean;
-  biosimilar: boolean;
-  nosustituible: {
-    id: number;
-    nombre: string;
-  };
-  psum: boolean;
-  notas: boolean;
-  materialesInf: boolean;
-  ema: boolean;
-  docs: IDocumento[];
-  fotos: IFoto[];
-  viasAdministracion: IViaAdministracion[];
-  formaFarmaceutica: IFormaFarmaceutica;
-  formaFarmaceuticaSimplificada: IFormaFarmaceutica;
-  vtm: {
-    id: number;
-    nombre: string;
-  };
-  dosis: string;
+
+  error: string = '';
+
+  nuevoAvatar: string = '';
+
+  constructor(
+    private usuarioService: UsuarioService,
+    private authService: AuthServiceService
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.user.subscribe((user) => {
+      this.usuarioLogeado = user;
+      if (this.usuarioLogeado) {
+        this.getUsuarioInfo(this.usuarioLogeado.id);
+      }
+    });
+  }
+
+  setAvatar(avatar: string): void {
+    this.nuevoAvatar = avatar;
+  }
+
+  getUsuarioInfo(usuarioId: number): void {
+    this.usuarioService.getUsuarioYPersonaInfo(usuarioId).subscribe({
+      next: (res) => {
+        // 0 seria el usuario y 1 la persona
+        this.usuario = {
+          id: res[0].id,
+          avatar: res[0].avatar,
+          userName: res[0].userName,
+          nombre: res[1].nombre,
+          primerApellido: res[1].primerApellido,
+          segundoApellido: res[1].segundoApellido,
+          sexo: res[1].sexo,
+          edad: res[1].edad,
+          peso: res[1].peso,
+          altura: res[1].altura,
+          actividad: res[1].actividad,
+          tipoDiabetes: res[1].tipoDiabetes,
+          medicacion: res[1].medicacion,
+          insulina: res[1].insulina,
+        };
+        //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
+        this.usuario.medicacion = ['Lorazepam', 'Paracetamol'];
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  actualizarUsuario(): void {
+    if (this.nuevoAvatar !== '') {
+      this.usuario.avatar = this.nuevoAvatar;
+    }
+    this.usuarioService.actualizarUsuario(this.usuario).subscribe({
+      next: (res) => {
+        console.log('Usuario actualizado:');
+        const usuarioActualizado : IUserLoginResponse = this.usuarioLogeado!;
+        this.authService.updateUser(usuarioActualizado);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    }); 
+  }
+
+  private validarFormulario(usuario: IUsuarioUpdate): boolean {
+    return (
+      usuario.nombre.trim() !== '' &&
+      usuario.userName.trim() !== '' &&
+      usuario.primerApellido.trim() !== '' &&
+      usuario.segundoApellido.trim() !== '' &&
+      usuario.edad > 0 &&
+      usuario.actividad !== '' &&
+      usuario.tipoDiabetes !== ''
+    );
+  }
 }
 
-export interface IDocumento {
-  tipo: number;
-  url: string;
-  secc: boolean;
-  fecha: number;
-  urlHtml?: string;
+
+// auth-service.service.ts
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
+import { IRegister } from '../interfaces/register.interface';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { IFinalRegister } from '../interfaces/finalregister.interface';
+import { ILogin, IUserLoginResponse } from '../interfaces/loginResponse.interface';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthServiceService {
+  private API_URL = environment.apiUrl;
+  //Esta variable es para guardar el usuario que se logeara
+  private currentUserSubject: BehaviorSubject<IUserLoginResponse | null>;
+  //Y con esta obtenemos el valor del usuario que se ha logueado ( es decir, sus datos)
+  public user: Observable<IUserLoginResponse | null>;
+
+  constructor(private http: HttpClient) {
+    //Esta linea es para guardar el usuario que se ha logueado en el localstorage del navegador
+    this.currentUserSubject = new BehaviorSubject<IUserLoginResponse | null>(
+      JSON.parse(localStorage.getItem('user') || '{}')
+    );
+    // Un observable es un objeto que emite notificaciones cuando cambia el valor de una propiedad
+    //Con esto podemos obtener el usuario que se ha logueado
+    this.user = this.currentUserSubject.asObservable();
+  }
+
+  //Metodo para acceder al valor del usuario que se ha logueado
+  public get userValue(): IUserLoginResponse | null {
+    return this.currentUserSubject.value;
+  }
+
+  registerUser(datoRegistro: IFinalRegister): Observable<IFinalRegister> {
+    return this.http.post<IFinalRegister>(
+      `${this.API_URL}/Users/registro`,
+      datoRegistro
+    );
+  }
+
+  loginUser(datoLogin: ILogin): Observable<IUserLoginResponse> {
+    return (
+      this.http
+        .post<IUserLoginResponse>(`${this.API_URL}/Users/login`, datoLogin)
+        //Dentro del pipe, con map, podemos modificar el valor que devuelve el observable , con el fin de guardarlo en el localstorage
+        .pipe(
+          map((user: IUserLoginResponse) => {
+            localStorage.setItem('user', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+            return user;
+          })
+        )
+    );
+  }
+ //Esto recarga los datos del localstorage, por si se ha modificado algun dato del usuario
+  updateUser(user: IUserLoginResponse): void {
+    localStorage.setItem('user', JSON.stringify(user));
+    //Con next podemos emitir un nuevo valor, en este caso el usuario que se ha modificado
+    this.currentUserSubject.next(user);
+  }
+
+  //Metodo para cerrar sesion
+  logoutUser(): void {
+    //Eliminamos el usuario del localstorage
+    localStorage.removeItem('user');
+    //Con next podemos emitir un nuevo valor, en este caso null, por que el usuario se ha deslogueado
+    this.currentUserSubject.next(null);
+  }
 }
 
-export interface IFoto {
-  tipo: string;
-  url: string;
-  fecha: number;
-}
 
-export interface IViaAdministracion {
-  id: number;
-  nombre: string;
-}
+// navbar.component.ts
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
-export interface IFormaFarmaceutica {
-  id: number;
-  nombre: string;
-}
+@Component({
+  selector: 'user-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+})
+export class NavbarComponent {
+  @Input() usuarioLogeado: IUserLoginResponse | null = null;
 
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {
 
-// register.interface.ts
-import { Sexo, Actividad, TipoDiabetes } from '../enums/register.enum';
+  }
 
-export interface IRegister {
-  avatar: string;
-  username: string;
-  nombre: string;
-  apellido: string;
-  apellido2: string;
-  email: string;
-  password: string;
-  password2: string;
-  mediciones: IMediciones;
-}
+  ngOnInit() {
+    this.authService.user.subscribe(user => {
+      this.usuarioLogeado = user;
+    });
+    
+  }
 
-export interface IMediciones {
-  edad: number;
-  peso: number;
-  altura: number;
-  sexo: Sexo;
-  actividad: Actividad;
-  tipoDiabetes: IDiabetes;
-}
-
-export interface IDiabetes {
-  tipo: TipoDiabetes;
-  medicacion: string[];
-  insulina: boolean;
-}
-
-
-// usuario.interface.ts
-import { Sexo } from 'src/app/enums/register.enum';
-
-export interface IUsuarioUpdate {
-  id?: number;
-  avatar: string;
-  userName: string;
-  nombre: string;
-  primerApellido: string;
-  segundoApellido: string;
-  sexo: Sexo;
-  edad: number;
-  peso: number;
-  altura: number;
-  actividad: string;
-  tipoDiabetes: string;
-  medicacion: string[];
-  insulina: boolean;
+  logout() {
+    this.authService.logoutUser();
+    this.router.navigate(['/login']);
+  }
 }
 
 
