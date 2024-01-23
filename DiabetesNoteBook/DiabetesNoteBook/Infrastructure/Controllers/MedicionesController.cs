@@ -82,7 +82,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         }
         [AllowAnonymous]
         [HttpGet("getmedicionesporidusuario/{Id}")]
-        public async Task<ActionResult> GetMedicionesPorIdUsuario1([FromRoute] DTOById userData)
+        public async Task<ActionResult> GetMedicionesPorIdUsuario([FromRoute] DTOById userData)
         {
 
             try
