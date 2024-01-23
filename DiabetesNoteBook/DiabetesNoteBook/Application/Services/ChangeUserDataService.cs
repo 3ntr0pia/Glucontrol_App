@@ -34,7 +34,7 @@ namespace DiabetesNoteBook.Application.Services
             personaUpdate.Peso = changeUserData.Peso;
             personaUpdate.Altura = changeUserData.Altura;
             personaUpdate.Actividad = changeUserData.Actividad;
-            personaUpdate.Medicacion = string.Join(",", changeUserData.Medicacion);
+            personaUpdate.Medicacion = String.Join(",", changeUserData.Medicacion);
             personaUpdate.TipoDiabetes = changeUserData.TipoDiabetes;
             personaUpdate.Insulina = changeUserData.Insulina;
 
