@@ -36,12 +36,28 @@
   background-color: var(--main--colorHoverBtnAccept);
 }
 
+.aBack {
+  position: relative;
+  top: 0.7rem;
+  margin: 1rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: large;
+  background-color: var(--main--colorBackGroundElements);
+  color: var(--main--colorForeground);
+}
+
+.aBack:hover {
+  text-decoration: underline;
+}
+
 .aForgetPass a {
   position: relative;
   top: 1.2rem;
   margin: 0.25rem;
   text-decoration: none;
-  color: #002d52;
+  color: var(--main--colorForeground);
 }
 
 .aForgetPass a:hover {
