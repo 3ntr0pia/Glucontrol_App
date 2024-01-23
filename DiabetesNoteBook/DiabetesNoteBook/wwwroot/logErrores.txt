@@ -250,3 +250,15 @@ An error occurred while saving the entity changes. See the inner exception for d
 POST
 Microsoft.EntityFrameworkCore.Relational
 An error occurred while saving the entity changes. See the inner exception for details.
+127.0.0.1
+23/01/2024 18:02:03
+/api/Mediciones
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+127.0.0.1
+23/01/2024 18:04:43
+/api/Mediciones
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
