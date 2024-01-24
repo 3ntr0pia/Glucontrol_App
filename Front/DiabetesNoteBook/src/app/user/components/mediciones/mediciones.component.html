@@ -1,37 +1,159 @@
 <div class="wrapper">
 
     <div class="formulario">
-        <!-- export interface IMediciones {
-            id: number;
-            fecha: Date;
-            regimen: string;
-            preMedicion: number;
-            postMedicion: number;
-            glucemiaCapilar: number;
-            bolusComida: number;
-            bolusCorrector: number;
-            preDeporte: number;
-            duranteDeporte: number;
-            postDeporte: number;
-            notas: string;
-            idPersona: number;
-        } -->
+        <form>
+            <div>
+                <label for="deporte"> ¿Acaba de realizar deporte?</label>
+                <input type='checkbox' [(ngModel)]="deporteRealizado" name="deporte" #deporte='ngModel' required>
+            </div>
+            <div>
+                <label for="comida"> Momento de la Glucemia </label>
+                <select class="form-select" [(ngModel)]="momentoGlucemiaAntes" name="comida" #comida='ngModel'
+                    id="comida" required>
+                    <option selected disabled>Seleccione un momento</option>
+                    <option [ngValue]="true">Antes</option>
+                    <option [ngValue]="false"> Despues</option>
 
-        <!-- <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control" [(ngModel)]="fechaRecibida" (ngModelChange)="enviarFecha()" name="fecha" #fecha='ngModel' required>
-            <span class="form-text text-danger" *ngIf="fechaRecibida == 0">
-                La fecha no puede ser 0
-            </span>
-        </div>
-        <div class ="mb-3">
-            <label for="regimen"> Regimen</label> -->
+                    <!-- value solo acepta strings , por lo que tenemos que usar ngValue -->
+                </select>
+            </div>
+
+            <ng-container *ngIf=" momentoGlucemiaAntes">
+                <div>
+                    <label for="preMedicion" class="form-label">Pre Medicion</label>
+                    <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion"
+                        #preMedicion='ngModel' required>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!momentoGlucemiaAntes">
+                <div>
+                    <label for="postMedicion" class="form-label">Post Medicion</label>
+                    <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.postMedicion"
+                        name="postMedicion" #postMedicion='ngModel' required>
+                </div>
+            </ng-container>
 
 
-        <!-- </div> -->
+            <div>
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" [(ngModel)]="nuevaMedicion.fecha" name="fecha" #fecha='ngModel'
+                    required>
+            </div>
 
+
+            <div>
+                <label for="regimen">Regimen</label>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen"
+                    name="regimen" #regimen='ngModel' required>
+                    <option selected disabled>Seleccione un regimen</option>
+                    <option value="desayuno">Desayuno</option>
+                    <option value="almuerzo">Almuerzo</option>
+                    <option value="merienda">Merienda</option>
+                    <option value="cena">Cena</option>
+
+                </select>
+            </div>
+            <div>
+                <label for="glucemiaCapilar" class="form-label">Glucemia Capilar</label>
+                <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.glucemiaCapilar"
+                    name="glucemiaCapilar" #glucemiaCapilar='ngModel' required>
+            </div>
+            <div class='mb-3'>
+                <label for="bolusComida" class="form-label">Bolus Comida</label>
+                <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida"
+                    #bolusComida='ngModel' required>
+            </div>
+            <div class='mb-3'>
+                <label for="bolusCorrector" class="form-label">Bolus Corrector</label>
+                <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.bolusCorrector"
+                    name="bolusCorrector" #bolusCorrector='ngModel' required>
+            </div>
+            <ng-container *ngIf=" deporteRealizado == true">
+                <div class='mb-3'>
+                    <label for="preDeporte" class="form-label">Pre Deporte</label>
+                    <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte"
+                        #preDeporte='ngModel' required>
+                </div>
+                <div class='mb-3'>
+                    <label for="duranteDeporte" class="form-label">Durante Deporte</label>
+                    <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.duranteDeporte"
+                        name="duranteDeporte" #duranteDeporte='ngModel' required>
+                </div>
+                <div class='mb-3'>
+                    <label for="postDeporte" class="form-label">Post Deporte</label>
+                    <input type="number" class="form-control" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte"
+                        #postDeporte='ngModel' required>
+                </div>
+            </ng-container>
+
+            <div class='mb-3'>
+                <label for="notas" class="form-label">Notas</label>
+                <input type="text" class="form-control" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas='ngModel'
+                    required>
+            </div>
+            <button class='btn btn-secondary'> Agregar </button>
+        </form>
     </div>
-    <div class="grafica"> </div>
 
-    <div class="tabla"></div>
+
+    <div class="grafica">
+        
+    </div>
+
+    <div class="tabla">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Momento de la Glucemia</th>
+                    <th>Medición</th>
+                    <th>Fecha</th>
+                    <th>Regimen</th>
+                    <th>Glucemia Capilar</th>
+                    <th>Bolus Comida</th>
+                    <th>Bolus Corrector</th>
+                    <th>Pre Deporte</th>
+                    <th>Durante Deporte</th>
+                    <th>Post Deporte</th>
+                    <th>Notas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let medicion of medicionesFromBackend">
+                    <td>
+                        <img  class="prepost" *ngIf="medicion.preMedicion != 0 && medicion.postMedicion == 0"  src="assets/tabla/pre.svg"
+                            alt="PreMedicion">
+                        <img *ngIf="medicion.preMedicion == 0 && medicion.postMedicion != 0" src="assets/tabla/post.svg"
+                            alt="PostMedicion">
+                    </td>
+                    <td>{{ medicion.preMedicion != 0 && medicion.postMedicion == 0 ? medicion.preMedicion :
+                        medicion.postMedicion }}</td>
+                    <td>{{ medicion.fecha | date:'short' }}</td>
+                    <td>{{ medicion.regimen}}</td>
+                    <td>{{ medicion.glucemiaCapilar}}</td>
+                    <td>{{ medicion.bolusComida}}</td>
+                    <td>{{ medicion.bolusCorrector}}</td>
+                    <td>{{ medicion.preDeporte}}</td>
+                    <td>{{ medicion.duranteDeporte}}</td>
+                    <td>{{ medicion.postDeporte}}</td>
+                    <td>
+                        <a (click)="abrirNotasModal(medicion)" [ngClass]="{
+                            'bi bi-file-earmark ': medicion.notas != '',
+                            'bi bi-file-earmark-x  text-danger': !medicion.notas
+                        }"></a>
+                    </td>
+                    <td class='botones'>
+                        <div>
+                            <button class='btn btn-secondary'> Editar </button>
+                            <button class='btn btn-secondary'> Eliminar </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
+    [icono]="'assets/iconoNota.svg'"></app-modal>

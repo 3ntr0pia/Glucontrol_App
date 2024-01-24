@@ -1,11 +1,42 @@
-wrapper{
+.wrapper{
+    padding: 2em;
     width: 80vw;
     height: 100vh;
     display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(3, 1fr); 
     grid-template-rows: repeat(2, 1fr); 
     gap: 0px 0px; 
     grid-template-areas:
-    "formulario tabla"
-    "grafica tabla"; 
+    "formulario tabla tabla"
+    "formulario grafico grafico"; 
+}
+
+.formulario {
+    height: 100%;
+    grid-area: formulario;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+ 
+}
+
+.tabla{
+    grid-area: tabla;
+    
+}
+
+.grafica{
+    grid-area: grafico;
+    background-color: blue;
+}
+
+
+.botones div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    
 }

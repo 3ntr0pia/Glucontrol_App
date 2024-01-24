@@ -49,6 +49,7 @@
       <button [disabled]="formularioInvalido()" class="btnInicio">
         Enviar
       </button>
+      <a class="aBack" routerLink="/login">Volver</a>
     </div>
   </form>
 </section>
@@ -56,4 +57,5 @@
   *ngIf="mostrarModal"
   [mensaje]="mensajeModal"
   (cerrar)="mostrarModal = false"
+  [icono]="'/assets/iconoEmail.svg'"
 ></app-modal>

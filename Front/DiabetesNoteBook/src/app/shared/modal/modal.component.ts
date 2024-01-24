@@ -11,6 +11,9 @@ export class ModalComponent {
 
   @Output() cerrar = new EventEmitter<void>();
 
+  @Input()  icono: string = '';
+
+
   cerrarModal(){
     this.cerrar.emit();
   }
