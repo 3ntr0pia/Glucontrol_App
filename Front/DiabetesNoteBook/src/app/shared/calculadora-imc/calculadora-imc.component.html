@@ -1,46 +1,36 @@
 <div class="persona">
   <div class="formulario">
-    <div class="monigote">
-      <img
-        [src]="obtenerIMC()"
-        class="monigote"
-        alt="representacion del peso"
-        [ngClass]="{
-          bajo: altura < 150,
-          medio: altura >= 150 && altura < 180,
-          alto: altura >= 180
-        }"
-      />
+      <div class="monigote">
+          <img [src]="obtenerIMC()" class='monigote' alt="representacion del peso" [ngClass]="{
+          'bajo' : alturaRecibida < 150,
+          'medio': alturaRecibida >= 150 && alturaRecibida < 180,
+          'alto': alturaRecibida >= 180
+      }">
+          <span class='imc' [ngStyle]="{
+          'color' : imcColor()
+      }">{{imc}}</span>
+      </div>
 
-      <span
-        class="imc"
-        [ngStyle]="{
-          color: imcColor()
-        }"
-        >{{ imc }} IMC</span
-      >
-    </div>
-    <section class="data">
-      <div>
-        <label for="altura">Altura</label>
-        <input
-          type="number"
-          [(ngModel)]="altura"
-          (ngModelChange)="enviarAltura()"
-          name="altura"
-          required
-        />
+
+      <section class="data">
+
+          <div>
+              <label for="altura">Altura</label>
+              <input type="number" [(ngModel)]="alturaRecibida" (ngModelChange)="enviarAltura()"
+                  name="altura" #altura='ngModel' required>
+              <span class="form-text text-danger" *ngIf="alturaRecibida == 0">
+                  La altura no puede ser 0
+              </span>
+          </div>
+          <div>
+              <label for="peso" >Peso</label>
+              <input type="number" [(ngModel)]="pesoRecibido" (ngModelChange)="enviarPeso()"
+                  name="peso" required #peso='ngModel'>
+              <span class="form-text text-danger" *ngIf="pesoRecibido == 0">
+                  El peso no puede ser 0
+              </span>
+          </div>
+      </section>
+
       </div>
-      <div>
-        <label for="peso">Peso</label>
-        <input
-          type="number"
-          [(ngModel)]="peso"
-          (ngModelChange)="enviarPeso()"
-          name="peso"
-          required
-        />
-      </div>
-    </section>
   </div>
-</div>

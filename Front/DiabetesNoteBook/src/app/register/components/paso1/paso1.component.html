@@ -4,173 +4,75 @@
       <fieldset class="fieldset-datos">
         <legend>Datos Personales</legend>
         <div class="form-group">
-          <label for="nombre"
-            >Nombre
-            <span class="error-form" *ngIf="!nombre.valid && nombre.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />Nombre obligatorio</span
-            ></label
-          >
-          <input
-            id="nombre"
-            type="nombre"
-            [(ngModel)]="datosRegistro.nombre"
-            name="nombre"
-            #nombre="ngModel"
-            required
-          />
+          <label for="nombre">Nombre
+            <span class="error-form" *ngIf="!nombre.valid && nombre.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />Nombre obligatorio</span></label>
+          <input id="nombre" type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel"
+            required />
         </div>
         <div class="form-group">
-          <label for="userName"
-            >Nombre de usuario
-            <span class="error-form" *ngIf="!userName.valid && userName.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />Nombre de usuario obligatorio</span
-            ></label
-          >
-          <input
-            id="userName"
-            type="userName"
-            [(ngModel)]="datosRegistro.username"
-            name="userName"
-            #userName="ngModel"
-            required
-          />
+          <label for="userName">Nombre de usuario
+            <span class="error-form" *ngIf="!userName.valid && userName.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />Nombre de usuario obligatorio</span></label>
+          <input id="userName" type="userName" [(ngModel)]="datosRegistro.username" name="userName" #userName="ngModel"
+            required />
+          <span class="error-form" *ngIf="!validarUsuario(datosRegistro.username) && userName.touched">
+            El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo letras, números, guiones y guiones
+            bajos.
+          </span>
         </div>
         <div class="form-group">
-          <label for="apellido"
-            >Primer Apellido
-            <span class="error-form" *ngIf="!apellido.valid && apellido.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />Primer apellido Obligatorio</span
-            ></label
-          >
-          <input
-            id="apellido"
-            type="apellido"
-            [(ngModel)]="datosRegistro.apellido"
-            #apellido="ngModel"
-            name="apellido"
-            required
-            class="form-control"
-          />
+          <label for="apellido">Primer Apellido
+            <span class="error-form" *ngIf="!apellido.valid && apellido.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />Primer apellido Obligatorio</span></label>
+          <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido="ngModel" name="apellido"
+            required class="form-control" />
         </div>
         <div class="form-group">
-          <label for="apellido2"
-            >Segundo Apellido
-            <span
-              class="error-form"
-              *ngIf="!apellido2.valid && apellido2.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />Segundo apellido obligatorio</span
-            ></label
-          >
-          <input
-            id="apellido2"
-            type="apellido2"
-            [(ngModel)]="datosRegistro.apellido2"
-            name="apellido2"
-            #apellido2="ngModel"
-            required
-            class="form-control"
-          />
+          <label for="apellido2">Segundo Apellido
+            <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />Segundo apellido obligatorio</span></label>
+          <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
+            #apellido2="ngModel" required class="form-control" />
         </div>
         <div class="form-group">
-          <label for="email"
-            >Email
-            <span class="error-form" *ngIf="!email.valid && email.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />Email obligatorio</span
-            ></label
-          >
-          <input
-            id="email"
-            type="email"
-            [(ngModel)]="datosRegistro.email"
-            name="email"
-            #email="ngModel"
-            required
-            class="form-control"
-          />
+          <label for="email">Email
+            <span class="error-form" *ngIf="!email.valid && email.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />Email obligatorio</span></label>
+          <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email="ngModel" required
+            class="form-control" />
+          <span class="error-form" *ngIf="!validarEmail(datosRegistro.email) && email.touched">
+            El email debe tener un formato válido.
+          </span>
         </div>
         <div class="form-group">
-          <label for="password"
-            >Contraseña
-            <span class="error-form" *ngIf="!password.valid && password.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />
-              Password obligatorio</span
-            ></label
-          >
-          <input
-            id="password"
-            type="password"
-            [(ngModel)]="datosRegistro.password"
-            name="password"
-            #password="ngModel"
-            required
-            class="form-control"
-          />
+          <label for="password">Contraseña
+            <span class="error-form" *ngIf="!password.valid && password.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />
+              Password obligatorio</span></label>
+          <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password="ngModel"
+            required class="form-control" />
         </div>
-        <span
-          class="error-form"
-          *ngIf="!validarPassword(datosRegistro.password)"
-        >
-          <img
-            src="/assets/alert_line.svg"
-            alt="Triangulo de alerta de error"
-          />La contraseña debe tener al menos 8 caracteres, incluyendo una
+        <span class="error-form" *ngIf="!validarPassword(datosRegistro.password) && password.touched">
+          La contraseña debe tener al menos 8 caracteres, incluyendo una
           mayúscula, una minúscula, un número y un carácter especial.
         </span>
         <div class="form-group">
-          <label for="password2"
-            >Repita su contraseña
-            <span
-              class="error-form"
-              *ngIf="!password2.valid && password2.touched"
-              ><img
-                src="/assets/alert_line.svg"
-                alt="Triangulo de alerta de error"
-              />Password obligatorio</span
-            ></label
-          >
-          <input
-            id="password2"
-            type="password"
-            [(ngModel)]="datosRegistro.password2"
-            name="password2"
-            #password2="ngModel"
-            required
-            class="form-control"
-          />
-          <span
-            class="error-form"
-            *ngIf="password2.value != password.value && password.valid"
-          >
+          <label for="password2">Repita su contraseña
+            <span class="error-form" *ngIf="!password2.valid && password2.touched"><img src="/assets/alert_line.svg"
+                alt="Triangulo de alerta de error" />Password obligatorio</span></label>
+          <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
+            #password2="ngModel" required class="form-control" />
+          <span class="error-form" *ngIf="password2.value != password.value && password.valid">
             Las contraseñas no coinciden
           </span>
         </div>
         <button type="submit" [disabled]="formularioInvalido()" class="btnNext">
           Siguiente
         </button>
-        <span class="error-form" *ngIf="formularioInvalido()">
-          <img
-            src="/assets/alert_line.svg"
-            alt="Triangulo de alerta de error"
-          />Debe rellenar todos los campos
-        </span>
+        <!-- <span class="error-form" *ngIf="formularioInvalido()">
+          <img src="/assets/alert_line.svg" alt="Triangulo de alerta de error" />Debe rellenar todos los campos
+        </span> -->
       </fieldset>
     </form>
   </div>
