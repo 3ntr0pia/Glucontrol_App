@@ -273,15 +273,17 @@
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input id='nombre' type="nombre" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required
-            class="form-control"
+            class="form-control" 
             [placeholder]='usuario.nombre'>
-  
         </div>
         <div class="form-group">
           <label for="userName">Nombre de usuario</label>
           <input id='userName' type="userName" [(ngModel)]="usuario.userName" name="userName" #userName="ngModel" required
             class="form-control"
             [placeholder]='usuario.userName'>
+            <span class="error-form" *ngIf="!validarUsuario(usuario.userName) && userName.touched">
+              El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo letras, números, guiones y guiones bajos.
+             </span>
         </div>
         <div class="form-group">
           <label for="apellido">Primer Apellido</label>
@@ -329,7 +331,7 @@
           <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required>
         </div>
         <button class='btn btn-secondary' >Guardar Cambios</button>
-        <button class='btn btn-primary'>Reestablecer</button>
+        <button class='btn btn-primary' (click)='reestablecerFormulario()'>Reestablecer</button>
       </form>
       
     </div>

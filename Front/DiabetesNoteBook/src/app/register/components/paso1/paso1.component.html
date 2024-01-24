@@ -11,14 +11,18 @@
       </div>
       <div class="form-group">
         <label for="userName">Nombre de usuario
-          <span class="error-form" *ngIf="!userName.valid && userName.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Nombre de usuario obligatorio</span></label>
+          <span class="error-form" *ngIf="!userName.valid && userName.touched">
+              <img src="/assets/alert_line.svg" alt="Triangulo de alerta de error" />
+              Nombre de usuario obligatorio
+          </span>
+        </label>
         <input id="userName" type="userName" [(ngModel)]="datosRegistro.username" name="userName" #userName="ngModel"
           required placeholder="Inserte su nombre de usuario..." />
-          <span class="error-form" *ngIf="!validarUsuario(datosRegistro.username) && password.touched">
+        <span class="error-form" *ngIf="!validarUsuario(datosRegistro.username) && userName.touched">
             El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo letras, números, guiones y guiones bajos.
-           </span>
-      </div>
+        </span>
+    </div>
+    
      
       <div class="form-group">
         <label for="apellido">Primer Apellido
@@ -40,7 +44,7 @@
               alt="Triangulo de alerta de error" />Email obligatorio</span></label>
         <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email="ngModel" required
           class="form-control" placeholder="Inserte su email..." />
-          <span class="error-form" *ngIf="!validarEmail(datosRegistro.email) && password.touched">
+          <span class="error-form" *ngIf="!validarEmail(datosRegistro.email) && email.touched">
             El email debe tener un formato válido.
            </span>
       </div>

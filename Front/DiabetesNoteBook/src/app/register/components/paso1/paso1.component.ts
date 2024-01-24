@@ -57,9 +57,7 @@ export class Paso1Component {
     );
   }
 
-  setAvatar(avatar: string): void {
-    this.datosRegistro.avatar = avatar;
-  }
+  
 
   validarPassword(password: string): boolean {
     const patron =
@@ -74,5 +72,7 @@ export class Paso1Component {
     const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return patronEmail.test(email);
   }
-  
+  setAvatar(avatar: string): void {
+    this.datosRegistro.avatar = avatar;
+  }
 }

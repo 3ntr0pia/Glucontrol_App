@@ -40,6 +40,8 @@ export class MisDatosComponent implements OnInit {
 
   nuevoAvatar: string = '';
 
+  estadoInicialUsuario : IUsuarioUpdate = { ...this.usuario };
+
   constructor(
     private usuarioService: UsuarioService,
     private authService: AuthServiceService
@@ -137,4 +139,23 @@ export class MisDatosComponent implements OnInit {
       usuario.tipoDiabetes !== ''
     );
   }
-}
+  
+    validarPassword(password: string): boolean {
+      const patron =
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return patron.test(password);
+    }
+    validarUsuario(usuario: string): boolean {
+      const patronUsuario = /^[A-Za-z0-9_-]{6,18}$/;
+      return patronUsuario.test(usuario);
+    }
+    validarEmail(email: string): boolean {
+      const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return patronEmail.test(email);
+    }
+
+    reestablecerFormulario(): void {
+      this.usuario = { ...this.estadoInicialUsuario };
+    }
+    
+  }
