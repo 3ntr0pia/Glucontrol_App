@@ -1,45 +1,54 @@
 <div class="contenedor">
-
-
-    <div class="formulario">
-        <form (ngSubmit)="siguientePaso.emit(datosRegistro)" class="formulario">
-            <div class="mb-3">
-                <label for="edad" class="form-label">Edad</label>
-                <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.edad" name="edad"
-                    #edad = "ngModel"required>
-                <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad < 0">
-                    Debe poner una edad valida
-                </span>
-            </div>
-            
-            <div class="mb-3">
-                <label for="sexo" class="form-label">Sexo Biológico</label>
-                <select class="form-select" [(ngModel)]="datosRegistro.mediciones.sexo" name="sexo" required>
-                    <option [value]="Sexo.hombre">Masculino</option>
-                    <option [value]="Sexo.mujer">Femenino</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="actividad" class="form-label">Actividad</label>
-                <select class="form-select" [(ngModel)]="datosRegistro.mediciones.actividad" name="actividad" required>
-                    <option [value]="Actividad.sedentario">Sedentario</option>
-                    <option [value]="Actividad.ligero">Ligero</option>
-                    <option [value]="Actividad.moderado">Moderado</option>
-                    <option [value]="Actividad.intenso">Intenso</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary" [disabled]="formularioInvalido()">Siguiente</button>
-            <button (click)="retroceder.emit()" class="btn btn-secondary">Volver Atrás</button>
-        </form>
-    </div>
-    
-
-    <div class="persona">
-        <i class="bi" [ngClass]="{
-         'bi-gender-female': datosRegistro.mediciones.sexo == Sexo.mujer,
-          'bi-gender-male' : datosRegistro.mediciones.sexo == Sexo.hombre   
-        }"></i>
-        <app-calculadora-imc (emitirAltura)="setAltura($event)" (emitirPeso)="setPeso($event)"></app-calculadora-imc>
-    </div>
-
+  <div class="formulario">
+    <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
+      <fieldset class="fieldset-datos">
+        <legend>Datos Fisicos</legend>
+        <div>
+          <label for="edad">Edad</label>
+          <input
+            type="number"
+            [(ngModel)]="datosRegistro.mediciones.edad"
+            name="edad"
+            required
+          />
+        </div>
+        <div>
+          <label for="sexo">Sexo Biológico</label>
+          <select
+            [(ngModel)]="datosRegistro.mediciones.sexo"
+            name="sexo"
+            required
+          >
+            <option [value]="Sexo.hombre">Masculino</option>
+            <option [value]="Sexo.mujer">Femenino</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="actividad">Actividad</label>
+          <select
+            [(ngModel)]="datosRegistro.mediciones.actividad"
+            name="actividad"
+            required
+          >
+            <option [value]="Actividad.sedentario">Sedentario</option>
+            <option [value]="Actividad.ligero">Ligero</option>
+            <option [value]="Actividad.moderado">Moderado</option>
+            <option [value]="Actividad.intenso">Intenso</option>
+          </select>
+        </div>
+        <div class="persona">
+          <app-calculadora-imc
+            (emitirAltura)="setAltura($event)"
+            (emitirPeso)="setPeso($event)"
+          ></app-calculadora-imc>
+        </div>
+        <span *ngIf="datosRegistro.mediciones.edad">
+          Debe rellenar todos los campos
+        </span>
+        <button class="btnNext" type="submit" [disabled]="formularioInvalido()">
+          Siguiente
+        </button>
+      </fieldset>
+    </form>
+  </div>
 </div>
