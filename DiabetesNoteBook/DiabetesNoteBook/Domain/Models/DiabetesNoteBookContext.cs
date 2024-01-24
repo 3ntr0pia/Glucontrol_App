@@ -42,9 +42,8 @@ public partial class DiabetesNoteBookContext : DbContext
 
         modelBuilder.Entity<Medicione>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07B1378F0B");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07AF23741A");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.BolusComida).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.BolusCorrector).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.DuranteDeporte)
@@ -71,7 +70,7 @@ public partial class DiabetesNoteBookContext : DbContext
             entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.Mediciones)
                 .HasForeignKey(d => d.IdPersona)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Medicione__Id_Pe__68487DD7");
+                .HasConstraintName("FK__Medicione__Id_Pe__29221CFB");
         });
 
         modelBuilder.Entity<Operacione>(entity =>
