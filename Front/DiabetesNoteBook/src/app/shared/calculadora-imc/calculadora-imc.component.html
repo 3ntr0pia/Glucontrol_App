@@ -1,29 +1,46 @@
 <div class="persona">
+  <div class="formulario">
     <div class="monigote">
-        <img [src]="obtenerIMC()" class='monigote' alt="representacion del peso" [ngClass]="{
-            'bajo' : altura < 150,
-            'medio': altura >= 150 && altura < 180,
-            'alto': altura >= 180
-        }">
-        <span class='imc' [ngStyle]="{
-            'color' : imcColor()
-        }">{{imc}}</span>
+      <img
+        [src]="obtenerIMC()"
+        class="monigote"
+        alt="representacion del peso"
+        [ngClass]="{
+          bajo: altura < 150,
+          medio: altura >= 150 && altura < 180,
+          alto: altura >= 180
+        }"
+      />
+
+      <span
+        class="imc"
+        [ngStyle]="{
+          color: imcColor()
+        }"
+        >{{ imc }} IMC</span
+      >
     </div>
-
-
-    <div class="formulario">
-
-        <div class="mb-3">
-            <label for="altura" class="form-label">Altura</label>
-            <input type="number" class="form-control" [(ngModel)]="altura" (ngModelChange)="enviarAltura()" name="altura" required>
-
-        </div>
-        <div class="mb-3">
-            <label for="peso" class="form-label">Peso</label>
-            <input type="number" class="form-control" [(ngModel)]="peso" (ngModelChange)="enviarPeso()" name="peso" required>
-        </div>
-
-
-    </div>
-
+    <section class="data">
+      <div>
+        <label for="altura">Altura</label>
+        <input
+          type="number"
+          [(ngModel)]="altura"
+          (ngModelChange)="enviarAltura()"
+          name="altura"
+          required
+        />
+      </div>
+      <div>
+        <label for="peso">Peso</label>
+        <input
+          type="number"
+          [(ngModel)]="peso"
+          (ngModelChange)="enviarPeso()"
+          name="peso"
+          required
+        />
+      </div>
+    </section>
+  </div>
 </div>
