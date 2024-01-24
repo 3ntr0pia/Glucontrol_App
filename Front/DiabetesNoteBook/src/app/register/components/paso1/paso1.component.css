@@ -1,24 +1,16 @@
-.form-container {
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-  align-items: start;
-}
 .formulario {
-  width: 80%;
+  width: 50%;
 }
-.fieldset-datos {
-  background-color: var(--main--colorBacGroundForm);
-  padding: 2rem;
-  border-radius: 1rem;
-}
+
 .formulario input {
   width: 100%;
   height: 40px;
   border-radius: 5px;
-  border: 1px solid var(--main--colorBackGroundElements);
-  padding: 10px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  font-size: 14px;
   margin-bottom: 10px;
+  box-sizing: border-box;
   outline: none;
   transition: all 0.3s ease;
 }
@@ -27,49 +19,29 @@
   color: var(--main--colorErrorOrDenegate);
   font-style: italic;
 }
-.error-form img {
-  margin: 2px;
-  position: relative;
-  top: -2px;
-}
-.btnNext {
-  position: relative;
-  padding: 0.2rem;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--main--colorBackGroundElements);
-  font-size: large;
-  color: var(--main--colorForeground);
-}
-.btnNext:hover {
-  background-color: var(--main--colorHoverBtnAccept);
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  padding: 3em;
 }
 
 .avatar {
-  position: relative;
-  top: 3rem;
-  left: 3rem;
-  width: 80%;
+  width: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+
   align-items: center;
+  flex-direction: column;
+  justify-content: start;
 }
 
-@media (width < 900px) {
-  .form-container {
-    top: 7rem;
-    left: -11rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: 5rem;
-  }
-  .avatar {
-    order: -1;
-    width: 100%;
-  }
-  .formulario {
-    width: 80%;
-  }
+.avatar-img {
+  width: 50%;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+}
+.avatar-default {
+  width: 70%;
 }

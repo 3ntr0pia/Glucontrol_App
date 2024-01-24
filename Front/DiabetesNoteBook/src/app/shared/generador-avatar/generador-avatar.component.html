@@ -1,13 +1,6 @@
 <div class="avatar">
-  <h2>Genera tu avatar</h2>
-  <img
-    *ngIf="avatar; else defaultImage"
-    class="avatar-img"
-    [src]="avatar"
-    alt="Avatar"
-  />
-  <ng-template #defaultImage>
-    <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"
-  /></ng-template>
-  <button class="btn btn-primary" (click)="generarAvatar()">Generar</button>
-</div>
+    <img *ngIf="avatar; else defaultImage" class="avatar-img" [src]="avatar" alt="Avatar">
+    <ng-template #defaultImage>
+      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"></ng-template>
+    <button class='btn btn-primary' (click)="generarAvatar()">Generar</button>
+  </div>

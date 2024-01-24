@@ -6,7 +6,8 @@ import { NavbarComponent } from './global/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { MisDatosComponent } from './components/mis-datos/mis-datos.component';
-
+import { NuevoRegistroComponent } from './components/nuevo-registro/nuevo-registro.component';
+import { RegistrosAnterioresComponent } from './components/registros-anteriores/registros-anteriores.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { SharedModule } from '../shared/shared.module';
 import { VademecumComponent } from './components/vademecum/vademecum.component';
@@ -18,7 +19,8 @@ import { FiltroSinRecetaPipe } from '../pipes/filtro-sin-receta.pipe';
     MainComponent,
     NavbarComponent,
     MisDatosComponent,
-
+    NuevoRegistroComponent,
+    RegistrosAnterioresComponent,
     AyudaComponent,
     VademecumComponent,
     FiltroGenericosPipe,
