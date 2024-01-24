@@ -17,7 +17,7 @@ import { IFinalRegister } from '../../../interfaces/finalregister.interface';
 })
 export class Paso3Component {
   @Output() registrar = new EventEmitter<IFinalRegister>();
-
+  @Output() retroceder = new EventEmitter<void>();
   public Sexo = Sexo;
   public Actividad = Actividad;
   public TipoDiabetes = TipoDiabetes;

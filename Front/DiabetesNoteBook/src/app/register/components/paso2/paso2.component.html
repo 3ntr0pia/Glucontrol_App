@@ -6,7 +6,10 @@
             <div class="mb-3">
                 <label for="edad" class="form-label">Edad</label>
                 <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.edad" name="edad"
-                    required>
+                    #edad = "ngModel"required>
+                <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad < 0">
+                    Debe poner una edad valida
+                </span>
             </div>
             
             <div class="mb-3">
@@ -25,13 +28,9 @@
                     <option [value]="Actividad.intenso">Intenso</option>
                 </select>
             </div>
-            <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad">
-                Debe rellenar todos los campos
-            </span>
             <button type="submit" class="btn btn-primary" [disabled]="formularioInvalido()">Siguiente</button>
-
+            <button (click)="retroceder.emit()" class="btn btn-secondary">Volver Atrás</button>
         </form>
-
     </div>
     
 

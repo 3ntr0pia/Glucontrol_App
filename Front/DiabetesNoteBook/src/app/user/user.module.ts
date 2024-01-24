@@ -16,14 +16,14 @@ import { NavbarComponent } from './global/navbar/navbar.component';
 // Pipes
 import { FiltroGenericosPipe } from '../pipes/filtro-genericos.pipe';
 import { FiltroSinRecetaPipe } from '../pipes/filtro-sin-receta.pipe';
-
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [
     MainComponent,
     NavbarComponent,
     MisDatosComponent,
-    
+
     AyudaComponent,
     VademecumComponent,
     FiltroGenericosPipe,
@@ -31,7 +31,15 @@ import { FiltroSinRecetaPipe } from '../pipes/filtro-sin-receta.pipe';
 
     MedicionesComponent,
   ],
-  imports: [CommonModule, UserRoutingModule, FormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    FormsModule,
+    SharedModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+  ],
   exports: [MainComponent],
 })
 export class UserModule {}

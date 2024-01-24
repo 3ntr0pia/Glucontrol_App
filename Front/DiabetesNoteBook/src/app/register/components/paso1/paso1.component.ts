@@ -60,20 +60,19 @@ export class Paso1Component {
   setAvatar(avatar: string): void {
     this.datosRegistro.avatar = avatar;
   }
-  
-  validarPassword(password: string): boolean {
-    const minLength = 8;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumbers = /\d/.test(password);
-    const hasSpecialChar = /[\W_]/.test(password);
 
-    return (
-      password.length >= minLength &&
-      hasUpperCase &&
-      hasLowerCase &&
-      hasNumbers &&
-      hasSpecialChar
-    );
+  validarPassword(password: string): boolean {
+    const patron =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return patron.test(password);
   }
+  validarUsuario(usuario: string): boolean {
+    const patronUsuario = /^[A-Za-z0-9_-]{6,18}$/;
+    return patronUsuario.test(usuario);
+  }
+  validarEmail(email: string): boolean {
+    const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return patronEmail.test(email);
+  }
+  
 }

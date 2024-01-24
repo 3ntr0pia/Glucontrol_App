@@ -15,6 +15,7 @@ import { IRegister } from '../../../interfaces/register.interface';
 })
 export class Paso2Component {
   @Output() siguientePaso = new EventEmitter<IRegister>();
+  @Output() retroceder = new EventEmitter<void>();
   public Sexo = Sexo;
   public Actividad = Actividad;
   public TipoDiabetes = TipoDiabetes;

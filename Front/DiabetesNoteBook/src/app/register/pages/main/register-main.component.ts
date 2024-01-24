@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
 import { IRegister } from '../../../interfaces/register.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
@@ -38,6 +38,11 @@ export class RegisterMainComponent {
     },
   };
 
+  retrocederPaso(): void {
+    if (this.paso > 1) {
+      this.paso--;
+    }
+  }
   paso: number = 1;
 
   siguientePaso(info: IRegister): void {
@@ -48,9 +53,7 @@ export class RegisterMainComponent {
       this.paso++;
     }
   }
-  pasoAnterior(): void {
-    this.paso--;
-  }
+ 
 
   constructor(
     private registerService: AuthServiceService,

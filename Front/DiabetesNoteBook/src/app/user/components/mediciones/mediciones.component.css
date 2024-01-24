@@ -28,7 +28,7 @@
 
 .grafica{
     grid-area: grafico;
-    background-color: blue;
+    background-color: rgb(200, 242, 255);
 }
 
 

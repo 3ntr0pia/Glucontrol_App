@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EChartsOption } from 'echarts';
 import { IMedicionesAzucar , Regimen } from 'src/app/interfaces/mediciones.interface';
 
 
@@ -17,9 +18,7 @@ export class MedicionesComponent  {
   mensajeModal: string = '';
 
 
-  ngOnInit() {
-   
-  }
+ 
 
   medicionesFromBackend: IMedicionesAzucar[] = [
     {
@@ -81,26 +80,13 @@ export class MedicionesComponent  {
       postDeporte: 0,
       notas: 'Desperté con hambre.',
       idPersona: 1
-    },
-    {
-      id: 5,
-      fecha: new Date(2024, 0, 14, 21, 30),
-      regimen: Regimen.Cena,
-      preMedicion: 110,
-      postMedicion: 120,
-      glucemiaCapilar: 98,
-      bolusComida: 1,
-      bolusCorrector: 0.8,
-      preDeporte: 0,
-      duranteDeporte: 0,
-      postDeporte: 0,
-      notas: 'Cena más tarde de lo habitual.',
-      idPersona: 1
     }
+    
   ]
 
-  constructor() {}
 
+  chartOption: EChartsOption = {}; 
+  constructor() {this.chartOption = {};}
 
 
 
@@ -132,5 +118,78 @@ export class MedicionesComponent  {
   }
   
 
+
+  ngOnInit() {
+    this.prepararDatosGrafico();
+  }
+
+  prepararDatosGrafico() {
+    const fechas = this.medicionesFromBackend.map(m => 
+      `${m.fecha.getDate()}/${m.fecha.getMonth() + 1}` // Formato "día/mes"
+    );
+    const preMediciones = this.medicionesFromBackend.map(m => m.preMedicion);
+    const postMediciones = this.medicionesFromBackend.map(m => m.postMedicion);
+  
+    this.chartOption = {
+      title: {
+        text: 'Mediciones de Glucosa',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['Pre Medicion', 'Post Medicion'],
+        top: 'bottom'
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: fechas
+      },
+      yAxis: {
+        type: 'value',
+        axisLabel: {
+          formatter: '{value} mg/dl'
+        }
+      },
+      series: [
+        {
+          name: 'Pre Medicion',
+          type: 'line',
+          data: preMediciones,
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Máximo' },
+              { type: 'min', name: 'Mínimo' }
+            ]
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Media' }]
+          }
+        },
+        {
+          name: 'Post Medicion',
+          type: 'line',
+          data: postMediciones,
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Máximo' },
+              { type: 'min', name: 'Mínimo' }
+            ]
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Media' }]
+          }
+        }
+      ]
+    };
+  }
 
 }
