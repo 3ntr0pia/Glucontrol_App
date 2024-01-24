@@ -7,7 +7,6 @@
         type="text"
         id="usuario-form"
         name="usuario"
-        placeholder="ejemplo@ejemplo.com"
         [(ngModel)]="usuario"
       />
     </div>
@@ -25,8 +24,8 @@
       <span class="error-form">{{ error }}</span>
     </div>
     <div class="aForgetPass">
-      <a (click)="verOlvidado()">He olvidado la contraseña</a
-      ><a routerLink="/register">Registrarse</a>
+      <a tabindex="0" aria-label="Enlace para recordar la contraseña" (click)="verOlvidado()">He olvidado la contraseña</a> 
+      <a routerLink="/register">Registrarse</a>
     </div>
   </form>
 </section>
@@ -57,5 +56,4 @@
   *ngIf="mostrarModal"
   [mensaje]="mensajeModal"
   (cerrar)="mostrarModal = false"
-  [icono]="'/assets/iconoEmail.svg'"
 ></app-modal>
