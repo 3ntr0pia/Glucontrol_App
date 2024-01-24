@@ -1,14 +1,11 @@
 .wrapper{
-    padding: 2em;
+    padding: 1em;
     width: 80vw;
     height: 100vh;
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
-    gap: 0px 0px; 
-    grid-template-areas:
-    "formulario tabla tabla"
-    "formulario grafico grafico"; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
 }
 
 .formulario {
@@ -23,10 +20,12 @@
 
 .tabla{
     grid-area: tabla;
+    min-height: 100%;
     
 }
 
 .grafica{
+    margin-top: 5em;
     grid-area: grafico;
     background-color: rgb(200, 242, 255);
 }

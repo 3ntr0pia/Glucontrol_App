@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { IMedicionesAzucar , Regimen } from 'src/app/interfaces/mediciones.interface';
-
+import {
+  IMedicionesAzucar,
+  Regimen,
+} from 'src/app/interfaces/mediciones.interface';
 
 @Component({
   selector: 'app-mediciones',
   templateUrl: './mediciones.component.html',
-  styleUrls: ['./mediciones.component.css']
+  styleUrls: ['./mediciones.component.css'],
 })
-export class MedicionesComponent  {
-
-
-  deporteRealizado: boolean = false; 
+export class MedicionesComponent {
+  deporteRealizado: boolean = false;
   momentoGlucemiaAntes: boolean = true;
   mediciones: IMedicionesAzucar[] = [];
-  mostrarModal : boolean = false;
+  mostrarModal: boolean = false;
   mensajeModal: string = '';
-
-
- 
 
   medicionesFromBackend: IMedicionesAzucar[] = [
     {
@@ -34,7 +31,7 @@ export class MedicionesComponent  {
       duranteDeporte: 85,
       postDeporte: 100,
       notas: 'Sensación de mareo leve por la mañana.',
-      idPersona: 1
+      idPersona: 1,
     },
     {
       id: 2,
@@ -49,7 +46,7 @@ export class MedicionesComponent  {
       duranteDeporte: 80,
       postDeporte: 95,
       notas: '',
-      idPersona: 1
+      idPersona: 1,
     },
     {
       id: 3,
@@ -64,7 +61,7 @@ export class MedicionesComponent  {
       duranteDeporte: 0,
       postDeporte: 0,
       notas: 'Cena ligera.',
-      idPersona: 1
+      idPersona: 1,
     },
     {
       id: 4,
@@ -79,18 +76,56 @@ export class MedicionesComponent  {
       duranteDeporte: 0,
       postDeporte: 0,
       notas: 'Desperté con hambre.',
-      idPersona: 1
+      idPersona: 1,
+    },
+    {
+      id: 5,
+      fecha: new Date(2024, 0, 13, 7, 15),
+      regimen: Regimen.Desayuno,
+      preMedicion: 130,
+      postMedicion: 145,
+      glucemiaCapilar: 105,
+      bolusComida: 2.5,
+      bolusCorrector: 0,
+      preDeporte: 0,
+      duranteDeporte: 0,
+      postDeporte: 0,
+      notas: 'Desperté con hambre.',
+      idPersona: 1,
+    },
+    {
+      id: 6,
+      fecha: new Date(2024, 0, 13, 7, 15),
+      regimen: Regimen.Desayuno,
+      preMedicion: 130,
+      postMedicion: 145,
+      glucemiaCapilar: 105,
+      bolusComida: 2.5,
+      bolusCorrector: 0,
+      preDeporte: 0,
+      duranteDeporte: 0,
+      postDeporte: 0,
+      notas: 'Desperté con hambre.',
+      idPersona: 1,
+    },
+    {
+      id: 4,
+      fecha: new Date(2024, 0, 13, 7, 15),
+      regimen: Regimen.Desayuno,
+      preMedicion: 130,
+      postMedicion: 145,
+      glucemiaCapilar: 105,
+      bolusComida: 2.5,
+      bolusCorrector: 0,
+      preDeporte: 0,
+      duranteDeporte: 0,
+      postDeporte: 0,
+      notas: 'Desperté con hambre.',
+      idPersona: 1,
     }
-    
-  ]
+  ];
 
-
-  chartOption: EChartsOption = {}; 
-  constructor() {this.chartOption = {};}
-
-
-
-  nuevaMedicion : IMedicionesAzucar = {
+  nuevaMedicion: IMedicionesAzucar = {
     id: 0,
     fecha: new Date(),
     regimen: Regimen.Desayuno,
@@ -103,61 +138,85 @@ export class MedicionesComponent  {
     duranteDeporte: 0,
     postDeporte: 0,
     notas: '',
-    idPersona: 0
-  }
-  
-  
-  abrirNotasModal(medicion: IMedicionesAzucar){
-    if(medicion.notas == ''){
-      console.log('No hay notas para mostrar');
-    }else{
-      this.mostrarModal = true;
-      this.mensajeModal = medicion.notas;
-    }
-    
-  }
-  
+    idPersona: 0,
+  };
 
+  chartOption: EChartsOption = {};
+
+  elementoPagina: any[] = [];
+
+  paginaActual: number = 1;
+  numeroTotalDePaginas: number = 0;
+  elementosPorPagina: number = 4;
+
+  constructor() {
+    this.chartOption = {};
+    this.calcularTotalDePaginas();
+    this.cambiarPagina(this.paginaActual);
+  }
 
   ngOnInit() {
     this.prepararDatosGrafico();
   }
+  calcularTotalDePaginas() {
+    this.numeroTotalDePaginas = Math.ceil(this.medicionesFromBackend.length / this.elementosPorPagina);
+  }
+
+  cambiarPagina(nuevaPagina: number): void {
+    if (nuevaPagina >= 1 && nuevaPagina <= this.numeroTotalDePaginas) {
+      this.paginaActual = nuevaPagina;
+      const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+      const fin = inicio + this.elementosPorPagina;
+      this.elementoPagina = this.medicionesFromBackend.slice(inicio, fin);
+    }
+  }
+
+  abrirNotasModal(medicion: IMedicionesAzucar) {
+    if (medicion.notas == '') {
+      console.log('No hay notas para mostrar');
+    } else {
+      this.mostrarModal = true;
+      this.mensajeModal = medicion.notas;
+    }
+  }
 
   prepararDatosGrafico() {
-    const fechas = this.medicionesFromBackend.map(m => 
-      `${m.fecha.getDate()}/${m.fecha.getMonth() + 1}` // Formato "día/mes"
+    const fechas = this.medicionesFromBackend.map(
+      (m) => `${m.fecha.getDate()}/${m.fecha.getMonth() + 1}` // Formato "día/mes"
     );
-    const preMediciones = this.medicionesFromBackend.map(m => m.preMedicion);
-    const postMediciones = this.medicionesFromBackend.map(m => m.postMedicion);
-  
+    const preMediciones = this.medicionesFromBackend.map((m) => m.preMedicion);
+    const postMediciones = this.medicionesFromBackend.map(
+      (m) => m.postMedicion
+    );
+
     this.chartOption = {
       title: {
         text: 'Mediciones de Glucosa',
-        left: 'center'
+        left: 'center',
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
       },
       legend: {
         data: ['Pre Medicion', 'Post Medicion'],
-        top: 'bottom'
+        top: 'bottom',
       },
       grid: {
         left: '3%',
         right: '4%',
         bottom: '3%',
-        containLabel: true
+        containLabel: true,
       },
       xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: fechas
+        data: fechas,
       },
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter: '{value} mg/dl'
-        }
+          formatter: '{value} mg/dl',
+        },
       },
       series: [
         {
@@ -167,12 +226,12 @@ export class MedicionesComponent  {
           markPoint: {
             data: [
               { type: 'max', name: 'Máximo' },
-              { type: 'min', name: 'Mínimo' }
-            ]
+              { type: 'min', name: 'Mínimo' },
+            ],
           },
           markLine: {
-            data: [{ type: 'average', name: 'Media' }]
-          }
+            data: [{ type: 'average', name: 'Media' }],
+          },
         },
         {
           name: 'Post Medicion',
@@ -181,15 +240,14 @@ export class MedicionesComponent  {
           markPoint: {
             data: [
               { type: 'max', name: 'Máximo' },
-              { type: 'min', name: 'Mínimo' }
-            ]
+              { type: 'min', name: 'Mínimo' },
+            ],
           },
           markLine: {
-            data: [{ type: 'average', name: 'Media' }]
-          }
-        }
-      ]
+            data: [{ type: 'average', name: 'Media' }],
+          },
+        },
+      ],
     };
   }
-
 }

@@ -96,63 +96,77 @@
         </form>
     </div>
 
+    <div class="contenedor">
 
-    <div class="grafica">
-          <div echarts [options]="chartOption" class="grafico-estilo"></div>
+
+
+        <div class="tabla">
+            <div class="paginacion-controles">
+                <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">Anterior</button>
+                <span>Página {{ paginaActual }}</span>
+                <button (click)="cambiarPagina(paginaActual + 1)"
+                    [disabled]="paginaActual >= numeroTotalDePaginas">Siguiente</button>
+            </div>
+            <table class="table table-striped">
+                <thead>
+
+                    <tr>
+                        <th>Momento de la Glucemia</th>
+                        <th>Medición</th>
+                        <th>Fecha</th>
+                        <th>Regimen</th>
+                        <th>Glucemia Capilar</th>
+                        <th>Bolus Comida</th>
+                        <th>Bolus Corrector</th>
+                        <th>Pre Deporte</th>
+                        <th>Durante Deporte</th>
+                        <th>Post Deporte</th>
+                        <th>Notas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let medicion of elementoPagina">
+                        <td>
+                            <img class="prepost" *ngIf="medicion.preMedicion != 0 && medicion.postMedicion == 0"
+                                src="assets/tabla/pre.svg" alt="PreMedicion">
+                            <img *ngIf="medicion.preMedicion == 0 && medicion.postMedicion != 0"
+                                src="assets/tabla/post.svg" alt="PostMedicion">
+                        </td>
+                        <td>{{ medicion.preMedicion != 0 && medicion.postMedicion == 0 ? medicion.preMedicion :
+                            medicion.postMedicion }}</td>
+                        <td>{{ medicion.fecha | date:'short' }}</td>
+                        <td>{{ medicion.regimen}}</td>
+                        <td>{{ medicion.glucemiaCapilar}}</td>
+                        <td>{{ medicion.bolusComida}}</td>
+                        <td>{{ medicion.bolusCorrector}}</td>
+                        <td>{{ medicion.preDeporte}}</td>
+                        <td>{{ medicion.duranteDeporte}}</td>
+                        <td>{{ medicion.postDeporte}}</td>
+                        <td>
+                            <a (click)="abrirNotasModal(medicion)" [ngClass]="{
+                              'bi bi-file-earmark ': medicion.notas != '',
+                              'bi bi-file-earmark-x  text-danger': !medicion.notas
+                          }"></a>
+                        </td>
+                        <td class='botones'>
+                            <div>
+                                <button class='btn btn-secondary'> Editar </button>
+                                <button class='btn btn-secondary'> Eliminar </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="grafica">
+            <div echarts [options]="chartOption" class="grafico-estilo"></div>
+        </div>
+
     </div>
 
-    <div class="tabla">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Momento de la Glucemia</th>
-                    <th>Medición</th>
-                    <th>Fecha</th>
-                    <th>Regimen</th>
-                    <th>Glucemia Capilar</th>
-                    <th>Bolus Comida</th>
-                    <th>Bolus Corrector</th>
-                    <th>Pre Deporte</th>
-                    <th>Durante Deporte</th>
-                    <th>Post Deporte</th>
-                    <th>Notas</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let medicion of medicionesFromBackend">
-                    <td>
-                        <img  class="prepost" *ngIf="medicion.preMedicion != 0 && medicion.postMedicion == 0"  src="assets/tabla/pre.svg"
-                            alt="PreMedicion">
-                        <img *ngIf="medicion.preMedicion == 0 && medicion.postMedicion != 0" src="assets/tabla/post.svg"
-                            alt="PostMedicion">
-                    </td>
-                    <td>{{ medicion.preMedicion != 0 && medicion.postMedicion == 0 ? medicion.preMedicion :
-                        medicion.postMedicion }}</td>
-                    <td>{{ medicion.fecha | date:'short' }}</td>
-                    <td>{{ medicion.regimen}}</td>
-                    <td>{{ medicion.glucemiaCapilar}}</td>
-                    <td>{{ medicion.bolusComida}}</td>
-                    <td>{{ medicion.bolusCorrector}}</td>
-                    <td>{{ medicion.preDeporte}}</td>
-                    <td>{{ medicion.duranteDeporte}}</td>
-                    <td>{{ medicion.postDeporte}}</td>
-                    <td>
-                        <a (click)="abrirNotasModal(medicion)" [ngClass]="{
-                            'bi bi-file-earmark ': medicion.notas != '',
-                            'bi bi-file-earmark-x  text-danger': !medicion.notas
-                        }"></a>
-                    </td>
-                    <td class='botones'>
-                        <div>
-                            <button class='btn btn-secondary'> Editar </button>
-                            <button class='btn btn-secondary'> Eliminar </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
 </div>
 
 <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"

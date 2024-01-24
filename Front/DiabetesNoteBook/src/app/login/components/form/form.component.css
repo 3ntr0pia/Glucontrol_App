@@ -7,7 +7,7 @@
   font-family: "Akinson-Hyperlegible-Regular";
 }
 .error-form {
-  visibility: hidden;
+  
   color: var(--main--colorErrorOrDenegate);
   font-style: italic;
 }
@@ -63,6 +63,9 @@
 .aForgetPass a:hover {
   text-decoration: underline;
 }
+
+
+
 @media (width < 750px) {
   .btnInicio {
     left: 5rem;
