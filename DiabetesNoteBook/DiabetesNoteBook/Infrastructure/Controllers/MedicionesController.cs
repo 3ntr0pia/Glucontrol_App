@@ -82,12 +82,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         }
         [AllowAnonymous]
         [HttpGet("getmedicionesporidusuario/{Id}")]
-        public async Task<ActionResult> GetMedicionesPorIdUsuario([FromRoute] DTOById userData)
+        public async Task<ActionResult<IEnumerable<Medicione>>> GetMedicionesPorIdUsuario([FromRoute] DTOById userData)
         {
 
             try
             {
-                var mediciones = await _context.Mediciones.FirstOrDefaultAsync(m => m.IdPersonaNavigation.UserId == userData.Id);
+                var mediciones = await _context.Mediciones.Where(m => m.IdPersonaNavigation.UserId == userData.Id).ToListAsync();
 
                 if (mediciones == null)
                 {
@@ -97,7 +97,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 await _operationsService.AddOperacion(new DTOOperation
                 {
                     Operacion = "Consulta medicion por id de usuario",
-                    UserId = mediciones.Id
+                    UserId = userData.Id
                 });
 
 
