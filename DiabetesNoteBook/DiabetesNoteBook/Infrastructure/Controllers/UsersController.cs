@@ -111,7 +111,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             {
                 var usuarioDB = _context.Usuarios.FirstOrDefault(x => x.Id == confirmacion.UserId);
 
-                if (usuarioDB.ConfirmacionEmail != false)
+                if (usuarioDB.ConfirmacionEmail != false)//Preguntar a david lo que yo he hecho choca con esto
                 {
                     return BadRequest("Usuario ya validado con anterioridad.");
                 }
@@ -347,6 +347,91 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             }
 
         }
+        [AllowAnonymous]
+        [HttpPut("cambiaremail")]
+        public async Task<ActionResult> EmailPUT([FromBody] string email)
+        {
+
+            try
+            {
+                var emailUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == email);
+
+                emailUpdate.Email = email;
+                emailUpdate.ConfirmacionEmail = false;
+
+                _context.Usuarios.Update(emailUpdate);
+                await _context.SaveChangesAsync();
+
+                await _emailService.SendEmailAsyncRegister(new DTOEmail
+                {
+                    ToEmail = email
+                });
+
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Cambiar email",
+                    UserId = emailUpdate.Id
+                });
+
+                return Ok("Email cambiado con éxito.");
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido actualizar el email, por favor, intentelo más tarde.");
+            }
+
+        }
+        [AllowAnonymous]
+        [HttpPut("cambiaremail1")]
+        public async Task<ActionResult> EmailPUT1([FromBody] DTOChangeEmail email)
+        {
+            try
+            {
+                var emailUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == email.EmailAntiguo);
+
+                // Verificar si el email ha cambiado con el que hay en base de datos
+                if (emailUpdate != null && emailUpdate.Email != email.NuevoEmail)
+                {
+                    // Enviar correo al antiguo email notificando el cambio
+                    await _emailService.SendEmailAsyncEmailChanged(new DTOEmailNotification
+                    {
+                        ToEmail = email.EmailAntiguo,
+                        NewEmail = email.NuevoEmail
+                    });
+                }
+                else
+                {
+                    return BadRequest("El email no puede ser el mismo  si lo va a cambiar");
+                }
+
+                // Actualizar la información del usuario con el nuevo email
+                emailUpdate.ConfirmacionEmail = false;
+                emailUpdate.Email = email.NuevoEmail;
+
+                _context.Usuarios.Update(emailUpdate);
+                await _context.SaveChangesAsync();
+
+                // Enviar correo de confirmación al nuevo email
+                await _emailService.SendEmailAsyncRegister(new DTOEmail
+                {
+                    ToEmail = email.NuevoEmail
+                });
+
+                // Registrar la operación
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Cambiar email",
+                    UserId = emailUpdate.Id
+                });
+
+                return Ok("Email cambiado con éxito.");
+            }
+            catch
+            {
+                return BadRequest("En estos momentos no se ha podido actualizar el email, por favor, inténtelo más tarde.");
+            }
+        }
+
 
     }
 }

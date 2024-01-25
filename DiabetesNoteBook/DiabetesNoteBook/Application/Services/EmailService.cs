@@ -97,6 +97,38 @@ namespace DiabetesNoteBook.Application.Services
             await smtp.DisconnectAsync(true);
 
         }
+       
+        //Metodo que controla el cambio de email
+        public async Task SendEmailAsyncEmailChanged(DTOEmailNotification emailNotification)
+        {
+            var email = new MimeMessage();
+            //Va al archivo appsetings.json y toma la informacion del email que en el se alberga
+            email.From.Add(MailboxAddress.Parse(_config.GetSection("Email:UserName").Value));
+            //Manda un correo al email proporcionado
+            email.To.Add(MailboxAddress.Parse(emailNotification.ToEmail));
+            //Asunto del email
+            email.Subject = "Cambio de Email";
+
+            var ruta = $"Su email ha sido cambiado a {emailNotification.NewEmail}. En caso de que usted no haya cambiado el email contacte con el administrador del sitio. Este email no admite respuesta";
+            //El curpo del email
+            email.Body = new TextPart(TextFormat.Html)
+            {
+                Text = ruta
+            };
+            //Conexion con el servicio de correo electronico
+            using var smtp = new SmtpClient();
+            await smtp.ConnectAsync(
+                _config.GetSection("Email:Host").Value,
+                Convert.ToInt32(_config.GetSection("Email:Port").Value),
+                SecureSocketOptions.StartTls
+            );
+            //Autenticacion del correo electronico
+            await smtp.AuthenticateAsync(_config.GetSection("Email:UserName").Value, _config.GetSection("Email:PassWord").Value);
+            //Realizacion del envio
+            await smtp.SendAsync(email);
+            await smtp.DisconnectAsync(true);
+        }
+
 
     }
 }
