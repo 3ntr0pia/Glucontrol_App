@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ILogin } from 'src/app/interfaces/loginResponse.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { RecordarPassService } from 'src/app/services/recordar-pass.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class FormComponent {
   mail: string = '';
   error : string = '';
 
-  constructor(private authService: AuthServiceService, private router: Router ) { }
+  constructor(private authService: AuthServiceService, private router: Router , private recordarService : RecordarPassService ) { }
 
   recordar : boolean = false;
   mostrarModal : boolean = false;
@@ -48,6 +49,14 @@ export class FormComponent {
   recordarPassword(){
     this.recordar = false;
     this.mensajeModal = 'Tu solicitud de recuperación de contraseña ha sido enviada. Por favor, revisa tu correo electrónico.';
+    this.recordarService.recordarPass(this.mail).subscribe({
+      next: (res) => {
+        console.log("Ha salido todo bien",res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
     this.mostrarModal = true;
   }
 

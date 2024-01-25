@@ -4,6 +4,7 @@ import {
   IMedicionesAzucar,
   Regimen,
 } from 'src/app/interfaces/mediciones.interface';
+import { MedicionesService } from 'src/app/services/mediciones.service';
 
 @Component({
   selector: 'app-mediciones',
@@ -11,119 +12,13 @@ import {
   styleUrls: ['./mediciones.component.css'],
 })
 export class MedicionesComponent {
+  
   deporteRealizado: boolean = false;
   momentoGlucemiaAntes: boolean = true;
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
 
-  medicionesFromBackend: IMedicionesAzucar[] = [
-    {
-      id: 1,
-      fecha: new Date(2024, 0, 10),
-      regimen: Regimen.Desayuno,
-      preMedicion: 120,
-      postMedicion: 140,
-      glucemiaCapilar: 95,
-      bolusComida: 2,
-      bolusCorrector: 1,
-      preDeporte: 90,
-      duranteDeporte: 85,
-      postDeporte: 100,
-      notas: 'Sensación de mareo leve por la mañana.',
-      idPersona: 1,
-    },
-    {
-      id: 2,
-      fecha: new Date(2024, 0, 11, 12, 45),
-      regimen: Regimen.Comida,
-      preMedicion: 100,
-      postMedicion: 125,
-      glucemiaCapilar: 90,
-      bolusComida: 1.5,
-      bolusCorrector: 1,
-      preDeporte: 85,
-      duranteDeporte: 80,
-      postDeporte: 95,
-      notas: '',
-      idPersona: 1,
-    },
-    {
-      id: 3,
-      fecha: new Date(2024, 0, 12, 19, 20),
-      regimen: Regimen.Cena,
-      preMedicion: 115,
-      postMedicion: 130,
-      glucemiaCapilar: 100,
-      bolusComida: 2,
-      bolusCorrector: 1.2,
-      preDeporte: 0,
-      duranteDeporte: 0,
-      postDeporte: 0,
-      notas: 'Cena ligera.',
-      idPersona: 1,
-    },
-    {
-      id: 4,
-      fecha: new Date(2024, 0, 13, 7, 15),
-      regimen: Regimen.Desayuno,
-      preMedicion: 130,
-      postMedicion: 145,
-      glucemiaCapilar: 105,
-      bolusComida: 2.5,
-      bolusCorrector: 0,
-      preDeporte: 0,
-      duranteDeporte: 0,
-      postDeporte: 0,
-      notas: 'Desperté con hambre.',
-      idPersona: 1,
-    },
-    {
-      id: 5,
-      fecha: new Date(2024, 0, 13, 7, 15),
-      regimen: Regimen.Desayuno,
-      preMedicion: 130,
-      postMedicion: 145,
-      glucemiaCapilar: 105,
-      bolusComida: 2.5,
-      bolusCorrector: 0,
-      preDeporte: 0,
-      duranteDeporte: 0,
-      postDeporte: 0,
-      notas: 'Desperté con hambre.',
-      idPersona: 1,
-    },
-    {
-      id: 6,
-      fecha: new Date(2024, 0, 13, 7, 15),
-      regimen: Regimen.Desayuno,
-      preMedicion: 130,
-      postMedicion: 145,
-      glucemiaCapilar: 105,
-      bolusComida: 2.5,
-      bolusCorrector: 0,
-      preDeporte: 0,
-      duranteDeporte: 0,
-      postDeporte: 0,
-      notas: 'Desperté con hambre.',
-      idPersona: 1,
-    },
-    {
-      id: 4,
-      fecha: new Date(2024, 0, 13, 7, 15),
-      regimen: Regimen.Desayuno,
-      preMedicion: 130,
-      postMedicion: 145,
-      glucemiaCapilar: 105,
-      bolusComida: 2.5,
-      bolusCorrector: 0,
-      preDeporte: 0,
-      duranteDeporte: 0,
-      postDeporte: 0,
-      notas: 'Desperté con hambre.',
-      idPersona: 1,
-    }
-  ];
 
   nuevaMedicion: IMedicionesAzucar = {
     id: 0,
@@ -142,24 +37,25 @@ export class MedicionesComponent {
   };
 
   chartOption: EChartsOption = {};
-
   elementoPagina: any[] = [];
-
   paginaActual: number = 1;
   numeroTotalDePaginas: number = 0;
   elementosPorPagina: number = 4;
 
-  constructor() {
+  constructor(private medicionesService: MedicionesService) {
+    //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
+    this.getMediciones(79);
     this.chartOption = {};
-    this.calcularTotalDePaginas();
-    this.cambiarPagina(this.paginaActual);
   }
 
   ngOnInit() {
     this.prepararDatosGrafico();
+    
+    console.log(this.mediciones)
   }
+
   calcularTotalDePaginas() {
-    this.numeroTotalDePaginas = Math.ceil(this.medicionesFromBackend.length / this.elementosPorPagina);
+    this.numeroTotalDePaginas = Math.ceil(this.mediciones.length / this.elementosPorPagina);
   }
 
   cambiarPagina(nuevaPagina: number): void {
@@ -167,7 +63,7 @@ export class MedicionesComponent {
       this.paginaActual = nuevaPagina;
       const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
       const fin = inicio + this.elementosPorPagina;
-      this.elementoPagina = this.medicionesFromBackend.slice(inicio, fin);
+      this.elementoPagina = this.mediciones.slice(inicio, fin);
     }
   }
 
@@ -181,13 +77,12 @@ export class MedicionesComponent {
   }
 
   prepararDatosGrafico() {
-    const fechas = this.medicionesFromBackend.map(
+    const fechas = this.mediciones.map(
       (m) => `${m.fecha.getDate()}/${m.fecha.getMonth() + 1}` // Formato "día/mes"
     );
-    const preMediciones = this.medicionesFromBackend.map((m) => m.preMedicion);
-    const postMediciones = this.medicionesFromBackend.map(
-      (m) => m.postMedicion
-    );
+    const preMediciones = this.mediciones.map((m) => m.preMedicion);
+    const postMediciones = this.mediciones.map((m) => m.postMedicion);
+    const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
 
     this.chartOption = {
       title: {
@@ -198,7 +93,7 @@ export class MedicionesComponent {
         trigger: 'axis',
       },
       legend: {
-        data: ['Pre Medicion', 'Post Medicion'],
+        data: ['Pre Medicion', 'Post Medicion' , 'Glucemia Capilar'],
         top: 'bottom',
       },
       grid: {
@@ -247,7 +142,36 @@ export class MedicionesComponent {
             data: [{ type: 'average', name: 'Media' }],
           },
         },
+        {
+          name: 'Glucemia Capilar',
+          type: 'line',
+          data: glucemiasCapilares,
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Máximo' },
+              { type: 'min', name: 'Mínimo' },
+            ],
+          },
+          markLine: {
+            data: [{ type: 'average', name: 'Media' }],
+          },
+        },
       ],
     };
   }
+
+  getMediciones(userId: number) {
+    this.medicionesService.getMediciones(userId).subscribe({
+      next: (mediciones) => {
+        console.log('Datos recibidos del servidor:', mediciones);
+        this.mediciones = mediciones;
+        this.prepararDatosGrafico(); 
+        this.calcularTotalDePaginas(); 
+        this.cambiarPagina(this.paginaActual); 
+        console.log(this.mediciones);
+      },
+      error: (error) => console.error(error),
+    });
+  }
+  
 }

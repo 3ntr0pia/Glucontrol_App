@@ -64,8 +64,6 @@
   text-decoration: underline;
 }
 
-
-
 @media (width < 750px) {
   .btnInicio {
     left: 5rem;
