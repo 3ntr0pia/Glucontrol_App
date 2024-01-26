@@ -1,7 +1,7 @@
 <div class="wrapper">
 
     <div class="formulario">
-        <form>
+        <form (ngSubmit)="postMedicion()">
             <div>
                 <label for="deporte"> ¿Acaba de realizar deporte?</label>
                 <input type='checkbox' [(ngModel)]="deporteRealizado" name="deporte" #deporte='ngModel' required>
@@ -92,7 +92,7 @@
                 <input type="text" class="form-control" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas='ngModel'
                     required>
             </div>
-            <button class='btn btn-secondary'> Agregar </button>
+            <button type='submit' class='btn btn-secondary'> Agregar </button>
         </form>
     </div>
 

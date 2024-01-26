@@ -1,5 +1,4 @@
 export interface IMedicionesAzucar {
-    id: number;
     fecha: Date;
     regimen: Regimen;
     preMedicion: number;
