@@ -11,9 +11,9 @@
             name="edad"
             required
           />
-          <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad < 0">
+          <span *ngIf="datosRegistro.mediciones.edad < 0">
             Debe poner una edad valida
-        </span>
+          </span>
         </div>
         <div>
           <label for="sexo">Sexo Biológico</label>
@@ -26,7 +26,7 @@
             <option [value]="Sexo.mujer">Femenino</option>
           </select>
         </div>
-        <div class="mb-3">
+        <div>
           <label for="actividad">Actividad</label>
           <select
             [(ngModel)]="datosRegistro.mediciones.actividad"
@@ -51,7 +51,7 @@
         <button class="btnNext" type="submit" [disabled]="formularioInvalido()">
           Siguiente
         </button>
-        <button (click)="retroceder.emit()" class="btn btn-secondary">Volver Atrás</button>
+        <button (click)="retroceder.emit()">Volver Atrás</button>
       </fieldset>
     </form>
   </div>

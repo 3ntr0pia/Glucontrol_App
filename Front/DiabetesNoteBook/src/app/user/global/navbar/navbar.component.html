@@ -1,20 +1,20 @@
 <div class="navbar">
-    <img [src]='usuarioLogeado?.avatar'
-        alt="avatar">
-    <div class="nombre">
-        <p>{{usuarioLogeado?.nombre}}</p>
-        <p>{{usuarioLogeado?.primerApellido}} {{usuarioLogeado?.segundoApellido}}</p>
-    </div>
+  <img [src]="usuarioLogeado?.avatar" alt="avatar" />
+  <div>
+    <p>{{ usuarioLogeado?.nombre }}</p>
+    <p>
+      {{ usuarioLogeado?.primerApellido }} {{ usuarioLogeado?.segundoApellido }}
+    </p>
+  </div>
 
-    <div class="menu">
-        <ul>
-            <li><a routerLink="mis-datos">Mis Datos</a></li>
-            <li><a routerLink='mediciones'>Mediciones</a></li>
-            <li><a routerLink="vademecum">Vademecum</a></li>
-            <li><a routerLink="ayuda">Ayuda</a></li>
-        </ul>
+  <div>
+    <ul>
+      <li><a routerLink="mis-datos">Mis Datos</a></li>
+      <li><a routerLink="mediciones">Mediciones</a></li>
+      <li><a routerLink="vademecum">Vademecum</a></li>
+      <li><a routerLink="ayuda">Ayuda</a></li>
+    </ul>
+  </div>
 
-    </div>
-
-    <button (click)="logout()" class='desconectar btn btn-primary'>Desconectar</button>
+  <button (click)="logout()">Desconectar</button>
 </div>
