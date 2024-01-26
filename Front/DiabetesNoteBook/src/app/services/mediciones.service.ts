@@ -18,8 +18,8 @@ export class MedicionesService {
     return this.http.get<IMedicionesAzucar[]>(`${this.API_URL}/Mediciones/getmedicionesporidusuario/${userId}`);
   }
 
-  postMediciones (medicion : IMedicionesAzucar) : Observable<IMedicionesAzucar> {
-    return this.http.post<IMedicionesAzucar>(`${this.API_URL}/Mediciones`, medicion);
+  postMediciones (medicion : IMedicionesAzucar) : Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/Mediciones`, medicion);
   }
 
 }
