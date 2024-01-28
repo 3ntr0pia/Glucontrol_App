@@ -18,6 +18,7 @@ input[type="number"] {
 
 .formulario {
   position: relative;
+  top: -3rem;
   width: 50vw;
   height: 100vh;
   display: flex;
