@@ -1,15 +1,12 @@
 .avatar {
-  position: relative;
-  left: 3rem;
-  width: 50%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: start;
 }
 .avatar h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .avatar-img {
@@ -19,4 +16,18 @@
 }
 .avatar-default {
   width: 100%;
+}
+
+.btn-generate {
+  position: relative;
+  top: 0.7rem;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: large;
+  color: var(--main--colorForeground);
+}
+.btn-generate:hover {
+  background-color: var(--main--colorHoverBtnAccept);
 }

@@ -1,5 +1,6 @@
 .form-container {
   position: relative;
+  top: 5rem;
   display: flex;
   justify-content: space-around;
   align-items: start;
@@ -47,27 +48,31 @@
 
 .avatar {
   position: relative;
-  top: 3rem;
-  left: 3rem;
-  width: 80%;
+  left: 2.7rem;
+  width: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: start;
 }
 
 @media (width < 900px) {
   .form-container {
-    top: 7rem;
+    top: 10rem;
     left: -11rem;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     gap: 5rem;
   }
+  .fieldset-datos {
+    margin-bottom: 4rem;
+  }
   .avatar {
     order: -1;
-    width: 100%;
+    top: 2rem;
+    left: -1.5rem;
+    width: 50%;
   }
   .formulario {
     width: 80%;

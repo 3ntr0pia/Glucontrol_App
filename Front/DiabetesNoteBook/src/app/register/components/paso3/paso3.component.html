@@ -1,7 +1,7 @@
-<div class="wrapper">
-  <div class="logo"></div>
-  <div class="formContainer">
-    <form (ngSubmit)="registroUsuario()">
+<section class="formContainer">
+  <form class="formulario" (ngSubmit)="registroUsuario()">
+    <fieldset class="fieldset-datos">
+      <legend>Datos Medicos</legend>
       <div>
         <label for="tipo">Tipo de diabetes</label>
         <select
@@ -14,15 +14,15 @@
           <option [value]="TipoDiabetes.gestacional">Gestacional</option>
         </select>
       </div>
-
       <div>
         <label for="medicacion">Medicación</label>
-        <input
-          type="text"
+        <textarea
+          maxlength="120"
+          placeholder="Medicación más relevante"
           [(ngModel)]="medicacionString"
           name="medicacion"
           required
-        />
+        ></textarea>
       </div>
       <div>
         <label for="insulina">¿Toma insulina?</label>
@@ -34,21 +34,23 @@
         />
       </div>
       <div>
-        <label for="medicacion">Acepto recibir un mail de confirmacion</label>
+        <label class="accept" for="medicacion"
+          >Acepto recibir un mail de confirmacion</label
+        >
         <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
       </div>
       <button type="submit" [disabled]="!aceptar">Completar Registro</button>
       <button (click)="retroceder.emit()">Volver Atrás</button>
-    </form>
+    </fieldset>
+  </form>
 
-    <div class="pillsContainer">
-      <!-- <div 
+  <div class="pillsContainer">
+    <!-- <div 
     *ngFor="let pill of datosRegistro.mediciones.tipoDiabetes.medicacion"
     [ngStyle]="{
       'background-color': pill.color,
       'transform':pill.rotacion,
     }"
     [ngClass]='pill.forma'></div> -->
-    </div>
   </div>
-</div>
+</section>

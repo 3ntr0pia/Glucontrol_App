@@ -1,74 +1,131 @@
-.wrapper{
-    width: 100%;
-    
+.formContainer {
+  position: relative;
+  top: 4rem;
+  right: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.formContainer{
-    width: 70%;
-    display : flex;
-    justify-content: center;
-    align-items: center;
-
-    
+.fieldset-datos {
+  width: 90%;
+  background-color: var(--main--colorBacGroundForm);
+  padding: 2rem;
+  border-radius: 1rem;
+  color: var(--main--colorForeground);
+  font-weight: 600;
 }
+
+.fieldset-datos legend {
+  font-size: 30px;
+}
+
+.formulario input {
+  width: 30%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 10px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.formulario input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+}
+.formulario input[type="checkbox"]:checked {
+  background-color: red;
+  color: #b1f98f;
+}
+.formulario select {
+  width: 30%;
+  height: 5%;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  padding: 1px;
+  border: none;
+  border-radius: 5px;
+}
+.formulario textarea {
+  width: 12rem;
+  height: 8rem;
+  border-radius: 7px;
+  color: var(--main--colorForeground);
+  background-color: var(--main--colorBackGroundElements);
+}
+.accept {
+  font-size: small;
+}
+@media (width < 900px) {
+  .formContainer {
+    top: 10rem;
+    right: 13rem;
+  }
+}
+/*
 .pillsContainer {
-    width: 30%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 10px; 
-    z-index: -1;
+  width: 30%;
+  background-color: #b1f98f;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+  z-index: -1;
 }
 
-.capsula{
-    width: 20px;
-    height: 50px;
-    border-radius: 16px;
-    border: 1px solid black;
-    margin: 1em;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
-    transform-origin: top left;
+.capsula {
+  width: 20px;
+  height: 50px;
+  border-radius: 16px;
+  border: 1px solid black;
+  margin: 1em;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  transform-origin: top left;
 }
 
-.pastilla{
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
-    margin: 1em;
-    border-radius: 16px;
-    transform-origin: top right;
-    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.50);
+.pastilla {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  margin: 1em;
+  border-radius: 16px;
+  transform-origin: top right;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
 }
-
 
 .ball {
-    background: rgb(145, 46, 28);
-	border-radius: 50%;
-	height: 200px;
-	position: relative;
-	transition: background 300ms;
-	width: 200px;
+  background: rgb(145, 46, 28);
+  border-radius: 50%;
+  height: 200px;
+  position: relative;
+  transition: background 300ms;
+  width: 200px;
 }
 
 .ball:after {
-	/*background: rgba(255, 255, 255, 0.1);*/
-	bottom: -30px;
-	content: '';
-	left: -30px;
-	position: absolute;
-	right: -30px;
-	top: -30px;
+  background: rgba(255, 255, 255, 0.1);
+  bottom: -30px;
+  content: "";
+  left: -30px;
+  position: absolute;
+  right: -30px;
+  top: -30px;
 }
 
 .ball:active {
-	background: dodgerblue;
-	cursor: move;
-	cursor: -webkit-grabbing;
-	transition-duration: 100ms;
+  background: dodgerblue;
+  cursor: move;
+  cursor: -webkit-grabbing;
+  transition-duration: 100ms;
 }
 
 .ball:hover {
-	background: #fff;
-	cursor: move;
-	cursor: -webkit-grab;
+  background: #fff;
+  cursor: move;
+  cursor: -webkit-grab;
 }
+*/
