@@ -60,6 +60,23 @@
 .accept {
   font-size: small;
 }
+.btn {
+  position: relative;
+  width: 5rem;
+  top: 1rem;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  margin-left: 2rem;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: small;
+  font-weight: 600;
+  color: var(--main--colorForeground);
+}
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
 @media (width < 900px) {
   .formContainer {
     top: 10rem;

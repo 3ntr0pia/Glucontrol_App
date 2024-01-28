@@ -39,8 +39,8 @@
         >
         <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
       </div>
-      <button type="submit" [disabled]="!aceptar">Completar Registro</button>
-      <button (click)="retroceder.emit()">Volver Atrás</button>
+      <button class="btn" type="submit" [disabled]="!aceptar">Completar</button>
+      <button class="btn" (click)="retroceder.emit()">Volver Atrás</button>
     </fieldset>
   </form>
 
