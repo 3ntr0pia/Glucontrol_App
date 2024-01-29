@@ -4,7 +4,7 @@
   --main--colorBackGroundElements: #effbff;
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
-  --main--colorBacGroundForm: #20e6dc;
+  --main--colorBacGroundForm: #b1f98f;
 }
 @font-face {
   font-family: "Atkinson-Hyperlegible-Regular";
@@ -26,5 +26,6 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--main--colorBackGround);
+  color: var(--main--colorForeground);
   font-family: "Atikinson-Hyperlegible-Regular";
 }

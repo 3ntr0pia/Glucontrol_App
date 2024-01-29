@@ -15,10 +15,10 @@
     <form #formulario="ngForm" (ngSubmit)="siguientePaso.emit(datosRegistro)">
       <section class="fieldset-datos">
         <div>
-          <h2 aria-label="Registro">Registro</h2>
-          <h3 aria-label="Paso 2 de 3. Datos físicos">Datos físicos</h3>
+          <h1 aria-label="Registro">Registro</h1>
+          <h2 aria-label="Paso 2 de 3. Datos físicos">Datos físicos</h2>
           <fieldset>
-            <legend>Edad</legend>
+            <legend class="legend">Edad</legend>
             <label for="edad"></label>
             <input
               type="number"
@@ -35,7 +35,7 @@
 
         <section class="select-form">
           <fieldset>
-            <legend>Sexo biológico</legend>
+            <legend class="legend">Sexo biológico</legend>
             <div>
               <label for="sexo"></label>
               <select
@@ -50,7 +50,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>Actividad física</legend>
+            <legend class="legend">Actividad física</legend>
             <label for="actividad"></label>
             <select
               [(ngModel)]="datosRegistro.mediciones.actividad"

@@ -1,6 +1,6 @@
 .formContainer {
   position: relative;
-  top: 4rem;
+  top: 9rem;
   right: 5rem;
   width: 100%;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .fieldset-datos legend {
-  font-size: 30px;
+  font-size: large;
 }
 
 .formulario input {
@@ -57,6 +57,7 @@
   color: var(--main--colorForeground);
   background-color: var(--main--colorBackGroundElements);
 }
+
 .accept {
   font-size: small;
 }
@@ -76,11 +77,34 @@
 .btn:hover {
   background-color: var(--main--colorHoverBtnAccept);
 }
+.easy-reading {
+  position: relative;
+  bottom: 8rem;
+}
+.easy-reading p {
+  font-size: medium;
+  font-weight: 500;
+}
 
 @media (width < 900px) {
   .formContainer {
     top: 10rem;
     right: 13rem;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 3rem;
+  }
+  .easy-reading {
+    order: -1;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+@media (width < 650px) {
+  .formContainer {
+    right: 8rem;
   }
 }
 /*

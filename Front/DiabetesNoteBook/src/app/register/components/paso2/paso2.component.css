@@ -18,7 +18,7 @@ input[type="number"] {
 
 .formulario {
   position: relative;
-  top: 11rem;
+  top: 8rem;
   width: 50vw;
   height: 100vh;
   display: flex;
@@ -37,7 +37,7 @@ input[type="number"] {
 }
 
 .fieldset-datos legend {
-  font-size: 30px;
+  font-size: large;
 }
 
 .formulario input {

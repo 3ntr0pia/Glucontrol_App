@@ -30,7 +30,7 @@
 
 @media (width < 900px) {
   .main-register {
-    top: 3rem;
+    top: 7rem;
     left: 3rem;
     display: flex;
     flex-direction: column;

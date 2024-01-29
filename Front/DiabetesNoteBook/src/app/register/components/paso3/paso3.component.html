@@ -1,5 +1,4 @@
 <section class="formContainer">
-
   <!-- <div class="visually-hidden" role="alert" aria-live="polite" *ngIf="formulario.invalid && formulario.touched"> 
     <h2>Errores cometidos:</h2>
     <p class="error-form" *ngIf="!nombre.valid && nombre.touched">Introduce tu nombre.</p>
@@ -14,57 +13,65 @@
 
   <form class="formulario" (ngSubmit)="registroUsuario()">
     <section class="fieldset-datos">
-    <div>
-      
-      <h2 aria-label="registro">Registro</h2>
-          <h3 aria-label="Paso 3 de 3. Datos relacionados con la diabetes">Datos relacionados con la diabetes</h3>
-
+      <div>
+        <h2 aria-label="registro">Registro</h2>
+        <h3 aria-label="Paso 3 de 3. Datos relacionados con la diabetes">
+          Datos relacionados con la diabetes
+        </h3>
         <fieldset>
           <legend>Tipo de diabetes</legend>
-          <label for="tipo"></label>
+          <label for="tipo"> </label>
           <select
-          [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo"
-          name="tipo"
-          required
+            [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo"
+            name="tipo"
+            id="tipo"
+            required
           >
-          <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
-          <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
-          <option [value]="TipoDiabetes.gestacional">Gestacional</option>
-        </select>
-      </fieldset>
+            <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
+            <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
+            <option [value]="TipoDiabetes.gestacional">Gestacional</option>
+          </select>
+        </fieldset>
       </div>
-
       <div>
-        <label for="medicacion">Medicación</label>
-        <textarea
-          maxlength="120"
-          placeholder="Medicación más relevante"
-          [(ngModel)]="medicacionString"
-          name="medicacion"
-          required
-        ></textarea>
+        <fieldset>
+          <legend>Medicación</legend>
+          <label for="medicacion"></label>
+          <textarea
+            id="medicacion"
+            maxlength="120"
+            placeholder="Ejemplo: Paracetamol, novorapid..."
+            [(ngModel)]="medicacionString"
+            name="medicacion"
+            required
+          ></textarea>
+        </fieldset>
       </div>
-
       <div>
         <fieldset>
           <legend>¿Toma insulina?</legend>
-        <label for="insulina"></label>
-        <input
-          type="checkbox"
-          [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
-          name="insulina"
-          required
-        />
+          <label for="insulina"></label>
+          <input
+            type="checkbox"
+            [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
+            name="insulina"
+            id="insulina"
+            required
+          />
         </fieldset>
       </div>
-
       <div>
-        <label class="accept" for="medicacion"
+        <label class="accept" for="aceptar"
           >Acepto recibir un correo de confirmación</label
         >
-        <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
+        <input
+          type="checkbox"
+          [(ngModel)]="aceptar"
+          name="aceptar"
+          id="aceptar"
+          required
+        />
       </div>
-
       <button class="btn" type="submit" [disabled]="!aceptar">Completar</button>
       <button class="btn" (click)="retroceder.emit()">Volver</button>
     </section>
@@ -80,17 +87,11 @@
     [ngClass]='pill.forma'></div> -->
   </div>
 
-  <div>
+  <div class="easy-reading">
     <h2>Lectura fácil:</h2>
-    <p>
-      Este es el último paso del formulario.
-      <br>
-      Tienes que poner algunos datos sobre tu diabetess:
-      <br>
-      tu tipo de diabetes 
-      <br>
-      y si tomas insulina u otro tratamiento hormonal.
-    </p>
+    <p>Este es el último paso del formulario.</p>
+    <p>Tienes que poner algunos datos sobre tu diabetess:</p>
+    <p>tu tipo de diabetes</p>
+    <p>y si tomas insulina u otro tratamiento hormonal.</p>
   </div>
-
 </section>
