@@ -16,7 +16,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class MedicionesComponent {
   deporteRealizado: boolean = false;
-  momentoGlucemiaAntes: boolean = true;
+  momentoGlucemia: boolean = true;
+  bolo : boolean = false;
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
@@ -34,7 +35,6 @@ export class MedicionesComponent {
     notas: '',
     id_Persona: 0,
   };
-
   chartOption: EChartsOption = {};
   elementoPagina: any[] = [];
   paginaActual: number = 1;
@@ -55,6 +55,31 @@ export class MedicionesComponent {
     this.getMediciones(this.authService.userValue!.id);
     this.getPersonaID();
     console.log(this.usuarioLogeadoPersonaId);
+    this.nuevaMedicion.fecha = new Date();
+  }
+
+
+
+  get fechaInput(): string {
+    return this.convertirFechaAString(this.nuevaMedicion.fecha);
+  }
+
+  private convertirFechaAString(fecha: Date): string {
+    const año = fecha.getFullYear().toString();
+    const mes = this.ponerCero(fecha.getMonth() + 1); 
+    const dia = this.ponerCero(fecha.getDate());
+    const hora = this.ponerCero(fecha.getHours());
+    const minuto = this.ponerCero(fecha.getMinutes());
+
+    return `${año}-${mes}-${dia}T${hora}:${minuto}`;
+  }
+
+  private ponerCero(numero: number): string {
+    return (numero < 10 ? '0' : '') + numero;
+  }
+
+  onFechaChange(newValue: string) {
+    this.nuevaMedicion.fecha = new Date(newValue);
   }
 
   getPersonaID() {
@@ -110,7 +135,7 @@ export class MedicionesComponent {
         trigger: 'axis',
       },
       legend: {
-        data: ['Pre Medicion', 'Glucemia Capilar'],
+        data: ['Pre Medicion', 'Post Medicion'],
         top: 'bottom',
       },
       grid: {
@@ -146,7 +171,7 @@ export class MedicionesComponent {
           },
         },
         {
-          name: 'Glucemia Capilar',
+          name: 'Post Medicion',
           type: 'line',
           data: glucemiasCapilares,
           markPoint: {

@@ -1,5 +1,5 @@
 <div class="avatar">
-  <h2>Genera tu avatar</h2>
+  <h3>Genera tu avatar</h3>
   <img
     *ngIf="avatar; else defaultImage"
     class="avatar-img"
@@ -9,5 +9,5 @@
   <ng-template #defaultImage>
     <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar"
   /></ng-template>
-  <button class="btn-generate" (click)="generarAvatar()">Generar</button>
+  <button class="btn-generate" (click)="generarAvatar()">Generar avatar</button>
 </div>

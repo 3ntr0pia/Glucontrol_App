@@ -1,35 +1,57 @@
 <div class="contenedor">
+  <div
+    class="visually-hidden"
+    role="alert"
+    aria-live="polite"
+    *ngIf="formulario.invalid && formulario.touched"
+  >
+    <h2>Errores cometidos:</h2>
+    <p class="error-form" *ngIf="datosRegistro.mediciones.edad < 0">
+      Introduce tu edad.
+    </p>
+  </div>
+
   <div class="formulario">
-    <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
-      <fieldset class="fieldset-datos">
-        <legend>Datos Fisicos</legend>
+    <form #formulario="ngForm" (ngSubmit)="siguientePaso.emit(datosRegistro)">
+      <section class="fieldset-datos">
         <div>
-          <label for="edad">Edad</label>
-          <input
-            type="number"
-            [(ngModel)]="datosRegistro.mediciones.edad"
-            name="edad"
-            required
-          />
-          <span class="error'form" *ngIf="datosRegistro.mediciones.edad < 0">
-            <img src="/assets/alert_line.svg" alt="" />Debe poner una edad
-            valida
-          </span>
-        </div>
-        <section class="select-form">
-          <div>
-            <label for="sexo">Sexo Biológico</label>
-            <select
-              [(ngModel)]="datosRegistro.mediciones.sexo"
-              name="sexo"
+          <h2 aria-label="Registro">Registro</h2>
+          <h3 aria-label="Paso 2 de 3. Datos físicos">Datos físicos</h3>
+          <fieldset>
+            <legend>Edad</legend>
+            <label for="edad"></label>
+            <input
+              type="number"
+              [(ngModel)]="datosRegistro.mediciones.edad"
+              name="edad"
               required
-            >
-              <option [value]="Sexo.hombre">Masculino</option>
-              <option [value]="Sexo.mujer">Femenino</option>
-            </select>
-          </div>
-          <div>
-            <label for="actividad">Actividad</label>
+            />
+            <span class="error'form" *ngIf="datosRegistro.mediciones.edad < 0">
+              <img src="/assets/alert_line.svg" alt="error" />Debe poner una
+              edad válida
+            </span>
+          </fieldset>
+        </div>
+
+        <section class="select-form">
+          <fieldset>
+            <legend>Sexo biológico</legend>
+            <div>
+              <label for="sexo"></label>
+              <select
+                [(ngModel)]="datosRegistro.mediciones.sexo"
+                name="sexo"
+                required
+              >
+                <option [value]="Sexo.hombre">Masculino</option>
+                <option [value]="Sexo.mujer">Femenino</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Actividad física</legend>
+            <label for="actividad"></label>
             <select
               [(ngModel)]="datosRegistro.mediciones.actividad"
               name="actividad"
@@ -40,21 +62,24 @@
               <option [value]="Actividad.moderado">Moderado</option>
               <option [value]="Actividad.intenso">Intenso</option>
             </select>
-          </div>
+          </fieldset>
         </section>
+
         <div class="persona">
+          <h3>Tu índice de masa corporal:</h3>
           <app-calculadora-imc
             (emitirAltura)="setAltura($event)"
             (emitirPeso)="setPeso($event)"
           ></app-calculadora-imc>
         </div>
+
         <span class="error'form" *ngIf="datosRegistro.mediciones.edad">
           <img src="/assets/alert_line.svg" alt="" />Debe rellenar todos los
           campos
         </span>
         <button class="btn" [disabled]="formularioInvalido()">Siguiente</button>
         <button class="btn" (click)="retroceder.emit()">Volver Atrás</button>
-      </fieldset>
+      </section>
     </form>
   </div>
 </div>
