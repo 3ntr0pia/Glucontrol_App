@@ -32,4 +32,11 @@ export class UsuarioService {
       usuario
     );
   }
+
+  cambiarPass(data: { id: number; NewPass: string }): Observable<any> {
+    return this.http.put<any>(
+      `${this.API_URL}/ChangePasswordControllers/changePassword`,
+      data
+    );
+  }
 }

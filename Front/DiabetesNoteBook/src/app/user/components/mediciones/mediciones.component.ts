@@ -7,6 +7,7 @@ import {
 } from 'src/app/interfaces/mediciones.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { MedicionesService } from 'src/app/services/mediciones.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-mediciones',
@@ -14,20 +15,16 @@ import { MedicionesService } from 'src/app/services/mediciones.service';
   styleUrls: ['./mediciones.component.css'],
 })
 export class MedicionesComponent {
-  
   deporteRealizado: boolean = false;
   momentoGlucemiaAntes: boolean = true;
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
-  
-
-
+  usuarioLogeadoPersonaId: number = 0;
   nuevaMedicion: IMedicionesAzucar = {
     fecha: new Date(),
     regimen: Regimen.Desayuno,
     preMedicion: 0,
-    postMedicion: 0,
     glucemiaCapilar: 0,
     bolusComida: 0,
     bolusCorrector: 0,
@@ -35,7 +32,7 @@ export class MedicionesComponent {
     duranteDeporte: 0,
     postDeporte: 0,
     notas: '',
-    idPersona: this.authService.userValue!.idPersona,
+    id_Persona: 0,
   };
 
   chartOption: EChartsOption = {};
@@ -44,20 +41,38 @@ export class MedicionesComponent {
   numeroTotalDePaginas: number = 0;
   elementosPorPagina: number = 4;
 
-  constructor(private medicionesService: MedicionesService, private authService: AuthServiceService) {
+  constructor(
+    private medicionesService: MedicionesService,
+    private authService: AuthServiceService,
+    private usuarioService: UsuarioService
+  ) {
     //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
-    
     this.chartOption = {};
+    
   }
 
   ngOnInit() {
-    this.prepararDatosGrafico();
     this.getMediciones(this.authService.userValue!.id);
-    
+    this.getPersonaID();
+    console.log(this.usuarioLogeadoPersonaId);
+  }
+
+  getPersonaID() {
+    this.usuarioService
+      .getUsuarioYPersonaInfo(this.authService.userValue!.id)
+      .subscribe({
+        next: (res) => {
+          this.usuarioLogeadoPersonaId = res[1].id as number;
+          this.nuevaMedicion.id_Persona = this.usuarioLogeadoPersonaId;
+        },
+        error: (error) => console.error(error),
+      });
   }
 
   calcularTotalDePaginas() {
-    this.numeroTotalDePaginas = Math.ceil(this.mediciones.length / this.elementosPorPagina);
+    this.numeroTotalDePaginas = Math.ceil(
+      this.mediciones.length / this.elementosPorPagina
+    );
   }
 
   cambiarPagina(nuevaPagina: number): void {
@@ -80,11 +95,10 @@ export class MedicionesComponent {
 
   prepararDatosGrafico() {
     const fechas = this.mediciones.map((m) => {
-      const fecha = new Date(m.fecha); 
-      return `${fecha.getDate()}/${fecha.getMonth() + 1}`; 
+      const fecha = new Date(m.fecha);
+      return `${fecha.getDate()}/${fecha.getMonth() + 1}`;
     });
     const preMediciones = this.mediciones.map((m) => m.preMedicion);
-    const postMediciones = this.mediciones.map((m) => m.postMedicion);
     const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
 
     this.chartOption = {
@@ -96,7 +110,7 @@ export class MedicionesComponent {
         trigger: 'axis',
       },
       legend: {
-        data: ['Pre Medicion', 'Post Medicion' , 'Glucemia Capilar'],
+        data: ['Pre Medicion', 'Glucemia Capilar'],
         top: 'bottom',
       },
       grid: {
@@ -132,20 +146,6 @@ export class MedicionesComponent {
           },
         },
         {
-          name: 'Post Medicion',
-          type: 'line',
-          data: postMediciones,
-          markPoint: {
-            data: [
-              { type: 'max', name: 'Máximo' },
-              { type: 'min', name: 'Mínimo' },
-            ],
-          },
-          markLine: {
-            data: [{ type: 'average', name: 'Media' }],
-          },
-        },
-        {
           name: 'Glucemia Capilar',
           type: 'line',
           data: glucemiasCapilares,
@@ -168,8 +168,8 @@ export class MedicionesComponent {
       next: (mediciones) => {
         console.log('Datos recibidos del servidor:', mediciones);
         this.mediciones = mediciones;
-        this.prepararDatosGrafico(); 
-        this.calcularTotalDePaginas(); 
+        this.prepararDatosGrafico();
+        this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
       },
       error: (error) => console.error(error),
@@ -177,14 +177,17 @@ export class MedicionesComponent {
   }
 
   postMedicion() {
-    let medicion = this.nuevaMedicion;
-    this.medicionesService.postMediciones(medicion).subscribe({
-      next: (medicion) => {
-        console.log('Datos recibidos del servidor:', medicion);
+    this.medicionesService.postMediciones(this.nuevaMedicion).subscribe({
+      next: (res) => {
+        console.log('Datos recibidos del servidor');
         this.getMediciones(this.authService.userValue!.id);
+        this.prepararDatosGrafico();
+        this.calcularTotalDePaginas();
+        this.cambiarPagina(this.paginaActual);
       },
-      error: (error) => console.error(error),
+      error: (error) => {
+        console.error(error);
+      },
     });
   }
-  
 }
