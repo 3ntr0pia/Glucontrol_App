@@ -1,73 +1,97 @@
 <div class="wrapper">
   <div class="formulario">
+
     <form (ngSubmit)="postMedicion()">
+      <div>
+        <label for="fecha">Fecha</label>
+        <input type="datetime-local" [ngModel]="fechaInput" (ngModelChange)="onFechaChange($event)" name="fecha"
+          #fecha="ngModel" required />
+      </div>
       <div>
         <label for="deporte"> ¿Acaba de realizar deporte?</label>
         <input type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
       </div>
-      <ng-container *ngIf="momentoGlucemiaAntes">
+      <div>
+        <label> Momento de Medicion </label>
         <div>
-          <label for="preMedicion">Pre Medicion</label>
+          <select aria-label="Default select example" name="momento" [(ngModel)]='momentoGlucemia' required>
+            <option selected disabled>Seleccione un momento</option>
+            <option [ngValue]="true">Pre Medicion</option>
+            <option [ngValue]="false">Post Medicion</option>
+          </select>
+        </div>
+        <div>
+          <label for="regimen">Regimen</label>
+          <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen" name="regimen"
+            #regimen="ngModel" required>
+            <option selected disabled>Seleccione un regimen</option>
+            <option value="desayuno">Desayuno</option>
+            <option value="almuerzo">Almuerzo</option>
+            <option value="merienda">Merienda</option>
+            <option value="cena">Cena</option>
+          </select>
+        </div>
+        <ng-container *ngIf="momentoGlucemia == true">
+          <label for="preMedicion">Medición</label>
           <input type="number" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion" #preMedicion="ngModel"
             required />
-        </div>
-      </ng-container>
-      <div>
-        <label for="fecha">Fecha</label>
-        <input type="datetime-local" [(ngModel)]="nuevaMedicion.fecha" name="fecha" #fecha="ngModel" required />
-      </div>
-      <div>
-        <label for="regimen">Regimen</label>
-        <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen" name="regimen"
-          #regimen="ngModel" required>
-          <option selected disabled>Seleccione un regimen</option>
-          <option value="desayuno">Desayuno</option>
-          <option value="almuerzo">Almuerzo</option>
-          <option value="merienda">Merienda</option>
-          <option value="cena">Cena</option>
-        </select>
-      </div>
-      <div>
-        <label for="glucemiaCapilar">Glucemia Capilar</label>
-        <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
-          #glucemiaCapilar="ngModel" required />
-      </div>
-      <div>
-        <label for="bolusComida">Bolus Comida</label>
-        <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
-          required />
-      </div>
-      <div>
-        <label for="bolusCorrector">Bolus Corrector</label>
-        <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector" #bolusCorrector="ngModel"
-          required />
-      </div>
-      <ng-container *ngIf="deporteRealizado == true">
+        </ng-container>
+        <ng-container *ngIf="momentoGlucemia == false">
+          <label for="glucemiaCapilar">Medición</label>
+          <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
+            #glucemiaCapilar="ngModel" required />
+        </ng-container>
         <div>
-          <label for="preDeporte">Pre Deporte</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
-            required />
-        </div>
-        <div>
-          <label for="duranteDeporte">Durante Deporte</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.duranteDeporte" name="duranteDeporte"
-            #duranteDeporte="ngModel" required />
-        </div>
-        <div>
-          <label for="postDeporte">Post Deporte</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte" #postDeporte="ngModel"
-            required />
-        </div>
-      </ng-container>
+          <label for="bolo">Bolo</label>
+          <select aria-label="Default select example" [(ngModel)]="bolo" name="bolo" required>
+            <option selected disabled> Elija el tipo de bolo</option>
+            <option [ngValue]="true">Bolo Comida</option>
+            <option [ngValue]="false">Bolus Corrector</option>
 
-      <div>
-        <label for="notas">Notas</label>
-        <input type="text" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
+          </select>
+        </div>
+
+
+
+        <ng-container *ngIf='bolo'>
+          <label for="bolusComida">Bolus Comida</label>
+          <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
+            required />
+        </ng-container>
+        <ng-container *ngIf='!bolo'>
+          <label for="bolusCorrector">Bolus Corrector</label>
+          <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector"
+            #bolusCorrector="ngModel" required />
+        </ng-container>
+        <ng-container *ngIf="deporteRealizado == true">
+          <div>
+            <label for="preDeporte">Pre Deporte</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
+              required />
+          </div>
+          <div>
+            <label for="duranteDeporte">Durante Deporte</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.duranteDeporte" name="duranteDeporte"
+              #duranteDeporte="ngModel" required />
+          </div>
+          <div>
+            <label for="postDeporte">Post Deporte</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte" #postDeporte="ngModel"
+              required />
+          </div>
+        </ng-container>
+
+        <div>
+          <label for="notas">Notas</label>
+          <input type="text" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
+        </div>
+        <button type="submit">Agregar</button>
       </div>
-      <button type="submit">Agregar</button>
+
+
     </form>
-  </div>
 
+  </div>
   <div class="contenedor">
     <div>
       <div>
@@ -82,10 +106,9 @@
       <table>
         <thead>
           <tr>
-            <th>Pre Medición</th>
             <th>Fecha</th>
+            <th>Medicion</th>
             <th>Regimen</th>
-            <th>Glucemia Capilar</th>
             <th>Bolus Comida</th>
             <th>Bolus Corrector</th>
             <th>Pre Deporte</th>
@@ -96,13 +119,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let medicion of elementoPagina">
-            <td>
-              {{medicion.preMedicion}}
-            </td>
+          <tr *ngFor="let medicion of elementoPagina" [ngClass]="{
+              'pre-medicion': medicion.preMedicion != 0 && medicion.glucemiaCapilar == 0,
+              'post-medicion': medicion.preMedicion == 0 && medicion.glucemiaCapilar != 0
+          }">
             <td>{{ medicion.fecha | date : "short" }}</td>
+
+             <td>{{ medicion.preMedicion > 0 ? medicion.preMedicion : medicion.glucemiaCapilar }}</td>
             <td>{{ medicion.regimen }}</td>
-            <td>{{ medicion.glucemiaCapilar }}</td>
             <td>{{ medicion.bolusComida }}</td>
             <td>{{ medicion.bolusCorrector }}</td>
             <td>{{ medicion.preDeporte }}</td>
@@ -127,7 +151,5 @@
       <div echarts [options]="chartOption"></div>
     </div>
   </div>
-</div>
-
-<app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
-  [icono]="'assets/iconoNota.svg'"></app-modal>
+  <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
+    [icono]="'assets/iconoNota.svg'"></app-modal>

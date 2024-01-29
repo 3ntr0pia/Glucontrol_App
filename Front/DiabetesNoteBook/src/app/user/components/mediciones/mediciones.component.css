@@ -39,3 +39,11 @@
     gap: 1em;
     
 }
+
+.pre-medicion{
+    background-color: aquamarine;
+}
+.post-medicion{
+    background-color: rgb(255, 255, 0);
+}
+
