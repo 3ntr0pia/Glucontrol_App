@@ -50,9 +50,6 @@
 
           </select>
         </div>
-
-
-
         <ng-container *ngIf='bolo'>
           <label for="bolusComida">Bolus Comida</label>
           <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
@@ -85,7 +82,7 @@
           <label for="notas">Notas</label>
           <input type="text" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
         </div>
-        <button type="submit">Agregar</button>
+        <button type="submit" [disabled]="nuevaMedicion.preMedicion == 0 && nuevaMedicion.glucemiaCapilar == 0">Agregar</button>
       </div>
 
 
@@ -125,7 +122,7 @@
           }">
             <td>{{ medicion.fecha | date : "short" }}</td>
 
-             <td>{{ medicion.preMedicion > 0 ? medicion.preMedicion : medicion.glucemiaCapilar }}</td>
+            <td>{{ medicion.preMedicion > 0 ? medicion.preMedicion : medicion.glucemiaCapilar }}</td>
             <td>{{ medicion.regimen }}</td>
             <td>{{ medicion.bolusComida }}</td>
             <td>{{ medicion.bolusCorrector }}</td>
@@ -140,7 +137,7 @@
             </td>
             <td class="botones">
               <div>
-                <button>Eliminar</button>
+                <button (click)="deleteMedicion(medicion.id)">Eliminar</button>
               </div>
             </td>
           </tr>
