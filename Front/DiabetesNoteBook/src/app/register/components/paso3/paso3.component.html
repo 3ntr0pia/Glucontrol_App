@@ -1,19 +1,39 @@
 <section class="formContainer">
+
+  <!-- <div class="visually-hidden" role="alert" aria-live="polite" *ngIf="formulario.invalid && formulario.touched"> 
+    <h2>Errores cometidos:</h2>
+    <p class="error-form" *ngIf="!nombre.valid && nombre.touched">Introduce tu nombre.</p>
+    <p class="error-form" *ngIf="!userName.valid && userName.touched">Elija su nombre de usuario. Debe tener entre 6 y 18 caracteres, pudiendo contener
+      letras, números, guiones y guiones bajos.</p> 
+    <p class="error-form" *ngIf="!apellido.valid && apellido.touched">Introduce tu primer apellido.</p>
+    <p class="error-form" *ngIf="!apellido2.valid && apellido2.touched">Introduce tu segundo apellido.</p> 
+    <p class="error-form" *ngIf="!email.valid && email.touched">Introduce un e-mail con un formato válido.</p>
+    <p class="error-form" *ngIf="!password.valid && password.touched">Introduce tu contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y caracteres especiales.</p>
+    <p class="error-form" *ngIf="!password2.valid && password2.touched">Repite tu contraseña.</p>
+  </div> -->
+
   <form class="formulario" (ngSubmit)="registroUsuario()">
-    <fieldset class="fieldset-datos">
-      <legend>Datos Medicos</legend>
-      <div>
-        <label for="tipo">Tipo de diabetes</label>
-        <select
+    <section class="fieldset-datos">
+    <div>
+      
+      <h2 aria-label="registro">Registro</h2>
+          <h3 aria-label="Paso 3 de 3. Datos relacionados con la diabetes">Datos relacionados con la diabetes</h3>
+
+        <fieldset>
+          <legend>Tipo de diabetes</legend>
+          <label for="tipo"></label>
+          <select
           [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo"
           name="tipo"
           required
-        >
+          >
           <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
           <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
           <option [value]="TipoDiabetes.gestacional">Gestacional</option>
         </select>
+      </fieldset>
       </div>
+
       <div>
         <label for="medicacion">Medicación</label>
         <textarea
@@ -24,24 +44,30 @@
           required
         ></textarea>
       </div>
+
       <div>
-        <label for="insulina">¿Toma insulina?</label>
+        <fieldset>
+          <legend>¿Toma insulina?</legend>
+        <label for="insulina"></label>
         <input
           type="checkbox"
           [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
           name="insulina"
           required
         />
+        </fieldset>
       </div>
+
       <div>
         <label class="accept" for="medicacion"
-          >Acepto recibir un mail de confirmacion</label
+          >Acepto recibir un correo de confirmación</label
         >
         <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
       </div>
+
       <button class="btn" type="submit" [disabled]="!aceptar">Completar</button>
-      <button class="btn" (click)="retroceder.emit()">Volver Atrás</button>
-    </fieldset>
+      <button class="btn" (click)="retroceder.emit()">Volver</button>
+    </section>
   </form>
 
   <div class="pillsContainer">
@@ -53,4 +79,18 @@
     }"
     [ngClass]='pill.forma'></div> -->
   </div>
+
+  <div>
+    <h2>Lectura fácil:</h2>
+    <p>
+      Este es el último paso del formulario.
+      <br>
+      Tienes que poner algunos datos sobre tu diabetess:
+      <br>
+      tu tipo de diabetes 
+      <br>
+      y si tomas insulina u otro tratamiento hormonal.
+    </p>
+  </div>
+
 </section>
