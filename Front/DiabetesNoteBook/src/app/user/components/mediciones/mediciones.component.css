@@ -1,0 +1,41 @@
+.wrapper{
+    padding: 1em;
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.formulario {
+    height: 100%;
+    grid-area: formulario;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+ 
+}
+
+.tabla{
+    grid-area: tabla;
+    min-height: 100%;
+    
+}
+
+.grafica{
+    margin-top: 5em;
+    grid-area: grafico;
+    background-color: rgb(200, 242, 255);
+}
+
+
+.botones div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    
+}

@@ -1,0 +1,55 @@
+input {
+  width: 25%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 10px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.persona {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.monigote {
+  position: relative;
+  left: 10%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.monigote span {
+  margin-left: 25%;
+}
+
+.data {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  left: 2rem;
+}
+.error-form {
+  color: var(--main--colorErrorOrDenegate);
+  font-style: italic;
+}

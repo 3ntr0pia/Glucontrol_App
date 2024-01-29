@@ -1,0 +1,20 @@
+<div class="navbar">
+  <img [src]="usuarioLogeado?.avatar" alt="avatar" />
+  <div>
+    <p>{{ usuarioLogeado?.nombre }}</p>
+    <p>
+      {{ usuarioLogeado?.primerApellido }} {{ usuarioLogeado?.segundoApellido }}
+    </p>
+  </div>
+
+  <div>
+    <ul>
+      <li><a routerLink="mis-datos">Mis Datos</a></li>
+      <li><a routerLink="mediciones">Mediciones</a></li>
+      <li><a routerLink="vademecum">Vademecum</a></li>
+      <!-- <li><a routerLink="ayuda">Ayuda</a></li> -->
+    </ul>
+  </div>
+
+  <button (click)="logout()">Desconectar</button>
+</div>

@@ -1,0 +1,86 @@
+.sectionLogin {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  color: var(--main--colorForeground);
+  font-family: "Akinson-Hyperlegible-Regular";
+}
+.error-form {
+  
+  color: var(--main--colorErrorOrDenegate);
+  font-style: italic;
+}
+.input input {
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-shadow: #d9dbda;
+  text-transform: lowercase;
+  background-color: var(--main--colorBackGroundElements);
+  border: 0.5px solid #002d52;
+}
+
+.btnInicio {
+  position: relative;
+  top: 0.7rem;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: large;
+  color: var(--main--colorForeground);
+}
+.btnInicio:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+.aBack {
+  position: relative;
+  top: 0.7rem;
+  margin: 1rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: large;
+  background-color: var(--main--colorBackGroundElements);
+  color: var(--main--colorForeground);
+}
+
+.aBack:hover {
+  text-decoration: underline;
+}
+
+.aForgetPass a {
+  position: relative;
+  top: 1.2rem;
+  margin: 0.25rem;
+  text-decoration: none;
+  color: var(--main--colorForeground);
+}
+
+.aForgetPass a:hover {
+  text-decoration: underline;
+}
+
+@media (width < 750px) {
+  .btnInicio {
+    left: 5rem;
+  }
+}
+@media (390px < width < 560px) {
+  .btnInicio {
+    left: 3rem;
+  }
+  .aForgetPass {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (width < 390px) {
+  .btnInicio {
+    left: 2rem;
+  }
+}

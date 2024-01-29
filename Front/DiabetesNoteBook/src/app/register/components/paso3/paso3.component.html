@@ -1,0 +1,56 @@
+<section class="formContainer">
+  <form class="formulario" (ngSubmit)="registroUsuario()">
+    <fieldset class="fieldset-datos">
+      <legend>Datos Medicos</legend>
+      <div>
+        <label for="tipo">Tipo de diabetes</label>
+        <select
+          [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo"
+          name="tipo"
+          required
+        >
+          <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
+          <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
+          <option [value]="TipoDiabetes.gestacional">Gestacional</option>
+        </select>
+      </div>
+      <div>
+        <label for="medicacion">Medicación</label>
+        <textarea
+          maxlength="120"
+          placeholder="Medicación más relevante"
+          [(ngModel)]="medicacionString"
+          name="medicacion"
+          required
+        ></textarea>
+      </div>
+      <div>
+        <label for="insulina">¿Toma insulina?</label>
+        <input
+          type="checkbox"
+          [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
+          name="insulina"
+          required
+        />
+      </div>
+      <div>
+        <label class="accept" for="medicacion"
+          >Acepto recibir un mail de confirmacion</label
+        >
+        <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
+      </div>
+      <button class="btn" type="submit" [disabled]="!aceptar">Completar</button>
+      <button class="btn" (click)="retroceder.emit()">Volver Atrás</button>
+    </fieldset>
+  </form>
+
+  <div class="pillsContainer">
+    <!-- <div 
+    *ngFor="let pill of datosRegistro.mediciones.tipoDiabetes.medicacion"
+    [ngStyle]="{
+      'background-color': pill.color,
+      'transform':pill.rotacion,
+    }"
+    [ngClass]='pill.forma'></div> -->
+  </div>
+</section>

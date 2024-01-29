@@ -1,0 +1,79 @@
+.loging {
+  position: relative;
+  top: 4rem;
+  width: 100vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.logotipo {
+  position: relative;
+  left: 2rem;
+}
+.slider {
+  position: relative;
+  left: 2rem;
+  top: 4rem;
+}
+.loging-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* font-family: "Atkinson-Hyperlegible-Regular"; */
+}
+.loging-form img {
+  width: 50%;
+}
+@media (width < 1150px) {
+  .loging {
+    top: 10rem;
+  }
+}
+
+@media (width < 870px) {
+  .loging {
+    top: 10rem;
+  }
+  .logotipo {
+    position: relative;
+    left: 10rem;
+    top: -5rem;
+    width: 120%;
+  }
+  .slider {
+    visibility: hidden;
+  }
+  .loging-form {
+    right: 10rem;
+  }
+  .loging-form img {
+    width: 100%;
+  }
+}
+
+@media (width < 700px) {
+  .logotipo {
+    left: 5rem;
+  }
+}
+
+@media (width < 520px) {
+  .logotipo {
+    left: 3rem;
+  }
+}
+
+@media (width < 395px) {
+  .loging {
+    left: 5rem;
+  }
+  .loging-form img {
+    width: 110%;
+  }
+  .logotipo {
+    left: 1rem;
+  }
+}

@@ -1,0 +1,64 @@
+<section *ngIf="!recordar" class="sectionLogin">
+  <!-- <p class="error-form">Error al introducir Email o Contraseña</p>  ESTE NO HACE FALTA POR QUE VIENE DE BACK-->
+  <form (ngSubmit)="login()">
+    <div class="input">
+      <label for="usuario-form">Nombre de Usuario</label>
+      <input
+        type="text"
+        id="usuario-form"
+        name="usuario"
+        [(ngModel)]="usuario"
+      />
+    </div>
+    <div class="input">
+      <label for="password-form">Contraseña</label>
+      <input
+        type="password"
+        id="password-form"
+        name="password"
+        [(ngModel)]="password"
+      />
+    </div>
+    <div>
+      <div>
+        <button class="btnInicio">Iniciar Sesión</button>
+        <span class="error-form">{{ error }}</span>
+      </div>
+    </div>
+    <div class="aForgetPass">
+      <a
+        tabindex="0"
+        aria-label="Enlace para recordar la contraseña"
+        (click)="verOlvidado()"
+        >He olvidado la contraseña</a
+      >
+      <a routerLink="/register">Registrarse</a>
+    </div>
+  </form>
+</section>
+<section *ngIf="recordar" class="sectionLogin">
+  <form (ngSubmit)="recordarPassword()">
+    <div class="input">
+      <label for="usuario-form">Email de Recuperación</label>
+      <input
+        type="email"
+        id="mail-form"
+        name="mail"
+        placeholder="ejemplo@ejemplo.com"
+        [(ngModel)]="mail"
+        required
+      />
+    </div>
+    <div>
+      <button [disabled]="formularioInvalido()" class="btnInicio">
+        Enviar
+      </button>
+      <a class="aBack" (click)="recordar = false">Volver</a>
+    </div>
+  </form>
+</section>
+<app-modal
+  *ngIf="mostrarModal"
+  [mensaje]="mensajeModal"
+  (cerrar)="mostrarModal = false"
+></app-modal>

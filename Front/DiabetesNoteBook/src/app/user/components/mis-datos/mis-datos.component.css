@@ -1,0 +1,115 @@
+.wrapper{
+    width: 80vw;
+    height: 100vh;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 0px 0px; 
+    grid-template-areas:
+    "avatar formulario"
+    "calculadora formulario"; 
+}
+
+.avatar{
+    grid-area: avatar;
+    position: relative; 
+}
+
+
+.datos
+{
+    grid-area: formulario;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+}
+
+
+.bocadillo {
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.generarAvatar{
+    position: relative; 
+    width: 40%; 
+    height: 0%; 
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}	
+
+.bocadillo svg {
+    position: relative;
+    width: 90%; 
+    height: auto; 
+}
+
+.contenido-bocadillo {
+    position: absolute; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%; 
+    text-align: center; 
+}
+.contenido-bocadillo h1{
+    font-size: 100%;
+}
+
+.contenido-bocadillo button{
+    margin:1em;
+}
+
+
+.calculadora{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.calculadora h1{
+    text-align: center;
+}
+.formulario{
+    grid-area: formulario;
+   
+}
+
+.fondoModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalPass form{
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Otros estilos que desees */
+  }

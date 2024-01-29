@@ -32,34 +32,42 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> PostMediciones1(DTOMediciones mediciones)
         {
-            var existePersona = await _context.Personas.FirstOrDefaultAsync(x => x.Id == mediciones.Id_Persona);
-            if (existePersona == null)
+            try
             {
-                return NotFound("La persona a la que intenta poner la medicion no existe");
+                var existePersona = await _context.Personas.FirstOrDefaultAsync(x => x.Id == mediciones.Id_Persona);
+                if (existePersona == null)
+                {
+                    return NotFound("La persona a la que intenta poner la medicion no existe");
+                }
+
+                await _medicion.NuevaMedicion(new DTOMediciones
+                {
+                    Fecha = mediciones.Fecha,
+                    Regimen = mediciones.Regimen,
+                    PreMedicion = mediciones.PreMedicion,
+                    GlucemiaCapilar = mediciones.GlucemiaCapilar,
+                    BolusComida = mediciones.BolusComida,
+                    BolusCorrector = mediciones.BolusCorrector,
+                    PreDeporte = mediciones.PreDeporte,
+                    DuranteDeporte = mediciones.DuranteDeporte,
+                    PostDeporte = mediciones.PostDeporte,
+                    Notas = mediciones.Notas,
+                    Id_Persona = mediciones.Id_Persona
+
+
+                });
+                await _operationsService.AddOperacion(new DTOOperation
+                {
+                    Operacion = "Persona agregada",
+                    UserId = existePersona.Id
+                });
+                return NoContent();
             }
-
-            await _medicion.NuevaMedicion(new DTOMediciones
+            catch (Exception e)
             {
-                Fecha = mediciones.Fecha,
-                Regimen = mediciones.Regimen,
-                PreMedicion = mediciones.PreMedicion,
-                GlucemiaCapilar = mediciones.GlucemiaCapilar,
-                BolusComida = mediciones.BolusComida,
-                BolusCorrector = mediciones.BolusCorrector,
-                PreDeporte = mediciones.PreDeporte,
-                DuranteDeporte = mediciones.DuranteDeporte,
-                PostDeporte = mediciones.PostDeporte,
-                Notas = mediciones.Notas,
-                Id_Persona = mediciones.Id_Persona
-
-
-            });
-            await _operationsService.AddOperacion(new DTOOperation
-            {
-                Operacion = "Persona agregada",
-                UserId = existePersona.Id
-            });
-            return Ok("Medicion guardada con exito");
+                return BadRequest(new Exception(e.Message));
+            }
+            
         }
         [HttpDelete("eliminarmedicion")]
         public async Task<ActionResult> DeleteMedicion(DTOEliminarMedicion Id)
