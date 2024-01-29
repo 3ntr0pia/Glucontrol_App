@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-around;
   align-items: start;
+  gap: 3rem;
 }
 .formulario {
   width: 80%;
@@ -54,6 +55,15 @@
   align-items: center;
   flex-direction: column;
   justify-content: start;
+}
+
+.easy-reading {
+  position: relative;
+  top: 3rem;
+}
+.easy-reading p {
+  font-size: medium;
+  font-weight: 500;
 }
 
 @media (width < 900px) {

@@ -1,6 +1,8 @@
 <section *ngIf="!recordar" class="sectionLogin">
   <!-- <p class="error-form">Error al introducir Email o Contraseña</p>  ESTE NO HACE FALTA POR QUE VIENE DE BACK-->
-  <h2 class="visually-hidden" aria-label="Página para conectarse">Conectarse</h2>
+  <h2 class="visually-hidden" aria-label="Página para conectarse">
+    Conectarse
+  </h2>
   <form (ngSubmit)="login()">
     <div class="input">
       <label for="usuario-form">Nombre de Usuario</label>
@@ -58,16 +60,13 @@
     </div>
   </form>
 
-  <h2>Lectura fácil:</h2>
-  <p>
-    En esta página podrás conectarte
-    <br>
-    siepre que te hayas registrado antes
-    <br>
-    Si no lo has hecho todavía, 
-    <br>
-    puedes hacerlo en el enlace de registrarse.
-  </p>
+  <section class="easy-reading">
+    <h3>Lectura fácil:</h3>
+    <p>En esta página podrás conectarte</p>
+    <p>siepre que te hayas registrado antes</p>
+    <p>Si no lo has hecho todavía,</p>
+    <p>puedes hacerlo en el enlace de registrarse.</p>
+  </section>
 </section>
 <app-modal
   *ngIf="mostrarModal"
