@@ -10,8 +10,8 @@ export class CalculadoraImcComponent implements OnInit {
   @Output() emitirAltura : EventEmitter<number> = new EventEmitter();
   @Output() emitirPeso : EventEmitter<number> = new EventEmitter();
 
-  @Input() alturaRecibida : number = 0;
-  @Input() pesoRecibido : number = 0;
+  @Input() alturaRecibida : number = NaN;
+  @Input() pesoRecibido : number = NaN;
 
   // altura : number = 0;
   // peso : number = 0;

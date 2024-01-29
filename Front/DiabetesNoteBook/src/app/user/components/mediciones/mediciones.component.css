@@ -14,9 +14,37 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    
  
 }
+
+.group{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+.group input,select{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--main--colorBackGroundElements);
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: white;
+};
+
+
+
+
+.checkbox {
+    width: 1px;
+}
+
 
 .tabla{
     grid-area: tabla;

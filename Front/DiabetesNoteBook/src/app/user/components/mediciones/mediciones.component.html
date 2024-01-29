@@ -1,17 +1,16 @@
 <div class="wrapper">
   <div class="formulario">
-
     <form (ngSubmit)="postMedicion()">
-      <div>
+      <div class='group'>
         <label for="fecha">Fecha</label>
         <input type="datetime-local" [ngModel]="fechaInput" (ngModelChange)="onFechaChange($event)" name="fecha"
           #fecha="ngModel" required />
       </div>
-      <div>
+      <div class='group'>
         <label for="deporte"> ¿Acaba de realizar deporte?</label>
-        <input type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
+        <input class='checkbox' type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
       </div>
-      <div>
+      <div class='group'>
         <label> Momento de Medicion </label>
         <div>
           <select aria-label="Default select example" name="momento" [(ngModel)]='momentoGlucemia' required>
@@ -20,7 +19,7 @@
             <option [ngValue]="false">Post Medicion</option>
           </select>
         </div>
-        <div>
+        <div class='group'>
           <label for="regimen">Regimen</label>
           <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen" name="regimen"
             #regimen="ngModel" required>
@@ -31,17 +30,17 @@
             <option value="cena">Cena</option>
           </select>
         </div>
-        <ng-container *ngIf="momentoGlucemia == true">
+        <ng-container class='group' *ngIf="momentoGlucemia == true">
           <label for="preMedicion">Medición</label>
           <input type="number" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion" #preMedicion="ngModel"
             required />
         </ng-container>
-        <ng-container *ngIf="momentoGlucemia == false">
+        <ng-container class='group' *ngIf="momentoGlucemia == false">
           <label for="glucemiaCapilar">Medición</label>
           <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
             #glucemiaCapilar="ngModel" required />
         </ng-container>
-        <div>
+        <div class='group'>
           <label for="bolo">Bolo</label>
           <select aria-label="Default select example" [(ngModel)]="bolo" name="bolo" required>
             <option selected disabled> Elija el tipo de bolo</option>
@@ -50,35 +49,35 @@
 
           </select>
         </div>
-        <ng-container *ngIf='bolo'>
+        <ng-container class='group' *ngIf='bolo'>
           <label for="bolusComida">Bolus Comida</label>
           <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
             required />
         </ng-container>
-        <ng-container *ngIf='!bolo'>
+        <ng-container class='group' *ngIf='!bolo'>
           <label for="bolusCorrector">Bolus Corrector</label>
           <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector"
             #bolusCorrector="ngModel" required />
         </ng-container>
-        <ng-container *ngIf="deporteRealizado == true">
-          <div>
+        <ng-container  *ngIf="deporteRealizado == true">
+          <div class='group'>
             <label for="preDeporte">Pre Deporte</label>
             <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
               required />
           </div>
-          <div>
+          <div class='group'>
             <label for="duranteDeporte">Durante Deporte</label>
             <input type="number" [(ngModel)]="nuevaMedicion.duranteDeporte" name="duranteDeporte"
               #duranteDeporte="ngModel" required />
           </div>
-          <div>
+          <div class='group'> 
             <label for="postDeporte">Post Deporte</label>
             <input type="number" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte" #postDeporte="ngModel"
               required />
           </div>
         </ng-container>
 
-        <div>
+        <div class='group'>
           <label for="notas">Notas</label>
           <input type="text" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
         </div>
