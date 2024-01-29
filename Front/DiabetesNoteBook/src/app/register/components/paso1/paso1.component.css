@@ -1,15 +1,20 @@
+
 .form-container {
-  position: relative;
-  top: 5rem;
+  margin-top: 5em;
+  width: 80%;
   display: flex;
   justify-content: space-around;
-  align-items: start;
-  gap: 3rem;
+  align-items: center;
+  
 }
+
 .formulario {
-  width: 80%;
+  height: 100%;
+  width: 100%;
+  
 }
 .fieldset-datos {
+  height: 100%;
   background-color: var(--main--colorBacGroundForm);
   padding: 2rem;
   border-radius: 1rem;
@@ -50,20 +55,11 @@
 .avatar {
   position: relative;
   left: 2.7rem;
-  width: 50%;
+  width: 80%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: start;
-}
-
-.easy-reading {
-  position: relative;
-  top: 3rem;
-}
-.easy-reading p {
-  font-size: medium;
-  font-weight: 500;
 }
 
 @media (width < 900px) {

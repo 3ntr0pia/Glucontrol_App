@@ -8,36 +8,51 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 .contenedor {
-  position: relative;
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .formulario {
-  position: relative;
-  top: 8rem;
-  width: 50vw;
+  width: 80%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;  
   align-items: center;
 }
 
+fieldset {
+  border: none; 
+  
+}
+
+legend {
+  border: none;
+  
+}
+
 .fieldset-datos {
-  width: 90%;
+  position: relative;
+  /*! Ajustes caca */
+  bottom: 20px;
+  right: 120px; 
+  width: 100%;
+  height: 100%;
   background-color: var(--main--colorBacGroundForm);
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 1rem;
   color: var(--main--colorForeground);
   font-weight: 600;
 }
 
+.botones{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5rem;
+}
+
 .fieldset-datos legend {
-  font-size: large;
+  font-size: 0.8em;
 }
 
 .formulario input {
@@ -66,12 +81,10 @@ input[type="number"] {
   font-weight: 600;
 }
 .persona {
-  position: relative;
-  right: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .persona i {

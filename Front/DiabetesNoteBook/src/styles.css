@@ -4,7 +4,7 @@
   --main--colorBackGroundElements: #effbff;
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
-  --main--colorBacGroundForm: #b1f98f;
+  --main--colorBacGroundForm: #80f9c0;
 }
 @font-face {
   font-family: "Atkinson-Hyperlegible-Regular";
@@ -23,9 +23,33 @@
   box-sizing: border-box;
 }
 body {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background-color: var(--main--colorBackGround);
-  color: var(--main--colorForeground);
   font-family: "Atikinson-Hyperlegible-Regular";
+  /* overflow: hidden; */
+
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.lectura-facil{
+  font-family: "Atkinson-Hyperlegible-Regular";
+  color: var(--main--colorForeground);
+  background-color: var(--main--colorBackGroundElements);
+  text-align: center;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 2em;
+  line-height: 2em;
+  letter-spacing: 1px;
 }

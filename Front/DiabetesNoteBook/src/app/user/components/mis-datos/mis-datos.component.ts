@@ -113,6 +113,7 @@ export class MisDatosComponent implements OnInit {
       this.error = 'Formulario invalido';
       return;
     }
+    console.log(JSON.stringify(this.usuario.medicacion))
     this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: (res) => {
         console.log('Usuario actualizado:', res);
@@ -124,7 +125,7 @@ export class MisDatosComponent implements OnInit {
           primerApellido: this.usuario.primerApellido,
           segundoApellido: this.usuario.segundoApellido,
         };
-
+        
         this.authService.updateUser(this.usuarioLogeado);
       },
       error: (err) => {

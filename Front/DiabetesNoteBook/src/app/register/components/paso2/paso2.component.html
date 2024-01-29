@@ -77,8 +77,10 @@
           <img src="/assets/alert_line.svg" alt="" />Debe rellenar todos los
           campos
         </span>
-        <button class="btn" [disabled]="formularioInvalido()">Siguiente</button>
-        <button class="btn" (click)="retroceder.emit()">Volver Atrás</button>
+        <div class="botones">
+          <button class="btn" [disabled]="formularioInvalido()">Siguiente</button>
+          <button class="btn" (click)="retroceder.emit()">Volver Atrás</button>
+        </div>
       </section>
     </form>
   </div>
