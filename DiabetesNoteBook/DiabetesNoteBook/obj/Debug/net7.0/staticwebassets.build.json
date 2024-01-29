@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Uj+kWK9smeEzhGjhQ5Z0YQY/3RJmdTXMf+7v/sPJAjo=",
+  "Hash": "eG44Hy3GRgnl956IIDfmWfIJ9GscgjHDpamyraloqUs=",
   "Source": "DiabetesNoteBook",
   "BasePath": "_content/DiabetesNoteBook",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "DiabetesNoteBook\\wwwroot",
       "Source": "DiabetesNoteBook",
-      "ContentRoot": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\",
       "BasePath": "_content/DiabetesNoteBook",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\logErrores.txt",
+      "Identity": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\logErrores.txt",
       "SourceId": "DiabetesNoteBook",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\wwwroot\\",
       "BasePath": "_content/DiabetesNoteBook",
       "RelativePath": "logErrores.txt",
       "AssetKind": "All",

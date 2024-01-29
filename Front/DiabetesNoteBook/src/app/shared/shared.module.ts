@@ -5,12 +5,21 @@ import { CalculadoraImcComponent } from './calculadora-imc/calculadora-imc.compo
 import { FormsModule } from '@angular/forms';
 import { GeneradorAvatarComponent } from './generador-avatar/generador-avatar.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
-
-
+import { SharedRoutingModule } from './shared-routing.module';
 
 @NgModule({
-  declarations: [ModalComponent, CalculadoraImcComponent,GeneradorAvatarComponent, RecoverPassComponent],
-  imports: [CommonModule , FormsModule],
-  exports: [ModalComponent,CalculadoraImcComponent,GeneradorAvatarComponent,RecoverPassComponent],
+  declarations: [
+    ModalComponent,
+    CalculadoraImcComponent,
+    GeneradorAvatarComponent,
+    RecoverPassComponent,
+  ],
+  imports: [CommonModule, FormsModule, SharedRoutingModule],
+  exports: [
+    ModalComponent,
+    CalculadoraImcComponent,
+    GeneradorAvatarComponent,
+    RecoverPassComponent,
+  ],
 })
 export class SharedModule {}

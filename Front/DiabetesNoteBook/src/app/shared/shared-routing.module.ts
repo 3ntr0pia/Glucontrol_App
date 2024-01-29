@@ -5,20 +5,18 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 
 const routes: Routes = [
- 
   {
-    path: 'recover-pass',
-    component: RecoverPassComponent
+    path: 'recover-pass/:token',
+    component: RecoverPassComponent,
   },
   {
     path: '**',
-    component: NotfoundComponent
-  }
-  
+    component: NotfoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SharedRoutingModule { }
+export class SharedRoutingModule {}
