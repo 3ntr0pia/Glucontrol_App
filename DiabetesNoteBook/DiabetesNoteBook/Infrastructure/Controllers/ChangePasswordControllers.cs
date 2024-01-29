@@ -11,7 +11,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ChangePasswordControllers : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
@@ -123,12 +123,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("changePasswordMailConEnlace/{enlace}")]
-        public async Task<ActionResult<Response>> Reset([FromRoute] string enlace, [FromBody] DTOUsuarioChangePasswordMailConEnlace cambiopass)
+        [HttpPost("changePasswordMailConEnlace")]
+        public async Task<ActionResult<Response>> Reset( [FromBody] DTOUsuarioChangePasswordMailConEnlace cambiopass)
         {
             try
             {
-                var userTokenExiste = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == cambiopass.Email);
+                var userTokenExiste = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.EnlaceCambioPass == cambiopass.Token);
 
                 var resultadoHash = _hashService.Hash(cambiopass.NewPass, userTokenExiste.Salt);
 
@@ -145,7 +145,8 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     await _changePassMail.ChangePassEnlaceMail(new DTOUsuarioChangePasswordMailConEnlace
                     {
                         NewPass = cambiopass.NewPass,
-                        Email = cambiopass.Email
+                        Token=cambiopass.Token
+                       
                     });
 
                     return Ok("Password cambiado con exito");
