@@ -26,7 +26,7 @@
 
 .error-form {
   color: var(--main--colorErrorOrDenegate);
-  font-style: italic;
+  font-weight: 600;
 }
 .error-form img {
   margin: 2px;

@@ -51,5 +51,5 @@ input[type="number"] {
 }
 .error-form {
   color: var(--main--colorErrorOrDenegate);
-  font-style: italic;
+  font-weight: 600;
 }

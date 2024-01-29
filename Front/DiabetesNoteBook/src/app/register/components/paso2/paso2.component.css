@@ -18,7 +18,7 @@ input[type="number"] {
 
 .formulario {
   position: relative;
-  top: -3rem;
+  top: 11rem;
   width: 50vw;
   height: 100vh;
   display: flex;
@@ -63,7 +63,7 @@ input[type="number"] {
 }
 .error-form {
   color: var(--main--colorErrorOrDenegate);
-  font-style: italic;
+  font-weight: 600;
 }
 .persona {
   position: relative;

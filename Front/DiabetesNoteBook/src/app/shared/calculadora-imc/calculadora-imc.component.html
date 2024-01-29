@@ -1,5 +1,8 @@
 <div class="persona">
-  <div class="formulario">
+
+<!-- No hay sumario aquí-->
+  
+  <div class="formulario" >
     <div class="monigote">
       <img
         [src]="obtenerIMC()"
@@ -29,10 +32,11 @@
           (ngModelChange)="enviarAltura()"
           name="altura"
           #altura="ngModel"
+          title="Introduce tu altura en centímetros" 
           required
         />
         <span class="error-form" *ngIf="alturaRecibida == 0">
-          <img src="/assets/alert_line.svg" alt="" /> La altura no puede ser 0
+          <img src="/assets/alert_line.svg" alt="" /> La altura no puede ser igual a 0 y tiene que estar en centímetros
         </span>
       </div>
       <div>
@@ -42,6 +46,7 @@
           [(ngModel)]="pesoRecibido"
           (ngModelChange)="enviarPeso()"
           name="peso"
+          title="Introduce tu peso"
           required
           #peso="ngModel"
         />
