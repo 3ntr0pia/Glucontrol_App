@@ -17,6 +17,7 @@ export class RecordarPassService {
     const body = { email: email };
     return this.http.post(`${this.API_URL}/ChangePasswordControllers/changePasswordMail`,body);
   }
+  
 
 
 }

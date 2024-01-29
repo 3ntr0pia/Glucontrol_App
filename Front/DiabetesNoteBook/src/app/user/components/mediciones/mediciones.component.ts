@@ -7,6 +7,7 @@ import {
 } from 'src/app/interfaces/mediciones.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { MedicionesService } from 'src/app/services/mediciones.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-mediciones',
@@ -19,19 +20,19 @@ export class MedicionesComponent {
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
-
+  usuarioLogeadoPersonaId: number = 0;
   nuevaMedicion: IMedicionesAzucar = {
-    Fecha: new Date(),
-    Regimen: Regimen.Desayuno,
-    PreMedicion: 0,
-    GlucemiaCapilar: 0,
-    BolusComida: 0,
-    BolusCorrector: 0,
-    PreDeporte: 0,
-    DuranteDeporte: 0,
-    PostDeporte: 0,
-    Notas: '',
-    Id_Persona: 45,
+    fecha: new Date(),
+    regimen: Regimen.Desayuno,
+    preMedicion: 0,
+    glucemiaCapilar: 0,
+    bolusComida: 0,
+    bolusCorrector: 0,
+    preDeporte: 0,
+    duranteDeporte: 0,
+    postDeporte: 0,
+    notas: '',
+    id_Persona: 0,
   };
 
   chartOption: EChartsOption = {};
@@ -42,15 +43,30 @@ export class MedicionesComponent {
 
   constructor(
     private medicionesService: MedicionesService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private usuarioService: UsuarioService
   ) {
     //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
     this.chartOption = {};
+    
   }
 
   ngOnInit() {
-    this.prepararDatosGrafico();
     this.getMediciones(this.authService.userValue!.id);
+    this.getPersonaID();
+    console.log(this.usuarioLogeadoPersonaId);
+  }
+
+  getPersonaID() {
+    this.usuarioService
+      .getUsuarioYPersonaInfo(this.authService.userValue!.id)
+      .subscribe({
+        next: (res) => {
+          this.usuarioLogeadoPersonaId = res[1].id as number;
+          this.nuevaMedicion.id_Persona = this.usuarioLogeadoPersonaId;
+        },
+        error: (error) => console.error(error),
+      });
   }
 
   calcularTotalDePaginas() {
@@ -69,21 +85,21 @@ export class MedicionesComponent {
   }
 
   abrirNotasModal(medicion: IMedicionesAzucar) {
-    if (medicion.Notas == '') {
+    if (medicion.notas == '') {
       console.log('No hay notas para mostrar');
     } else {
       this.mostrarModal = true;
-      this.mensajeModal = medicion.Notas;
+      this.mensajeModal = medicion.notas;
     }
   }
 
   prepararDatosGrafico() {
     const fechas = this.mediciones.map((m) => {
-      const fecha = new Date(m.Fecha);
+      const fecha = new Date(m.fecha);
       return `${fecha.getDate()}/${fecha.getMonth() + 1}`;
     });
-    const preMediciones = this.mediciones.map((m) => m.PreMedicion);
-    const glucemiasCapilares = this.mediciones.map((m) => m.GlucemiaCapilar);
+    const preMediciones = this.mediciones.map((m) => m.preMedicion);
+    const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
 
     this.chartOption = {
       title: {
@@ -164,6 +180,10 @@ export class MedicionesComponent {
     this.medicionesService.postMediciones(this.nuevaMedicion).subscribe({
       next: (res) => {
         console.log('Datos recibidos del servidor');
+        this.getMediciones(this.authService.userValue!.id);
+        this.prepararDatosGrafico();
+        this.calcularTotalDePaginas();
+        this.cambiarPagina(this.paginaActual);
       },
       error: (error) => {
         console.error(error);

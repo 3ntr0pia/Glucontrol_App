@@ -1,17 +1,8 @@
 <div class="wrapper">
   <div class="avatar">
     <div class="bocadillo">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        viewBox="0.00 0.00 1759.00 1190.00"
-      >
-        <path
-          stroke="#808080"
-          stroke-width="2.00"
-          fill="none"
-          stroke-linecap="butt"
-          vector-effect="non-scaling-stroke"
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1759.00 1190.00">
+        <path stroke="#808080" stroke-width="2.00" fill="none" stroke-linecap="butt" vector-effect="non-scaling-stroke"
           d="
                   M 1397.61 181.93
                   C 1372.19 168.89 1345.29 158.93 1316.90 152.05
@@ -60,11 +51,8 @@
                   C 1535.80 491.28 1530.49 446.45 1524.18 401.76
                   C 1519.70 370.03 1513.24 338.08 1503.28 307.82
                   C 1497.92 291.54 1491.52 276.76 1484.07 263.49
-                  C 1464.33 228.33 1433.58 200.38 1397.61 181.93"
-        />
-        <path
-          fill="#000000"
-          d="
+                  C 1464.33 228.33 1433.58 200.38 1397.61 181.93" />
+        <path fill="#000000" d="
                   M 332.58 348.13
                   C 332.72 348.03 332.81 347.88 332.83 347.71
                   C 334.30 337.14 336.34 326.65 338.95 316.25
@@ -204,11 +192,8 @@
                   C 1519.70 370.03 1513.24 338.08 1503.28 307.82
                   C 1497.92 291.54 1491.52 276.76 1484.07 263.49
                   C 1464.33 228.33 1433.58 200.38 1397.61 181.93
-                  Z"
-        />
-        <path
-          fill="#ffffff"
-          d="
+                  Z" />
+        <path fill="#ffffff" d="
                   M 1397.61 181.93
                   C 1433.58 200.38 1464.33 228.33 1484.07 263.49
                   C 1491.52 276.76 1497.92 291.54 1503.28 307.82
@@ -257,11 +242,8 @@
                   C 1210.07 134.91 1239.94 138.36 1270.96 143.13
                   C 1287.65 145.70 1302.97 148.67 1316.90 152.05
                   C 1345.29 158.93 1372.19 168.89 1397.61 181.93
-                  Z"
-        />
-        <path
-          fill="#000000"
-          d="
+                  Z" />
+        <path fill="#000000" d="
                   M 770.75 1146.06
                   C 770.75 1146.12 770.70 1146.17 770.64 1146.17
                   L 770.17 1146.17
@@ -271,15 +253,11 @@
                   L 770.64 1145.73
                   C 770.70 1145.73 770.75 1145.78 770.75 1145.84
                   L 770.75 1146.06
-                  Z"
-        />
+                  Z" />
       </svg>
       <div class="contenido-bocadillo">
         <h1>¿No te gusta tu avatar? Genera uno nuevo</h1>
-        <app-generador-avatar
-          class="generarAvatar"
-          (avatarGenerado)="avatarHandler($event)"
-        ></app-generador-avatar>
+        <app-generador-avatar class="generarAvatar" (avatarGenerado)="avatarHandler($event)"></app-generador-avatar>
       </div>
     </div>
   </div>
@@ -290,75 +268,39 @@
       <form (ngSubmit)="actualizarUsuario()">
         <div>
           <label for="nombre">Nombre</label>
-          <input
-            id="nombre"
-            type="nombre"
-            [(ngModel)]="usuario.nombre"
-            name="nombre"
-            #nombre="ngModel"
-            required
-            [placeholder]="usuario.nombre"
-          />
+          <input id="nombre" type="nombre" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required
+            [placeholder]="usuario.nombre" />
         </div>
         <div>
           <label for="userName">Nombre de usuario</label>
-          <input
-            id="userName"
-            type="userName"
-            [(ngModel)]="usuario.userName"
-            name="userName"
-            #userName="ngModel"
-            required
-            [placeholder]="usuario.userName"
-          />
-          <span
-            class="error-form"
-            *ngIf="!validarUsuario(usuario.userName) && userName.touched"
-          >
+          <input id="userName" type="userName" [(ngModel)]="usuario.userName" name="userName" #userName="ngModel"
+            required [placeholder]="usuario.userName" />
+          <span class="error-form" *ngIf="!validarUsuario(usuario.userName) && userName.touched">
             El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo
             letras, números, guiones y guiones bajos.
           </span>
         </div>
         <div>
           <label for="apellido">Primer Apellido</label>
-          <input
-            id="apellido"
-            type="apellido"
-            [(ngModel)]="usuario.primerApellido"
-            #apellido="ngModel"
-            name="apellido"
-            required
-            [placeholder]="
+          <input id="apellido" type="apellido" [(ngModel)]="usuario.primerApellido" #apellido="ngModel" name="apellido"
+            required [placeholder]="
               !apellido.valid && apellido.touched
                 ? 'Primer apellido obligatorio'
                 : 'Inserte su primer apellido...'
-            "
-          />
+            " />
         </div>
         <div>
           <label for="apellido2">Segundo Apellido</label>
-          <input
-            id="apellido2"
-            type="apellido2"
-            [(ngModel)]="usuario.segundoApellido"
-            name="apellido2"
-            #apellido2="ngModel"
-            required
-            [placeholder]="
+          <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" name="apellido2"
+            #apellido2="ngModel" required [placeholder]="
               !apellido2.valid && apellido2.touched
                 ? 'Segundo apellido obligatorio'
                 : 'Inserte su segundo apellido...'
-            "
-          />
+            " />
         </div>
         <div>
           <label for="edad">Edad</label>
-          <input
-            type="number"
-            [(ngModel)]="usuario.edad"
-            name="edad"
-            required
-          />
+          <input type="number" [(ngModel)]="usuario.edad" name="edad" required />
         </div>
 
         <div>
@@ -387,27 +329,35 @@
         </div>
         <div>
           <label for="insulina">¿Toma insulina?</label>
-          <input
-            type="checkbox"
-            [(ngModel)]="usuario.insulina"
-            name="insulina"
-            required
-          />
+          <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required />
         </div>
         <button>Guardar Cambios</button>
         <button (click)="reestablecerFormulario()">Reestablecer</button>
       </form>
     </div>
     <p>{{ error }}</p>
-  </div>
+    <button (click)="abrirModalPass = true">Cambiar Contraseña</button>
 
+  </div>
   <div class="calculadora">
     <h1>Calcula tu IMC</h1>
-    <app-calculadora-imc
-      (emitirAltura)="alturaHandler($event)"
-      (emitirPeso)="pesoHandler($event)"
-      [alturaRecibida]="usuario.altura"
-      [pesoRecibido]="usuario.peso"
-    ></app-calculadora-imc>
+    <app-calculadora-imc (emitirAltura)="alturaHandler($event)" (emitirPeso)="pesoHandler($event)"
+      [alturaRecibida]="usuario.altura" [pesoRecibido]="usuario.peso"></app-calculadora-imc>
+  </div>
+</div>
+
+<div class="fondoModal" *ngIf="abrirModalPass">
+  <div class="modalPass">
+    <h2>Cambiar contraseña</h2>
+    <form (ngSubmit)="cambiarPass()">
+      <label for="pass">Escribe tu nueva contraseña</label>
+      <input type="password" [(ngModel)]='pass' name="pass" id="pass">
+      <label for="pass">Repitela de nuevo</label>
+      <input type="password" [(ngModel)]='repetirPass' name="repetirPass" id="repetirPass">
+      <button type='submit' >Guardar Nueva Contraseña</button>
+      {{errorPass}}
+      <button (click)="abrirModalPass = false">Cerrar</button>
+      
+    </form>
   </div>
 </div>

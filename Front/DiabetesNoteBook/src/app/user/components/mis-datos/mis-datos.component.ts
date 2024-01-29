@@ -37,10 +37,15 @@ export class MisDatosComponent implements OnInit {
   };
 
   error: string = '';
-
+  errorPass : string = '';
   nuevoAvatar: string = '';
 
   estadoInicialUsuario : IUsuarioUpdate = { ...this.usuario };
+
+  abrirModalPass :boolean = false;
+
+  pass : string = '';
+  repetirPass : string = '';
 
   constructor(
     private usuarioService: UsuarioService,
@@ -54,6 +59,7 @@ export class MisDatosComponent implements OnInit {
         this.getUsuarioInfo(this.usuarioLogeado.id);
       }
     });
+    console.log(this.usuarioLogeado);
   }
 
   avatarHandler(avatar: string): void {
@@ -88,7 +94,6 @@ export class MisDatosComponent implements OnInit {
           insulina: res[1].insulina,
         };
         //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
-        this.usuario.medicacion = ['Lorazepam', 'Paracetamol'];
       },
       error: (err) => {
         console.error(err);
@@ -157,5 +162,33 @@ export class MisDatosComponent implements OnInit {
     reestablecerFormulario(): void {
       this.usuario = { ...this.estadoInicialUsuario };
     }
+
+    cambiarPass(): void {
+
+      if (!this.pass || !this.repetirPass) {
+        this.errorPass = 'Debes completar ambos campos de contraseña.';
+        return;
+      }
     
+      if(this.pass !== this.repetirPass){
+        this.errorPass = 'Las contraseñas no coinciden';
+        return;
+      }
+      if(!this.validarPassword(this.pass)){
+        this.errorPass = 'La contraseña no es válida';
+        return;
+      }
+      this.usuarioService.cambiarPass({id : this.usuarioLogeado!.id , NewPass: this.pass}).subscribe({
+        next: (res) => {
+          console.log('Contraseña cambiada correctamente');
+          this.abrirModalPass = false;
+          this.pass = '';
+          this.repetirPass = '';
+        },
+        error: (err) => {
+          this.errorPass = err;
+        console.error('Error al cambiar la contraseña:', err);
+        },
+      })
+    }
   }

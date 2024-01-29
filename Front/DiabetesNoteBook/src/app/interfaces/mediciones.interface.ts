@@ -1,15 +1,16 @@
 export interface IMedicionesAzucar {
-    Fecha: Date;
-    Regimen: Regimen;
-    PreMedicion: number;
-    GlucemiaCapilar: number;
-    BolusComida: number;
-    BolusCorrector: number;
-    PreDeporte: number;
-    DuranteDeporte: number;
-    PostDeporte: number;
-    Notas: string;
-    Id_Persona: number;
+    fecha : Date;
+    regimen : Regimen;
+    preMedicion : number;
+    glucemiaCapilar : number;
+    bolusComida : number;
+    bolusCorrector : number;
+    preDeporte : number;
+    duranteDeporte : number;
+    postDeporte : number;
+    notas : string;
+    id_Persona : number;
+
 }
 
 export enum Regimen {

@@ -8,17 +8,17 @@
       <ng-container *ngIf="momentoGlucemiaAntes">
         <div>
           <label for="preMedicion">Pre Medicion</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.PreMedicion" name="preMedicion" #preMedicion="ngModel"
+          <input type="number" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion" #preMedicion="ngModel"
             required />
         </div>
       </ng-container>
       <div>
         <label for="fecha">Fecha</label>
-        <input type="datetime-local" [(ngModel)]="nuevaMedicion.Fecha" name="fecha" #fecha="ngModel" required />
+        <input type="datetime-local" [(ngModel)]="nuevaMedicion.fecha" name="fecha" #fecha="ngModel" required />
       </div>
       <div>
         <label for="regimen">Regimen</label>
-        <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.Regimen" name="regimen"
+        <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen" name="regimen"
           #regimen="ngModel" required>
           <option selected disabled>Seleccione un regimen</option>
           <option value="desayuno">Desayuno</option>
@@ -29,40 +29,40 @@
       </div>
       <div>
         <label for="glucemiaCapilar">Glucemia Capilar</label>
-        <input type="number" [(ngModel)]="nuevaMedicion.GlucemiaCapilar" name="glucemiaCapilar"
+        <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
           #glucemiaCapilar="ngModel" required />
       </div>
       <div>
         <label for="bolusComida">Bolus Comida</label>
-        <input type="number" [(ngModel)]="nuevaMedicion.BolusComida" name="bolusComida" #bolusComida="ngModel"
+        <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
           required />
       </div>
       <div>
         <label for="bolusCorrector">Bolus Corrector</label>
-        <input type="number" [(ngModel)]="nuevaMedicion.BolusCorrector" name="bolusCorrector" #bolusCorrector="ngModel"
+        <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector" #bolusCorrector="ngModel"
           required />
       </div>
       <ng-container *ngIf="deporteRealizado == true">
         <div>
           <label for="preDeporte">Pre Deporte</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.PreDeporte" name="preDeporte" #preDeporte="ngModel"
+          <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
             required />
         </div>
         <div>
           <label for="duranteDeporte">Durante Deporte</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.DuranteDeporte" name="duranteDeporte"
+          <input type="number" [(ngModel)]="nuevaMedicion.duranteDeporte" name="duranteDeporte"
             #duranteDeporte="ngModel" required />
         </div>
         <div>
           <label for="postDeporte">Post Deporte</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.PostDeporte" name="postDeporte" #postDeporte="ngModel"
+          <input type="number" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte" #postDeporte="ngModel"
             required />
         </div>
       </ng-container>
 
       <div>
         <label for="notas">Notas</label>
-        <input type="text" [(ngModel)]="nuevaMedicion.Notas" name="notas" #notas="ngModel" required />
+        <input type="text" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
       </div>
       <button type="submit">Agregar</button>
     </form>
@@ -116,7 +116,6 @@
             </td>
             <td class="botones">
               <div>
-                <button>Editar</button>
                 <button>Eliminar</button>
               </div>
             </td>

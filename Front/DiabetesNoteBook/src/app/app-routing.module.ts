@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 const routes: Routes = [
   
@@ -20,7 +21,7 @@ const routes: Routes = [
     path: 'shared',
     loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
   },
-  { path: '**', redirectTo: 'shared/notfound' },
+  { path: '**', component: NotfoundComponent },
   
 ];
 

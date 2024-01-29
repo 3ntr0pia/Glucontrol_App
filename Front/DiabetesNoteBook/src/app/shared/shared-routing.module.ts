@@ -5,14 +5,16 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 
 const routes: Routes = [
-  {
-    path: '**',
-    component: NotfoundComponent
-  },
+ 
   {
     path: 'recover-pass',
     component: RecoverPassComponent
+  },
+  {
+    path: '**',
+    component: NotfoundComponent
   }
+  
 ];
 
 @NgModule({
