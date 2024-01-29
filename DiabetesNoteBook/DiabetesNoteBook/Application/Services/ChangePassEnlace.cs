@@ -20,7 +20,7 @@ namespace DiabetesNoteBook.Application.Services
         }
         public async Task ChangePassEnlaceMail(DTOUsuarioChangePasswordMailConEnlace userData)
         {
-            var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == userData.Email);
+            var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.EnlaceCambioPass == userData.Token);
 
             var resultadoHash = _hashService.Hash(userData.NewPass);
             usuarioDB.Password = resultadoHash.Hash;
