@@ -59,7 +59,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 Operacion = "Persona agregada",
                 UserId = existePersona.Id
             });
-            return Ok("Medicion guardada con exito");
+            return Ok("Medicion guardada con exito ");
         }
         [HttpDelete("eliminarmedicion")]
         public async Task<ActionResult> DeleteMedicion(DTOEliminarMedicion Id)
