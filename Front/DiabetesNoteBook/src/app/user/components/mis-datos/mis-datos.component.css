@@ -1,115 +1,211 @@
-.wrapper{
-    width: 80vw;
-    height: 100vh;
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    grid-template-rows: repeat(2, 1fr); 
-    gap: 0px 0px; 
-    grid-template-areas:
+.wrapper {
+  position: relative;
+  top: 3rem;
+  width: 80vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-template-areas:
     "avatar formulario"
-    "calculadora formulario"; 
+    "calculadora formulario";
 }
-
-.avatar{
-    grid-area: avatar;
-    position: relative; 
+.avatar {
+  grid-area: avatar;
+  position: relative;
+  top: 2rem;
 }
-
-
-.datos
-{
-    grid-area: formulario;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap:1em;
-}
-
 
 .bocadillo {
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-.generarAvatar{
-    position: relative; 
-    width: 40%; 
-    height: 0%; 
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}	
-
-.bocadillo svg {
-    position: relative;
-    width: 90%; 
-    height: auto; 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contenido-bocadillo {
-    position: absolute; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    width: 100%; 
-    text-align: center; 
+  position: absolute;
+  top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-90deg);
+  width: 100%;
+  text-align: center;
 }
-.contenido-bocadillo h1{
-    font-size: 100%;
-}
-
-.contenido-bocadillo button{
-    margin:1em;
+.contenido-bocadillo h1 {
+  font-size: 100%;
 }
 
+.contenido-bocadillo button {
+  margin: 1em;
+}
 
-.calculadora{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
+.triangle {
+  position: relative;
+  left: 8rem;
+  background: var(--main--colorBackGroundElements);
+  width: 20vw;
+  height: 50vh;
+  border-radius: 20%;
+  transform: rotate(90deg);
 }
-.calculadora h1{
-    text-align: center;
+
+.triangle::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 70px 50px 0 50px;
+  border-color: var(--main--colorBackGroundElements) transparent transparent
+    transparent;
+  left: 50%;
+  transform: translateX(-75%) translateY(100%);
+  z-index: -1;
 }
-.formulario{
-    grid-area: formulario;
-   
+.generarAvatar {
+  position: relative;
+  width: 50%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.datos {
+  grid-area: formulario;
+  width: 100%;
+  height: 85%;
+  padding: 2rem;
+  grid-area: formulario;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  background-color: var(--main--colorBacGroundForm);
+}
+.datos h2 {
+  font-size: 28px;
+  text-align: center;
+}
+.datos label {
+  margin-top: 1rem;
+}
+
+.datos input {
+  width: 50%;
+}
+.datos select {
+  width: 50%;
+  height: 25px;
+
+  border: none;
+  border-radius: 7px;
+  text-align: center;
+}
+.check-box {
+  margin-top: 1rem;
+}
+.check-box input {
+  height: 1rem;
+  position: relative;
+  top: 3px;
+  right: 5rem;
+}
+
+.btn {
+  width: 5rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+.calculadora {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.calculadora h1 {
+  text-align: center;
 }
 
 .fondoModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modalPass form{
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* Otros estilos que desees */
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalPass {
+  background-color: var(--main--colorBackGround);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modalPass form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalPass input {
+  width: 80%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fondoModal button {
+  width: 7rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: smaller;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+#seve {
+  width: 8rem;
+}
+
+#clean:hover {
+  background-color: #ed982a;
+}
+#change-pass {
+  width: 9rem;
+  margin-left: 0.5rem;
+}

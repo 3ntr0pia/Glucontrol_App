@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiabetesNoteBook.Domain.Models;
+using System;
 using System.Collections.Generic;
 
 namespace DiabetesNoteBook.Models;
