@@ -32,7 +32,7 @@ export class MisDatosComponent implements OnInit {
     altura: 0,
     actividad: '',
     tipoDiabetes: '',
-    medicacion: [],
+    medicacion: '',
     insulina: false,
   };
 

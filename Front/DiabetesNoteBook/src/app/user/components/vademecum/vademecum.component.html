@@ -3,6 +3,13 @@
     <div class="header">
         <h1>Tus medicamentos</h1>
         <p>Selecciona uno de tus medicamentos registrados para obtener más información</p>
+
+        <form class="nuevoMedicamento" (ngSubmit)="addMedicamento()" >
+           <input type="text" [(ngModel)]='nuevoMedicamento' name='nuevoMedicamento'>
+            <button type="submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Añadir medicamento
+            </button>
+        </form>
     </div>
 
     <div class="form">
