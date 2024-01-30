@@ -3,7 +3,7 @@
   <img
     *ngIf="avatar; else defaultImage"
     class="avatar-img"
-    [lazyLoad]="avatar"
+    [src]="avatar"
     alt="Avatar"
   />
   <ng-template #defaultImage>

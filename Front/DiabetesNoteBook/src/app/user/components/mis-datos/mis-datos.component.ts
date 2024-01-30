@@ -67,7 +67,9 @@ export class MisDatosComponent implements OnInit {
   }
 
   alturaHandler(altura: number): void {
+    
     this.nuevaAltura = altura;
+    console.log(altura);
   }
   pesoHandler(peso: number): void {
     this.nuevoPeso = peso;
@@ -146,8 +148,11 @@ export class MisDatosComponent implements OnInit {
       if (this.nuevoAvatar !== '') {
         this.usuario.avatar = this.nuevoAvatar;
       }
-      if (this.nuevaAltura !== 0 && this.nuevoPeso !== 0) {
+      if (this.nuevaAltura !== 0) {
         this.usuario.altura = this.nuevaAltura;
+      }
+    
+      if (this.nuevoPeso !== 0) {
         this.usuario.peso = this.nuevoPeso;
       }
       if (!this.validarFormulario(this.usuario)) {
