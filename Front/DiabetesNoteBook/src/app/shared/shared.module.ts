@@ -7,13 +7,14 @@ import { GeneradorAvatarComponent } from './generador-avatar/generador-avatar.co
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { LoginRoutingModule } from '../login/login-routing.module';
+import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
 
 @NgModule({
   declarations: [
     ModalComponent,
     CalculadoraImcComponent,
     GeneradorAvatarComponent,
-    RecoverPassComponent,
+    RecoverPassComponent, LazyLoadImageDirective
   ],
   imports: [CommonModule, FormsModule, SharedRoutingModule, LoginRoutingModule],
   exports: [
@@ -21,6 +22,7 @@ import { LoginRoutingModule } from '../login/login-routing.module';
     CalculadoraImcComponent,
     GeneradorAvatarComponent,
     RecoverPassComponent,
+    LazyLoadImageDirective
   ],
 })
 export class SharedModule {}

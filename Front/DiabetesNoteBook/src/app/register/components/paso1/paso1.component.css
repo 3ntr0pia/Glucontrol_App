@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 @media (width < 900px) {

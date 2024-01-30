@@ -24,14 +24,14 @@
 
         <div>
           <label for="nombre">Nombre
-            <span class="error-form" *ngIf="!nombre.valid && nombre.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!nombre.valid && nombre.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />Nombre obligatorio.</span></label>
           <input id="nombre" type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel"
             required />
         </div>
         <div>
           <label for="userName">Nombre de usuario
-            <span class="error-form" *ngIf="!userName.valid && userName.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!userName.valid && userName.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />Elija su nombre de usuario.</span></label>
           <input id="userName" type="userName" [(ngModel)]="datosRegistro.username" name="userName" #userName="ngModel"
             aria-label="El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo
@@ -43,14 +43,14 @@
         </div>
         <div>
           <label for="apellido">Primer Apellido
-            <span class="error-form" *ngIf="!apellido.valid && apellido.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!apellido.valid && apellido.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />Primer apellido obligatorio.</span></label>
           <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido="ngModel" name="apellido"
             required />
         </div>
         <div>
           <label for="apellido2">Segundo Apellido
-            <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />Segundo apellido obligatorio.</span></label>
           <!--el segundo apellido no debería ser obligatorio-->
           <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
@@ -58,7 +58,7 @@
         </div>
         <div>
           <label for="email">E-mail
-            <span class="error-form" *ngIf="!email.valid && email.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!email.valid && email.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />E-mail obligatorio.</span></label>
           <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email="ngModel"
             placeholder="nombre@dominio.com" required />
@@ -68,7 +68,7 @@
         </div>
         <div>
           <label for="password">Contraseña
-            <span class="error-form" *ngIf="!password.valid && password.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!password.valid && password.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />
               Contraseña obligatoria.</span></label>
           <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password="ngModel"
@@ -81,7 +81,7 @@
         </span>
         <div>
           <label for="password2">Repita su contraseña.
-            <span class="error-form" *ngIf="!password2.valid && password2.touched"><img src="/assets/alert_line.svg"
+            <span class="error-form" *ngIf="!password2.valid && password2.touched"><img lazyload="/assets/alert_line.svg"
                 alt="error" />Repita su contraseña.</span></label>
           <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
             #password2="ngModel" min="8" placeholder="Ejemplo: FullStack@05/02/2024" aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una

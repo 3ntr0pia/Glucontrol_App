@@ -2,7 +2,7 @@
 
   <div class="monigote">
     <img
-      [src]="obtenerIMC()"
+      [lazyLoad]="obtenerIMC()"
       class="monigote"
       alt="representacion del peso"
       [ngClass]="{
@@ -34,7 +34,7 @@
           required
         />
         <span class="error-form" *ngIf="alturaRecibida == 0">
-          <img src="/assets/alert_line.svg" alt="" /> La altura no puede ser igual a 0 y tiene que estar en centímetros
+          <img lazyload="/assets/alert_line.svg" alt="" /> La altura no puede ser igual a 0 y tiene que estar en centímetros
         </span>
       </div>
       <div>
@@ -49,7 +49,7 @@
           #peso="ngModel"
         />
         <span class="error-form" *ngIf="pesoRecibido == 0">
-          <img src="/assets/alert_line.svg" alt="" />El peso no puede ser 0
+          <img lazyload="/assets/alert_line.svg" alt="" />El peso no puede ser 0
         </span>
       </div>
     </section>

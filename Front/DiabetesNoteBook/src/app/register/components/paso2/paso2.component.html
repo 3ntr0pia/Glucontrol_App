@@ -27,7 +27,7 @@
               required
             />
             <span class="error'form" *ngIf="datosRegistro.mediciones.edad < 0">
-              <img src="/assets/alert_line.svg" alt="error" />Debe poner una
+              <img lazyload="/assets/alert_line.svg" alt="error" />Debe poner una
               edad válida
             </span>
           </fieldset>
@@ -74,7 +74,7 @@
         </div>
 
         <span class="error'form" *ngIf="datosRegistro.mediciones.edad">
-          <img src="/assets/alert_line.svg" alt="" />Debe rellenar todos los
+          <img lazyload="/assets/alert_line.svg" alt="" />Debe rellenar todos los
           campos
         </span>
         <div class="botones">
