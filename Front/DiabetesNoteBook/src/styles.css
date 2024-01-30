@@ -5,12 +5,15 @@
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
   --main--colorBacGroundForm: #80f9c0;
+  accent-color: var(--main--colorHoverBtnAccept);
 }
 @font-face {
   font-family: "Atkinson-Hyperlegible-Regular";
-  src: url("/assets/fonts/Atkinson-Hyperlegible-Regular-102a.woff2") format("woff2"),
-       url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
-       url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.ttf") format("truetype");
+  src: url("/assets/fonts/Atkinson-Hyperlegible-Regular-102a.woff2")
+      format("woff2"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.ttf")
+      format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -20,14 +23,24 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Atkinson-Hyperlegible-Regular";
-
 }
 body {
   /* width: 100vw;
   height: 100vh; */
   background-color: var(--main--colorBackGround);
   /* overflow: hidden; */
+}
 
+input {
+  width: 30%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 1em;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
 .visually-hidden {
@@ -41,7 +54,7 @@ body {
   border: 0;
 }
 
-.lectura-facil{
+.lectura-facil {
   font-family: "Atkinson-Hyperlegible-Regular";
   color: var(--main--colorForeground);
   background-color: var(--main--colorBackGroundElements);
@@ -51,4 +64,19 @@ body {
   margin: 2em;
   line-height: 2em;
   letter-spacing: 1px;
+}
+
+.error-form {
+  color: var(--main--colorErrorOrDenegate);
+  font-weight: 600;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

@@ -1,19 +1,18 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  
 }
 
-.lateral{
-  display : flex;
+.lateral {
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 
-img{
+img {
   width: 70%;
   height: 100%;
 }
@@ -24,9 +23,8 @@ img{
   align-items: center;
   width: 100%;
   height: 100%;
-
 }
-.lectura-facil{
+.lectura-facil {
   width: 60%;
 }
 
@@ -38,43 +36,27 @@ img{
   border-radius: 1rem;
   color: var(--main--colorForeground);
   font-weight: 600;
-  
+
   margin-right: 2em;
 }
 
 fieldset {
-  border: none; 
+  border: none;
 }
 
 legend {
   border: none;
-  
 }
 
 .fieldset-datos legend {
   font-size: 1.5em;
 }
 
-input {
-  width: 30%;
-  height: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--main--colorBackGroundElements);
-  padding: 1em;
-  margin-left: 5px;
-  margin-bottom: 10px;
-  outline: none;
-  transition: all 0.3s ease;
-  text-align: center;
-}
 .formulario input[type="checkbox"] {
   width: 14px;
   height: 14px;
 }
-.formulario input[type="checkbox"]:checked {
-  background-color: red;
-  color: #b1f98f;
-}
+
 .formulario select {
   width: 30%;
   height: 5%;
@@ -97,7 +79,7 @@ input {
 .btn {
   position: relative;
   width: 5rem;
-  top: 1rem;
+  top: rem;
   padding: 0.2rem;
   border: none;
   border-radius: 5px;
