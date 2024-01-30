@@ -93,7 +93,7 @@ export class MisDatosComponent implements OnInit {
           insulina: res[1].insulina,
         };
 
-        console.warn('Usuario:', this.usuario);
+        console.log('Usuario:', this.usuario);
         
         //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
       },

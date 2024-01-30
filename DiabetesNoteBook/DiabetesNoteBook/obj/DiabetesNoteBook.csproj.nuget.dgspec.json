@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {}
+    "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {
+    "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+        "projectUniqueName": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
         "projectName": "DiabetesNoteBook",
-        "projectPath": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
-        "packagesPath": "C:\\Users\\Javier\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\obj\\",
+        "projectPath": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+        "packagesPath": "C:\\Users\\3ntr0pia\\.nuget\\packages\\",
+        "outputPath": "D:\\estudios\\Arelance\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Javier\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\3ntr0pia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

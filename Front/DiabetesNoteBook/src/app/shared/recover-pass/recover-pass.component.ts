@@ -19,6 +19,12 @@ export class RecoverPassComponent {
       console.log(this.token);
     });
   }
+
+  test () {
+    this.router.navigate(['/login']);
+  }
+
+
   token: string = '';
   newPass: string = '';
   error: string = '';
@@ -28,6 +34,7 @@ export class RecoverPassComponent {
       newPass: this.newPass,
     };
     console.log(datoLogin);
+    
     this.recover.recordarPass(datoLogin).subscribe({
       next: (res) => {
         this.router.navigate(['/login']);
@@ -35,7 +42,7 @@ export class RecoverPassComponent {
       },
       error: (err) => {
         this.error = err.error;
-        console.log(this.error);
+        console.error(this.error);
       },
     });
   }
