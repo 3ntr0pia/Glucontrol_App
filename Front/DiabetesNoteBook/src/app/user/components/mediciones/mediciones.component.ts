@@ -23,6 +23,7 @@ export class MedicionesComponent {
   mensajeModal: string = '';
   usuarioLogeadoPersonaId: number = 0;
   nuevaMedicion: IMedicionesAzucar = {
+    id: 0,
     fecha: new Date(),
     regimen: Regimen.Desayuno,
     preMedicion: 0,
@@ -54,8 +55,8 @@ export class MedicionesComponent {
   ngOnInit() {
     this.getMediciones(this.authService.userValue!.id);
     this.getPersonaID();
-    console.log(this.usuarioLogeadoPersonaId);
     this.nuevaMedicion.fecha = new Date();
+    
   }
 
 
@@ -192,7 +193,7 @@ export class MedicionesComponent {
     this.medicionesService.getMediciones(userId).subscribe({
       next: (mediciones) => {
         console.log('Datos recibidos del servidor:', mediciones);
-        this.mediciones = mediciones;
+        this.mediciones = mediciones.reverse();
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
@@ -205,6 +206,21 @@ export class MedicionesComponent {
     this.medicionesService.postMediciones(this.nuevaMedicion).subscribe({
       next: (res) => {
         console.log('Datos recibidos del servidor');
+        this.getMediciones(this.authService.userValue!.id);
+        this.prepararDatosGrafico();
+        this.calcularTotalDePaginas();
+        this.cambiarPagina(this.paginaActual);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
+  deleteMedicion(idMedicion: number) {
+    this.medicionesService.deleteMediciones(idMedicion).subscribe({
+      next: (res) => {
+        console.log(res)
         this.getMediciones(this.authService.userValue!.id);
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();

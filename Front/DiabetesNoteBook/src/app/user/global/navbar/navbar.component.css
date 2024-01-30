@@ -5,18 +5,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  padding: 3em;
 }
 
 .nav-container {
   position: relative;
   left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
 }
 
 .img-avatar {
   border-radius: 100%;
-  width: 70%;
-  border: 3px solid black;
+  width: 90%;
 }
 .section-names {
   position: relative;
@@ -25,13 +29,14 @@
 }
 .section-names p {
   color: var(--main--colorForeground);
-  font-size: larger;
+  font-size: 2em;
   font-weight: 700;
 }
 
 .section-list {
   position: relative;
   top: 1rem;
+
 }
 .section-list ul {
   list-style: none;

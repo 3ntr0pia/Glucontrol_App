@@ -20,7 +20,7 @@ export class AvatarService {
   ];
   heads: string[] = ['normal', 'thin', 'wide'];
   mouths: string[] = ['default', 'missingTooth'];
-  mustaches: string[] = ['freddy', 'horshoe', 'pencilThin', 'pencilThinBeard'];
+  mustaches: string[] = ['','','','freddy', 'horshoe', 'pencilThin', 'pencilThinBeard'];
   blushes: string  = 'default';
   
   eyes: string[] = ['confident', 'happy', 'normal'];

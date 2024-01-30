@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
@@ -20,6 +20,19 @@ export class MedicionesService {
 
   postMediciones (medicion : IMedicionesAzucar) : Observable<any> {
     return this.http.post<any>(`${this.API_URL}/Mediciones`, medicion);
+  }
+
+  deleteMediciones(idMedicion: number): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json', 
+      }),
+      body: {
+        id: idMedicion
+      },
+    };
+  
+    return this.http.delete<any>(`${this.API_URL}/Mediciones/eliminarmedicion`, options);
   }
 
 }

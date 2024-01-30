@@ -1,38 +1,26 @@
-<section class="main-register">
-  <article class="info">
-    <img class="logo" src="/assets/logoTexto.svg" alt="" />
-    <a routerLink="/login"
-      ><img src="assets/logo.png" alt="ir a inicio" class="logo"
-    /></a>
-    <h1>Te damos la bienvenida a nuestra comunidad</h1>
-    <p>
-      Aquí podrás registrarte para que la aplicación haga el seguimiento con tus
-      mediciones.
-    </p>
-  </article>
 
-  <article class="form">
-    <div [ngSwitch]="paso">
-      <register-paso1
-        class="paso1"
-        *ngSwitchCase="1"
-        (siguientePaso)="siguientePaso($event)"
-        [datosRegistro]="datosRegistro"
-        
-      ></register-paso1>
-      <register-paso2
-        *ngSwitchCase="2"
-        [datosRegistro]="datosRegistro"
-        (siguientePaso)="siguientePaso($event)"
-        (retroceder)="retrocederPaso()"
-      ></register-paso2>
-      <register-paso3
-        *ngSwitchCase="3"
-        [datosRegistro]="datosRegistro"
-        (registrar)="registroUsuario($event)"
-        (retroceder)="retrocederPaso()"
-      >
-      </register-paso3>
-    </div>
-  </article>
-</section>
+
+  <section class="main-register">
+    <article class="info">
+      <img class="logo" src="/assets/logoTexto.svg" alt="" />
+      <a routerLink="/login"><img src="assets/logo.png" alt="ir a inicio" class="logo" /></a>
+      <h1>Te damos la bienvenida a nuestra comunidad</h1>
+      <p>
+        Aquí podrás registrarte para que la aplicación haga el seguimiento con tus
+        mediciones.
+      </p>
+    </article>
+
+    <article class="form">
+      <div [ngSwitch]="paso">
+        <register-paso1 class="paso1" *ngSwitchCase="1" (siguientePaso)="siguientePaso($event)"
+          [datosRegistro]="datosRegistro"></register-paso1>
+        <register-paso2 *ngSwitchCase="2" [datosRegistro]="datosRegistro" (siguientePaso)="siguientePaso($event)"
+          (retroceder)="retrocederPaso()"></register-paso2>
+        <register-paso3 *ngSwitchCase="3" [datosRegistro]="datosRegistro" (registrar)="registroUsuario($event)"
+          (retroceder)="retrocederPaso()">
+        </register-paso3>
+      </div>
+    </article>
+  </section>
+

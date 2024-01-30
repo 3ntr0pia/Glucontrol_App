@@ -1,32 +1,66 @@
-.formContainer {
-  position: relative;
-  top: 4rem;
-  right: 5rem;
-  width: 100%;
+.container{
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  
+}
+
+.lateral{
+  display : flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+img{
+  width: 70%;
+  height: 100%;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+}
+.lectura-facil{
+  width: 60%;
 }
 
 .fieldset-datos {
-  width: 90%;
+  width: 100%;
+  height: 100%;
   background-color: var(--main--colorBacGroundForm);
   padding: 2rem;
   border-radius: 1rem;
   color: var(--main--colorForeground);
   font-weight: 600;
+  
+  margin-right: 2em;
+}
+
+fieldset {
+  border: none; 
+}
+
+legend {
+  border: none;
+  
 }
 
 .fieldset-datos legend {
-  font-size: 30px;
+  font-size: 1.5em;
 }
 
-.formulario input {
+input {
   width: 30%;
   height: 10px;
   border-radius: 5px;
   border: 1px solid var(--main--colorBackGroundElements);
-  padding: 10px;
+  padding: 1em;
   margin-left: 5px;
   margin-bottom: 10px;
   outline: none;
@@ -83,66 +117,3 @@
     right: 13rem;
   }
 }
-/*
-.pillsContainer {
-  width: 30%;
-  background-color: #b1f98f;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 10px;
-  z-index: -1;
-}
-
-.capsula {
-  width: 20px;
-  height: 50px;
-  border-radius: 16px;
-  border: 1px solid black;
-  margin: 1em;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-  transform-origin: top left;
-}
-
-.pastilla {
-  width: 20px;
-  height: 20px;
-  border: 1px solid black;
-  margin: 1em;
-  border-radius: 16px;
-  transform-origin: top right;
-  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5);
-}
-
-.ball {
-  background: rgb(145, 46, 28);
-  border-radius: 50%;
-  height: 200px;
-  position: relative;
-  transition: background 300ms;
-  width: 200px;
-}
-
-.ball:after {
-  background: rgba(255, 255, 255, 0.1);
-  bottom: -30px;
-  content: "";
-  left: -30px;
-  position: absolute;
-  right: -30px;
-  top: -30px;
-}
-
-.ball:active {
-  background: dodgerblue;
-  cursor: move;
-  cursor: -webkit-grabbing;
-  transition-duration: 100ms;
-}
-
-.ball:hover {
-  background: #fff;
-  cursor: move;
-  cursor: -webkit-grab;
-}
-*/
