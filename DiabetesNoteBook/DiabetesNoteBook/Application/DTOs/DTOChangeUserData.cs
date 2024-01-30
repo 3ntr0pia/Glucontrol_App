@@ -17,7 +17,7 @@ namespace DiabetesNoteBook.Application.DTOs
         public decimal Altura { get; set; }
         public string Actividad { get; set; }
         public string TipoDiabetes { get; set; }
-        public string[] Medicacion { get; set; }
+        public string Medicacion { get; set; }
         public bool Insulina { get; set; }
 
     }
