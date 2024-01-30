@@ -24,7 +24,7 @@
     <section class="data">
       <div>
         <label for="altura">Altura</label>
-        <input
+        <input min="1"
           type="number"
           [(ngModel)]="alturaRecibida"
           (ngModelChange)="enviarAltura()"
@@ -33,13 +33,11 @@
           title="Introduce tu altura en centímetros" 
           required
         />
-        <span class="error-form" *ngIf="alturaRecibida == 0">
-          <img lazyload="/assets/alert_line.svg" alt="" /> La altura no puede ser igual a 0 y tiene que estar en centímetros
-        </span>
+        
       </div>
       <div>
         <label for="peso">Peso</label>
-        <input
+        <input min="1"
           type="number"
           [(ngModel)]="pesoRecibido"
           (ngModelChange)="enviarPeso()"
@@ -48,10 +46,15 @@
           required
           #peso="ngModel"
         />
-        <span class="error-form" *ngIf="pesoRecibido == 0">
-          <img lazyload="/assets/alert_line.svg" alt="" />El peso no puede ser 0
-        </span>
+       
       </div>
     </section>
+      <div class="error">
+        <p class="error-form" hidden *ngIf="alturaRecibida == 0 || pesoRecibido== 0">
+          La altura y el peso no puede ser igual a 0 y tiene que estar en centímetros
+         </p>
+      </div>
   </div>
 </div>
+
+

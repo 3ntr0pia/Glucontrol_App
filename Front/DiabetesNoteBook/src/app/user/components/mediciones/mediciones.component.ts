@@ -45,7 +45,8 @@ export class MedicionesComponent {
   constructor(
     private medicionesService: MedicionesService,
     private authService: AuthServiceService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    
   ) {
     //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
     this.chartOption = {};
@@ -136,7 +137,7 @@ export class MedicionesComponent {
         trigger: 'axis',
       },
       legend: {
-        data: ['Pre Medicion', 'Post Medicion'],
+        data: ['Pre Medicion', 'Post Medicion', 'Hiperglucemia', 'Hipoglucemia'],
         top: 'bottom',
       },
       grid: {
@@ -185,9 +186,41 @@ export class MedicionesComponent {
             data: [{ type: 'average', name: 'Media' }],
           },
         },
+       
+        {
+          name: 'Hiperglucemia',
+          type: 'line',
+          data: [], 
+          markArea: {
+            silent: true, 
+            itemStyle: {
+              color: 'rgba(255, 0, 0, 0.2)', 
+            },
+            data: [[
+              { yAxis: 210 }, 
+              { yAxis: 180 }, 
+            ]]
+          }
+        },
+        {
+          name: 'Hipoglucemia',
+          type: 'line',
+          data: [], 
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: 'rgba(255, 0, 0, 0.2)', 
+            },
+            data: [[
+              { yAxis: 0 }, 
+              { yAxis: 70 }, 
+            ]]
+          }
+        },
       ],
     };
-  }
+
+}
 
   getMediciones(userId: number) {
     this.medicionesService.getMediciones(userId).subscribe({
@@ -210,6 +243,7 @@ export class MedicionesComponent {
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
+        // this.verificarLimitesEnMediciones(); 
       },
       error: (error) => {
         console.error(error);
@@ -220,15 +254,39 @@ export class MedicionesComponent {
   deleteMedicion(idMedicion: number) {
     this.medicionesService.deleteMediciones(idMedicion).subscribe({
       next: (res) => {
-        console.log(res)
-        this.getMediciones(this.authService.userValue!.id);
-        this.prepararDatosGrafico();
+        console.log(res);
+        // Actualizar la lista localmente
+        this.mediciones = this.mediciones.filter(medicion => medicion.id !== idMedicion);
+        
+        // Ajustar la paginación si es necesario
         this.calcularTotalDePaginas();
+        if (this.paginaActual > this.numeroTotalDePaginas) {
+          this.paginaActual = this.numeroTotalDePaginas;
+        }
         this.cambiarPagina(this.paginaActual);
+  
+        // Actualizar el gráfico si es necesario
+        this.prepararDatosGrafico();
       },
       error: (error) => {
         console.error(error);
       },
     });
   }
+  // verificarLimitesEnMediciones() {
+    
+  //   let limiteSuperiorExcedido: boolean = this.nuevaMedicion.preMedicion > 180 || this.nuevaMedicion.glucemiaCapilar > 180;
+  //   let limiteInferiorExcedido: boolean = this.nuevaMedicion.preMedicion < 70 || this.nuevaMedicion.glucemiaCapilar < 70;
+
+  //   if (limiteSuperiorExcedido) {
+  //     alert('¡Alerta! La última medición excede el límite superior de 180.');
+  //   }
+
+  //   if (limiteInferiorExcedido) {
+  //     alert('¡Alerta! La última medición es inferior al límite de 70.');
+  //   }
+  // }
+
+ 
+
 }

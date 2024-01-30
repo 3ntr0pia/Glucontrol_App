@@ -18,8 +18,9 @@ export class MedicionesService {
     return this.http.get<IMedicionesAzucar[]>(`${this.API_URL}/Mediciones/getmedicionesporidusuario/${userId}`);
   }
 
-  postMediciones (medicion : IMedicionesAzucar) : Observable<any> {
-    return this.http.post<any>(`${this.API_URL}/Mediciones`, medicion);
+ 
+  postMediciones (medicion : IMedicionesAzucar) : Observable<string> {
+    return this.http.post<string>(`${this.API_URL}/Mediciones`, medicion, { responseType: 'text' as 'json' });
   }
 
   deleteMediciones(idMedicion: number): Observable<any> {
@@ -31,8 +32,8 @@ export class MedicionesService {
         id: idMedicion
       },
     };
-  
-    return this.http.delete<any>(`${this.API_URL}/Mediciones/eliminarmedicion`, options);
+
+    return this.http.delete<any>(`${this.API_URL}/Mediciones/eliminarmedicion`, { ...options, responseType: 'text' as 'json' });
   }
 
 }
