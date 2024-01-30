@@ -271,7 +271,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             }
 
         }
-
+        [AllowAnonymous]
         [HttpGet("usuarioPorId/{Id}")]
         public async Task<ActionResult> UserById([FromRoute] DTOById userData)
         {
