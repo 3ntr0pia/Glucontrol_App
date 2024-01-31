@@ -1,5 +1,9 @@
 .contenedor {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .formulario {
@@ -11,6 +15,10 @@
   align-items: center;
 }
 
+.lectura-facil{
+  width: 70%;
+}
+
 fieldset {
   border: none;
 }
@@ -20,10 +28,6 @@ legend {
 }
 
 .fieldset-datos {
-  position: relative;
-  /*! Ajustes caca */
-  bottom: 20px;
-  right: 120px;
   width: 100%;
   height: 100%;
   background-color: var(--main--colorBacGroundForm);
