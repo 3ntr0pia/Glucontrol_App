@@ -54,7 +54,7 @@ legend {
   margin-bottom: 10px;
   margin-left: 5px;
   padding: 1px;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
 }
 
@@ -86,14 +86,14 @@ legend {
   top: 1rem;
   left: 20%;
   padding: 0.2rem;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   margin-left: 2rem;
   background-color: var(--main--colorBackGroundElements);
   font-size: large;
   color: var(--main--colorForeground);
 }
-select{
+select {
   background-color: white;
 }
 .btn:hover {

@@ -27,7 +27,7 @@ input[type="number"] {
   justify-content: center;
 }
 
-.error{
+.error {
   display: flex;
   flex-direction: column;
 }
@@ -49,11 +49,14 @@ input[type="number"] {
   left: 2rem;
 }
 
-.error p{
+.data input {
+  border: 1px solid black;
+}
+
+.error p {
   font-size: 0.8em;
   max-width: 80%;
 }
 .error-form {
   color: var(--main--colorErrorOrDenegate);
-  
 }
