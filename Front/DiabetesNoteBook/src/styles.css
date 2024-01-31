@@ -4,7 +4,7 @@
   --main--colorBackGroundElements: #effbff;
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
-  --main--colorBacGroundForm: #80f9c0;
+  --main--colorBacGroundForm: #F3F9EA;
   accent-color: var(--main--colorHoverBtnAccept);
 }
 @font-face {
@@ -63,7 +63,7 @@ input {
   padding: 1em;
   margin: 2em;
   line-height: 2em;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .error-form {

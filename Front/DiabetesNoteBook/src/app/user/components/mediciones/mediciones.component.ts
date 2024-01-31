@@ -123,32 +123,54 @@ export class MedicionesComponent {
   prepararDatosGrafico() {
     const fechas = this.mediciones.map((m) => {
       const fecha = new Date(m.fecha);
-      return `${fecha.getDate()}/${fecha.getMonth() + 1}`;
+      return `${fecha.getHours()}:${fecha.getMinutes().toString().padStart(2, '0')}:${fecha.getSeconds().toString().padStart(2, '0')}`;
     });
     const preMediciones = this.mediciones.map((m) => m.preMedicion);
     const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
-
+    const medidasGenerales = this.mediciones.map(m => m.preMedicion !== 0 ? m.preMedicion : m.glucemiaCapilar);
+    
     this.chartOption = {
+      aria: {
+        description: 'Una descripción detallada de tu gráfico de mediciones de glucosa.',
+        decal: {
+          show: true
+        },
+        enabled: true,
+      },
       title: {
         text: 'Mediciones de Glucosa',
         left: 'center',
+        textStyle: {
+          fontSize: 20,
+        }
       },
       tooltip: {
         trigger: 'axis',
       },
       legend: {
-        data: ['Pre Medicion', 'Post Medicion', 'Hiperglucemia', 'Hipoglucemia'],
-        top: 'bottom',
+        data: [
+          { name: 'Pre Medicion', icon: 'diamond' },  
+          { name: 'Post Medicion', icon: 'diamond' },  
+          { name: 'Mediciones', icon: 'circle'},
+          { name: 'Hiperglucemia', icon: 'rect' },  
+          { name: 'Hipoglucemia', icon: 'rect' }, 
+        ],
+        bottom: 0,
+        selected : {
+          'Pre Medicion' : false,
+          'Post Medicion' : false,
+        }
+        
       },
       grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
         containLabel: true,
       },
       xAxis: {
         type: 'category',
-        boundaryGap: false,
+        boundaryGap: true,
         data: fechas,
       },
       yAxis: {
@@ -159,6 +181,18 @@ export class MedicionesComponent {
       },
       series: [
         {
+          name: 'Mediciones',
+          type: 'line',
+          data: medidasGenerales,
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Máximo' },
+              { type: 'min', name: 'Mínimo' },
+            ],
+          },
+          
+        },
+        {
           name: 'Pre Medicion',
           type: 'line',
           data: preMediciones,
@@ -168,9 +202,7 @@ export class MedicionesComponent {
               { type: 'min', name: 'Mínimo' },
             ],
           },
-          markLine: {
-            data: [{ type: 'average', name: 'Media' }],
-          },
+          
         },
         {
           name: 'Post Medicion',
@@ -182,9 +214,7 @@ export class MedicionesComponent {
               { type: 'min', name: 'Mínimo' },
             ],
           },
-          markLine: {
-            data: [{ type: 'average', name: 'Media' }],
-          },
+          
         },
        
         {
@@ -194,7 +224,8 @@ export class MedicionesComponent {
           markArea: {
             silent: true, 
             itemStyle: {
-              color: 'rgba(255, 0, 0, 0.2)', 
+              color: 'rgba(255, 0, 0, 0.2)',
+               
             },
             data: [[
               { yAxis: 210 }, 
@@ -226,7 +257,10 @@ export class MedicionesComponent {
     this.medicionesService.getMediciones(userId).subscribe({
       next: (mediciones) => {
         console.log('Datos recibidos del servidor:', mediciones);
-        this.mediciones = mediciones.reverse();
+        if(mediciones.length == 0){
+          this.elementoPagina=[]
+        }
+        this.mediciones = mediciones;
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
@@ -238,11 +272,11 @@ export class MedicionesComponent {
   postMedicion() {
     this.medicionesService.postMediciones(this.nuevaMedicion).subscribe({
       next: (res) => {
-        console.log('Datos recibidos del servidor');
         this.getMediciones(this.authService.userValue!.id);
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
+        
         // this.verificarLimitesEnMediciones(); 
       },
       error: (error) => {
@@ -255,17 +289,18 @@ export class MedicionesComponent {
     this.medicionesService.deleteMediciones(idMedicion).subscribe({
       next: (res) => {
         console.log(res);
-        // Actualizar la lista localmente
-        this.mediciones = this.mediciones.filter(medicion => medicion.id !== idMedicion);
+        this.getMediciones(this.authService.userValue!.id);
         
-        // Ajustar la paginación si es necesario
+
         this.calcularTotalDePaginas();
         if (this.paginaActual > this.numeroTotalDePaginas) {
           this.paginaActual = this.numeroTotalDePaginas;
         }
         this.cambiarPagina(this.paginaActual);
   
-        // Actualizar el gráfico si es necesario
+
+
+        
         this.prepararDatosGrafico();
       },
       error: (error) => {
