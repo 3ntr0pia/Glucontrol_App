@@ -64,6 +64,7 @@ input {
   margin: 2em;
   line-height: 2em;
   letter-spacing: 2px;
+  min-width: 24em;
 }
 
 .error-form {
@@ -80,3 +81,5 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+

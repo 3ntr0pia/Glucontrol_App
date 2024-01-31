@@ -100,19 +100,40 @@ select{
   background-color: var(--main--colorHoverBtnAccept);
 }
 
-@media (width < 900px) {
-  .contenedor {
-    top: 10rem;
-    right: 30%;
+
+@media (width <= 1000px) {
+  .fieldset-datos {
+    
+    width: 80%;
+    margin: 1em;
+  
+
+  }
+
+}
+
+@media (width <= 950px) {
+  .contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   }
   .fieldset-datos {
-    width: 100%;
+    width: 95%;
+    
   }
-  .persona {
-    width: 80%;
-    font-weight: 400;
+}
+
+@media (width <= 640px) {
+  .contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   }
-  .btn {
-    left: 5%;
+  .fieldset-datos {
+    width: 95%;
+    
   }
 }

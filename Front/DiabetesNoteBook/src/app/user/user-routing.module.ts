@@ -14,10 +14,10 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: '', redirectTo: 'mis-datos', pathMatch: 'full' },
-      { path: 'mis-datos', component: MisDatosComponent },
-      { path : 'mediciones', component: MedicionesComponent },
-      { path: 'vademecum', component: VademecumComponent },
-      { path: 'ayuda', component: AyudaComponent },
+      { path: 'mis-datos', component: MisDatosComponent , title: 'Mis datos | Glucontrol '},
+      { path : 'mediciones', component: MedicionesComponent , title: 'Mis mediciones | Glucontrol '},
+      { path: 'vademecum', component: VademecumComponent , title: 'Vademecum | Glucontrol '},
+      { path: 'ayuda', component: AyudaComponent , title: 'Ayuda | Glucontrol '},
       
     ]
   }

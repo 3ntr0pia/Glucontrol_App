@@ -13,7 +13,7 @@
 }
 
 img {
-  width: 70%;
+  width: 50%;
   height: 100%;
 }
 
@@ -37,7 +37,7 @@ img {
   color: var(--main--colorForeground);
   font-weight: 600;
 
-  margin-right: 2em;
+  margin-left: 5em;
 }
 
 fieldset {
@@ -93,9 +93,40 @@ legend {
   background-color: var(--main--colorHoverBtnAccept);
 }
 
+
+@media (width <= 1380px) {
+  .lateral {
+    width: 70%;
+  }
+  .fieldset-datos {
+    margin-left: 2em;
+  }
+}
+
+@media (width <= 1200px) {
+  .lateral {
+    margin-left: 1em;
+  }
+}
+
 @media (width < 900px) {
   .formContainer {
-    top: 10rem;
-    right: 13rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column-reverse;
+  }
+
+  .fieldset-datos {
+    height: auto;
+    margin-bottom: 4rem;
+    margin-left: 0;
+  }
+
+  img {
+    width: 90%;
+    height: 100%;
   }
 }

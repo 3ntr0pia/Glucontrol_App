@@ -8,13 +8,15 @@ import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { LoginRoutingModule } from '../login/login-routing.module';
 import { LazyLoadImageDirective } from './directives/lazy-load-image.directive';
+import { FadeComponent } from './fade.component';
 
 @NgModule({
   declarations: [
     ModalComponent,
     CalculadoraImcComponent,
     GeneradorAvatarComponent,
-    RecoverPassComponent, LazyLoadImageDirective
+    RecoverPassComponent, LazyLoadImageDirective,
+    FadeComponent
   ],
   imports: [CommonModule, FormsModule, SharedRoutingModule, LoginRoutingModule],
   exports: [

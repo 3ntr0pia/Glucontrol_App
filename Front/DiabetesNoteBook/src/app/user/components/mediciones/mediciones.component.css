@@ -3,7 +3,7 @@
     width: 80vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     gap: 2em;
 }
@@ -12,9 +12,7 @@
     height: 100%;
     grid-area: formulario;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    
+    align-items: center;
  
 }
 
@@ -38,13 +36,15 @@
     background-color: white;
 };
 
-
-
-
-.checkbox {
-    width: 1px;
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
 }
-
+.group input[type="checkbox"] {
+    width: 15px; 
+    height: 15px; 
+    cursor: pointer; 
+  }
 
 .tabla{
     grid-area: tabla;
