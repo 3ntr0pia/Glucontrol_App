@@ -24,7 +24,6 @@ namespace DiabetesNoteBook.Application.Services
 
             var personaUpdate = await _context.Personas.AsTracking().FirstOrDefaultAsync(x => x.UserId == changeUserData.Id);
 
-            
             usuarioUpdate.Avatar = changeUserData.Avatar;
             usuarioUpdate.UserName = changeUserData.UserName;
             personaUpdate.Nombre = changeUserData.Nombre;
