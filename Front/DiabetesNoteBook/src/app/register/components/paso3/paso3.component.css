@@ -81,7 +81,7 @@ legend {
   width: 5rem;
   top: rem;
   padding: 0.2rem;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   margin-left: 2rem;
   background-color: var(--main--colorBackGroundElements);

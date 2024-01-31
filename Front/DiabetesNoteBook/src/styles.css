@@ -4,8 +4,8 @@
   --main--colorBackGroundElements: #effbff;
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
-  --main--colorBacGroundForm: #80f9c0;
-  accent-color: var(--main--colorHoverBtnAccept);
+  --main--colorBacGroundForm: #f3f9ea;
+  accent-color: var(--main--colorBackGround);
 }
 @font-face {
   font-family: "Atkinson-Hyperlegible-Regular";
@@ -35,7 +35,7 @@ input {
   width: 30%;
   height: 10px;
   border-radius: 5px;
-  border: 1px solid var(--main--colorBackGroundElements);
+  border: 1px solid black;
   padding: 1em;
   margin-left: 5px;
   margin-bottom: 10px;
@@ -55,6 +55,8 @@ input {
 }
 
 .lectura-facil {
+  min-width: 55%;
+  min-width: 45%;
   font-family: "Atkinson-Hyperlegible-Regular";
   color: var(--main--colorForeground);
   background-color: var(--main--colorBackGroundElements);
