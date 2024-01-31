@@ -35,34 +35,9 @@
 }
 
 .avatar {
-  position: relative;
-  left: 2.7rem;
   width: 50%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-@media (width < 900px) {
-  .form-container {
-    top: 10rem;
-    left: -11rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: 5rem;
-  }
-  .fieldset-datos {
-    margin-bottom: 4rem;
-  }
-  .avatar {
-    order: -1;
-    top: 2rem;
-    left: -1.5rem;
-    width: 50%;
-  }
-  .formulario {
-    width: 80%;
-  }
 }

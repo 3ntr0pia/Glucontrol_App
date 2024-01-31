@@ -1,30 +1,24 @@
-
 .main-register {
   width: 100%;
   height: 100%;
-  /* display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  color: var(--main--colorForeground); */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
- 
 }
 
 .info {
-  width: 100%;
+  width: 50%;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .logo {
-  width: 90%;
-  width: 20rem;
+  width: 20em;
 }
 
 .form {
@@ -32,36 +26,11 @@
   height: 100%;
 }
 
-@media (width < 900px) {
-  .main-register {
-    top: 7rem;
-    left: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-between;
-    padding: 2rem;
-  }
+@media (width < 1004px) {
   .info {
-    top: 10rem;
+    width: 50%;
   }
-  .paso1 {
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-between;
-    flex-wrap: wrap;
-    gap: 4rem;
-  }
-}
-
-@media (width < 400px) {
-  .main-register {
-    top: 10rem;
-    font-size: small;
-  }
-  .info {
-    position: relative;
-    top: 50rem;
-    width: 100%;
+  .logo {
+    width: 10rem;
   }
 }
