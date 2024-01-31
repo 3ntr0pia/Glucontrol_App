@@ -28,5 +28,56 @@
   grid-row: 2 / 3;
   overflow-y: auto;
   grid-area: content;
-  height: 100vh;
+  min-height: 100vh;
 }
+
+.burger {
+  display: none;
+}
+
+
+
+@media (width < 1200px) {
+  .navbar{
+    padding: 0;
+  }
+
+  
+  
+}
+
+@media(width <  1030px){
+  .wrapper{
+    height: auto;
+    width: auto;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "navbar"
+    "content";
+  }
+  
+  
+  button {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left:20px;
+  }
+
+  .navbar {
+    width: 100%;
+    height: auto;
+    border-top-right-radius: 0;
+    
+  }
+  
+  .content{
+    overflow: visible;
+    margin-top: 150px 
+  }
+  
+  
+
+}
+
