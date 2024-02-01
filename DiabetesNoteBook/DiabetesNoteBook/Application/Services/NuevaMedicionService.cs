@@ -30,6 +30,7 @@ namespace DiabetesNoteBook.Application.Services
                 PreDeporte = mediciones.PreDeporte,
                 DuranteDeporte = mediciones.DuranteDeporte,
                 PostDeporte = mediciones.PostDeporte,
+                RacionHc= mediciones.RacionHC,
                 Notas = mediciones.Notas,
                 IdPersona = mediciones.Id_Persona,
             };
