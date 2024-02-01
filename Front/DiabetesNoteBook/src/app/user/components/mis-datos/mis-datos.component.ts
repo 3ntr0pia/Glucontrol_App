@@ -32,12 +32,13 @@ export class MisDatosComponent implements OnInit {
     altura: 0,
     actividad: '',
     tipoDiabetes: '',
-    medicacion: [],
+    medicacion: '',
     insulina: false,
   };
 
   error: string = '';
   errorPass : string = '';
+  successPass : string = '';
   nuevoAvatar: string = '';
 
   estadoInicialUsuario : IUsuarioUpdate = { ...this.usuario };
@@ -66,7 +67,9 @@ export class MisDatosComponent implements OnInit {
   }
 
   alturaHandler(altura: number): void {
+    
     this.nuevaAltura = altura;
+    console.log(altura);
   }
   pesoHandler(peso: number): void {
     this.nuevoPeso = peso;
@@ -77,6 +80,23 @@ export class MisDatosComponent implements OnInit {
       next: (res) => {
         // 0 seria el usuario y 1 la persona
         this.usuario = {
+          id: res[0].id,
+          avatar: res[0].avatar,
+          userName: res[0].userName,
+          nombre: res[1].nombre,
+          primerApellido: res[1].primerApellido,
+          segundoApellido: res[1].segundoApellido,
+          sexo: res[1].sexo,
+          edad: res[1].edad,
+          peso: res[1].peso,
+          altura: res[1].altura,
+          actividad: res[1].actividad,
+          tipoDiabetes: res[1].tipoDiabetes,
+          medicacion: res[1].medicacion,
+          insulina: res[1].insulina,
+        };
+
+        this.estadoInicialUsuario = {
           id: res[0].id,
           avatar: res[0].avatar,
           userName: res[0].userName,
@@ -110,28 +130,15 @@ export class MisDatosComponent implements OnInit {
 
     cambiarPass(): void {
 
-      if (!this.pass || !this.repetirPass) {
-        this.errorPass = 'Debes completar ambos campos de contraseña.';
-        return;
-      }
-    
-      if(this.pass !== this.repetirPass){
-        this.errorPass = 'Las contraseñas no coinciden';
-        return;
-      }
-      if(!this.validarPassword(this.pass)){
-        this.errorPass = 'La contraseña no es válida';
-        return;
-      }
+      
       this.usuarioService.cambiarPass({id : this.usuarioLogeado!.id , NewPass: this.pass}).subscribe({
         next: (res) => {
           console.log('Contraseña cambiada correctamente');
-          this.abrirModalPass = false;
-          this.pass = '';
-          this.repetirPass = '';
+          this.successPass = 'Contraseña cambiada correctamente';
+
         },
         error: (err) => {
-          this.errorPass = err;
+          this.errorPass = err.error;
         console.error('Error al cambiar la contraseña:', err);
         },
       })
@@ -141,8 +148,11 @@ export class MisDatosComponent implements OnInit {
       if (this.nuevoAvatar !== '') {
         this.usuario.avatar = this.nuevoAvatar;
       }
-      if (this.nuevaAltura !== 0 && this.nuevoPeso !== 0) {
+      if (this.nuevaAltura !== 0) {
         this.usuario.altura = this.nuevaAltura;
+      }
+    
+      if (this.nuevoPeso !== 0) {
         this.usuario.peso = this.nuevoPeso;
       }
       if (!this.validarFormulario(this.usuario)) {
@@ -171,7 +181,7 @@ export class MisDatosComponent implements OnInit {
       });
     }
   
-      private validarFormulario(usuario: IUsuarioUpdate): boolean {
+       validarFormulario(usuario: IUsuarioUpdate): boolean {
         return (
           usuario.nombre.trim() !== '' &&
           usuario.userName.trim() !== '' &&
@@ -196,4 +206,11 @@ export class MisDatosComponent implements OnInit {
         return patronEmail.test(email);
       }
   
+      cerrarModal () : void {
+        this.pass = '';
+        this.repetirPass = '';
+        this.errorPass = '';
+        this.successPass = '';
+        this.abrirModalPass = false;
+      }
   }

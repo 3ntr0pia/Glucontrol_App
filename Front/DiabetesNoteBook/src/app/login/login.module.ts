@@ -8,11 +8,15 @@ import { LoginRoutingModule } from './login-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 
-
-
 @NgModule({
-  declarations: [FormComponent, InfoComponent,LoginMainComponent],
-  imports: [CommonModule, FormsModule, LoginRoutingModule,HttpClientModule,SharedModule],
+  declarations: [FormComponent, InfoComponent, LoginMainComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    LoginRoutingModule,
+    HttpClientModule,
+    SharedModule,
+  ],
   exports: [LoginMainComponent],
 })
 export class LoginModule {}

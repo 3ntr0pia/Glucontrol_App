@@ -1,570 +1,852 @@
-// paso1.component.html
-<div class="wrapper">
-  <div class="formulario">
-    <form (ngSubmit)="siguientePaso.emit(datosRegistro)">
-      <div class="form-group">
-        <label for="nombre">Nombre
-          <span class="error-form" *ngIf="!nombre.valid && nombre.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Nombre obligatorio</span></label>
-        <input id="nombre" type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel" required
-          placeholder="Inserte su nombre..."/>
+// mis-datos.component.css
+.wrapper {
+  width: 80vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-template-areas:
+    "avatar formulario"
+    "calculadora formulario";
+}
+.avatar {
+  grid-area: avatar;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-      </div>
-      <div class="form-group">
-        <label for="userName">Nombre de usuario
-          <span class="error-form" *ngIf="!userName.valid && userName.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Nombre de usuario obligatorio</span></label>
-        <input id="userName" type="userName" [(ngModel)]="datosRegistro.username" name="userName" #userName="ngModel"
-          required placeholder="Inserte su nombre de usuario..." />
-      </div>
-      <div class="form-group">
-        <label for="apellido">Primer Apellido
-          <span class="error-form" *ngIf="!apellido.valid && apellido.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Primer apellido Obligatorio</span></label>
-        <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido="ngModel" name="apellido"
-          required class="form-control" placeholder="Inserte su primer apellido..." />
-      </div>
-      <div class="form-group">
-        <label for="apellido2">Segundo Apellido
-          <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Segundo apellido obligatorio</span></label>
-        <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
-          #apellido2="ngModel" required class="form-control" placeholder="Inserte su segundo apellido..." />
-      </div>
-      <div class="form-group">
-        <label for="email">Email
-          <span class="error-form" *ngIf="!email.valid && email.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Email obligatorio</span></label>
-        <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email="ngModel" required
-          class="form-control" placeholder="Inserte su email..." />
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña
-          <span class="error-form" *ngIf="!password.valid && password.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />
-            Password obligatorio</span></label>
-        <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password="ngModel"
-          required class="form-control" placeholder="Inserte su contraseña..." />
-      </div>
-      <span class="error-form" *ngIf="!validarPassword(datosRegistro.password) && password.touched">
-        La contraseña debe tener al menos 8 caracteres, incluyendo una
-        mayúscula, una minúscula, un número y un carácter especial.
-      </span>
-      <div class="form-group">
-        <label for="password2">Repita su contraseña
-          <span class="error-form" *ngIf="!password2.valid && password2.touched"><img src="/assets/alert_line.svg"
-              alt="Triangulo de alerta de error" />Password obligatorio</span></label>
-        <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
-          #password2="ngModel" required class="form-control" placeholder="..." />
-        <span class="error-form" *ngIf="password2.value != password.value && password.valid">
-          Las contraseñas no coinciden
-        </span>
-      </div>
-      <button type="submit" [disabled]="formularioInvalido()" class="btn btn-primary">
-        Siguiente
-      </button>
-      <span class="error-form" *ngIf="formularioInvalido()">
-        Debe rellenar todos los campos
-      </span>
-    </form>
-  </div>
-  <div class="avatar">
-    <h2>Genera tu avatar</h2>
-    <img *ngIf="datosRegistro.avatar; else defaultImage" class="avatar-img" [src]="datosRegistro.avatar" alt="Avatar" />
-    <ng-template #defaultImage>
-      <img class="avatar-default" [src]="defaultAvatar" alt="Default Avatar" /></ng-template>
-    <button class="btn btn-primary" (click)="generarAvatar()">Generar</button>
-  </div>
-</div>
+.bocadillo {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-// paso1.component.ts
-import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
-import { IRegister } from '../../../interfaces/register.interface';
-import { AvatarService } from 'src/app/services/avatar.service';
+.contenido-bocadillo {
+  position: absolute;
 
-@Component({
-  selector: 'register-paso1',
-  templateUrl: './paso1.component.html',
-  styleUrls: ['./paso1.component.css'],
-})
-export class Paso1Component {
-  @Output() siguientePaso = new EventEmitter<IRegister>();
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-90deg);
+  width: 100%;
+  text-align: center;
+}
+.contenido-bocadillo h1 {
+  font-size: 100%;
+}
 
-  @Input() datosRegistro: IRegister = {
-    username: '',
-    avatar: '',
-    nombre: '',
-    apellido: '',
-    apellido2: '',
-    email: '',
-    password: '',
-    password2: '',
-    mediciones: {
-      edad: 0,
-      peso: 0,
-      altura: 0,
-      sexo: Sexo.hombre,
-      actividad: Actividad.sedentario,
-      tipoDiabetes: {
-        tipo: TipoDiabetes.tipo1,
-        medicacion: [],
-        insulina: false,
-      },
-    },
-  };
+.contenido-bocadillo button {
+  margin: 1em;
+}
 
-  password2: string = '';
-  avatar: string = '';
-  hasError: boolean = false;
-  defaultAvatar: string = 'assets/avatar.png';
+select {
+  background-color: white;
+}
 
-  constructor(private avatarService: AvatarService) {}
+.triangle {
+  position: relative;
+  left: 9rem;
+  background: var(--main--colorBackGroundElements);
+  width: 20vw;
+  height: 50vh;
+  border-radius: 20%;
+  transform: rotate(90deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
 
-  generarAvatar() {
-    this.datosRegistro.avatar = this.avatarService.getRandomAvatar();
+.triangle::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 70px 50px 0 50px;
+  border-color: var(--main--colorBackGroundElements) transparent transparent
+    transparent;
+  left: 50%;
+  transform: translateX(-75%) translateY(100%);
+  
+}
+.generarAvatar {
+  position: relative;
+  width: 50%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.datos {
+  grid-area: formulario;
+  width: 80%;
+  height: 80%;
+  padding: 2rem;
+  grid-area: formulario;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  background-color: var(--main--colorBacGroundForm);
+  align-self: center;
+}
+.datos h2 {
+  font-size: 28px;
+  text-align: center;
+}
+.datos label {
+  margin-top: 1rem;
+}
+
+.datos input {
+  width: 50%;
+  border: 1px solid black;
+}
+.datos select {
+  width: 50%;
+  height: 28px;
+
+  border: 1px solid black;
+  border-radius: 7px;
+  text-align: center;
+}
+
+
+.check-box {
+  margin-top: 1rem;
+}
+.check-box input {
+  height: 1rem;
+  position: relative;
+  top: 3px;
+  right: 5rem;
+}
+
+.btn {
+  min-width: 5rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+.calculadora {
+  grid-area: calculadora;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  bottom: 3em;
+}
+.calculadora h1 {
+  text-align: center;
+}
+
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalPass {
+  background-color: var(--main--colorBackGround);
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 30%;
+  min-height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.modalPass form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalPass input {
+  width: 50%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fondoModal button {
+  width: 7rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: smaller;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+#seve {
+  width: 8rem;
+}
+
+#clean:hover {
+  background-color: #ed982a;
+}
+#change-pass {
+  width: 9rem;
+  margin-left: 0.5rem;
+}
+
+.success-form {
+  color: green;
+}
+
+
+@media (max-width : 1600px){
+  .triangle{
+    height: 85%;
+    width: 60%;
+    margin-top: 2em;
+    margin-left: -1em;
+  }
+}
+
+
+@media (max-width: 1350px) {
+  .wrapper {
+    gap: 4em;
   }
 
-  formularioInvalido(): boolean {
-    return (
-      !this.datosRegistro.nombre ||
-      !this.datosRegistro.username ||
-      !this.datosRegistro.apellido ||
-      !this.datosRegistro.apellido2 ||
-      !this.datosRegistro.email ||
-      !this.datosRegistro.password ||
-      !this.datosRegistro.avatar
-    );
-  }
-
-  setAvatar(avatar: string): void {
-    this.datosRegistro.avatar = avatar;
+  .datos {
+    width: 100%;
   }
   
-  validarPassword(password: string): boolean {
-    const patron = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return patron.test(password);
-}
-}
-
-
-// paso2.component.html
-<div class="contenedor">
-
-
-    <div class="formulario">
-        <form (ngSubmit)="siguientePaso.emit(datosRegistro)" class="formulario">
-            <div class="mb-3">
-                <label for="edad" class="form-label">Edad</label>
-                <input type="number" class="form-control" [(ngModel)]="datosRegistro.mediciones.edad" name="edad"
-                    required>
-            </div>
-            
-            <div class="mb-3">
-                <label for="sexo" class="form-label">Sexo Biológico</label>
-                <select class="form-select" [(ngModel)]="datosRegistro.mediciones.sexo" name="sexo" required>
-                    <option [value]="Sexo.hombre">Masculino</option>
-                    <option [value]="Sexo.mujer">Femenino</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="actividad" class="form-label">Actividad</label>
-                <select class="form-select" [(ngModel)]="datosRegistro.mediciones.actividad" name="actividad" required>
-                    <option [value]="Actividad.sedentario">Sedentario</option>
-                    <option [value]="Actividad.ligero">Ligero</option>
-                    <option [value]="Actividad.moderado">Moderado</option>
-                    <option [value]="Actividad.intenso">Intenso</option>
-                </select>
-            </div>
-            <span class="form-text text-danger" *ngIf="datosRegistro.mediciones.edad">
-                Debe rellenar todos los campos
-            </span>
-            <button type="submit" class="btn btn-primary" [disabled]="formularioInvalido()">Siguiente</button>
-
-        </form>
-        <button >Volver Atrás</button>
-    </div>
+  .triangle{
+    height: 85%;
+    width: 80%;
+    margin-top: 2em;
+    margin-left: -3em;
+  }
+  
+  .avatar{
+    height: 100%;
     
-
-    <div class="persona">
-        <i class="bi" [ngClass]="{
-         'bi-gender-female': datosRegistro.mediciones.sexo == Sexo.mujer,
-          'bi-gender-male' : datosRegistro.mediciones.sexo == Sexo.hombre   
-        }"></i>
-        <app-calculadora-imc (emitirAltura)="setAltura($event)" (emitirPeso)="setPeso($event)"></app-calculadora-imc>
-    </div>
-
-</div>
-
-// paso2.component.ts
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
-import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
-import { IRegister } from '../../../interfaces/register.interface';
-
-@Component({
-  selector: 'register-paso2',
-  templateUrl: './paso2.component.html',
-  styleUrls: ['./paso2.component.css'],
-})
-export class Paso2Component {
-  @Output() siguientePaso = new EventEmitter<IRegister>();
-  public Sexo = Sexo;
-  public Actividad = Actividad;
-  public TipoDiabetes = TipoDiabetes;
-
-  @Input() datosRegistro: IRegister = {
-    username: '',
-    avatar: '',
-    nombre: '',
-    apellido: '',
-    apellido2: '',
-    email: '',
-    password: '',
-    password2: '',
-    mediciones: {
-      edad: 0,
-      peso: 0,
-      altura: 0,
-      sexo: this.Sexo.hombre,
-      actividad: this.Actividad.sedentario,
-      tipoDiabetes: {
-        tipo: this.TipoDiabetes.tipo1,
-
-        medicacion: [],
-        insulina: false,
-      },
-    },
-  };
-
-  get imc(): number {
-    let calculo = this.calcularIMC();
-    if (calculo == Infinity || Number.isNaN(calculo)) {
-      return 0;
-    } else {
-      return Math.round(calculo);
-    }
   }
-
-  obtenerIMC(): string {
-    const imc = this.calcularIMC();
-    if (imc < 18.5) {
-      return 'assets/figures/person_thin.png';
-    } else if (imc >= 18.5 && imc < 28) {
-      return 'assets/figures/person_normal.png';
-    } else if (imc >= 28 && imc < 38) {
-      return 'assets/figures/person_fat.png';
-    } else if (imc >= 38) {
-      return 'assets/figures/person_ob.png';
-    } else {
-      return 'assets/figures/person_normal.png';
-    }
-  }
-  imcColor(): string {
-    const imc = this.calcularIMC();
-    if (imc < 18.5) {
-      return 'red';
-    } else if (imc >= 18.5 && imc < 28) {
-      return 'green';
-    } else if (imc >= 28 && imc < 38) {
-      return 'yellow';
-    } else if (imc >= 38) {
-      return 'red';
-    } else {
-      return 'text-success';
-    }
-  }
-
-  calcularIMC(): number {
-    let alturaEnMetros = this.datosRegistro.mediciones.altura / 100;
-    return this.datosRegistro.mediciones.peso / Math.pow(alturaEnMetros, 2);
-  }
-
-  formularioInvalido(): boolean {
-    return (
-      !this.datosRegistro.mediciones.edad ||
-      !this.datosRegistro.mediciones.peso ||
-      !this.datosRegistro.mediciones.altura ||
-      !this.datosRegistro.mediciones.sexo ||
-      !this.datosRegistro.mediciones.actividad ||
-      !this.datosRegistro.mediciones.tipoDiabetes.tipo
-    );
-  }
-
-  setAltura(altura: number): void {
-    this.datosRegistro.mediciones.altura = altura;
-  }
-  setPeso(peso: number): void {
-    this.datosRegistro.mediciones.peso = peso;
+  .calculadora{
+    height: 100%;
+    width: 100%;
+    margin-left: 2.7em;
   }
 }
-
-
-// paso3.component.html
-<div class="wrapper">
-
-  <div class="logo">
-
-  </div>
-  <div class="formContainer">
-
-    <form (ngSubmit)="registroUsuario()" class="form">
-      <div class="form-group">
-        <label for="tipo">Tipo de diabetes</label>
-        <select [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo" name="tipo" required class="form-control">
-          <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
-          <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
-          <option [value]="TipoDiabetes.gestacional">Gestacional</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="medicacion">Medicación</label>
-        <input type="text" [(ngModel)]="medicacionString" name="medicacion" required
-          class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="insulina">¿Toma insulina?</label>
-        <input type="checkbox" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina" name="insulina" required>
-      </div>
-      <div class="form-group">
-        <label for="medicacion">Acepto recibir un mail de confirmacion</label>
-        <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required>
-      </div>
-      <button type="submit" [disabled]="!aceptar" class="btn btn-primary">Completar Registro</button>
-    </form>
-
-
-    <div class="pillsContainer">
-      <!-- <div 
-    *ngFor="let pill of datosRegistro.mediciones.tipoDiabetes.medicacion"
-    [ngStyle]="{
-      'background-color': pill.color,
-      'transform':pill.rotacion,
-    }"
-    [ngClass]='pill.forma'></div> -->
-
-      
-
-
-    </div>
-
-  </div>
-
-</div>
-
-// paso3.component.ts
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { IRegister } from '../../../interfaces/register.interface';
-import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
-import { IFinalRegister } from '../../../interfaces/finalregister.interface';
-
-@Component({
-  selector: 'register-paso3',
-  templateUrl: './paso3.component.html',
-  styleUrls: ['./paso3.component.css'],
-})
-export class Paso3Component {
-  @Output() registrar = new EventEmitter<IFinalRegister>();
-
-  public Sexo = Sexo;
-  public Actividad = Actividad;
-  public TipoDiabetes = TipoDiabetes;
-  public medicacion: string = '';
-  public aceptar: boolean = false;
-  public medicacionString: string = '';
-
-  @Input() datosRegistro: IRegister = {
-    avatar: '',
-    username: '',
-    nombre: '',
-    apellido: '',
-    apellido2: '',
-    email: '',
-    password: '',
-    password2: '',
-    mediciones: {
-      edad: 0,
-      peso: 0,
-      altura: 0,
-      sexo: this.Sexo.hombre,
-      actividad: this.Actividad.sedentario,
-      tipoDiabetes: {
-        tipo: this.TipoDiabetes.tipo1,
-        medicacion: [],
-        insulina: false,
-      },
-    },
-  };
-
-  registroFinal: IFinalRegister = {
-    avatar: '',
-    userName: '',
-    email: '',
-    password: '',
-    nombre: '',
-    primerApellido: '',
-    segundoApellido: '',
-    sexo: '',
-    edad: 0,
-    peso: 0,
-    altura: 0,
-    actividad: '',
-    tipoDiabetes: '',
-    medicacion: [],
-    insulina: false,
-  };
-
-  registroUsuario() {
-    this.addMedicacion();
-    this.registroFinal = {
-      avatar: this.datosRegistro.avatar,
-      userName: this.datosRegistro.username,
-      email: this.datosRegistro.email,
-      password: this.datosRegistro.password,
-      nombre: this.datosRegistro.nombre,
-      primerApellido: this.datosRegistro.apellido,
-      segundoApellido: this.datosRegistro.apellido2,
-      sexo: this.datosRegistro.mediciones.sexo,
-      edad: this.datosRegistro.mediciones.edad,
-      peso: this.datosRegistro.mediciones.peso,
-      altura: this.datosRegistro.mediciones.altura,
-      actividad: this.datosRegistro.mediciones.actividad,
-      tipoDiabetes: this.datosRegistro.mediciones.tipoDiabetes.tipo,
-      medicacion: this.datosRegistro.mediciones.tipoDiabetes.medicacion,
-      insulina: this.datosRegistro.mediciones.tipoDiabetes.insulina,
-    };
-    this.registrar.emit(this.registroFinal);
-    console.log('registro mandado', this.registroFinal);
+@media (max-width: 1029px) {
+  .wrapper {
+    width: 95%;
+    min-height: 100vh;
+    overflow-x: none;
+    
   }
-  formularioInvalido(): boolean {
-    return (
-      !this.datosRegistro.mediciones.edad ||
-      !this.datosRegistro.mediciones.peso ||
-      !this.datosRegistro.mediciones.altura
-    );
+  .triangle{
+    rotate: 90deg;
+    margin-bottom: 3em;
+    
   }
+.contenido-bocadillo{
+  rotate: -90deg;
 
-  addMedicacion() {
-    this.medicacionString.split(',').forEach((medicamento) => {
-      this.datosRegistro.mediciones.tipoDiabetes.medicacion.push(medicamento);
-    });
-  }
 }
 
+.triangle::before {
+  
+  border-width: 30px 50px 0 50px;
+  
+  left: 50%;
+  transform: translateX(0%) translateY(100%);
 
-// register-main.component.html
-<section class="main-register">
-  <article class="info">
-    <a routerLink="/login" ><img src="assets/logo.png" alt="logo" class="logo" /></a>
-    <h2>Bienvenido a nuestra comunidad</h2>
-    <p>Aqui podrás registrarte para que la aplicacion tome todas tus medidas</p>
-  </article>
+}
 
-  <article class="form">
-    <div [ngSwitch]="paso">
-      <register-paso1
-        class="paso1"
-        *ngSwitchCase="1"
-        (siguientePaso)="siguientePaso($event)"
-        [datosRegistro]="datosRegistro"
-      ></register-paso1>
-      <register-paso2
-        *ngSwitchCase="2"
-        [datosRegistro]="datosRegistro"
-        (siguientePaso)="siguientePaso($event)"
-      ></register-paso2>
-      <register-paso3
-        *ngSwitchCase="3"
-        [datosRegistro]="datosRegistro"
-        (registrar)="registroUsuario($event)"
-      >
-      </register-paso3>
+}
+@media(width <  900px){
+
+  .wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .datos{
+    width: 70%;
+    height: 100%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  
+  .triangle{
+    
+  }
+  
+  
+}
+
+// mis-datos.component.html
+<section class="wrapper">
+  <div class="triangle">
+    <section class="avatar">
+      <div class="contenido-bocadillo">
+        <h1>¿No te gusta tu avatar? Genera uno nuevo</h1>
+        <app-generador-avatar class="generarAvatar" (avatarGenerado)="avatarHandler($event)"></app-generador-avatar>
+      </div>
+    </section>
+  </div>
+
+  <section class="datos">
+    <h2>Tus datos de usuario</h2>
+    <div class="formulario">
+      <form (ngSubmit)="actualizarUsuario()">
+        <section>
+          <label for="nombre">Nombre</label>
+          <div>
+            <input id="nombre" type="nombre" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required
+              [placeholder]="usuario.nombre" />
+          </div>
+        </section>
+        <section>
+          <label for="userName">Nombre de usuario</label>
+          <div>
+            <input id="userName" type="userName" [(ngModel)]="usuario.userName" name="userName" #userName="ngModel"
+              required [placeholder]="usuario.userName" />
+          </div>
+          <span class="error-form" *ngIf="!validarUsuario(usuario.userName) && userName.touched">
+            El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo
+            letras, números, guiones y guiones bajos.
+          </span>
+        </section>
+        <section>
+          <label for="apellido">Primer Apellido
+            <span class="error-form" *ngIf="!apellido.valid && apellido.touched">Primer apellido
+              obligatorio</span></label>
+          <div>
+            <input id="apellido" type="apellido" [(ngModel)]="usuario.primerApellido" #apellido="ngModel"
+              name="apellido" required />
+          </div>
+        </section>
+        <section>
+          <label for="apellido2">Segundo Apellido
+            <span class="error-form" *ngIf="apellido2.valid && apellido2.touched">Segundo apellido
+              obligatorio</span></label>
+          <div>
+            <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" name="apellido2"
+              #apellido2="ngModel" required />
+          </div>
+        </section>
+        <section>
+          <label for="edad">Edad</label>
+          <div>
+            <input type="number" [(ngModel)]="usuario.edad" name="edad" required />
+          </div>
+        </section>
+        <section>
+          <label for="sexo">Sexo Biológico</label>
+          <div>
+            <select [(ngModel)]="usuario.sexo" name="sexo" required>
+              <option [value]="Sexo.hombre">Masculino</option>
+              <option [value]="Sexo.mujer">Femenino</option>
+            </select>
+          </div>
+        </section>
+        <section>
+          <label for="actividad">Actividad</label>
+          <div>
+            <div>
+              <select [(ngModel)]="usuario.actividad" name="actividad" required>
+                <option [value]="Actividad.sedentario">Sedentario</option>
+                <option [value]="Actividad.ligero">Ligero</option>
+                <option [value]="Actividad.moderado">Moderado</option>
+                <option [value]="Actividad.intenso">Intenso</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        <section>
+          <label for="tipo">Tipo de diabetes</label>
+          <div>
+            <select [(ngModel)]="usuario.tipoDiabetes" name="tipo" required>
+              <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
+              <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
+              <option [value]="TipoDiabetes.gestacional">Gestacional</option>
+            </select>
+          </div>
+        </section>
+        <section class="check-box">
+          <label for="insulina">¿Toma insulina?</label>
+          <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required />
+        </section>
+
+        <button class="btn" id="seve">Guardar Cambios</button>
+        <button class="btn" id="clean" (click)="reestablecerFormulario()">
+          Reestablecer
+        </button>
+        <button class="btn" id="change-pass" (click)="abrirModalPass = true">
+          Cambiar Contraseña
+        </button>
+      </form>
+      <p>{{ error }}</p>
     </div>
-  </article>
+  </section>
+  <section class="calculadora">
+    <h1>Calcula tu IMC</h1>
+    <app-calculadora-imc (emitirAltura)="alturaHandler($event)" (emitirPeso)="pesoHandler($event)"
+      [alturaRecibida]="usuario.altura" [pesoRecibido]="usuario.peso"></app-calculadora-imc>
+  </section>
 </section>
 
+<section class="fondoModal" *ngIf="abrirModalPass">
+  <div class="modalPass">
+    <h2>Cambiar contraseña</h2>
+    <form (ngSubmit)="cambiarPass()">
+      <label for="pass">Escribe tu nueva contraseña</label>
+      <input type="password" [(ngModel)]="pass" name="pass" id="pass" />
+      <label for="pass">Repitela de nuevo</label>
+      <input type="password" [(ngModel)]="repetirPass" name="repetirPass" id="repetirPass" #password="ngModel" aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+      mayúscula, una minúscula, un número y un carácter especial." required/>
+      <section class="buttons">
+        <button type="submit">Guardar</button>
+        <button (click)="cerrarModal()">Cerrar</button>
+      </section>
+    </form>
+    
+    <p class="error-form" *ngIf="!password.valid && password.touched">
+      La contraseña debe tener al menos 8 caracteres, incluyendo una
+      mayúscula, una minúscula, un número y un carácter especial.
+    </p>
+    <p class="error-form">
+      {{ errorPass }}
+    </p>
+    <p class="error-form">
+      {{ errorPass }}
+    </p>
+    <p class="success-form">
+      {{ successPass }}
+    </p>
+  </div>
+</section>
 
-// register-main.component.ts
-import { Component, Output } from '@angular/core';
-import { Sexo, Actividad, TipoDiabetes } from '../../../enums/register.enum';
-import { IRegister } from '../../../interfaces/register.interface';
-import { AuthServiceService } from 'src/app/services/auth-service.service';
-import { IFinalRegister } from '../../../interfaces/finalregister.interface';
-import { Router } from '@angular/router';
+// main.component.css
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "navbar content content"
+    "navbar content content"
+    "navbar content content";
 
-@Component({
-  selector: 'register-main',
-  templateUrl: './register-main.component.html',
-  styleUrls: ['./register-main.component.css'],
-})
-export class RegisterMainComponent {
-  public Sexo = Sexo;
-  public Actividad = Actividad;
-  public TipoDiabetes = TipoDiabetes;
+  overflow: hidden;
+}
 
-  datosRegistro: IRegister = {
-    username: '',
-    avatar: '',
-    nombre: '',
-    apellido: '',
-    apellido2: '',
-    email: '',
-    password: '',
-    password2: '',
-    mediciones: {
-      edad: 0,
-      peso: 0,
-      altura: 0,
-      sexo: this.Sexo.hombre,
-      actividad: this.Actividad.sedentario,
-      tipoDiabetes: {
-        tipo: this.TipoDiabetes.tipo1,
-        medicacion: [],
-        insulina: false,
-      },
-    },
-  };
+.navbar {
+  grid-area: navbar;
+  width: 100%;
+  height: 100vh;
+  border-top-right-radius: 4rem;
+  border: 1px solid black;
+  background-color: #b1f98f;
+  position: sticky;
+  top: -5rem;
+}
 
-  paso: number = 1;
+.content {
+  grid-row: 2 / 3;
+  overflow-y: auto;
+  grid-area: content;
+  min-height: 100vh;
+}
 
-  siguientePaso(info: IRegister): void {
-    //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;
-    Object.assign(this.datosRegistro, info); // SE CARGA SOLO LA PARTE QUE SE HA MODIFICADO
-    console.log(this.datosRegistro);
-    if (this.paso < 3) {
-      this.paso++;
-    }
+.burger {
+  display: none;
+}
+
+
+
+@media (width < 1200px) {
+  .navbar{
+    padding: 0;
   }
- 
 
-  constructor(
-    private registerService: AuthServiceService,
-    private router: Router
-  ) {}
+  
+  
+}
 
-  registroUsuario(datosFinales: IFinalRegister) {
-    this.registerService.registerUser(datosFinales).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.router.navigate(['/login']);
-      },
-      error: (err) => console.log(err),
-      complete: () => console.log('Operation completed'),
-    });
+@media(width <  1030px){
+  .wrapper{
+    height: auto;
+    width: auto;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "navbar"
+    "content";
+  }
+  
+  
+  button {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left:20px;
+  }
+
+  .navbar {
+    width: 100%;
+    height: auto;
+    border-top-right-radius: 0;
+    
+  }
+  
+  
+  
+
+}
+
+
+
+// main.component.html
+
+<div class="wrapper">
+
+    <user-navbar class='navbar' [usuarioLogeado]="usuarioLogeado"></user-navbar>
+
+    <div class="content">
+        <router-outlet ></router-outlet>
+    </div>
+
+</div>
+
+
+
+// navbar.component.css
+.navbar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3em;
+}
+
+.nav-container {
+  position: relative;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-avatar {
+  border-radius: 100%;
+  width: 90%;
+}
+.section-names {
+  position: relative;
+  top: 1rem;
+  right: 1rem;
+}
+.section-names p {
+  color: var(--main--colorForeground);
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.section-list {
+  position: relative;
+  top: 1rem;
+}
+.section-list ul {
+  list-style: none;
+}
+.section-list ul li {
+  margin-top: 1rem;
+}
+.link-nav {
+  color: var(--main--colorForeground);
+  text-decoration: none;
+  width: 100%;
+  transition: all 0.3s lineal;
+}
+
+.link-nav:hover {
+  padding: 5px;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.btn-desconcted {
+  position: relative;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: large;
+  color: var(--main--colorForeground);
+}
+.btn-desconcted:hover {
+  background-color: #f09d9e;
+}
+
+
+
+@media (width < 1400px) {
+  .img-avatar {
+    width: 120%;
   }
 }
+
+@media (width < 1200px) {
+  .img-avatar {
+    width: 100%;
+    margin-right: 1em;
+  }
+
+  .section-names p {
+    font-size: 1.5em;
+  }
+
+  .link-nav {
+    margin-right: 0.8em;
+  }
+
+  .link-nav:hover {
+    padding: 5px;
+    margin-right: 0.4em;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+
+  .btn-desconcted {
+    width: 120%;
+    
+    
+  }
+  .navbar {
+    padding: 2em;
+  }
+  
+  
+
+}
+
+@media (width < 1030px){
+
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .nav-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+  }
+
+  .img-avatar {
+    width: 40%;
+    
+  }
+
+  p{
+    margin-left: 1em;
+  }
+
+
+
+  .btn-desconcted{
+    align-self: center;
+    width: 20%;
+    height: 30%;
+  }
+
+  .section-list{
+    margin-left: 5em;
+  }
+  
+  li{
+    text-align: left;
+    margin-top: 1em;
+  }
+
+  .link-nav{
+    font-size: 1.5em;
+    
+  }
+
+  .link-nav:hover{
+    font-size: 1.5em;
+    
+  }
+
+  
+}
+
+
+// navbar.component.html
+<nav class="navbar">
+
+  <section class="nav-container">
+    <img class="img-avatar" [src]="usuarioLogeado?.avatar" alt="avatar" />
+    
+    
+    <section class="section-names">
+      <p>
+        {{ usuarioLogeado?.nombre }}
+        {{ usuarioLogeado?.primerApellido }}
+        {{ usuarioLogeado?.segundoApellido }}
+      </p>
+    </section>
+
+    <section class="section-list">
+      <ul>
+        <li><a class="link-nav" routerLink="mis-datos">Mis Datos</a></li>
+        <li><a class="link-nav" routerLink="mediciones">Mediciones</a></li>
+        <li><a class="link-nav" routerLink="vademecum">Vademecum</a></li>
+        <!-- <li><a class="link-nav" routerLink="ayuda">Ayuda</a></li> -->
+      </ul>
+    </section>
+  </section>
+  <button class="btn-desconcted" (click)="logout()">Desconectar</button>
+</nav>
+
+// styles.css
+:root {
+  --main--colorBackGround: #68c2f1;
+  --main--colorForeground: #002d52;
+  --main--colorBackGroundElements: #effbff;
+  --main--colorHoverBtnAccept: #80f9c0;
+  --main--colorErrorOrDenegate: #940505;
+  --main--colorBacGroundForm: #F3F9EA;
+  accent-color: var(--main--colorHoverBtnAccept);
+}
+@font-face {
+  font-family: "Atkinson-Hyperlegible-Regular";
+  src: url("/assets/fonts/Atkinson-Hyperlegible-Regular-102a.woff2")
+      format("woff2"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Atkinson-Hyperlegible-Regular";
+}
+body {
+  /* width: 100vw;
+  height: 100vh; */
+  background-color: var(--main--colorBackGround);
+  /* overflow: hidden; */
+}
+
+input {
+  width: 30%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 1em;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.lectura-facil {
+  font-family: "Atkinson-Hyperlegible-Regular";
+  color: var(--main--colorForeground);
+  background-color: var(--main--colorBackGroundElements);
+  text-align: center;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 2em;
+  line-height: 2em;
+  letter-spacing: 2px;
+  min-width: 24em;
+}
+
+.error-form {
+  color: var(--main--colorErrorOrDenegate);
+  font-weight: 600;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
 
 

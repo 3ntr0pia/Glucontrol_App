@@ -23,12 +23,10 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MainComponent,
     NavbarComponent,
     MisDatosComponent,
-
     AyudaComponent,
     VademecumComponent,
     FiltroGenericosPipe,
     FiltroSinRecetaPipe,
-
     MedicionesComponent,
   ],
   imports: [

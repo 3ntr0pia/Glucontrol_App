@@ -4,6 +4,10 @@ import {
   IRespuestaServicio,
 } from '../../../interfaces/medicamento.interface';
 import { VademecumService } from 'src/app/services/vademecum.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { Sexo } from 'src/app/enums/register.enum';
+import { IUsuarioUpdate } from 'src/app/interfaces/usuario.interface';
 
 @Component({
   selector: 'app-vademecum',
@@ -12,18 +16,36 @@ import { VademecumService } from 'src/app/services/vademecum.service';
 })
 export class VademecumComponent {
   medicamentosFromBackend: string[] = [
-    'novorapid',
-    'paracetamol',
-    'ibuprofeno',
+   
   ];
+  usuario : IUsuarioUpdate ={
+    avatar: '',
+    userName: '',
+    nombre: '',
+    primerApellido: '',
+    segundoApellido: '',
+    sexo: Sexo.hombre,
+    edad: 0,
+    peso: 0,
+    altura: 0,
+    actividad: '',
+    tipoDiabetes: '',
+    medicacion: '',
+    insulina: false
+  }
+
 
   medicamentoSeleccionado: string = '';
   medicamentosArray: IMedicamento[] = [];
   Receta: boolean = true;
   Genericos: boolean = false;
-  constructor(private vademecum: VademecumService) {}
+  nuevoMedicamento : string = '';
+  constructor(private vademecum: VademecumService , private userService : UsuarioService, private authService: AuthServiceService ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserData();
+    console.log(this.usuario)
+  }
 
   medicamentoChange() {
     if (this.medicamentoSeleccionado) {
@@ -42,5 +64,49 @@ export class VademecumComponent {
         console.log(error);
       },
     });
+  }
+
+  getUserData(){
+    this.userService.getUsuarioYPersonaInfo(this.authService.userValue!.id).subscribe({
+      next: (res) => {
+        
+        this.usuario = {
+          id: res[0].id,
+          avatar: res[0].avatar,
+          userName: res[0].userName,
+          nombre: res[1].nombre,
+          primerApellido: res[1].primerApellido,
+          segundoApellido: res[1].segundoApellido,
+          sexo: res[1].sexo,
+          edad: res[1].edad,
+          peso: res[1].peso,
+          altura: res[1].altura,
+          actividad: res[1].actividad,
+          tipoDiabetes: res[1].tipoDiabetes,
+          medicacion: res[1].medicacion,
+          insulina: res[1].insulina,
+        };
+        this.medicamentosFromBackend = this.usuario.medicacion.split(',');
+        console.log(this.usuario)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  addMedicamento(){
+    this.medicamentosFromBackend.push(this.nuevoMedicamento);
+    this.nuevoMedicamento = '';
+    this.usuario.medicacion = this.medicamentosFromBackend.join(',');
+    
+    this.userService.actualizarUsuario(this.usuario).subscribe({
+      next: (res) => {
+        console.log(this.usuario.medicacion)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

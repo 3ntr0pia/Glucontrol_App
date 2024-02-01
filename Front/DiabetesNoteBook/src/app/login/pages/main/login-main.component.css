@@ -6,7 +6,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
-
+.hidden {
+  display: none;
+}
 .logotipo {
   position: relative;
   left: 2rem;
@@ -27,53 +29,17 @@
 .loging-form img {
   width: 50%;
 }
-@media (width < 1150px) {
-  .loging {
-    top: 10rem;
-  }
-}
 
-@media (width < 870px) {
-  .loging {
-    top: 10rem;
+
+@media (width < 900px) {
+  .loging-slider {
+    display: none;
   }
-  .logotipo {
-    position: relative;
-    left: 10rem;
-    top: -5rem;
-    width: 120%;
-  }
-  .slider {
-    visibility: hidden;
-  }
-  .loging-form {
-    right: 10rem;
-  }
-  .loging-form img {
+  .logotipo{
     width: 100%;
+    display: inline-block;
   }
-}
-
-@media (width < 700px) {
-  .logotipo {
-    left: 5rem;
-  }
-}
-
-@media (width < 520px) {
-  .logotipo {
-    left: 3rem;
-  }
-}
-
-@media (width < 395px) {
-  .loging {
-    left: 5rem;
-  }
-  .loging-form img {
-    width: 110%;
-  }
-  .logotipo {
-    left: 1rem;
+  .hidden{
+    display: block;
   }
 }

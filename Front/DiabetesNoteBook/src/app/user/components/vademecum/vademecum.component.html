@@ -3,6 +3,13 @@
     <div class="header">
         <h1>Tus medicamentos</h1>
         <p>Selecciona uno de tus medicamentos registrados para obtener más información</p>
+
+        <form class="nuevoMedicamento" (ngSubmit)="addMedicamento()" >
+           <input type="text" [(ngModel)]='nuevoMedicamento' name='nuevoMedicamento'>
+            <button type="submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Añadir medicamento
+            </button>
+        </form>
     </div>
 
     <div class="form">
@@ -56,11 +63,11 @@
           <i *ngIf="med.receta == false "  class="bi bi-r-square-fill text-secondary"></i>
         </td>
         <td>
-            <img *ngIf="med.fotos && med.fotos[1]" [src]="med.fotos[1].url" alt="Foto de la forma farmacéutica">
+            <img *ngIf="med.fotos && med.fotos[1]" [lazyLoad]="med.fotos[1].url" alt="Foto de la forma farmacéutica">
             <i *ngIf="!med.fotos || !med.fotos[1]" class='bi bi-capsule-pill text-danger'></i>
         </td>
         <td>
-            <img *ngIf="med.fotos && med.fotos[0]" [src]="med.fotos[0].url" alt="Foto de la caja">
+            <img *ngIf="med.fotos && med.fotos[0]" [lazyLoad]="med.fotos[0].url" alt="Foto de la caja">
             <i *ngIf="!med.fotos || !med.fotos[1]"  class="bi bi-box-seam text-danger" ></i>
           </td>
         <td>

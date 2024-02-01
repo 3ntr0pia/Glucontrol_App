@@ -13,6 +13,6 @@ export interface IUsuarioUpdate {
   altura: number;
   actividad: string;
   tipoDiabetes: string;
-  medicacion: string[];
+  medicacion: string;
   insulina: boolean;
 }

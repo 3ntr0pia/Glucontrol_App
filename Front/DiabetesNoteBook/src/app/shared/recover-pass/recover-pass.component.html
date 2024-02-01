@@ -1,18 +1,17 @@
-<img src="assets/logo.png" alt="" class="logotipo">
-<form>
-  <div class="formContainer">
-    <label for="exampleInputEmail1" class="label">Password</label>
-    <input type="password" class="form-control" name="newPass" id="exampleInputEmail1" aria-describedby="emailHelp"
-      [(ngModel)]="newPass">
-  </div>
-  <!-- <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
+<div class="container">
+ 
+    <img lazyLoad="assets/logoTexto.png" alt="" class="logotipo">
+    <img lazyLoad="assets/logo.png" alt="" class="logotipo">
+
+  <form>
+    <div class="formContainer">
+      <label for="exampleInputEmail1" class="label">Nueva Password</label>
+      <input type="password" class="form-control" name="newPass" id="newPass" aria-describedby="newPass"
+        [(ngModel)]="newPass" required>
+      <input type="password2" class="form-control" name="newPass2" id="newPass2" aria-describedby="newPass"
+      [(ngModel)]="newPass2" required>
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
-  <button type="submit" class="recuperarPass" (click)="recuperarPass()">Submit</button>
-</form>
-<span>{{error}}</span>
+    <button  type="submit" class="recuperarPass" (click)="recuperarPass()" [disabled]="newPass != newPass2">Actualizar</button>
+  </form>
+  <span>{{error}}</span>
+</div>

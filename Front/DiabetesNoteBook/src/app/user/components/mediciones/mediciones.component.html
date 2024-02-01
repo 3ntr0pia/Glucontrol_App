@@ -8,7 +8,7 @@
       </div>
       <div class='group'>
         <label for="deporte"> ¿Acaba de realizar deporte?</label>
-        <input class='checkbox' type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
+        <input type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
       </div>
       <div class='group'>
         <label> Momento de Medicion </label>
@@ -59,7 +59,7 @@
           <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector"
             #bolusCorrector="ngModel" required />
         </ng-container>
-        <ng-container  *ngIf="deporteRealizado == true">
+        <ng-container  *ngIf="deporteRealizado == true" [@fade]>
           <div class='group'>
             <label for="preDeporte">Pre Deporte</label>
             <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
@@ -147,5 +147,6 @@
       <div echarts [options]="chartOption"></div>
     </div>
   </div>
+</div>
   <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
     [icono]="'assets/iconoNota.svg'"></app-modal>

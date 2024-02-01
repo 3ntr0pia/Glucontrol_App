@@ -27,6 +27,7 @@ export class RecoverPassComponent {
 
   token: string = '';
   newPass: string = '';
+  newPass2: string = '';
   error: string = '';
   recuperarPass() {
     const datoLogin: IRecover = {
