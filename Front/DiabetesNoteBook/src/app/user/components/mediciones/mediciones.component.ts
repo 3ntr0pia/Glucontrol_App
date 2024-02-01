@@ -21,6 +21,7 @@ export class MedicionesComponent {
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
+  
   usuarioLogeadoPersonaId: number = 0;
   nuevaMedicion: IMedicionesAzucar = {
     id: 0,
@@ -57,7 +58,11 @@ export class MedicionesComponent {
     this.getMediciones(this.authService.userValue!.id);
     this.getPersonaID();
     this.nuevaMedicion.fecha = new Date();
-    
+    this.elementoPagina.reverse();
+    //Si la pantalla es menor de 700px
+    if (window.innerWidth < 700) {
+      
+    }
   }
 
 
@@ -121,13 +126,19 @@ export class MedicionesComponent {
   }
 
   prepararDatosGrafico() {
-    const fechas = this.mediciones.map((m) => {
-      const fecha = new Date(m.fecha);
+    let fechas = this.mediciones.map((m) => {
+      let fecha = new Date(m.fecha);
       return `${fecha.getHours()}:${fecha.getMinutes().toString().padStart(2, '0')}:${fecha.getSeconds().toString().padStart(2, '0')}`;
     });
-    const preMediciones = this.mediciones.map((m) => m.preMedicion);
-    const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
-    const medidasGenerales = this.mediciones.map(m => m.preMedicion !== 0 ? m.preMedicion : m.glucemiaCapilar);
+    let preMediciones = this.mediciones.map((m) => m.preMedicion);
+    let glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
+    let medidasGenerales = this.mediciones.map(m => m.preMedicion !== 0 ? m.preMedicion : m.glucemiaCapilar);
+
+    fechas = fechas.reverse();
+    preMediciones = preMediciones.reverse();
+    glucemiasCapilares = glucemiasCapilares.reverse();
+    medidasGenerales = medidasGenerales.reverse();
+
     
     this.chartOption = {
       aria: {
@@ -260,7 +271,7 @@ export class MedicionesComponent {
         if(mediciones.length == 0){
           this.elementoPagina=[]
         }
-        this.mediciones = mediciones;
+        this.mediciones = mediciones.reverse();
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);

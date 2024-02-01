@@ -83,3 +83,18 @@ input[type="number"] {
 }
 
 
+.btn {
+  min-width: 5rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}

@@ -95,7 +95,6 @@ select {
   width: 80%;
   height: 80%;
   padding: 2rem;
-  grid-area: formulario;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -353,4 +352,5 @@ select {
   .datos{
     width: 85%;
   }
+  
 }
