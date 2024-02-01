@@ -82,7 +82,7 @@ select {
 }
 .generarAvatar {
   position: relative;
-  width: 50%;
+  
   top: 0;
   left: 0;
   display: flex;
@@ -283,6 +283,7 @@ select {
     width: 95%;
     min-height: 100vh;
     overflow-x: none;
+    margin-top: -9em 
     
   }
   .triangle{
@@ -326,6 +327,7 @@ select {
   .triangle{
     order: -2;
     margin-right: 12em;
+    margin-top: 14em;
   }
   
   .triangle::before{
