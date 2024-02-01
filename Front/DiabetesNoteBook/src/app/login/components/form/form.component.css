@@ -23,15 +23,14 @@
 }
 
 .btnInicio {
-  position: relative;
-  top: 0.7rem;
+  
   padding: 0.2rem;
   border: none;
   border-radius: 5px;
   background-color: var(--main--colorBackGroundElements);
   font-size: large;
   color: var(--main--colorForeground);
-  margin: 0.2em;
+
 }
 .btnInicio:hover {
   background-color: var(--main--colorHoverBtnAccept);
@@ -69,6 +68,13 @@
 
 .aForgetPass a:hover {
   text-decoration: underline;
+}
+
+.bottom {
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (width < 750px) {

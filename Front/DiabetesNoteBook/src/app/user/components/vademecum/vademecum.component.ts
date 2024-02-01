@@ -15,10 +15,8 @@ import { IUsuarioUpdate } from 'src/app/interfaces/usuario.interface';
   styleUrls: ['./vademecum.component.css'],
 })
 export class VademecumComponent {
-  medicamentosFromBackend: string[] = [
-   
-  ];
-  usuario : IUsuarioUpdate ={
+  medicamentosFromBackend: string[] = [];
+  usuario: IUsuarioUpdate = {
     avatar: '',
     userName: '',
     nombre: '',
@@ -31,20 +29,35 @@ export class VademecumComponent {
     actividad: '',
     tipoDiabetes: '',
     medicacion: '',
-    insulina: false
-  }
-
+    insulina: false,
+  };
 
   medicamentoSeleccionado: string = '';
   medicamentosArray: IMedicamento[] = [];
   Receta: boolean = true;
   Genericos: boolean = false;
-  nuevoMedicamento : string = '';
-  constructor(private vademecum: VademecumService , private userService : UsuarioService, private authService: AuthServiceService ) {}
+  nuevoMedicamento: string = '';
+  accModal: boolean = false;
+  error: string = '';
+
+  constructor(
+    private vademecum: VademecumService,
+    private userService: UsuarioService,
+    private authService: AuthServiceService
+  ) {}
 
   ngOnInit(): void {
     this.getUserData();
-    console.log(this.usuario)
+    console.log(this.usuario);
+  }
+
+  modalAcc() {
+    if (this.accModal) {
+      this.accModal = false;
+    } else {
+      this.accModal = true;
+    }
+    console.log(this.accModal);
   }
 
   medicamentoChange() {
@@ -66,47 +79,83 @@ export class VademecumComponent {
     });
   }
 
-  getUserData(){
-    this.userService.getUsuarioYPersonaInfo(this.authService.userValue!.id).subscribe({
-      next: (res) => {
-        
-        this.usuario = {
-          id: res[0].id,
-          avatar: res[0].avatar,
-          userName: res[0].userName,
-          nombre: res[1].nombre,
-          primerApellido: res[1].primerApellido,
-          segundoApellido: res[1].segundoApellido,
-          sexo: res[1].sexo,
-          edad: res[1].edad,
-          peso: res[1].peso,
-          altura: res[1].altura,
-          actividad: res[1].actividad,
-          tipoDiabetes: res[1].tipoDiabetes,
-          medicacion: res[1].medicacion,
-          insulina: res[1].insulina,
-        };
-        this.medicamentosFromBackend = this.usuario.medicacion.split(',');
-        console.log(this.usuario)
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+  getUserData() {
+    this.userService
+      .getUsuarioYPersonaInfo(this.authService.userValue!.id)
+      .subscribe({
+        next: (res) => {
+          this.usuario = {
+            id: res[0].id,
+            avatar: res[0].avatar,
+            userName: res[0].userName,
+            nombre: res[1].nombre,
+            primerApellido: res[1].primerApellido,
+            segundoApellido: res[1].segundoApellido,
+            sexo: res[1].sexo,
+            edad: res[1].edad,
+            peso: res[1].peso,
+            altura: res[1].altura,
+            actividad: res[1].actividad,
+            tipoDiabetes: res[1].tipoDiabetes,
+            medicacion: res[1].medicacion,
+            insulina: res[1].insulina,
+          };
+          this.medicamentosFromBackend = this.usuario.medicacion.split(',');
+          console.log(this.usuario);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
-  addMedicamento(){
-    this.medicamentosFromBackend.push(this.nuevoMedicamento);
-    this.nuevoMedicamento = '';
+  addMedicamento() {
+    const nuevoMedicamentoLowerCase = this.nuevoMedicamento.toLocaleLowerCase();
+
+    if (!this.medicamentosFromBackend.includes(nuevoMedicamentoLowerCase)) {
+      this.medicamentosFromBackend.push(nuevoMedicamentoLowerCase);
+      this.nuevoMedicamento = '';
+      this.usuario.medicacion = this.medicamentosFromBackend.join(',');
+
+      this.userService.actualizarUsuario(this.usuario).subscribe({
+        next: (res) => {
+          this.error = '';
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      this.error = 'El medicamento ya existe en la lista.';
+    }
+  }
+
+  eliminarMedicamento(medicamentoAEliminar: string) {
+    const medicamentoAEliminarLowerCase =
+      medicamentoAEliminar.toLocaleLowerCase();
+    const existeMedicamento = this.medicamentosFromBackend.includes(
+      medicamentoAEliminarLowerCase
+    );
+
+    if (!existeMedicamento) {
+      this.error = 'El medicamento no existe en la lista.';
+      return;
+    }
+
+    this.medicamentosFromBackend = this.medicamentosFromBackend.filter(
+      (med) => med.toLocaleLowerCase() !== medicamentoAEliminarLowerCase
+    );
+
     this.usuario.medicacion = this.medicamentosFromBackend.join(',');
-    
     this.userService.actualizarUsuario(this.usuario).subscribe({
       next: (res) => {
-        console.log(this.usuario.medicacion)
+        console.log('Medicamento eliminado:', medicamentoAEliminar);
+        this.nuevoMedicamento = '';
+        this.error = '';
       },
       error: (err) => {
-        console.log(err);
-      }
-    })
+        console.error('Error al actualizar el usuario:', err);
+      },
+    });
   }
 }

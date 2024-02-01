@@ -1,30 +1,25 @@
-/* table{
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    
-    margin-top: 1em;
- margin-bottom: 1em;
- background-color: var(--main--colorBacGroundForm);
+.lectura-facil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  
 }
-thead{
-    background-color: var(--main--colorBackGroundElements);
-    color: var(--main--colorText);
-    border-bottom: 1px solid var(--main--colorBackGroundElements);
 
-} */
-
-/* tr{
-    background-color: var(--main--colorBacGroundForm);
-    border: 1px solid var(--main--colorBackGroundElements);
-    border-radius: 5px;
-    padding: 1em;
-    margin-bottom: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1em;
-} */
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 table {
   width: 100%;
@@ -72,14 +67,15 @@ tr:hover {
 .card {
   background-color: var(--main--colorBacGroundForm);
   align-self: center;
-  width: 25%;
+  width: 24%;
   border-radius: 2rem;
-  padding: 2em;
+  padding: 4em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-left: 1em;
+  height: 100%;
 }
 
 .card h1 {
@@ -88,10 +84,13 @@ tr:hover {
 
 .formulario {
   height: 100%;
+  width: 100%;
   grid-area: formulario;
   display: flex;
   align-items: center;
   font-weight: 600;
+  transform: scale(0.9);
+  flex-direction: column;
 }
 
 .group {
@@ -104,7 +103,7 @@ tr:hover {
 
 .group input,
 select {
-  width: 100%;
+  width: 110%;
   height: 40px;
   border-radius: 5px;
   border: 1px solid var(--main--colorBackGroundElements);
@@ -118,6 +117,8 @@ select {
 .botonesPaginacion {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 1em;
+  align-items: baseline;
 }
 
 p {
@@ -258,6 +259,7 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     font-weight: 600;
+    flex-direction: column;
   }
 
   .group {
@@ -289,17 +291,15 @@ input[type="checkbox"] {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
-    
   }
-  
 
   .grafica {
     width: 150%;
     margin-left: -1em;
   }
 
-  .chama{
-    display : none;
+  .chama {
+    display: none;
   }
 
   th,
@@ -307,7 +307,7 @@ input[type="checkbox"] {
     padding: 1em;
   }
 
-  .table-container{
+  .table-container {
     width: 100%;
   }
 }

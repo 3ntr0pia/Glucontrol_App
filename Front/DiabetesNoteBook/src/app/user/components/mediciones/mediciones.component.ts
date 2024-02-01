@@ -43,7 +43,7 @@ export class MedicionesComponent {
   paginaActual: number = 1;
   numeroTotalDePaginas: number = 0;
   elementosPorPagina: number = 4;
-
+  accModal : boolean = false;
   constructor(
     private medicionesService: MedicionesService,
     private authService: AuthServiceService,
@@ -53,6 +53,15 @@ export class MedicionesComponent {
     //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
     this.chartOption = {};
     
+  }
+
+  modalAcc(){
+    if(this.accModal){
+      this.accModal = false;
+    }else{
+      this.accModal = true;
+    }
+    console.log(this.accModal);
   }
 
   ngOnInit() {

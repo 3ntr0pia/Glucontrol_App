@@ -1,4 +1,5 @@
 <div class="wrapper">
+  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span *ngIf='accModal'>Cerrar</span></button>
   
   <div class="card">
     <h1>Mis Mediciones</h1>
@@ -11,7 +12,11 @@
         </div>
         <div class='group'>
           <label for="deporte"> ¿Acaba de realizar deporte?</label>
-          <input type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
+          <div class="deporteCheck">
+            <input type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required /> 
+          <span>Si</span>
+          </div>
+          
         </div>
         <div class='group'>
           <label> Momento de Medicion </label>
@@ -158,3 +163,26 @@
 </div>
   <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
     [icono]="'assets/iconoNota.svg'"></app-modal>
+
+    <section class="accModal" *ngIf='accModal == true'>
+      
+      <div class="fondoModal">
+
+        <div class='lectura-facil' tabindex="0">
+          <h2>Lectura fácil</h2>
+          <p>
+            En esta pantalla es donde tienes que poner tus mediciones.
+            La fecha y la hora en la que las haces,
+            si has hecho deporte,
+            si es antes o después de la comida (premedición o postmedición),
+            si es el bolus comida o el corrector
+            y si quieres hacer anotaciones.
+            Con todos estos datos te aparecerá una gráfica con estos datos,
+            que podrás tener en cuenta para consultarlos con tu médico.
+          </p>
+        </div>
+
+
+      </div>
+      
+    </section>
