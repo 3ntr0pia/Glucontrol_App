@@ -5,12 +5,13 @@ using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Services;
+using System.Text;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
@@ -106,19 +107,19 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         [HttpGet("validarRegistro/{UserId}/{Token}")]
         public async Task<ActionResult> ConfirmRegistration([FromRoute] DTOConfirmRegistrtion confirmacion)
         {
-
+            string mensaje = "<a class='btn btn-primary' href='http://localhost:4200'>Ir a login</a>";
             try
             {
                 var usuarioDB = _context.Usuarios.FirstOrDefault(x => x.Id == confirmacion.UserId);
 
                 if (usuarioDB.ConfirmacionEmail != false)//Preguntar a david lo que yo he hecho choca con esto
                 {
-                    return BadRequest("Usuario ya validado con anterioridad.");
+                    mensaje="<p class='display-5 mb4'> Usuario ya validado con anterioridad.</p>";
                 }
 
                 if (usuarioDB.EnlaceCambioPass != confirmacion.Token)
                 {
-                    return BadRequest("Token no valido.");
+                    mensaje = "<p class='display-5 mb4'>Token no valido</p>";
                 }
 
                 await _confirmEmailService.ConfirmEmail(new DTOConfirmRegistrtion
@@ -132,8 +133,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     UserId = usuarioDB.Id
                 });
 
-                return Ok();
-
+                StringBuilder responseHtml = new StringBuilder();
+                string bootstrap = "<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>";
+                responseHtml.AppendLine(bootstrap);
+                responseHtml.AppendLine("<div class='px-4 py-5 my-5 text-center'>");
+                responseHtml.AppendLine("<div class='col-lg-6 mx-auto'>");
+                responseHtml.AppendLine(mensaje);
+                //responseHtml.AppendLine("<p class='display-5 mb-4'>Enlace incorrecto o ya utilizado</p>");
+                responseHtml.AppendLine("<div class='d-grid gap-2 d-sm-flex justify-content-sm-center'>");
+                responseHtml.AppendLine("</div></div></div>");
+                return Content(responseHtml.ToString(), "text/html", Encoding.UTF8);
             }
             catch
             {

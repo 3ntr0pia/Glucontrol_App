@@ -262,3 +262,11 @@ An error occurred while saving the entity changes. See the inner exception for d
 POST
 Microsoft.EntityFrameworkCore.Relational
 An error occurred while saving the entity changes. See the inner exception for details.
+127.0.0.1
+31/01/2024 10:18:55
+/api/Users/registro
+POST
+MailKit
+534: 5.7.9 Please log in with your web browser and then try again. For more
+5.7.9 information, go to
+5.7.9  https://support.google.com/mail/?p=WebLoginRequired cl1-20020a5d5f01000000b0033afcc899c1sm3421744wrb.13 - gsmtp
