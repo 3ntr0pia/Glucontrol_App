@@ -36,12 +36,12 @@
           <ng-container class='group' *ngIf="momentoGlucemia == true">
             <label for="preMedicion">Medición</label>
             <input type="number" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion" #preMedicion="ngModel"
-              required />
+              required min="1"/>
           </ng-container>
           <ng-container class='group' *ngIf="momentoGlucemia == false">
             <label for="glucemiaCapilar">Medición</label>
             <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
-              #glucemiaCapilar="ngModel" required />
+              #glucemiaCapilar="ngModel" required min='1'/>
           </ng-container>
           <div class='group'>
             <label for="bolo">Bolo</label>
@@ -62,9 +62,9 @@
               #bolusCorrector="ngModel" required />
           </ng-container>
           <div class='group' >
-            <label for="glucemiaCapilar">Raciones HC</label>
-            <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
-              #glucemiaCapilar="ngModel" required />
+            <label for="racionHC">Raciones HC</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.racionHc" name="racionHC"
+              #racionHC="ngModel" required />
           </div>
           <ng-container  *ngIf="deporteRealizado == true" [@fade]>
             <div class='group'>
@@ -128,12 +128,11 @@
         <tbody>
           <tr *ngFor="let medicion of elementoPagina" >
             <td>{{ medicion.fecha | date : "short" }}</td>
-
             <td>{{ medicion.preMedicion > 0 ? medicion.preMedicion : medicion.glucemiaCapilar }}</td>
             <td class='chama'>{{ medicion.regimen }}</td>
             <td class='chama'>{{ medicion.bolusComida }}</td>
             <td class='chama'>{{ medicion.bolusCorrector }}</td>
-            <td >{{ medicion.bolusComida }}</td>
+            <td> {{ medicion.racionHc }}</td>
             <td class='chama'>{{ medicion.preDeporte }}</td>
             <td class='chama'>{{ medicion.duranteDeporte }}</td>
             <td class='chama'>{{ medicion.postDeporte }}</td>

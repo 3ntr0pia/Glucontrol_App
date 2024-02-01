@@ -35,10 +35,11 @@ export class MedicionesComponent {
     duranteDeporte: 0,
     postDeporte: 0,
     notas: '',
+    racionHc : 0,
     id_Persona: 0,
   };
   chartOption: EChartsOption = {};
-  elementoPagina: any[] = [];
+  elementoPagina: IMedicionesAzucar[] = [];
   paginaActual: number = 1;
   numeroTotalDePaginas: number = 0;
   elementosPorPagina: number = 4;
@@ -59,10 +60,7 @@ export class MedicionesComponent {
     this.getPersonaID();
     this.nuevaMedicion.fecha = new Date();
     this.elementoPagina.reverse();
-    //Si la pantalla es menor de 700px
-    if (window.innerWidth < 700) {
-      
-    }
+     console.log(this.elementoPagina);
   }
 
 
@@ -319,20 +317,5 @@ export class MedicionesComponent {
       },
     });
   }
-  // verificarLimitesEnMediciones() {
-    
-  //   let limiteSuperiorExcedido: boolean = this.nuevaMedicion.preMedicion > 180 || this.nuevaMedicion.glucemiaCapilar > 180;
-  //   let limiteInferiorExcedido: boolean = this.nuevaMedicion.preMedicion < 70 || this.nuevaMedicion.glucemiaCapilar < 70;
-
-  //   if (limiteSuperiorExcedido) {
-  //     alert('¡Alerta! La última medición excede el límite superior de 180.');
-  //   }
-
-  //   if (limiteInferiorExcedido) {
-  //     alert('¡Alerta! La última medición es inferior al límite de 70.');
-  //   }
-  // }
-
- 
 
 }
