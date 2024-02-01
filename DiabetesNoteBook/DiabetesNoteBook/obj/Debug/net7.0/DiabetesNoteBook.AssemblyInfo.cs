@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiabetesNoteBook")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85766783012f0e1267d9cce6c6cdad190294d0a1")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiabetesNoteBook")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiabetesNoteBook")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
