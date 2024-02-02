@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { config } from 'rxjs';
+import { urlImages } from 'src/app/environments/config';
+import { environment } from 'src/app/environments/environment';
+
 import { ILogin, IRecover } from 'src/app/interfaces/loginResponse.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { RecordarPassService } from 'src/app/services/recordar-pass.service';
@@ -14,11 +18,14 @@ export class FormComponent {
   password: string = '';
   mail: string = '';
   error: string = '';
+  
+  
 
   constructor(
     private authService: AuthServiceService,
     private router: Router,
     private recordarService: RecordarPassService
+
   ) {}
 
   recordar: boolean = false;

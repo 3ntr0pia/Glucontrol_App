@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'login-info',
   templateUrl: './info.component.html',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class InfoComponent {
 
+  
 }
