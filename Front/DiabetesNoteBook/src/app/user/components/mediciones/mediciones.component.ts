@@ -238,17 +238,21 @@ export class MedicionesComponent {
         {
           name: 'Hiperglucemia',
           type: 'line',
-          data: [], 
+          data: [],
           markArea: {
-            silent: true, 
+            silent: true,
             itemStyle: {
               color: 'rgba(255, 0, 0, 0.2)',
-               
+              decal: {
+                symbol: 'circle',
+                symbolSize: 2,
+                color: 'rgba(255, 0, 0, 1)',
+                dashArrayX: 2,
+                dashArrayY: 2,
+                rotation: 0
+              }
             },
-            data: [[
-              { yAxis: 210 }, 
-              { yAxis: 180 }, 
-            ]]
+            data: [[{ yAxis: 210 }, { yAxis: 180 }]]
           }
         },
         {

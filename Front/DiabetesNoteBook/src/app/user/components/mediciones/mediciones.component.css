@@ -89,7 +89,8 @@ tr:hover {
   display: flex;
   align-items: center;
   font-weight: 600;
-  transform: scale(0.9);
+  transform: scale(0.8);
+  margin-bottom: 10em;
   flex-direction: column;
 }
 
@@ -163,6 +164,8 @@ input[type="checkbox"] {
 .post-medicion {
   background-color: rgb(255, 255, 0);
 }
+
+
 
 @media (width < 1500px) {
   .card {
