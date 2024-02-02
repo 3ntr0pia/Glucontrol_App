@@ -1,0 +1,43 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Esto asegura que el contenedor ocupe toda la altura visible del viewport */
+  margin: 0;
+}
+img {
+  width: 300px;
+  margin-left: 520px;
+}
+.formContainer {
+  text-align: center; /* Centra el contenido del contenedor */
+  margin-top: 5px;
+}
+
+.formContainer label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 30%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.recuperarPass {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 475px;
+}
+
+span {
+  color: red;
+  display: block;
+  margin-top: 10px;
+}

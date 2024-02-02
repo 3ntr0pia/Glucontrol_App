@@ -1,6 +1,7 @@
 ﻿using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
+using DiabetesNoteBook.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
                 var personExist = await _context.Personas.FirstOrDefaultAsync(x => x.UserId == userData.Id);
-
+               personExist.Medicacion= String.Join(",", personExist.Medicacion);
                 if (personExist == null)
                 {
                     return NotFound("Datos de persona no encontrados");

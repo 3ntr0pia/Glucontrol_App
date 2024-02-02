@@ -22,23 +22,18 @@ input[type="number"] {
 
 .persona {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .monigote {
-  position: relative;
-  left: 10%;
+  margin-top: 1em;
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5px;
-}
-.monigote span {
-  margin-left: 25%;
 }
 
 .data {

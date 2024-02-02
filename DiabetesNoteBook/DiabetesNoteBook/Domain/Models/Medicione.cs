@@ -27,6 +27,8 @@ public partial class Medicione
 
     public decimal? PostDeporte { get; set; }
 
+    public decimal? RacionHc { get; set; }
+
     public string Notas { get; set; } = null!;
 
     public int IdPersona { get; set; }

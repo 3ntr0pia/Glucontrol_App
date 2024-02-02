@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { GeneradorAvatarComponent } from './generador-avatar/generador-avatar.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { SharedRoutingModule } from './shared-routing.module';
+import { LoginRoutingModule } from '../login/login-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { SharedRoutingModule } from './shared-routing.module';
     GeneradorAvatarComponent,
     RecoverPassComponent,
   ],
-  imports: [CommonModule, FormsModule, SharedRoutingModule],
+  imports: [CommonModule, FormsModule, SharedRoutingModule, LoginRoutingModule],
   exports: [
     ModalComponent,
     CalculadoraImcComponent,

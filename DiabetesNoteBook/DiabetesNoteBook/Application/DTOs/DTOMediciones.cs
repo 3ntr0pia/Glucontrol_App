@@ -12,6 +12,7 @@
         public decimal PreDeporte { get; set; }
         public decimal DuranteDeporte { get; set; }
         public decimal PostDeporte { get; set; }
+        public decimal RacionHC { get; set; }
         public string Notas { get; set; }
         public int Id_Persona { get; set; }
     }

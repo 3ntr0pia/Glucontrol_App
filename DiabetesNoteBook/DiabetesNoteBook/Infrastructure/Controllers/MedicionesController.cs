@@ -49,6 +49,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 PreDeporte = mediciones.PreDeporte,
                 DuranteDeporte = mediciones.DuranteDeporte,
                 PostDeporte = mediciones.PostDeporte,
+                RacionHC= mediciones.RacionHC,
                 Notas = mediciones.Notas,
                 Id_Persona = mediciones.Id_Persona
 

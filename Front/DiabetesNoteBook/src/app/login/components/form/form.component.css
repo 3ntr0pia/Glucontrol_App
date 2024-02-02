@@ -6,8 +6,8 @@
   color: var(--main--colorForeground);
   font-family: "Akinson-Hyperlegible-Regular";
 }
+
 .error-form {
-  
   color: var(--main--colorErrorOrDenegate);
   font-style: italic;
 }
@@ -31,12 +31,13 @@
   background-color: var(--main--colorBackGroundElements);
   font-size: large;
   color: var(--main--colorForeground);
+  margin: 0.2em;
 }
 .btnInicio:hover {
   background-color: var(--main--colorHoverBtnAccept);
 }
 
-.aBack {
+/* .aBack {
   position: relative;
   top: 0.7rem;
   margin: 1rem;
@@ -46,11 +47,11 @@
   font-size: large;
   background-color: var(--main--colorBackGroundElements);
   color: var(--main--colorForeground);
-}
+} */
 
-.aBack:hover {
+/* .aBack:hover {
   text-decoration: underline;
-}
+} */
 
 .aForgetPass a {
   position: relative;
@@ -58,6 +59,12 @@
   margin: 0.25rem;
   text-decoration: none;
   color: var(--main--colorForeground);
+}
+
+.easy-reading {
+  position: relative;
+  top: 1rem;
+  right: 3rem;
 }
 
 .aForgetPass a:hover {

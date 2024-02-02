@@ -59,7 +59,6 @@ export class MisDatosComponent implements OnInit {
         this.getUsuarioInfo(this.usuarioLogeado.id);
       }
     });
-    console.log(this.usuarioLogeado);
   }
 
   avatarHandler(avatar: string): void {
@@ -93,6 +92,9 @@ export class MisDatosComponent implements OnInit {
           medicacion: res[1].medicacion,
           insulina: res[1].insulina,
         };
+
+        console.log('Usuario:', this.usuario);
+        
         //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
       },
       error: (err) => {
@@ -101,63 +103,6 @@ export class MisDatosComponent implements OnInit {
     });
   }
 
-  actualizarUsuario(): void {
-    if (this.nuevoAvatar !== '') {
-      this.usuario.avatar = this.nuevoAvatar;
-    }
-    if (this.nuevaAltura !== 0 && this.nuevoPeso !== 0) {
-      this.usuario.altura = this.nuevaAltura;
-      this.usuario.peso = this.nuevoPeso;
-    }
-    if (!this.validarFormulario(this.usuario)) {
-      this.error = 'Formulario invalido';
-      return;
-    }
-    this.usuarioService.actualizarUsuario(this.usuario).subscribe({
-      next: (res) => {
-        console.log('Usuario actualizado:', res);
-
-        this.usuarioLogeado = {
-          ...this.usuarioLogeado!,
-          avatar: this.usuario.avatar,
-          nombre: this.usuario.nombre,
-          primerApellido: this.usuario.primerApellido,
-          segundoApellido: this.usuario.segundoApellido,
-        };
-
-        this.authService.updateUser(this.usuarioLogeado);
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
-  }
-
-  private validarFormulario(usuario: IUsuarioUpdate): boolean {
-    return (
-      usuario.nombre.trim() !== '' &&
-      usuario.userName.trim() !== '' &&
-      usuario.primerApellido.trim() !== '' &&
-      usuario.segundoApellido.trim() !== '' &&
-      usuario.edad > 0 &&
-      usuario.actividad !== '' &&
-      usuario.tipoDiabetes !== ''
-    );
-  }
-  
-    validarPassword(password: string): boolean {
-      const patron =
-        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-      return patron.test(password);
-    }
-    validarUsuario(usuario: string): boolean {
-      const patronUsuario = /^[A-Za-z0-9_-]{6,18}$/;
-      return patronUsuario.test(usuario);
-    }
-    validarEmail(email: string): boolean {
-      const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      return patronEmail.test(email);
-    }
 
     reestablecerFormulario(): void {
       this.usuario = { ...this.estadoInicialUsuario };
@@ -191,4 +136,64 @@ export class MisDatosComponent implements OnInit {
         },
       })
     }
+
+    actualizarUsuario(): void {
+      if (this.nuevoAvatar !== '') {
+        this.usuario.avatar = this.nuevoAvatar;
+      }
+      if (this.nuevaAltura !== 0 && this.nuevoPeso !== 0) {
+        this.usuario.altura = this.nuevaAltura;
+        this.usuario.peso = this.nuevoPeso;
+      }
+      if (!this.validarFormulario(this.usuario)) {
+        this.error = 'Formulario invalido';
+        return;
+      }
+      console.log(this.usuario)
+      
+      this.usuarioService.actualizarUsuario(this.usuario).subscribe({
+        next: (res) => {
+          console.log('Usuario actualizado:', res);
+          
+          this.usuarioLogeado = {
+            ...this.usuarioLogeado!,
+            avatar: this.usuario.avatar,
+            nombre: this.usuario.nombre,
+            primerApellido: this.usuario.primerApellido,
+            segundoApellido: this.usuario.segundoApellido,
+          };
+          
+          this.authService.updateUser(this.usuarioLogeado);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+    }
+  
+      private validarFormulario(usuario: IUsuarioUpdate): boolean {
+        return (
+          usuario.nombre.trim() !== '' &&
+          usuario.userName.trim() !== '' &&
+          usuario.primerApellido.trim() !== '' &&
+          usuario.segundoApellido.trim() !== '' &&
+          usuario.edad > 0 &&
+          usuario.actividad !== '' &&
+          usuario.tipoDiabetes !== ''
+        );
+      }
+      validarPassword(password: string): boolean {
+        const patron =
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return patron.test(password);
+      }
+      validarUsuario(usuario: string): boolean {
+        const patronUsuario = /^[A-Za-z0-9_-]{6,18}$/;
+        return patronUsuario.test(usuario);
+      }
+      validarEmail(email: string): boolean {
+        const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return patronEmail.test(email);
+      }
+  
   }

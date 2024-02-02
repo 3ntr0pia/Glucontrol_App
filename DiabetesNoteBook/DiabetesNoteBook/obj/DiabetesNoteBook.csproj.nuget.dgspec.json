@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {}
+    "D:\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {
+    "D:\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+        "projectUniqueName": "D:\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
         "projectName": "DiabetesNoteBook",
-        "projectPath": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
-        "packagesPath": "C:\\Users\\Javier\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Javier\\Desktop\\proyecto\\Grupo1_ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\obj\\",
+        "projectPath": "D:\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+        "packagesPath": "C:\\Users\\guill\\.nuget\\packages\\",
+        "outputPath": "D:\\DiabetesNoteBook\\DiabetesNoteBook\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Javier\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\guill\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

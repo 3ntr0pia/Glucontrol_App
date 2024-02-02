@@ -29,7 +29,7 @@ public partial class DiabetesNoteBookContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-IESTHJ2\\MSSQLSERVER02;Initial Catalog=DiabetesNoteBook;Integrated Security=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-2TL9C3O\\SQLEXPRESS;Initial Catalog=DiabetesNoteBook;Integrated Security=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,7 +42,7 @@ public partial class DiabetesNoteBookContext : DbContext
 
         modelBuilder.Entity<Medicione>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07AF23741A");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC0778B3C03C");
 
             entity.Property(e => e.BolusComida).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.BolusCorrector).HasColumnType("decimal(18, 0)");
@@ -65,12 +65,15 @@ public partial class DiabetesNoteBookContext : DbContext
             entity.Property(e => e.PreMedicion)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("Pre.Medicion");
+            entity.Property(e => e.RacionHc)
+                .HasColumnType("decimal(18, 0)")
+                .HasColumnName("RacionHC");
             entity.Property(e => e.Regimen).HasMaxLength(20);
 
             entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.Mediciones)
                 .HasForeignKey(d => d.IdPersona)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Medicione__Id_Pe__29221CFB");
+                .HasConstraintName("FK__Medicione__Id_Pe__3C34F16F");
         });
 
         modelBuilder.Entity<Operacione>(entity =>
