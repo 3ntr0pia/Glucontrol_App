@@ -36,9 +36,11 @@
       <button class="btnInicio" (click)="recordar = false">Volver</button>
     </div>
   </form>
+</section>
 
-  <div class="lectura-facil">
-    <h2>Lectura fácil:</h2>
+<!-- habría q maquetarlo, pero lo malo de ponerlo en un modal es q es la 1ª página, lo ideal sería sacar el h2 tal cual está y q se abra entonces-->
+  <div class="bi bi-universal-access-circle "class="lectura-facil">
+    <h2> Acceder a 'Lectura fácil':</h2>
     <p>
       En esta página podrás conectarte
       <br>
@@ -50,5 +52,4 @@
     </p>
   </div>
 
-</section>
 <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"></app-modal>
