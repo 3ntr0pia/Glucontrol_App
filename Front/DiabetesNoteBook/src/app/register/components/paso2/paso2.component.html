@@ -1,10 +1,10 @@
 <div class="contenedor">
 
-  <span class="visually-hidden" aria-live="polite">
+  <span class="visually-hidden">
     Cuidado, debes rellenar todos los campos
-  </span> 
+</span> <!--no lo lee y le pongo tabindex al msje-->
 
-  <div
+  <!--<div
     class="visually-hidden"
     role="alert"
     aria-live="polite"
@@ -14,7 +14,7 @@
     <p class="error-form" *ngIf="datosRegistro.mediciones.edad < 0">
       Introduce tu edad.
     </p>
-  </div>
+  </div>-->
 
   <div class="formulario">
     <form #formulario="ngForm" (ngSubmit)="siguientePaso.emit(datosRegistro)">
@@ -78,8 +78,8 @@
           ></app-calculadora-imc>
         </div>
 
-        <span class="error-form" *ngIf="datosRegistro.mediciones.edad">
-          <img lazyload="/assets/alert_line.svg" alt="" class= />Debe rellenar todos los
+        <span class="error'form" tabindex="0" *ngIf="datosRegistro.mediciones.edad">
+          <img lazyload="/assets/alert_line.svg" alt="" />Debe rellenar todos los
           campos
         </span>
         <div class="botones">

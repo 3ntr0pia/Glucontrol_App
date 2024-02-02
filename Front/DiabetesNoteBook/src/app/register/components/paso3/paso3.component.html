@@ -27,11 +27,13 @@
   
         <div>
           <label for="medicacion">Medicación</label><br>
+        
           <textarea
             maxlength="120"
-            placeholder="Medicación más relevante"
+            placeholder="Medicación más relevante separada por comas"
             [(ngModel)]="medicacionString"
             name="medicacion"
+            aria-label="Medicación más relevante separada por comas."
             required
           ></textarea>
         </div>
@@ -44,7 +46,7 @@
             type="checkbox"
             [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
             name="insulina"
-            required
+        
           /> Sí
           </fieldset>
         </div>
