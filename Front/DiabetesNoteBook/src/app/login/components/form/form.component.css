@@ -45,7 +45,6 @@
   padding: 0.5rem;
   border-radius: 10px;
   text-shadow: #d9dbda;
-  text-transform: lowercase;
   background-color: var(--main--colorBackGroundElements);
   border: 0.5px solid #002d52;
 }
