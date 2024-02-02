@@ -1,14 +1,9 @@
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
 .contenedor {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .formulario {
@@ -16,25 +11,23 @@ input[type="number"] {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
 }
 
+.lectura-facil{
+  width: 70%;
+}
+
 fieldset {
-  border: none; 
-  
+  border: none;
 }
 
 legend {
   border: none;
-  
 }
 
 .fieldset-datos {
-  position: relative;
-  /*! Ajustes caca */
-  bottom: 20px;
-  right: 120px; 
   width: 100%;
   height: 100%;
   background-color: var(--main--colorBacGroundForm);
@@ -44,7 +37,7 @@ legend {
   font-weight: 600;
 }
 
-.botones{
+.botones {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -55,31 +48,16 @@ legend {
   font-size: 0.8em;
 }
 
-.formulario input {
-  width: 10%;
-  height: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--main--colorBackGroundElements);
-  padding: 10px;
-  margin-left: 5px;
-  margin-bottom: 10px;
-  outline: none;
-  transition: all 0.3s ease;
-  text-align: center;
-}
 .formulario select {
   width: 30%;
   height: 5%;
   margin-bottom: 10px;
   margin-left: 5px;
   padding: 1px;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
 }
-.error-form {
-  color: var(--main--colorErrorOrDenegate);
-  font-weight: 600;
-}
+
 .persona {
   display: flex;
   flex-direction: column;
@@ -108,31 +86,54 @@ legend {
   top: 1rem;
   left: 20%;
   padding: 0.2rem;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   margin-left: 2rem;
   background-color: var(--main--colorBackGroundElements);
   font-size: large;
   color: var(--main--colorForeground);
 }
-
+select {
+  background-color: white;
+}
 .btn:hover {
   background-color: var(--main--colorHoverBtnAccept);
 }
 
-@media (width < 900px) {
-  .contenedor {
-    top: 10rem;
-    right: 30%;
+
+@media (width <= 1000px) {
+  .fieldset-datos {
+    
+    width: 80%;
+    margin: 1em;
+  
+
+  }
+
+}
+
+@media (width <= 950px) {
+  .contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   }
   .fieldset-datos {
-    width: 100%;
+    width: 95%;
+    
   }
-  .persona {
-    width: 80%;
-    font-weight: 400;
+}
+
+@media (width <= 640px) {
+  .contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   }
-  .btn {
-    left: 5%;
+  .fieldset-datos {
+    width: 95%;
+    
   }
 }

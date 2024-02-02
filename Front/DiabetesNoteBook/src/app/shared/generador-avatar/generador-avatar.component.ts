@@ -16,6 +16,7 @@ export class GeneradorAvatarComponent {
   constructor(private avatarService: AvatarService) {}
 
   generarAvatar() {
+    console.log('GenerarAvatar llamado');
     this.avatar = this.avatarService.getRandomAvatar();
     this.avatarGenerado.emit(this.avatar);
   }

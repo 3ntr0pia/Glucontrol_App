@@ -1,4 +1,9 @@
 <div class="contenedor">
+
+  <span class="visually-hidden" aria-live="polite">
+    Cuidado, debes rellenar todos los campos
+  </span> 
+
   <div
     class="visually-hidden"
     role="alert"
@@ -27,7 +32,7 @@
               required
             />
             <span class="error'form" *ngIf="datosRegistro.mediciones.edad < 0">
-              <img src="/assets/alert_line.svg" alt="error" />Debe poner una
+              <img lazyload="/assets/alert_line.svg" alt="error" />Debe poner una
               edad válida
             </span>
           </fieldset>
@@ -73,8 +78,8 @@
           ></app-calculadora-imc>
         </div>
 
-        <span class="error'form" *ngIf="datosRegistro.mediciones.edad">
-          <img src="/assets/alert_line.svg" alt="" />Debe rellenar todos los
+        <span class="error-form" *ngIf="datosRegistro.mediciones.edad">
+          <img lazyload="/assets/alert_line.svg" alt="" class= />Debe rellenar todos los
           campos
         </span>
         <div class="botones">
@@ -83,5 +88,16 @@
         </div>
       </section>
     </form>
+  </div>
+
+  <div class='lectura-facil' tabindex="0">
+    <h2><i class="bi bi-universal-access-circle "></i> Lectura fácil</h2>
+    <p>
+    Este es el segundo paso del formulario. Acuérdate de rellenar todos los campos.
+    Tienes que poner algunos datos físicos que son necesarios:
+    tu edad, tu sexo o género, la cantidad de ejercicio que haces,
+    tu altura en centímetros y tu peso en kilogramos.
+    Ésto calculará tu índice de masa corporal.
+    </p>
   </div>
 </div>

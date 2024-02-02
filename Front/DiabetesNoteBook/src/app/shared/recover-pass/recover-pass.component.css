@@ -1,43 +1,32 @@
-body {
+.container{
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  height: 100vh; /* Esto asegura que el contenedor ocupe toda la altura visible del viewport */
-  margin: 0;
-}
-img {
-  width: 300px;
-  margin-left: 520px;
-}
-.formContainer {
-  text-align: center; /* Centra el contenido del contenedor */
-  margin-top: 5px;
+  align-items: center;
+  padding: 5em;
 }
 
-.formContainer label {
-  display: block;
-  margin-bottom: 8px;
+img{
+  width: 50%;
+  height: 100%;
+}
+input{
+  width: 100%;
+  height: 40px;
 }
 
-.form-control {
-  width: 30%;
-  padding: 8px;
-  margin-bottom: 16px;
-  box-sizing: border-box;
-}
-
-.recuperarPass {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
+button{
+  padding: 0.2rem;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 475px;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: large;
+  color: var(--main--colorForeground);
 }
-
-span {
-  color: red;
-  display: block;
-  margin-top: 10px;
+button:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+.container img{
+  width: 20%;
+  height: 100%;
 }

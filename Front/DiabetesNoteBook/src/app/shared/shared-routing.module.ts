@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: 'recover-pass/:token',
     component: RecoverPassComponent,
+    
   },
   {
     path: '**',

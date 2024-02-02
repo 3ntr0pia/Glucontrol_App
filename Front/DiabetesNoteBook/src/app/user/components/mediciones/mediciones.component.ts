@@ -21,6 +21,7 @@ export class MedicionesComponent {
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
+  
   usuarioLogeadoPersonaId: number = 0;
   nuevaMedicion: IMedicionesAzucar = {
     id: 0,
@@ -34,29 +35,41 @@ export class MedicionesComponent {
     duranteDeporte: 0,
     postDeporte: 0,
     notas: '',
+    racionHc : 0,
     id_Persona: 0,
   };
   chartOption: EChartsOption = {};
-  elementoPagina: any[] = [];
+  elementoPagina: IMedicionesAzucar[] = [];
   paginaActual: number = 1;
   numeroTotalDePaginas: number = 0;
   elementosPorPagina: number = 4;
-
+  accModal : boolean = false;
   constructor(
     private medicionesService: MedicionesService,
     private authService: AuthServiceService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    
   ) {
     //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
     this.chartOption = {};
     
   }
 
+  modalAcc(){
+    if(this.accModal){
+      this.accModal = false;
+    }else{
+      this.accModal = true;
+    }
+    console.log(this.accModal);
+  }
+
   ngOnInit() {
     this.getMediciones(this.authService.userValue!.id);
     this.getPersonaID();
     this.nuevaMedicion.fecha = new Date();
-    
+    this.elementoPagina.reverse();
+     console.log(this.elementoPagina);
   }
 
 
@@ -120,34 +133,62 @@ export class MedicionesComponent {
   }
 
   prepararDatosGrafico() {
-    const fechas = this.mediciones.map((m) => {
-      const fecha = new Date(m.fecha);
-      return `${fecha.getDate()}/${fecha.getMonth() + 1}`;
+    let fechas = this.mediciones.map((m) => {
+      let fecha = new Date(m.fecha);
+      return `${fecha.getHours()}:${fecha.getMinutes().toString().padStart(2, '0')}:${fecha.getSeconds().toString().padStart(2, '0')}`;
     });
-    const preMediciones = this.mediciones.map((m) => m.preMedicion);
-    const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
+    let preMediciones = this.mediciones.map((m) => m.preMedicion);
+    let glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
+    let medidasGenerales = this.mediciones.map(m => m.preMedicion !== 0 ? m.preMedicion : m.glucemiaCapilar);
 
+    fechas = fechas.reverse();
+    preMediciones = preMediciones.reverse();
+    glucemiasCapilares = glucemiasCapilares.reverse();
+    medidasGenerales = medidasGenerales.reverse();
+
+    
     this.chartOption = {
+      aria: {
+        description: 'Una descripción detallada de tu gráfico de mediciones de glucosa.',
+        decal: {
+          show: true
+        },
+        enabled: true,
+      },
       title: {
         text: 'Mediciones de Glucosa',
         left: 'center',
+        textStyle: {
+          fontSize: 20,
+        }
       },
       tooltip: {
         trigger: 'axis',
       },
       legend: {
-        data: ['Pre Medicion', 'Post Medicion'],
-        top: 'bottom',
+        data: [
+          { name: 'Pre Medicion', icon: 'diamond' },  
+          { name: 'Post Medicion', icon: 'diamond' },  
+          { name: 'Mediciones', icon: 'circle'},
+          { name: 'Hiperglucemia', icon: 'rect' },  
+          { name: 'Hipoglucemia', icon: 'rect' }, 
+        ],
+        bottom: 0,
+        selected : {
+          'Pre Medicion' : false,
+          'Post Medicion' : false,
+        }
+        
       },
       grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
         containLabel: true,
       },
       xAxis: {
         type: 'category',
-        boundaryGap: false,
+        boundaryGap: true,
         data: fechas,
       },
       yAxis: {
@@ -158,6 +199,18 @@ export class MedicionesComponent {
       },
       series: [
         {
+          name: 'Mediciones',
+          type: 'line',
+          data: medidasGenerales,
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Máximo' },
+              { type: 'min', name: 'Mínimo' },
+            ],
+          },
+          
+        },
+        {
           name: 'Pre Medicion',
           type: 'line',
           data: preMediciones,
@@ -167,9 +220,7 @@ export class MedicionesComponent {
               { type: 'min', name: 'Mínimo' },
             ],
           },
-          markLine: {
-            data: [{ type: 'average', name: 'Media' }],
-          },
+          
         },
         {
           name: 'Post Medicion',
@@ -181,18 +232,56 @@ export class MedicionesComponent {
               { type: 'min', name: 'Mínimo' },
             ],
           },
-          markLine: {
-            data: [{ type: 'average', name: 'Media' }],
-          },
+          
+        },
+       
+        {
+          name: 'Hiperglucemia',
+          type: 'line',
+          data: [],
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: 'rgba(255, 0, 0, 0.2)',
+              decal: {
+                symbol: 'circle',
+                symbolSize: 2,
+                color: 'rgba(255, 0, 0, 1)',
+                dashArrayX: 2,
+                dashArrayY: 2,
+                rotation: 0
+              }
+            },
+            data: [[{ yAxis: 210 }, { yAxis: 180 }]]
+          }
+        },
+        {
+          name: 'Hipoglucemia',
+          type: 'line',
+          data: [], 
+          markArea: {
+            silent: true,
+            itemStyle: {
+              color: 'rgba(255, 0, 0, 0.2)', 
+            },
+            data: [[
+              { yAxis: 0 }, 
+              { yAxis: 70 }, 
+            ]]
+          }
         },
       ],
     };
-  }
+
+}
 
   getMediciones(userId: number) {
     this.medicionesService.getMediciones(userId).subscribe({
       next: (mediciones) => {
         console.log('Datos recibidos del servidor:', mediciones);
+        if(mediciones.length == 0){
+          this.elementoPagina=[]
+        }
         this.mediciones = mediciones.reverse();
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
@@ -205,11 +294,12 @@ export class MedicionesComponent {
   postMedicion() {
     this.medicionesService.postMediciones(this.nuevaMedicion).subscribe({
       next: (res) => {
-        console.log('Datos recibidos del servidor');
         this.getMediciones(this.authService.userValue!.id);
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
+        
+        // this.verificarLimitesEnMediciones(); 
       },
       error: (error) => {
         console.error(error);
@@ -220,15 +310,25 @@ export class MedicionesComponent {
   deleteMedicion(idMedicion: number) {
     this.medicionesService.deleteMediciones(idMedicion).subscribe({
       next: (res) => {
-        console.log(res)
+        console.log(res);
         this.getMediciones(this.authService.userValue!.id);
-        this.prepararDatosGrafico();
+        
+
         this.calcularTotalDePaginas();
+        if (this.paginaActual > this.numeroTotalDePaginas) {
+          this.paginaActual = this.numeroTotalDePaginas;
+        }
         this.cambiarPagina(this.paginaActual);
+  
+
+
+        
+        this.prepararDatosGrafico();
       },
       error: (error) => {
         console.error(error);
       },
     });
   }
+
 }

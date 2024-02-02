@@ -1,75 +1,124 @@
 <div class="wrapper">
+  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span
+      *ngIf='accModal'>Cerrar</span></button>
 
-    <div class="header">
-        <h1>Tus medicamentos</h1>
-        <p>Selecciona uno de tus medicamentos registrados para obtener más información</p>
-    </div>
+  <div class="header">
+    <h1>Tus medicamentos</h1>
+    <p>Selecciona uno de tus medicamentos registrados para obtener más información</p>
 
-    <div class="form">
-        <div class="form-group">
-            <label for="medicamento">Lista medicamentos</label>
-            <select class='form-select' name="listaMedicamentos" id="listaMedicamentos" [(ngModel)]='medicamentoSeleccionado' name="medicamentoSeleccionado" (change)='medicamentoChange()'>
-                <option class='form' selected >Selecciona un medicamento</option>
-                <option class='form' *ngFor="let med of medicamentosFromBackend" > {{med}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-          <input type="checkbox" id="Receta" [(ngModel)]="Receta">
-          <label for="sinReceta">Necesita Receta</label>
+
+  </div>
+
+  <div class="form">
+    <div class="form-group">
+
+      <div>
+        <label for="medicamento">Lista medicamentos</label>
+        <select class='form-select' name="listaMedicamentos" id="listaMedicamentos"
+          [(ngModel)]='medicamentoSeleccionado' name="medicamentoSeleccionado" (change)='medicamentoChange()'>
+          <option  selected>Selecciona un medicamento</option>
+          <option *ngFor="let med of medicamentosFromBackend"> {{med}} </option>
+        </select>
+
       </div>
-  
-      <div class="form-group">
-          <input type="checkbox" id="genericos" [(ngModel)]="Genericos">
-          <label for="genericos"> Solo Genéricos</label>
-      </div>
-  
+
+      <form class="nuevoMedicamento" (ngSubmit)="addMedicamento()">
+        <label for="nuevoMedicamento"> Medicamento a añadir o eliminar</label>
+        <input type="text" [(ngModel)]='nuevoMedicamento' name='nuevoMedicamento'>
+        <p class='error-form'>{{error}}</p>
+        <button class="btn" type="submit">
+          Añadir medicamento
+        </button>
+        <button class="btn" type="button" (click)="eliminarMedicamento(nuevoMedicamento)">
+          Eliminar medicamento
+        </button>
         
+      </form>
+      
     </div>
 
+    <div class="checks">
+      <div class="form-group-check">
+        <label for="sinReceta">Necesita Receta</label>
+        <input type="checkbox" id="Receta" [(ngModel)]="Receta">
+
+      </div>
+
+      <div class="form-group-check">
+        <label for="genericos"> Solo Genéricos</label>
+        <input type="checkbox" id="genericos" [(ngModel)]="Genericos">
+      </div>
+    </div>
+  </div>
 
 
+  <div class="tabla">
 <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Nombre</th>
-        <th scope="col">Laboratorio</th>
-        <th scope="col">Suministracion</th>
+        <th scope="col" class='chama'>Laboratorio</th>
+        <th scope="col" class='chama'>Suministracion</th>
         <th scope="col">¿Generico?</th>
         <th scope="col">¿Receta?</th>
-        <th scope="col">Forma</th>
-        <th scope="col">Caja</th>
+        <th scope="col"class='chama'>Forma</th>
+        <th scope="col"class='chama'>Caja</th>
         <th scope="col">Prospecto</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let med of (medicamentosArray | filtroSinReceta: Receta | filtroGenericos:Genericos)">        
-        <th >{{med.nombre}}</th>
-        <td>{{med.labtitular}}</td>
-        <td>{{med.formaFarmaceuticaSimplificada.nombre}}</td>
+      <tr *ngFor="let med of (medicamentosArray | filtroSinReceta: Receta | filtroGenericos:Genericos)">
+        <th>{{med.nombre}}</th>
+        <td class='chama'>{{med.labtitular}}</td>
+        <td class='chama'>{{med.formaFarmaceuticaSimplificada.nombre}}</td>
         <td>
-          <p *ngIf="med.generico == true"  class="text-warning"> Si</p>
-          <p *ngIf="med.generico == false "  class="text-secondary"> No</p>
-        
-        
+          <p *ngIf="med.generico == true" class="text-warning"> Si</p>
+          <p *ngIf="med.generico == false " class="text-secondary"> No</p>
+
+
         </td>
-        <td><i *ngIf="med.receta == true"  class="bi bi-prescription2 text-success"></i>
-          <i *ngIf="med.receta == false "  class="bi bi-r-square-fill text-secondary"></i>
+        <td><i *ngIf="med.receta == true" class="bi bi-check-lg "></i>
+          <i *ngIf="med.receta == false " class="bi bi bi-x "></i>
+        </td>
+        <td class='chama'>
+          <img *ngIf="med.fotos && med.fotos[1]" [lazyLoad]="med.fotos[1].url" alt="Foto de la forma farmacéutica">
+          <i *ngIf="!med.fotos || !med.fotos[1]" class='bi bi-capsule-pill text-danger'></i>
+        </td>
+        <td class='chama'>
+          <img *ngIf="med.fotos && med.fotos[0]" [lazyLoad]="med.fotos[0].url" alt="Foto de la caja">
+          <i *ngIf="!med.fotos || !med.fotos[1]" class="bi bi-box-seam text-danger"></i>
         </td>
         <td>
-            <img *ngIf="med.fotos && med.fotos[1]" [src]="med.fotos[1].url" alt="Foto de la forma farmacéutica">
-            <i *ngIf="!med.fotos || !med.fotos[1]" class='bi bi-capsule-pill text-danger'></i>
+          <a *ngIf="med.docs && med.docs.length > 0" [href]="med.docs[0].url" target="_blank">
+            <i class="bi" [ngClass]="med.docs[0].url ? 'bi-file-text' : 'bi-file-earmark'"></i>
+          </a>
+          <i *ngIf="!med.docs || med.docs.length === 0" class="bi bi-file-earmark"></i>
         </td>
-        <td>
-            <img *ngIf="med.fotos && med.fotos[0]" [src]="med.fotos[0].url" alt="Foto de la caja">
-            <i *ngIf="!med.fotos || !med.fotos[1]"  class="bi bi-box-seam text-danger" ></i>
-          </td>
-        <td>
-            <a *ngIf="med.docs && med.docs.length > 0" [href]="med.docs[0].url" target="_blank">
-              <i class="bi" [ngClass]="med.docs[0].url ? 'bi-file-text' : 'bi-file-earmark'"></i>
-            </a>
-            <i *ngIf="!med.docs || med.docs.length === 0" class="bi bi-file-earmark"></i>
-          </td>
-          
+
       </tr>
-    </table>
+  </table>
+
+  </div>
+  
 </div>
+
+<section class="accModal" *ngIf='accModal == true'>
+
+  <div class="fondoModal">
+
+    <div class='lectura-facil' tabindex="0">
+      <h2>Lectura fácil</h2>
+      <p>
+        Aquí puedes buscar información de tus medicinas.
+        Las que ya hayas puesto y otras nuevas que necesites.
+        Señala si necesita receta o quítale la señal si no la necesita.
+        Si solo quieres buscar medicamentos genéricos, haz click en la casilla.
+        Una vez esté rellenado todo, saldrá el listado de los medicamentos:
+        podrás ver cómo son y la información técnica de ellos.
+      </p>
+    </div>
+
+
+  </div>
+
+</section>

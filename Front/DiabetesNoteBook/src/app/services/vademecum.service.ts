@@ -22,7 +22,4 @@ export class VademecumService {
       `${this.connectionString}${nombre}`
     );
   }
-  getMedicamentoUser(id: string) {
-    return this.http.get(`${this.API_URL}/Medicamentos/${id}`);
-  }
 }

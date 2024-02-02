@@ -1,4 +1,3 @@
-
 .main-register {
   width: 100%;
   height: 100%;
@@ -9,22 +8,31 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
 
- 
+.paso1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info {
-  width: 100%;
+  width: 50%;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .logo {
-  width: 90%;
-  width: 20rem;
+  width: 50%;
+}
+
+.logoImage {
+  width: 70%;
 }
 
 .form {
@@ -32,36 +40,22 @@
   height: 100%;
 }
 
-@media (width < 900px) {
-  .main-register {
-    top: 7rem;
-    left: 3rem;
-    display: flex;
+
+@media (width < 1200px) {
+  
+}
+
+@media (width <= 1200px) {
+  .main-register{
     flex-direction: column;
-    justify-content: center;
-    align-content: space-between;
-    padding: 2rem;
-  }
-  .info {
-    top: 10rem;
-  }
-  .paso1 {
-    flex-direction: column;
-    justify-content: center;
-    align-content: space-between;
-    flex-wrap: wrap;
-    gap: 4rem;
   }
 }
 
-@media (width < 400px) {
-  .main-register {
-    top: 10rem;
-    font-size: small;
-  }
-  .info {
-    position: relative;
-    top: 50rem;
-    width: 100%;
+@media (width < 1000px) {
+  .paso1 {
+    
+    justify-content: space-around;
+  
+
   }
 }

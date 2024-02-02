@@ -5,6 +5,7 @@ import { MisDatosComponent } from './components/mis-datos/mis-datos.component';
 import { AyudaComponent } from './components/ayuda/ayuda.component';
 import { VademecumComponent } from './components/vademecum/vademecum.component';
 import { MedicionesComponent } from './components/mediciones/mediciones.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 
 
@@ -12,12 +13,13 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'mis-datos', pathMatch: 'full' },
-      { path: 'mis-datos', component: MisDatosComponent },
-      { path : 'mediciones', component: MedicionesComponent },
-      { path: 'vademecum', component: VademecumComponent },
-      { path: 'ayuda', component: AyudaComponent },
+      { path: 'mis-datos', component: MisDatosComponent , title: 'Mis datos | Glucontrol '},
+      { path : 'mediciones', component: MedicionesComponent , title: 'Mis mediciones | Glucontrol '},
+      { path: 'vademecum', component: VademecumComponent , title: 'Vademecum | Glucontrol '},
+      { path: 'ayuda', component: AyudaComponent , title: 'Ayuda | Glucontrol '},
       
     ]
   }

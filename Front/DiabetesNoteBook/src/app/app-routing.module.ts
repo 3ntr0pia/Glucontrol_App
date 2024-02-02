@@ -7,16 +7,19 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
+    title: 'Inicio | Glucontrol ',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'register',
+    title: 'Registro | Glucontrol ',
     loadChildren: () =>
       import('./register/register.module').then((m) => m.RegisterModule),
   },
   {
     path: 'user-dashboard',
+    title: 'Dashboard | Glucontrol ',
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {

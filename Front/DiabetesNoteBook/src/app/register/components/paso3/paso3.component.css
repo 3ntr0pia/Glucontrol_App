@@ -1,20 +1,20 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  
 }
 
-.lateral{
-  display : flex;
+.lateral {
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  z-index: -1;
 }
 
-img{
-  width: 70%;
+img {
+  width: 50%;
   height: 100%;
 }
 
@@ -24,9 +24,8 @@ img{
   align-items: center;
   width: 100%;
   height: 100%;
-
 }
-.lectura-facil{
+.lectura-facil {
   width: 60%;
 }
 
@@ -38,43 +37,27 @@ img{
   border-radius: 1rem;
   color: var(--main--colorForeground);
   font-weight: 600;
-  
-  margin-right: 2em;
+
+  margin-left: 5em;
 }
 
 fieldset {
-  border: none; 
+  border: none;
 }
 
 legend {
   border: none;
-  
 }
 
 .fieldset-datos legend {
   font-size: 1.5em;
 }
 
-input {
-  width: 30%;
-  height: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--main--colorBackGroundElements);
-  padding: 1em;
-  margin-left: 5px;
-  margin-bottom: 10px;
-  outline: none;
-  transition: all 0.3s ease;
-  text-align: center;
-}
 .formulario input[type="checkbox"] {
   width: 14px;
   height: 14px;
 }
-.formulario input[type="checkbox"]:checked {
-  background-color: red;
-  color: #b1f98f;
-}
+
 .formulario select {
   width: 30%;
   height: 5%;
@@ -97,9 +80,9 @@ input {
 .btn {
   position: relative;
   width: 5rem;
-  top: 1rem;
+  top: rem;
   padding: 0.2rem;
-  border: none;
+  border: 1px solid black;
   border-radius: 5px;
   margin-left: 2rem;
   background-color: var(--main--colorBackGroundElements);
@@ -111,9 +94,40 @@ input {
   background-color: var(--main--colorHoverBtnAccept);
 }
 
+
+@media (width <= 1380px) {
+  .lateral {
+    width: 70%;
+  }
+  .fieldset-datos {
+    margin-left: 2em;
+  }
+}
+
+@media (width <= 1200px) {
+  .lateral {
+    margin-left: 1em;
+  }
+}
+
 @media (width < 900px) {
   .formContainer {
-    top: 10rem;
-    right: 13rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column-reverse;
+  }
+
+  .fieldset-datos {
+    height: auto;
+    margin-bottom: 4rem;
+    margin-left: 0;
+  }
+
+  img {
+    width: 90%;
+    height: 100%;
   }
 }

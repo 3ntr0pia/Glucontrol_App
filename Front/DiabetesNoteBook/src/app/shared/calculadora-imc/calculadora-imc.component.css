@@ -27,6 +27,10 @@ input[type="number"] {
   justify-content: center;
 }
 
+.error {
+  display: flex;
+  flex-direction: column;
+}
 .monigote {
   margin-top: 1em;
   width: 50%;
@@ -44,7 +48,16 @@ input[type="number"] {
   align-items: center;
   left: 2rem;
 }
+
+.data input {
+  border: 1px solid black;
+  width: 30%;
+}
+
+.error p {
+  font-size: 0.8em;
+  max-width: 80%;
+}
 .error-form {
   color: var(--main--colorErrorOrDenegate);
-  font-weight: 600;
 }

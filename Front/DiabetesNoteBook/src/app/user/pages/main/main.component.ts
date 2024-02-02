@@ -9,7 +9,7 @@ import { AuthServiceService } from 'src/app/services/auth-service.service';
 })
 export class MainComponent implements OnInit {
   usuarioLogeado: IUserLoginResponse | null = null;
-
+  
   constructor(private authService: AuthServiceService) {}
 
   ngOnInit(): void {
@@ -21,4 +21,6 @@ export class MainComponent implements OnInit {
       this.usuarioLogeado = user;
     });
   }
+
+  
 }

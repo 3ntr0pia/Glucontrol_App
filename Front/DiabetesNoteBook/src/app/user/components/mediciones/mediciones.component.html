@@ -1,101 +1,117 @@
 <div class="wrapper">
-  <div class="formulario">
-    <form (ngSubmit)="postMedicion()">
-      <div class='group'>
-        <label for="fecha">Fecha</label>
-        <input type="datetime-local" [ngModel]="fechaInput" (ngModelChange)="onFechaChange($event)" name="fecha"
-          #fecha="ngModel" required />
-      </div>
-      <div class='group'>
-        <label for="deporte"> ¿Acaba de realizar deporte?</label>
-        <input class='checkbox' type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required />
-      </div>
-      <div class='group'>
-        <label> Momento de Medicion </label>
-        <div>
-          <select aria-label="Default select example" name="momento" [(ngModel)]='momentoGlucemia' required>
-            <option selected disabled>Seleccione un momento</option>
-            <option [ngValue]="true">Pre Medicion</option>
-            <option [ngValue]="false">Post Medicion</option>
-          </select>
+  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span *ngIf='accModal'>Cerrar</span></button>
+  
+  <div class="card">
+    
+    <div class="formulario">
+      <h1>Mis Mediciones</h1>
+      <form (ngSubmit)="postMedicion()">
+        <div class='group'>
+          <label for="fecha">Fecha</label>
+          <input type="datetime-local" [ngModel]="fechaInput" (ngModelChange)="onFechaChange($event)" name="fecha"
+            #fecha="ngModel" required />
         </div>
         <div class='group'>
-          <label for="regimen">Regimen</label>
-          <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen" name="regimen"
-            #regimen="ngModel" required>
-            <option selected disabled>Seleccione un regimen</option>
-            <option value="desayuno">Desayuno</option>
-            <option value="almuerzo">Almuerzo</option>
-            <option value="merienda">Merienda</option>
-            <option value="cena">Cena</option>
-          </select>
+          <label for="deporte"> ¿Acaba de realizar deporte?</label>
+          <div class="deporteCheck">
+            <input type="checkbox" [(ngModel)]="deporteRealizado" name="deporte" #deporte="ngModel" required /> 
+          <span>Si</span>
+          </div>
+          
         </div>
-        <ng-container class='group' *ngIf="momentoGlucemia == true">
-          <label for="preMedicion">Medición</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion" #preMedicion="ngModel"
-            required />
-        </ng-container>
-        <ng-container class='group' *ngIf="momentoGlucemia == false">
-          <label for="glucemiaCapilar">Medición</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
-            #glucemiaCapilar="ngModel" required />
-        </ng-container>
         <div class='group'>
-          <label for="bolo">Bolo</label>
-          <select aria-label="Default select example" [(ngModel)]="bolo" name="bolo" required>
-            <option selected disabled> Elija el tipo de bolo</option>
-            <option [ngValue]="true">Bolo Comida</option>
-            <option [ngValue]="false">Bolus Corrector</option>
-
-          </select>
-        </div>
-        <ng-container class='group' *ngIf='bolo'>
-          <label for="bolusComida">Bolus Comida</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
-            required />
-        </ng-container>
-        <ng-container class='group' *ngIf='!bolo'>
-          <label for="bolusCorrector">Bolus Corrector</label>
-          <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector"
-            #bolusCorrector="ngModel" required />
-        </ng-container>
-        <ng-container  *ngIf="deporteRealizado == true">
-          <div class='group'>
-            <label for="preDeporte">Pre Deporte</label>
-            <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
-              required />
+          <label> Momento de Medicion </label>
+          <div>
+            <select aria-label="Default select example" name="momento" [(ngModel)]='momentoGlucemia' required>
+              <option selected disabled>Seleccione un momento</option>
+              <option [ngValue]="true">Pre Medicion</option>
+              <option [ngValue]="false">Post Medicion</option>
+            </select>
           </div>
           <div class='group'>
-            <label for="duranteDeporte">Durante Deporte</label>
-            <input type="number" [(ngModel)]="nuevaMedicion.duranteDeporte" name="duranteDeporte"
-              #duranteDeporte="ngModel" required />
+            <label for="regimen">Regimen</label>
+            <select aria-label="Default select example" [(ngModel)]="nuevaMedicion.regimen" name="regimen"
+              #regimen="ngModel" required>
+              <option selected disabled>Seleccione un regimen</option>
+              <option value="desayuno">Desayuno</option>
+              <option value="almuerzo">Almuerzo</option>
+              <option value="merienda">Merienda</option>
+              <option value="cena">Cena</option>
+            </select>
           </div>
-          <div class='group'> 
-            <label for="postDeporte">Post Deporte</label>
-            <input type="number" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte" #postDeporte="ngModel"
+          <ng-container class='group' *ngIf="momentoGlucemia == true">
+            <label for="preMedicion">Medición</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.preMedicion" name="preMedicion" #preMedicion="ngModel"
+              required min="1"/>
+          </ng-container>
+          <ng-container class='group' *ngIf="momentoGlucemia == false">
+            <label for="glucemiaCapilar">Medición</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.glucemiaCapilar" name="glucemiaCapilar"
+              #glucemiaCapilar="ngModel" required min='1'/>
+          </ng-container>
+          <div class='group'>
+            <label for="bolo">Bolo</label>
+            <select aria-label="Default select example" [(ngModel)]="bolo" name="bolo" required>
+              <option selected disabled> Elija el tipo de bolo</option>
+              <option [ngValue]="true">Bolo Comida</option>
+              <option [ngValue]="false">Bolus Corrector</option>
+            </select>
+          </div>
+          <ng-container class='group' *ngIf='bolo'>
+            <label for="bolusComida">Bolus Comida</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.bolusComida" name="bolusComida" #bolusComida="ngModel"
               required />
+          </ng-container>
+          <ng-container class='group' *ngIf='!bolo'>
+            <label for="bolusCorrector">Bolus Corrector</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.bolusCorrector" name="bolusCorrector"
+              #bolusCorrector="ngModel" required />
+          </ng-container>
+          <div class='group' >
+            <label for="racionHC">Raciones HC</label>
+            <input type="number" [(ngModel)]="nuevaMedicion.racionHc" name="racionHC"
+              #racionHC="ngModel" required />
           </div>
-        </ng-container>
-
-        <div class='group'>
-          <label for="notas">Notas</label>
-          <input type="text" [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
+          <ng-container  *ngIf="deporteRealizado == true" [@fade]>
+            <div class='group'>
+              <label for="preDeporte">Pre Deporte</label>
+              <input type="number" [(ngModel)]="nuevaMedicion.preDeporte" name="preDeporte" #preDeporte="ngModel"
+                required />
+            </div>
+            <div class='group'>
+              <label for="duranteDeporte">Durante Deporte</label>
+              <input type="number" [(ngModel)]="nuevaMedicion.duranteDeporte" name="duranteDeporte"
+                #duranteDeporte="ngModel" required />
+            </div>
+            <div class='group'> 
+              <label for="postDeporte">Post Deporte</label>
+              <input type="number" [(ngModel)]="nuevaMedicion.postDeporte" name="postDeporte" #postDeporte="ngModel"
+                required />
+            </div>
+          </ng-container>
+  
+          <div class='group'>
+            <label for="notas">Notas</label>
+            <input type="text" class='btn' [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" required />
+          </div>
+          <button type="submit" class='btn' [disabled]="nuevaMedicion.preMedicion == 0 && nuevaMedicion.glucemiaCapilar == 0">Agregar</button>
         </div>
-        <button type="submit" [disabled]="nuevaMedicion.preMedicion == 0 && nuevaMedicion.glucemiaCapilar == 0">Agregar</button>
-      </div>
-
-
-    </form>
+  
+  
+      </form>
+  
+    </div>
 
   </div>
+  
   <div class="contenedor">
-    <div>
-      <div>
-        <button (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">
+    <div class='table-container'>
+      <div class='botonesPaginacion'>
+        <button class='btn' (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1">
           Anterior
         </button>
-        <span>Página {{ paginaActual }}</span>
-        <button (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= numeroTotalDePaginas">
+        <p>{{ paginaActual }}</p>
+        <button class='btn' (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual >= numeroTotalDePaginas">
           Siguiente
         </button>
       </div>
@@ -104,31 +120,29 @@
           <tr>
             <th>Fecha</th>
             <th>Medicion</th>
-            <th>Regimen</th>
-            <th>Bolus Comida</th>
-            <th>Bolus Corrector</th>
-            <th>Pre Deporte</th>
-            <th>Durante Deporte</th>
-            <th>Post Deporte</th>
-            <th>Notas</th>
-            <th>Acciones</th>
+            <th class='chama'>Regimen</th>
+            <th class='chama'>Bolus Comida</th>
+            <th class='chama'>Bolus Corrector</th>
+            <th>Racion HC</th>
+            <th class='chama'>Pre Deporte</th>
+            <th class='chama'>Durante Deporte</th>
+            <th class='chama'>Post Deporte</th>
+            <th class='chama'>Notas</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let medicion of elementoPagina" [ngClass]="{
-              'pre-medicion': medicion.preMedicion != 0 && medicion.glucemiaCapilar == 0,
-              'post-medicion': medicion.preMedicion == 0 && medicion.glucemiaCapilar != 0
-          }">
+          <tr *ngFor="let medicion of elementoPagina" >
             <td>{{ medicion.fecha | date : "short" }}</td>
-
             <td>{{ medicion.preMedicion > 0 ? medicion.preMedicion : medicion.glucemiaCapilar }}</td>
-            <td>{{ medicion.regimen }}</td>
-            <td>{{ medicion.bolusComida }}</td>
-            <td>{{ medicion.bolusCorrector }}</td>
-            <td>{{ medicion.preDeporte }}</td>
-            <td>{{ medicion.duranteDeporte }}</td>
-            <td>{{ medicion.postDeporte }}</td>
-            <td>
+            <td class='chama'>{{ medicion.regimen }}</td>
+            <td class='chama'>{{ medicion.bolusComida }}</td>
+            <td class='chama'>{{ medicion.bolusCorrector }}</td>
+            <td> {{ medicion.racionHc }}</td>
+            <td class='chama'>{{ medicion.preDeporte }}</td>
+            <td class='chama'>{{ medicion.duranteDeporte }}</td>
+            <td class='chama'>{{ medicion.postDeporte }}</td>
+            <td class='chama'>
               <a (click)="abrirNotasModal(medicion)" [ngClass]="{
                   'bi bi-file-earmark ': medicion.notas != '',
                   'bi bi-file-earmark-x  text-danger': !medicion.notas
@@ -147,5 +161,29 @@
       <div echarts [options]="chartOption"></div>
     </div>
   </div>
+</div>
   <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
     [icono]="'assets/iconoNota.svg'"></app-modal>
+
+    <section class="accModal" *ngIf='accModal == true'>
+      
+      <div class="fondoModal">
+
+        <div class='lectura-facil' tabindex="0">
+          <h2>Lectura fácil</h2>
+          <p>
+            En esta pantalla es donde tienes que poner tus mediciones.
+            La fecha y la hora en la que las haces,
+            si has hecho deporte,
+            si es antes o después de la comida (premedición o postmedición),
+            si es el bolus comida o el corrector
+            y si quieres hacer anotaciones.
+            Con todos estos datos te aparecerá una gráfica con estos datos,
+            que podrás tener en cuenta para consultarlos con tu médico.
+          </p>
+        </div>
+
+
+      </div>
+      
+    </section>

@@ -10,6 +10,7 @@ export interface IMedicionesAzucar {
     duranteDeporte : number;
     postDeporte : number;
     notas : string;
+    racionHc : number;
     id_Persona : number;
 
 }
