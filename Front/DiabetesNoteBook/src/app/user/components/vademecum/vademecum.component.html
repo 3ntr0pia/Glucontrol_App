@@ -24,7 +24,7 @@
 
       <form class="nuevoMedicamento" (ngSubmit)="addMedicamento()">
         <label for="nuevoMedicamento"> Medicamento a añadir o eliminar</label>
-        <input type="text" [(ngModel)]='nuevoMedicamento' name='nuevoMedicamento'>
+        <input type="text" [(ngModel)]='nuevoMedicamento' name='nuevoMedicamento' required>
         <p class='error-form'>{{error}}</p>
         <button class="btn" type="submit">
           Añadir medicamento
