@@ -21,6 +21,7 @@ export class MedicionesComponent {
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
+  
   usuarioLogeadoPersonaId: number = 0;
   nuevaMedicion: IMedicionesAzucar = {
     id: 0,
@@ -34,14 +35,15 @@ export class MedicionesComponent {
     duranteDeporte: 0,
     postDeporte: 0,
     notas: '',
+    racionHc : 0,
     id_Persona: 0,
   };
   chartOption: EChartsOption = {};
-  elementoPagina: any[] = [];
+  elementoPagina: IMedicionesAzucar[] = [];
   paginaActual: number = 1;
   numeroTotalDePaginas: number = 0;
   elementosPorPagina: number = 4;
-
+  accModal : boolean = false;
   constructor(
     private medicionesService: MedicionesService,
     private authService: AuthServiceService,
@@ -53,11 +55,21 @@ export class MedicionesComponent {
     
   }
 
+  modalAcc(){
+    if(this.accModal){
+      this.accModal = false;
+    }else{
+      this.accModal = true;
+    }
+    console.log(this.accModal);
+  }
+
   ngOnInit() {
     this.getMediciones(this.authService.userValue!.id);
     this.getPersonaID();
     this.nuevaMedicion.fecha = new Date();
-    
+    this.elementoPagina.reverse();
+     console.log(this.elementoPagina);
   }
 
 
@@ -121,13 +133,19 @@ export class MedicionesComponent {
   }
 
   prepararDatosGrafico() {
-    const fechas = this.mediciones.map((m) => {
-      const fecha = new Date(m.fecha);
+    let fechas = this.mediciones.map((m) => {
+      let fecha = new Date(m.fecha);
       return `${fecha.getHours()}:${fecha.getMinutes().toString().padStart(2, '0')}:${fecha.getSeconds().toString().padStart(2, '0')}`;
     });
-    const preMediciones = this.mediciones.map((m) => m.preMedicion);
-    const glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
-    const medidasGenerales = this.mediciones.map(m => m.preMedicion !== 0 ? m.preMedicion : m.glucemiaCapilar);
+    let preMediciones = this.mediciones.map((m) => m.preMedicion);
+    let glucemiasCapilares = this.mediciones.map((m) => m.glucemiaCapilar);
+    let medidasGenerales = this.mediciones.map(m => m.preMedicion !== 0 ? m.preMedicion : m.glucemiaCapilar);
+
+    fechas = fechas.reverse();
+    preMediciones = preMediciones.reverse();
+    glucemiasCapilares = glucemiasCapilares.reverse();
+    medidasGenerales = medidasGenerales.reverse();
+
     
     this.chartOption = {
       aria: {
@@ -220,17 +238,21 @@ export class MedicionesComponent {
         {
           name: 'Hiperglucemia',
           type: 'line',
-          data: [], 
+          data: [],
           markArea: {
-            silent: true, 
+            silent: true,
             itemStyle: {
               color: 'rgba(255, 0, 0, 0.2)',
-               
+              decal: {
+                symbol: 'circle',
+                symbolSize: 2,
+                color: 'rgba(255, 0, 0, 1)',
+                dashArrayX: 2,
+                dashArrayY: 2,
+                rotation: 0
+              }
             },
-            data: [[
-              { yAxis: 210 }, 
-              { yAxis: 180 }, 
-            ]]
+            data: [[{ yAxis: 210 }, { yAxis: 180 }]]
           }
         },
         {
@@ -260,7 +282,7 @@ export class MedicionesComponent {
         if(mediciones.length == 0){
           this.elementoPagina=[]
         }
-        this.mediciones = mediciones;
+        this.mediciones = mediciones.reverse();
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
@@ -308,20 +330,5 @@ export class MedicionesComponent {
       },
     });
   }
-  // verificarLimitesEnMediciones() {
-    
-  //   let limiteSuperiorExcedido: boolean = this.nuevaMedicion.preMedicion > 180 || this.nuevaMedicion.glucemiaCapilar > 180;
-  //   let limiteInferiorExcedido: boolean = this.nuevaMedicion.preMedicion < 70 || this.nuevaMedicion.glucemiaCapilar < 70;
-
-  //   if (limiteSuperiorExcedido) {
-  //     alert('¡Alerta! La última medición excede el límite superior de 180.');
-  //   }
-
-  //   if (limiteInferiorExcedido) {
-  //     alert('¡Alerta! La última medición es inferior al límite de 70.');
-  //   }
-  // }
-
- 
 
 }

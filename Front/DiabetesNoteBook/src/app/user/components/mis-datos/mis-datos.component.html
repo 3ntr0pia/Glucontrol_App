@@ -1,4 +1,7 @@
 <section class="wrapper">
+  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span
+      *ngIf='accModal'>Cerrar</span></button>
+
   <div class="triangle">
     <section class="avatar">
       <div class="contenido-bocadillo">
@@ -116,14 +119,15 @@
       <label for="pass">Escribe tu nueva contraseña</label>
       <input type="password" [(ngModel)]="pass" name="pass" id="pass" />
       <label for="pass">Repitela de nuevo</label>
-      <input type="password" [(ngModel)]="repetirPass" name="repetirPass" id="repetirPass" #password="ngModel" aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
-      mayúscula, una minúscula, un número y un carácter especial." required/>
+      <input type="password" [(ngModel)]="repetirPass" name="repetirPass" id="repetirPass" #password="ngModel"
+        aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+      mayúscula, una minúscula, un número y un carácter especial." required />
       <section class="buttons">
         <button type="submit">Guardar</button>
         <button (click)="cerrarModal()">Cerrar</button>
       </section>
     </form>
-    
+
     <p class="error-form" *ngIf="!password.valid && password.touched">
       La contraseña debe tener al menos 8 caracteres, incluyendo una
       mayúscula, una minúscula, un número y un carácter especial.
@@ -138,4 +142,21 @@
       {{ successPass }}
     </p>
   </div>
+</section>
+
+<section class="accModal" *ngIf='accModal == true'>
+
+  <div class="fondoModal">
+
+    <div class='lectura-facil' tabindex="0">
+      <h2>Lectura fácil</h2>
+      <p>
+        Estos son los datos con los que te diste de alta.
+        Puedes verlos y cambiarlos si no están bien.
+      </p>
+    </div>
+
+
+  </div>
+
 </section>

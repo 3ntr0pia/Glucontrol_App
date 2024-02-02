@@ -1,4 +1,6 @@
 <section *ngIf="!recordar" class="sectionLogin">
+  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span
+      *ngIf='accModal'>Cerrar</span></button>
   <!-- <p class="error-form">Error al introducir Email o Contraseña</p>  ESTE NO HACE FALTA POR QUE VIENE DE BACK-->
   <h2 class="visually-hidden" aria-label="Página para conectarse">Conectarse</h2>
   <form (ngSubmit)="login()">
@@ -11,7 +13,7 @@
       <input type="password" id="password-form" name="password" [(ngModel)]="password" />
     </div>
     <div>
-      <div>
+      <div class="bottom">
         <button class="btnInicio">Iniciar Sesión</button>
         <span class="error-form">{{ error }}</span>
       </div>
@@ -29,7 +31,7 @@
       <label for="usuario-form">E-mail de Recuperación</label>
       <input type="email" id="mail-form" name="mail" placeholder="ejemplo@ejemplo.com" [(ngModel)]="mail" required />
     </div>
-    <div>
+    <div class='botoncicos'>
       <button [disabled]="formularioInvalido()" class="btnInicio">
         Enviar
       </button>
@@ -37,18 +39,27 @@
     </div>
   </form>
 
-  <div class="lectura-facil">
-    <h2>Lectura fácil:</h2>
-    <p>
-      En esta página podrás conectarte
-      <br>
-      siepre que te hayas registrado antes
-      <br>
-      Si no lo has hecho todavía,
-      <br>
-      puedes hacerlo en el enlace de registrarse.
-    </p>
+</section>
+<app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"></app-modal>
+
+<section class="accModal" *ngIf='accModal == true'>
+
+  <div class="fondoModal">
+
+    <div class='lectura-facil' tabindex="0">
+      <h2>Lectura fácil:</h2>
+      <p>
+        En esta página podrás conectarte
+        <br>
+        siepre que te hayas registrado antes
+        <br>
+        Si no lo has hecho todavía,
+        <br>
+        puedes hacerlo en el enlace de registrarse.
+      </p>
+    </div>
+
+
   </div>
 
 </section>
-<app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"></app-modal>

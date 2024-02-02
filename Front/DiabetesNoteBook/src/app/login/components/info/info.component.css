@@ -1,6 +1,7 @@
 div#slider {
   overflow: hidden;
   border-radius: 1.2rem;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.8);
 } /* las imágenes no van a salir del márgen de la pantalla*/
 div#slider figure img {
   aspect-ratio: 16/9;

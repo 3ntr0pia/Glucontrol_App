@@ -24,7 +24,7 @@ export class FormComponent {
   recordar: boolean = false;
   mostrarModal: boolean = false;
   mensajeModal: string = '';
-
+  accModal: boolean = false;
   recuperarPass: IRecover = {
     token: '',
     newPass: '',
@@ -34,6 +34,16 @@ export class FormComponent {
     this.recordar = true;
   }
 
+
+  modalAcc() {
+    if (this.accModal) {
+      this.accModal = false;
+    } else {
+      this.accModal = true;
+    }
+    console.log(this.accModal);
+  }
+  
   login() {
     const datoLogin: ILogin = {
       UserName: this.usuario,

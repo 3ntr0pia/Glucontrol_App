@@ -1,3 +1,31 @@
+.botoncicos{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.lectura-facil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .sectionLogin {
   position: relative;
   display: grid;
@@ -23,15 +51,14 @@
 }
 
 .btnInicio {
-  position: relative;
-  top: 0.7rem;
+  
   padding: 0.2rem;
   border: none;
   border-radius: 5px;
   background-color: var(--main--colorBackGroundElements);
   font-size: large;
   color: var(--main--colorForeground);
-  margin: 0.2em;
+
 }
 .btnInicio:hover {
   background-color: var(--main--colorHoverBtnAccept);
@@ -69,6 +96,13 @@
 
 .aForgetPass a:hover {
   text-decoration: underline;
+}
+
+.bottom {
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (width < 750px) {

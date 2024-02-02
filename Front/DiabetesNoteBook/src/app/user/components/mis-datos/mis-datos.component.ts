@@ -17,7 +17,8 @@ export class MisDatosComponent implements OnInit {
   public TipoDiabetes = TipoDiabetes;
   public nuevaAltura = 0;
   public nuevoPeso = 0;
-
+  accModal : boolean = false;
+  
   usuarioLogeado: IUserLoginResponse | null = null;
   usuario: IUsuarioUpdate = {
     id: 0,
@@ -62,6 +63,14 @@ export class MisDatosComponent implements OnInit {
     });
   }
 
+  modalAcc(){
+    if(this.accModal){
+      this.accModal = false;
+    }else{
+      this.accModal = true;
+    }
+    console.log(this.accModal);
+  }
   avatarHandler(avatar: string): void {
     this.nuevoAvatar = avatar;
   }
