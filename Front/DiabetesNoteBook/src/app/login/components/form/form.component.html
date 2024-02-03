@@ -1,6 +1,7 @@
 <section *ngIf="!recordar" class="sectionLogin">
-  <button (click)="modalAcc()" class='accesibilidadButton'  title="Acceder a lectura fácil"><i class="bi bi-universal-access-circle "></i><span
-      *ngIf='accModal'>Cerrar</span></button>
+  
+  <button (click)="modalAcc()" class='accesibilidadButton' ><i class="bi bi-universal-access-circle "></i><span
+      *ngIf='accModal'>Cerrar</span><span *ngIf='!accModal' style='font-size: 0.5em;'>Lectura Fácil</span></button> 
  
   <h2 class="visually-hidden" aria-label="Página para conectarse">Conectarse</h2>
   <form (ngSubmit)="login()">
@@ -46,15 +47,18 @@
 
   <div class="fondoModal" title="Acceder a lectura fácil" tabindex="0">
     <div class='lectura-facil'>
-      <!-- Necesito que este h2 aparezca junto al botón-->
-      <!--todos los modales de lectura fáci q se puedan cerrar con Esc-->
-      <h2> Acceder a 'Lectura fácil':</h2>
+      <h2><i class="bi bi-universal-access-circle "></i>Lectura Fácil</h2>
       <p>
+        Podrás a acceder a más información de la página a través de este icono, normalmente se encuentra en la parte superior derecha de la página.
+       </p>
+        <p>
         En esta página podrás conectarte      
         siempre que te hayas registrado antes        
         Si no lo has hecho todavía,
         puedes hacerlo en el enlace de registrarse.
-      </p>
+        </p>
+        
+      
     </div>
 
 

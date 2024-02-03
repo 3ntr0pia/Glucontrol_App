@@ -93,7 +93,9 @@ legend {
 .btn:hover {
   background-color: var(--main--colorHoverBtnAccept);
 }
-
+.alerta {
+  width: 1em;
+}
 
 @media (width <= 1380px) {
   .lateral {

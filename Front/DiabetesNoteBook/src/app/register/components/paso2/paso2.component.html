@@ -8,8 +8,8 @@
     <form #formulario="ngForm" (ngSubmit)="siguientePaso.emit(datosRegistro)">
       <section class="fieldset-datos">
         <div>
-          <h1 aria-label="Registro">Registro</h1>
-          <h2 aria-label="Paso 2 de 3. Datos físicos">Datos físicos</h2>
+          <h1>Registro</h1>
+          <h2>Paso 2 de 3. Datos físicos</h2>
           <fieldset>
             <legend class="legend">Edad</legend>
             <label for="edad"></label>
@@ -66,7 +66,7 @@
           ></app-calculadora-imc>
         </div>
 
-        <span class="error'form" tabindex="0" *ngIf="datosRegistro.mediciones.edad">
+        <span class="error'form" tabindex="0" *ngIf="!datosRegistro.mediciones.edad">
           <img lazyload="/assets/alert_line.svg" alt="" />Debes rellenar todos los
           campos.
         </span>

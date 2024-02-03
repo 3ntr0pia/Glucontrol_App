@@ -116,7 +116,7 @@
           </ng-container>
   
           <div class='group'>
-            <label for="notas">Notas</label> <!--pondría placeholder y no aria-label, pero no cabe y descuadraría-->
+            <label for="notas">Notas</label> 
             <input type="text" class='btn' [(ngModel)]="nuevaMedicion.notas" name="notas" #notas="ngModel" aria-label="Escribe aquí las anotaciones que necesites" required />
           </div>
           <button type="submit" class='btn' [disabled]="nuevaMedicion.preMedicion == 0 && nuevaMedicion.glucemiaCapilar == 0">Agregar</button>
@@ -137,11 +137,9 @@
         </button>
       </div>
 
-      <!--La tabla q estaba aquí está en el txt de hoy
-      -->
+
       <table title="si accedes desde un móvil, no podrás consultar todos los datos">
-        <!-- Si no puede estar el caption, que es lo q deberíair pongo aria-label a tabl -->
-        <caption>Registro de tus mediciones:</caption>
+        <caption class='visually-hidden'>Registro de tus mediciones:</caption>
         <thead>
           <tr>
             <th scope="col">Fecha</th>
@@ -191,7 +189,6 @@
     </div>
   </div>
 </div>
-<!-- app-modal es tb d lectura fácil?-->
   <app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"
     [icono]="'assets/iconoNota.svg'"></app-modal>
 

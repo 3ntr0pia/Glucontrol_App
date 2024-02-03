@@ -3,6 +3,11 @@
   justify-content: space-evenly;
 }
 
+.accesibilidadButton{
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
 
 .lectura-facil {
   position: absolute;

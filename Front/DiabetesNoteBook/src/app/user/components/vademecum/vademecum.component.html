@@ -37,7 +37,7 @@
       
     </div>
 
-    <div class="checks">
+    <div class="checks ">
       <fieldset>
         <legend class="visually-hidden">Indica si el medicamento necesita receta o no</legend>
         <div class="form-group-check">
@@ -49,8 +49,9 @@
       <div class="form-group-check">
         <fieldset>
           <legend class="visually-hidden">Selecciona si sólo buscas los medicamentos genéricos con este principio activo</legend>
-          <label for="genericos"> Solo Genéricos</label>
           <input type="checkbox" id="genericos" [(ngModel)]="Genericos">
+          <label for="genericos"> Solo Genéricos</label>
+          
         </fieldset>
       </div>
     </div>
@@ -59,8 +60,7 @@
 
   <div class="tabla">
 <table class="table table-hover">
-   <!-- Si no puede estar el caption, que es lo q deberíair pongo aria-label a tabl -->
-   <caption>Lista oficial de medicamentos (vademecum)</caption>
+   <caption class='visually-hidden'>Lista oficial de medicamentos (vademecum)</caption>
     <thead class="thead-dark">
       <tr>
         <th scope="col">Nombre</th>

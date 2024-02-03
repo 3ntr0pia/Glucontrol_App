@@ -82,6 +82,9 @@ tr:hover {
   margin-bottom: 1.5em;
 }
 
+fieldset{
+  border: none;
+}
 .formulario {
   height: 100%;
   width: 100%;
