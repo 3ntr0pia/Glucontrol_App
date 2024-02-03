@@ -1,7 +1,7 @@
 <section *ngIf="!recordar" class="sectionLogin">
-  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span
+  <button (click)="modalAcc()" class='accesibilidadButton'  title="Acceder a lectura fácil"><i class="bi bi-universal-access-circle "></i><span
       *ngIf='accModal'>Cerrar</span></button>
-  <!-- <p class="error-form">Error al introducir Email o Contraseña</p>  ESTE NO HACE FALTA POR QUE VIENE DE BACK-->
+ 
   <h2 class="visually-hidden" aria-label="Página para conectarse">Conectarse</h2>
   <form (ngSubmit)="login()">
     <div class="input">
@@ -44,17 +44,15 @@
 
 <section class="accModal" *ngIf='accModal == true'>
 
-  <div class="fondoModal">
-
-    <div class='lectura-facil' tabindex="0">
-      <h2>Lectura fácil:</h2>
+  <div class="fondoModal" title="Acceder a lectura fácil" tabindex="0">
+    <div class='lectura-facil'>
+      <!-- Necesito que este h2 aparezca junto al botón-->
+      <!--todos los modales de lectura fáci q se puedan cerrar con Esc-->
+      <h2> Acceder a 'Lectura fácil':</h2>
       <p>
-        En esta página podrás conectarte
-        <br>
-        siepre que te hayas registrado antes
-        <br>
+        En esta página podrás conectarte      
+        siempre que te hayas registrado antes        
         Si no lo has hecho todavía,
-        <br>
         puedes hacerlo en el enlace de registrarse.
       </p>
     </div>

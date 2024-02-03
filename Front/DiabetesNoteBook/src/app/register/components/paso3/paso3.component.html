@@ -40,26 +40,34 @@
   
         <div>
           <fieldset>
-            <legend>¿Toma insulina?</legend>
+            <legend>Indica si tomas insulina</legend>
           <label for="insulina"></label>
           <input
             type="checkbox"
             [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
             name="insulina"
-        
           /> Sí
           </fieldset>
         </div>
   
         <div>
-          <label class="accept" for="medicacion"
+          <fieldset>
+            <legend>Acepto recibir un correo de confirmación</legend>
+            <label class="accept" for="medicacion"
             >Acepto recibir un correo de confirmación</label
-          >
-          <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
+            >
+            <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
+          </fieldset>
         </div>
   
         <button class="btn" type="submit" [disabled]="!aceptar">Completar</button>
         <button class="btn" (click)="retroceder.emit()">Volver</button>
+       
+        <!-- añado ésto: -->
+        <span class="error'form" tabindex="0">
+          <img lazyload="/assets/alert_line.svg" alt="" />Confirma el registro en el correo recibido (acuérdate de revisar tu bandeja de spam).
+        </span>
+
       </section>
     </form>
   
@@ -68,7 +76,7 @@
       
         <img lazyload="/assets/tipos.png" alt="tipos diabetes">
       
-      <div class='lectura-facil'>
+      <div class='lectura-facil' tabindex="1">
         <h2><i class="bi bi-universal-access-circle "></i> Lectura fácil:</h2>
         <p>
           Este es el último paso del formulario.

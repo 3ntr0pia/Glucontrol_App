@@ -196,7 +196,16 @@
           >
             Las contraseñas no coinciden.
           </span>
+
+          <!-- Ésto debería estar en algún sitio pero así no sale (vamos, no te deja seguir si no)
+          <span class="error'form" tabindex="0" *ngIf="datosRegistro.mediciones.edad">
+            <img lazyload="/assets/alert_line.svg" alt="" />Debes rellenar todos los
+            campos.
+          </span> -->
+
         </div>
+
+<!--Ésto debe ser lo último q se tabule-->
         <button
           type="submit"
           [disabled]="formularioInvalido()"
@@ -205,9 +214,7 @@
         >
           Siguiente
         </button>
-        <!-- <span class="error-form" *ngIf="formularioInvalido()">
-        <img src="/assets/alert_line.svg" alt="error" />Debe rellenar todos los campos
-      </span> -->
+      
       </section>
     </form>
   </div>
@@ -215,7 +222,7 @@
     <app-generador-avatar
       (avatarGenerado)="setAvatar($event)"
     ></app-generador-avatar>
-    <div class="lectura-facil">
+    <div class="lectura-facil" tabindex="0">
       <h2><i class="bi bi-universal-access-circle "></i> Lectura fácil </h2>
       <p>
         Aquí tienes un formulario. Serán tres pasos. Tienes que rellenar todos

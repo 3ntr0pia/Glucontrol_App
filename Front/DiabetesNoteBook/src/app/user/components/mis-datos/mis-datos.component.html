@@ -35,7 +35,7 @@
   </div>
 
   <section class="datos">
-    <h2>Tus datos de usuario</h2>
+    <h2>Datos de usuario</h2>
     <div class="formulario">
       <form  #formulario="ngForm" (ngSubmit)="actualizarUsuario()">
         <section>
@@ -73,7 +73,7 @@
           </div>
         </section>
 
-        <section>  <!--el segundo apellido no debería ser obligatorio-->
+        <section> 
           <label for="apellido2">Segundo Apellido
             <span class="error-form" *ngIf="apellido2.valid && apellido2.touched">Segundo apellido
               obligatorio</span></label>
@@ -83,35 +83,38 @@
           </div>
         </section>
         
-        <section>
+        <fieldset>
+          <legend class="legend"></legend>
           <label for="edad">Edad</label>
           <div>
             <input type="number" [(ngModel)]="usuario.edad" name="edad" required />
           </div>
-        </section>
-        <section>
-          <label for="sexo">Sexo Biológico</label>
+        </fieldset>
+
+        <fieldset>
+          <legend class="legend">Sexo biológico</legend>
           <div>
+            <label for="sexo"></label>
             <select [(ngModel)]="usuario.sexo" name="sexo" required>
               <option [value]="Sexo.hombre">Masculino</option>
               <option [value]="Sexo.mujer">Femenino</option>
             </select>
           </div>
-        </section>
-        <section>
-          <label for="actividad">Actividad</label>
-          <div>
-            <div>
-              <select [(ngModel)]="usuario.actividad" name="actividad" required>
-                <option [value]="Actividad.sedentario">Sedentario</option>
-                <option [value]="Actividad.ligero">Ligero</option>
-                <option [value]="Actividad.moderado">Moderado</option>
-                <option [value]="Actividad.intenso">Intenso</option>
-              </select>
-            </div>
-          </div>
-        </section>
-        <section>
+        </fieldset>
+
+        <fieldset>
+          <legend class="legend">Actividad física</legend>
+          <label for="actividad"></label>
+          <select [(ngModel)]="usuario.actividad" name="actividad" required>
+            <option [value]="Actividad.sedentario">Sedentario</option>
+            <option [value]="Actividad.ligero">Ligero</option>
+            <option [value]="Actividad.moderado">Moderado</option>
+            <option [value]="Actividad.intenso">Intenso</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend></legend>
           <label for="tipo">Tipo de diabetes</label>
           <div>
             <select [(ngModel)]="usuario.tipoDiabetes" name="tipo" required>
@@ -120,10 +123,14 @@
               <option [value]="TipoDiabetes.gestacional">Gestacional</option>
             </select>
           </div>
-        </section>
+        </fieldset>
+
         <section class="check-box">
-          <label for="insulina">¿Toma insulina?</label>
-          <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required />
+        <fieldset>
+          <legend>Indica si tomas insulina</legend>
+          <label for="insulina"></label>
+          <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required /> Sí
+          </fieldset>                    
         </section>
 
         <button class="btn" id="seve">Guardar Cambios</button>
@@ -137,6 +144,7 @@
       <p>{{ error }}</p>
     </div>
   </section>
+
   <section class="calculadora">
     <h1>Calcula tu IMC</h1>
     <app-calculadora-imc (emitirAltura)="alturaHandler($event)" (emitirPeso)="pesoHandler($event)"
@@ -159,7 +167,6 @@
         <button (click)="cerrarModal()">Cerrar</button>
       </section>
     </form>
-
     <p class="error-form" *ngIf="!password.valid && password.touched">
       La contraseña debe tener al menos 8 caracteres, incluyendo una
       mayúscula, una minúscula, un número y un carácter especial.
@@ -179,8 +186,7 @@
 <section class="accModal" *ngIf='accModal == true'>
 
   <div class="fondoModal">
-
-    <div class='lectura-facil' tabindex="0"> <!--el lector no lee el contenido-->
+    <div class='lectura-facil'> <!--el lector no lee el contenido-->
       <h2>Lectura fácil</h2>
       <p>
         Estos son los datos con los que te diste de alta.

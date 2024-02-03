@@ -2,19 +2,7 @@
 
   <span class="visually-hidden">
     Cuidado, debes rellenar todos los campos
-</span> <!--no lo lee y le pongo tabindex al msje-->
-
-  <!--<div
-    class="visually-hidden"
-    role="alert"
-    aria-live="polite"
-    *ngIf="formulario.invalid && formulario.touched"
-  >
-    <h2>Errores cometidos:</h2>
-    <p class="error-form" *ngIf="datosRegistro.mediciones.edad < 0">
-      Introduce tu edad.
-    </p>
-  </div>-->
+</span> 
 
   <div class="formulario">
     <form #formulario="ngForm" (ngSubmit)="siguientePaso.emit(datosRegistro)">
@@ -79,8 +67,8 @@
         </div>
 
         <span class="error'form" tabindex="0" *ngIf="datosRegistro.mediciones.edad">
-          <img lazyload="/assets/alert_line.svg" alt="" />Debe rellenar todos los
-          campos
+          <img lazyload="/assets/alert_line.svg" alt="" />Debes rellenar todos los
+          campos.
         </span>
         <div class="botones">
           <button class="btn" [disabled]="formularioInvalido()">Siguiente</button>
