@@ -14,7 +14,7 @@ export class FormComponent {
   password: string = '';
   mail: string = '';
   error: string = '';
-
+  icono :string = 'assets/iconoEmail.svg';
   constructor(
     private authService: AuthServiceService,
     private router: Router,
