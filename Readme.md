@@ -1,4 +1,5 @@
 # Glucontrol_App 📈
+![Logo Glucontrol_App](./images/logo.png)
 
 Glucontrol_App es una aplicación avanzada diseñada para facilitar la gestión y el seguimiento de la diabetes. Este proyecto es el resultado de una formación impartida por Inserta Arelance, combinando conocimientos teóricos y prácticos para desarrollar una solución tecnológica integral y accesible para pacientes con diabetes y profesionales de la salud.
 
@@ -58,5 +59,14 @@ Este proyecto, fruto de la formación de Inserta Arelance, demuestra el compromi
 
 ---
 
+Capturas de la aplicacion:
+
+![Logo Glucontrol_App](./images/1.png)
+![Logo Glucontrol_App](./images/2.png)
+![Logo Glucontrol_App](./images/3.png)
+![Logo Glucontrol_App](./images/4.png)
+
 
 Para más información sobre medicamentos, visita el [Vademécum de la AEMPS](https://cima.aemps.es/cima/publico/nomenclator.html).
+
+
