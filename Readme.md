@@ -89,7 +89,7 @@ El frontend de **DiabetesNoteBook** ofrece una experiencia de usuario rica e int
 2. Ejecuta `npm install` y `ng serve`.
 3. Accede a `http://localhost:4200`.
 
-Este proyecto, fruto de la formación de Inserta Arelance, demuestra el compromiso con la creación de soluciones tecnológicas accesibles y de alto impacto para la sociedad, abordando las necesidades de personas con condiciones crónicas como la diabetes.
+Este proyecto, fruto de la formación de Inserta y Arelance, demuestra el compromiso con la creación de soluciones tecnológicas accesibles y de alto impacto para la sociedad, abordando las necesidades de personas con condiciones crónicas como la diabetes.
 
 ---
 
