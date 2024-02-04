@@ -298,6 +298,20 @@ export class MedicionesComponent {
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
+        this.nuevaMedicion = {id: 0,
+          fecha: new Date(),
+          regimen: Regimen.Desayuno,
+          preMedicion: 0,
+          glucemiaCapilar: 0,
+          bolusComida: 0,
+          bolusCorrector: 0,
+          preDeporte: 0,
+          duranteDeporte: 0,
+          postDeporte: 0,
+          notas: '',
+          racionHc : 0,
+          id_Persona: 0,
+        };
         
         // this.verificarLimitesEnMediciones(); 
       },
