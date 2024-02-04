@@ -5,6 +5,7 @@ import { IUsuarioUpdate } from 'src/app/interfaces/usuario.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
+
 @Component({
   selector: 'app-mis-datos',
   templateUrl: './mis-datos.component.html',
@@ -16,8 +17,8 @@ export class MisDatosComponent implements OnInit {
   public TipoDiabetes = TipoDiabetes;
   public nuevaAltura = 0;
   public nuevoPeso = 0;
-  accModal: boolean = false;
-
+  accModal : boolean = false;
+  
   usuarioLogeado: IUserLoginResponse | null = null;
   usuario: IUsuarioUpdate = {
     id: 0,
@@ -37,30 +38,16 @@ export class MisDatosComponent implements OnInit {
   };
 
   error: string = '';
-  errorPass: string = '';
-  successPass: string = '';
+  errorPass : string = '';
+  successPass : string = '';
   nuevoAvatar: string = '';
-  visible: boolean = true;
-  changetype: boolean = true;
-  visible2: boolean = true;
-  changetype2: boolean = true;
 
-  viewpass() {
-    this.visible = !this.visible;
-    this.changetype = !this.changetype;
-  }
+  estadoInicialUsuario : IUsuarioUpdate = { ...this.usuario };
 
-  viewpass2() {
-    this.visible2 = !this.visible2;
-    this.changetype2 = !this.changetype2;
-  }
+  abrirModalPass :boolean = false;
 
-  estadoInicialUsuario: IUsuarioUpdate = { ...this.usuario };
-
-  abrirModalPass: boolean = false;
-
-  pass: string = '';
-  repetirPass: string = '';
+  pass : string = '';
+  repetirPass : string = '';
 
   constructor(
     private usuarioService: UsuarioService,
@@ -76,10 +63,10 @@ export class MisDatosComponent implements OnInit {
     });
   }
 
-  modalAcc() {
-    if (this.accModal) {
+  modalAcc(){
+    if(this.accModal){
       this.accModal = false;
-    } else {
+    }else{
       this.accModal = true;
     }
     console.log(this.accModal);
@@ -89,6 +76,7 @@ export class MisDatosComponent implements OnInit {
   }
 
   alturaHandler(altura: number): void {
+    
     this.nuevaAltura = altura;
     console.log(altura);
   }
@@ -135,7 +123,7 @@ export class MisDatosComponent implements OnInit {
         };
 
         console.log('Usuario:', this.usuario);
-
+        
         //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
       },
       error: (err) => {
@@ -144,92 +132,94 @@ export class MisDatosComponent implements OnInit {
     });
   }
 
-  reestablecerFormulario(): void {
-    this.usuario = { ...this.estadoInicialUsuario };
-  }
 
-  cambiarPass(): void {
-    this.usuarioService
-      .cambiarPass({ id: this.usuarioLogeado!.id, NewPass: this.pass })
-      .subscribe({
+    reestablecerFormulario(): void {
+      this.usuario = { ...this.estadoInicialUsuario };
+    }
+
+    cambiarPass(): void {
+
+      
+      this.usuarioService.cambiarPass({id : this.usuarioLogeado!.id , NewPass: this.pass}).subscribe({
         next: (res) => {
           console.log('Contraseña cambiada correctamente');
           this.successPass = 'Contraseña cambiada correctamente';
+
         },
         error: (err) => {
           this.errorPass = err.error;
-          console.error('Error al cambiar la contraseña:', err);
+        console.error('Error al cambiar la contraseña:', err);
+        },
+      })
+    }
+
+    actualizarUsuario(): void {
+      if (this.nuevoAvatar !== '') {
+        this.usuario.avatar = this.nuevoAvatar;
+      }
+      if (this.nuevaAltura !== 0) {
+        this.usuario.altura = this.nuevaAltura;
+      }
+    
+      if (this.nuevoPeso !== 0) {
+        this.usuario.peso = this.nuevoPeso;
+      }
+      if (!this.validarFormulario(this.usuario)) {
+        this.error = 'Formulario invalido';
+        return;
+      }
+      console.log(this.usuario)
+      
+      this.usuarioService.actualizarUsuario(this.usuario).subscribe({
+        next: (res) => {
+          console.log('Usuario actualizado:', res);
+          
+          this.usuarioLogeado = {
+            ...this.usuarioLogeado!,
+            avatar: this.usuario.avatar,
+            nombre: this.usuario.nombre,
+            primerApellido: this.usuario.primerApellido,
+            segundoApellido: this.usuario.segundoApellido,
+          };
+          
+          this.authService.updateUser(this.usuarioLogeado);
+        },
+        error: (err) => {
+          console.error(err);
         },
       });
-  }
-
-  actualizarUsuario(): void {
-    if (this.nuevoAvatar !== '') {
-      this.usuario.avatar = this.nuevoAvatar;
     }
-    if (this.nuevaAltura !== 0) {
-      this.usuario.altura = this.nuevaAltura;
-    }
-
-    if (this.nuevoPeso !== 0) {
-      this.usuario.peso = this.nuevoPeso;
-    }
-    if (!this.validarFormulario(this.usuario)) {
-      this.error = 'Formulario invalido';
-      return;
-    }
-    console.log(this.usuario);
-
-    this.usuarioService.actualizarUsuario(this.usuario).subscribe({
-      next: (res) => {
-        console.log('Usuario actualizado:', res);
-
-        this.usuarioLogeado = {
-          ...this.usuarioLogeado!,
-          avatar: this.usuario.avatar,
-          nombre: this.usuario.nombre,
-          primerApellido: this.usuario.primerApellido,
-          segundoApellido: this.usuario.segundoApellido,
-        };
-
-        this.authService.updateUser(this.usuarioLogeado);
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+  
+       validarFormulario(usuario: IUsuarioUpdate): boolean {
+        return (
+          usuario.nombre.trim() !== '' &&
+          usuario.userName.trim() !== '' &&
+          usuario.primerApellido.trim() !== '' &&
+          usuario.segundoApellido.trim() !== '' &&
+          usuario.edad > 0 &&
+          usuario.actividad !== '' &&
+          usuario.tipoDiabetes !== ''
+        );
+      }
+      validarPassword(password: string): boolean {
+        const patron =
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return patron.test(password);
+      }
+      validarUsuario(usuario: string): boolean {
+        const patronUsuario = /^[A-Za-z0-9_-]{6,18}$/;
+        return patronUsuario.test(usuario);
+      }
+      validarEmail(email: string): boolean {
+        const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return patronEmail.test(email);
+      }
+  
+      cerrarModal () : void {
+        this.pass = '';
+        this.repetirPass = '';
+        this.errorPass = '';
+        this.successPass = '';
+        this.abrirModalPass = false;
+      }
   }
-
-  validarFormulario(usuario: IUsuarioUpdate): boolean {
-    return (
-      usuario.nombre.trim() !== '' &&
-      usuario.userName.trim() !== '' &&
-      usuario.primerApellido.trim() !== '' &&
-      usuario.segundoApellido.trim() !== '' &&
-      usuario.edad > 0 &&
-      usuario.actividad !== '' &&
-      usuario.tipoDiabetes !== ''
-    );
-  }
-  validarPassword(password: string): boolean {
-    const patron =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return patron.test(password);
-  }
-  validarUsuario(usuario: string): boolean {
-    const patronUsuario = /^[A-Za-z0-9_-]{6,18}$/;
-    return patronUsuario.test(usuario);
-  }
-  validarEmail(email: string): boolean {
-    const patronEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return patronEmail.test(email);
-  }
-
-  cerrarModal(): void {
-    this.pass = '';
-    this.repetirPass = '';
-    this.errorPass = '';
-    this.successPass = '';
-    this.abrirModalPass = false;
-  }
-}

@@ -38,20 +38,8 @@ export class Paso1Component {
   avatar: string = '';
   hasError: boolean = false;
   defaultAvatar: string = 'assets/avatar.png';
-  visible: boolean = true;
-  changetype: boolean = true;
-  visible2: boolean = true;
-  changetype2: boolean = true;
-  constructor(private avatarService: AvatarService) {}
 
-  viewpass() {
-    this.visible = !this.visible;
-    this.changetype = !this.changetype;
-  }
-  viewpass2() {
-    this.visible2 = !this.visible2;
-    this.changetype2 = !this.changetype2;
-  }
+  constructor(private avatarService: AvatarService) {}
 
   generarAvatar() {
     this.datosRegistro.avatar = this.avatarService.getRandomAvatar();
@@ -68,6 +56,8 @@ export class Paso1Component {
       !this.datosRegistro.avatar
     );
   }
+
+  
 
   validarPassword(password: string): boolean {
     const patron =

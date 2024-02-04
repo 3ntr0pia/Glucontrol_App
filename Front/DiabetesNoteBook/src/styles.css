@@ -4,7 +4,7 @@
   --main--colorBackGroundElements: #effbff;
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
-  --main--colorBacGroundForm: #d2efa8;
+  --main--colorBacGroundForm: #f3f9ea;
   accent-color: var(--main--colorHoverBtnAccept);
 }
 @font-face {
@@ -29,6 +29,18 @@ body {
   height: 100vh; */
   background-color: var(--main--colorBackGround);
   /* overflow: hidden; */
+}
+
+input {
+  width: 30%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 1em;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
 .visually-hidden {
