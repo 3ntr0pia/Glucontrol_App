@@ -5,9 +5,8 @@
   justify-content: space-around;
   align-items: center;
   margin-left: 3em;
+  gap: 1em;
 }
-
-
 
 .formulario {
   height: 100%;
@@ -19,13 +18,49 @@
   padding: 2rem;
   border-radius: 1rem;
 }
-.formulario input {
+.input {
   width: 100%;
   height: 40px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-shadow: #d9dbda;
+  text-transform: lowercase;
+  background-color: var(--main--colorBackGroundElements);
+  border: none;
 }
 
+.visible-pass {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.password-form {
+  width: 105%;
+  height: 3em;
+  margin-bottom: 1em;
+  padding: 0.5rem;
+  background-color: var(--main--colorBackGroundElements);
+  text-shadow: var(--main--colorBackGroundElements);
+  border-radius: 10px 0 0 10px;
+  border: none;
+}
+.input:focus,
+.password-form:focus {
+  outline: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.eyes-pass {
+  width: 2em;
+  height: 2.5em;
+  padding: 0.55rem;
+  text-shadow: #d9dbda;
+  background-color: var(--main--colorBackGroundElements);
+  border-radius: 0 10px 10px 0px;
+}
 .btnNext {
-  position: relative;
+  margin-top: 1em;
   padding: 0.2rem;
   border: none;
   border-radius: 5px;

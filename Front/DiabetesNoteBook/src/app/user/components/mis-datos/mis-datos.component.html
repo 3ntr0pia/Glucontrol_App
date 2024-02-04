@@ -1,31 +1,17 @@
 <section class="wrapper">
-
-  <div class="visually-hidden" role="alert" aria-live="polite" *ngIf="formulario.invalid && formulario.touched">
-    <h2>Errores cometidos:</h2>
-    <p class="error-form" *ngIf="!nombre.valid && nombre.touched">
-      Revisa tu nombre.
-    </p>
-    <p class="error-form" *ngIf="!userName.valid && userName.touched">
-      Recuerda que el nombre de usuario son entre 6 y 18 caracteres, y puede contener letras, números y guiones.
-    </p>
-    <p class="error-form" *ngIf="!apellido.valid && apellido.touched">
-      Introduce tu primer apellido.
-    </p>
-    <p class="error-form" *ngIf="!apellido2.valid && apellido2.touched">
-      Introduce tu segundo apellido.
-    </p>
-    <span role="alert">Recuerda revisar el resto de datos</span>
-  </div>
-
-  <button (click)="modalAcc()" class='accesibilidadButton' title="Acceder a lectura fácil"><i
-      class="bi bi-universal-access-circle "></i><span *ngIf='accModal'
-      title="Salir de lectura fácil">Cerrar</span></button>
+  <button (click)="modalAcc()" class="accesibilidadButton">
+    <i class="bi bi-universal-access-circle"></i
+    ><span *ngIf="accModal">Cerrar</span>
+  </button>
 
   <div class="triangle">
     <section class="avatar">
       <div class="contenido-bocadillo">
         <h1>¿No te gusta tu avatar? Genera uno nuevo</h1>
-        <app-generador-avatar class="generarAvatar" (avatarGenerado)="avatarHandler($event)"></app-generador-avatar>
+        <app-generador-avatar
+          class="generarAvatar"
+          (avatarGenerado)="avatarHandler($event)"
+        ></app-generador-avatar>
       </div>
     </section>
   </div>
@@ -35,44 +21,84 @@
     <div class="formulario">
       <form #formulario="ngForm" (ngSubmit)="actualizarUsuario()">
         <section>
-          <label for="nombre">Nombre
-            <span class="error-form" *ngIf="!nombre.valid && nombre.touched">Nombre
-              obligatorio.</span>
+          <label for="nombre"
+            >Nombre
+            <span class="error-form" *ngIf="!nombre.valid && nombre.touched"
+              >Nombre obligatorio.</span
+            >
           </label>
           <div>
-            <input id="nombre" type="nombre" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required
-              [placeholder]="usuario.nombre" />
+            <input
+              id="nombre"
+              type="nombre"
+              [(ngModel)]="usuario.nombre"
+              name="nombre"
+              #nombre="ngModel"
+              required
+              [placeholder]="usuario.nombre"
+            />
           </div>
         </section>
 
         <section>
           <label for="userName">Nombre de usuario</label>
           <div>
-            <input id="userName" type="userName" [(ngModel)]="usuario.userName" name="userName" #userName="ngModel"
-              required [placeholder]="usuario.userName" />
+            <input
+              id="userName"
+              type="userName"
+              [(ngModel)]="usuario.userName"
+              name="userName"
+              #userName="ngModel"
+              required
+              [placeholder]="usuario.userName"
+            />
           </div>
-          <span class="error-form" *ngIf="!validarUsuario(usuario.userName) && userName.touched">
-            Recuerda que el nombre de usuario son entre 6 y 18 caracteres, y contiene letras, números y/o guiones.
+          <span
+            class="error-form"
+            *ngIf="!validarUsuario(usuario.userName) && userName.touched"
+          >
+            El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo
+            letras, números, guiones y guiones bajos.
           </span>
         </section>
 
         <section>
-          <label for="apellido">Primer Apellido
-            <span class="error-form" *ngIf="!apellido.valid && apellido.touched">Primer apellido
-              obligatorio</span></label>
+          <label for="apellido"
+            >Primer Apellido
+            <span class="error-form" *ngIf="!apellido.valid && apellido.touched"
+              >Primer apellido obligatorio</span
+            ></label
+          >
           <div>
-            <input id="apellido" type="apellido" [(ngModel)]="usuario.primerApellido" #apellido="ngModel"
-              name="apellido" required />
+            <input
+              id="apellido"
+              type="apellido"
+              [(ngModel)]="usuario.primerApellido"
+              #apellido="ngModel"
+              name="apellido"
+              required
+            />
           </div>
         </section>
 
         <section>
-          <label for="apellido2">Segundo Apellido
-            <span class="error-form" *ngIf="apellido2.valid && apellido2.touched">Segundo apellido
-              obligatorio</span></label>
+          <label for="apellido2"
+            >Segundo Apellido
+            <span
+              class="error-form"
+              *ngIf="apellido2.valid && apellido2.touched"
+              >Segundo apellido obligatorio</span
+            ></label
+          >
           <div>
-            <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" name="apellido2"
-              #apellido2="ngModel" required />
+            <input
+              id="apellido2"
+              type="apellido2"
+              [(ngModel)]="usuario.segundoApellido"
+              name="apellido2"
+              #apellido2="ngModel"
+              required
+            />
           </div>
         </section>
 
@@ -80,7 +106,12 @@
           <legend class="legend"></legend>
           <label for="edad">Edad</label>
           <div>
-            <input type="number" [(ngModel)]="usuario.edad" name="edad" required />
+            <input
+              type="number"
+              [(ngModel)]="usuario.edad"
+              name="edad"
+              required
+            />
           </div>
         </fieldset>
 
@@ -119,12 +150,13 @@
         </fieldset>
 
         <section class="check-box">
-          <fieldset>
-            <legend>Indica si tomas insulina</legend>
-            <label for="insulina"></label>
-            <span>Sí</span>
-            <input type="checkbox" [(ngModel)]="usuario.insulina" name="insulina" required />
-          </fieldset>
+          <label for="insulina">¿Toma insulina?</label>
+          <input
+            type="checkbox"
+            [(ngModel)]="usuario.insulina"
+            name="insulina"
+            required
+          />
         </section>
 
         <button class="btn" id="seve">Guardar Cambios</button>
@@ -141,8 +173,12 @@
 
   <section class="calculadora">
     <h1>Calcula tu IMC</h1>
-    <app-calculadora-imc (emitirAltura)="alturaHandler($event)" (emitirPeso)="pesoHandler($event)"
-      [alturaRecibida]="usuario.altura" [pesoRecibido]="usuario.peso"></app-calculadora-imc>
+    <app-calculadora-imc
+      (emitirAltura)="alturaHandler($event)"
+      (emitirPeso)="pesoHandler($event)"
+      [alturaRecibida]="usuario.altura"
+      [pesoRecibido]="usuario.peso"
+    ></app-calculadora-imc>
   </section>
 </section>
 
@@ -151,19 +187,43 @@
     <h2>Cambiar contraseña</h2>
     <form (ngSubmit)="cambiarPass()">
       <label for="pass">Escribe tu nueva contraseña</label>
-      <input type="password" [(ngModel)]="pass" name="pass" id="pass" />
+      <div class="inputs-form">
+        <input
+          class="password-form"
+          [type]="changetype ? 'password' : 'text'"
+          [(ngModel)]="pass"
+          name="pass"
+          id="pass"
+        />
+        <span class="eyes-pass" (click)="viewpass()"
+          ><i [ngClass]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+        ></span>
+      </div>
       <label for="pass">Repitela de nuevo</label>
-      <input type="password" [(ngModel)]="repetirPass" name="repetirPass" id="repetirPass" #password="ngModel"
-        aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
-      mayúscula, una minúscula, un número y un carácter especial." required />
+      <div class="inputs-form">
+        <input
+          class="password-form"
+          [type]="changetype2 ? 'password' : 'text'"
+          [(ngModel)]="repetirPass"
+          name="repetirPass"
+          id="repetirPass"
+          #password="ngModel"
+          aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+        mayúscula, una minúscula, un número y un carácter especial."
+          required
+        />
+        <span class="eyes-pass" (click)="viewpass2()"
+          ><i [ngClass]="visible2 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+        ></span>
+      </div>
       <section class="buttons">
         <button type="submit">Guardar</button>
         <button (click)="cerrarModal()">Cerrar</button>
       </section>
     </form>
     <p class="error-form" *ngIf="!password.valid && password.touched">
-      La contraseña debe tener al menos 8 caracteres, incluyendo una
-      mayúscula, una minúscula, un número y un carácter especial.
+      La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula,
+      una minúscula, un número y un carácter especial.
     </p>
     <p class="error-form">
       {{ errorPass }}
@@ -177,18 +237,14 @@
   </div>
 </section>
 
-<section class="accModal" *ngIf='accModal == true'>
-
+<section class="accModal" *ngIf="accModal == true">
   <div class="fondoModal">
-    <div class='lectura-facil'> <!--el lector no lee el contenido-->
+    <div class="lectura-facil" tabindex="0">
       <h2>Lectura fácil</h2>
       <p>
-        Estos son los datos con los que te diste de alta.
-        Puedes consultarlos y cambiarlos si no están bien.
+        Estos son los datos con los que te diste de alta. Puedes verlos y
+        cambiarlos si no están bien.
       </p>
     </div>
-
-
   </div>
-
 </section>
