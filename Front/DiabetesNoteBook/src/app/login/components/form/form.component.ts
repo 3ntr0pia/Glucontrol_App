@@ -14,7 +14,8 @@ export class FormComponent {
   password: string = '';
   mail: string = '';
   error: string = '';
-
+  visible: boolean = true;
+  changetype: boolean = true;
   constructor(
     private authService: AuthServiceService,
     private router: Router,
@@ -29,6 +30,11 @@ export class FormComponent {
     token: '',
     newPass: '',
   };
+
+  viewpass() {
+    this.visible = !this.visible;
+    this.changetype = !this.changetype;
+  }
 
   verOlvidado() {
     this.recordar = true;

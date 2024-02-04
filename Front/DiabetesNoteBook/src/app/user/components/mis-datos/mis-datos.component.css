@@ -5,7 +5,6 @@
   transform: translate(-50%, -50%);
   border: 1px solid black;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  
 }
 
 .fondoModal {
@@ -86,7 +85,6 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .triangle::before {
@@ -101,11 +99,10 @@ select {
     transparent;
   left: 50%;
   transform: translateX(-75%) translateY(100%);
-  
 }
 .generarAvatar {
   position: relative;
-  
+
   top: 0;
   left: 0;
   display: flex;
@@ -148,7 +145,6 @@ select {
   border-radius: 7px;
   text-align: center;
 }
-
 
 .check-box {
   margin-top: 1rem;
@@ -224,9 +220,40 @@ select {
   justify-content: center;
   align-items: center;
 }
+.inputs-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-.modalPass input {
-  width: 50%;
+.visible-pass {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.password-form {
+  width: 100%;
+  height: 2.35em;
+  margin-bottom: 1em;
+  padding: 0.5rem;
+  background-color: var(--main--colorBackGroundElements);
+  text-shadow: var(--main--colorBackGroundElements);
+  border-radius: 10px 0 0 10px;
+  border: none;
+}
+
+.password-form:focus {
+  outline: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.eyes-pass {
+  width: 2em;
+  padding: 0.38rem;
+  text-shadow: #d9dbda;
+  background-color: var(--main--colorBackGroundElements);
+  border-radius: 0 10px 10px 0px;
 }
 
 .buttons {
@@ -263,16 +290,14 @@ select {
   color: green;
 }
 
-
-@media (max-width : 1600px){
-  .triangle{
+@media (max-width: 1600px) {
+  .triangle {
     height: 85%;
     width: 60%;
     margin-top: 2em;
     margin-left: -1em;
   }
 }
-
 
 @media (max-width: 1350px) {
   .wrapper {
@@ -282,19 +307,18 @@ select {
   .datos {
     width: 100%;
   }
-  
-  .triangle{
+
+  .triangle {
     height: 85%;
     width: 80%;
     margin-top: 2em;
     margin-left: -3em;
   }
-  
-  .avatar{
+
+  .avatar {
     height: 100%;
-    
   }
-  .calculadora{
+  .calculadora {
     height: 100%;
     width: 100%;
     margin-left: 2.7em;
@@ -305,32 +329,25 @@ select {
     width: 95%;
     min-height: 100vh;
     overflow-x: none;
-    margin-top: -9em 
-    
+    margin-top: -9em;
   }
-  .triangle{
+  .triangle {
     rotate: 90deg;
     margin-bottom: 3em;
-    
   }
-.contenido-bocadillo{
-  rotate: -90deg;
+  .contenido-bocadillo {
+    rotate: -90deg;
+  }
 
+  .triangle::before {
+    border-width: 30px 50px 0 50px;
+
+    left: 50%;
+    transform: translateX(0%) translateY(100%);
+  }
 }
-
-.triangle::before {
-  
-  border-width: 30px 50px 0 50px;
-  
-  left: 50%;
-  transform: translateX(0%) translateY(100%);
-
-}
-
-}
-@media(max-width: 900px){
-
-  .wrapper{
+@media (max-width: 900px) {
+  .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -339,41 +356,39 @@ select {
     width: 100%;
   }
 
-  .datos{
+  .datos {
     width: 70%;
     height: 100%;
     margin-top: 2em;
     margin-bottom: 2em;
   }
 
-  .triangle{
+  .triangle {
     order: -2;
     margin-right: 12em;
     margin-top: 14em;
   }
-  
-  .triangle::before{
+
+  .triangle::before {
     visibility: hidden;
   }
-  
-  .calculadora{
+
+  .calculadora {
     order: -1;
     margin-top: 11em;
   }
-  .avatar{
+  .avatar {
     order: -2;
   }
 }
 
-@media(max-width: 500px){
-
-  .generarAvatar{
+@media (max-width: 500px) {
+  .generarAvatar {
     width: 100%;
     height: 100%;
   }
 
-  .datos{
+  .datos {
     width: 85%;
   }
-  
 }

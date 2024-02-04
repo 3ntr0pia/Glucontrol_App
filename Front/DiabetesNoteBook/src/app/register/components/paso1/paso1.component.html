@@ -44,6 +44,7 @@
             ></label
           >
           <input
+            class="input"
             id="nombre"
             type="nombre"
             [(ngModel)]="datosRegistro.nombre"
@@ -61,6 +62,7 @@
             ></label
           >
           <input
+            class="input"
             id="userName"
             type="userName"
             [(ngModel)]="datosRegistro.username"
@@ -87,6 +89,7 @@
             ></label
           >
           <input
+            class="input"
             id="apellido"
             type="apellido"
             [(ngModel)]="datosRegistro.apellido"
@@ -107,6 +110,7 @@
           >
           <!--el segundo apellido no debería ser obligatorio-->
           <input
+            class="input"
             id="apellido2"
             type="apellido2"
             [(ngModel)]="datosRegistro.apellido2"
@@ -124,6 +128,7 @@
             ></label
           >
           <input
+            class="input"
             id="email"
             type="email"
             [(ngModel)]="datosRegistro.email"
@@ -140,25 +145,31 @@
           </span>
         </div>
         <div>
-          <label for="password"
+          <label for="password-form"
             >Contraseña
             <span class="error-form" *ngIf="!password.valid && password.touched"
               ><img lazyload="/assets/alert_line.svg" alt="error" /> Contraseña
               obligatoria.</span
             ></label
           >
-          <input
-            id="password"
-            type="password"
-            [(ngModel)]="datosRegistro.password"
-            name="password"
-            #password="ngModel"
-            min="8"
-            placeholder="Ejemplo: FullStack@05/02/2024"
-            aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
-          mayúscula, una minúscula, un número y un carácter especial."
-            required
-          />
+          <div class="visible-pass">
+            <input
+              class="password-form"
+              id="password-form"
+              [type]="changetype ? 'password' : 'text'"
+              [(ngModel)]="datosRegistro.password"
+              name="password"
+              #password="ngModel"
+              min="8"
+              placeholder="Ejemplo: FullStack@05/02"
+              aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+            mayúscula, una minúscula, un número y un carácter especial."
+              required
+            />
+            <span class="eyes-pass" (click)="viewpass()"
+              ><i [ngClass]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+            ></span>
+          </div>
         </div>
         <span
           class="error-form"
@@ -177,18 +188,24 @@
               contraseña.</span
             ></label
           >
-          <input
-            id="password2"
-            type="password"
-            [(ngModel)]="datosRegistro.password2"
-            name="password2"
-            #password2="ngModel"
-            min="8"
-            placeholder="Ejemplo: FullStack@05/02/2024"
-            aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
-          mayúscula, una minúscula, un número y un carácter especial."
-            required
-          />
+          <div class="visible-pass">
+            <input
+              class="password-form"
+              id="password2"
+              [type]="changetype2 ? 'password' : 'text'"
+              [(ngModel)]="datosRegistro.password2"
+              name="password2"
+              #password2="ngModel"
+              min="8"
+              placeholder="Ejemplo: FullStack@05/02"
+              aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+            mayúscula, una minúscula, un número y un carácter especial."
+              required
+            />
+            <span class="eyes-pass" (click)="viewpass2()"
+              ><i [ngClass]="visible2 ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+            ></span>
+          </div>
           <span
             class="error-form"
             *ngIf="password2.value != password.value && password.valid"
@@ -215,7 +232,7 @@
       (avatarGenerado)="setAvatar($event)"
     ></app-generador-avatar>
     <div class="lectura-facil">
-      <h2><i class="bi bi-universal-access-circle "></i> Lectura fácil </h2>
+      <h2><i class="bi bi-universal-access-circle"></i> Lectura fácil</h2>
       <p>
         Aquí tienes un formulario. Serán tres pasos. Tienes que rellenar todos
         los campos para poder registrarte. En este paso tienes que rellenar tus

@@ -1,24 +1,46 @@
 <section *ngIf="!recordar" class="sectionLogin">
   <!-- <p class="error-form">Error al introducir Email o Contraseña</p>  ESTE NO HACE FALTA POR QUE VIENE DE BACK-->
-  <h2 class="visually-hidden" aria-label="Página para conectarse">Conectarse</h2>
+  <h2 class="visually-hidden" aria-label="Página para conectarse">
+    Conectarse
+  </h2>
   <form (ngSubmit)="login()">
-    <div class="input">
+    <div class="inputs-form">
       <label for="usuario-form">Nombre de Usuario</label>
-      <input type="text" id="usuario-form" name="usuario" [(ngModel)]="usuario" />
+      <input
+        class="input"
+        type="text"
+        id="usuario-form"
+        name="usuario"
+        [(ngModel)]="usuario"
+      />
     </div>
-    <div class="input">
-      <label for="password-form">Contraseña</label>
-      <input type="password" id="password-form" name="password" [(ngModel)]="password" />
+
+    <label for="password-form">Contraseña</label>
+    <div class="visible-pass">
+      <input
+        [type]="changetype ? 'password' : 'text'"
+        id="password-form"
+        name="password"
+        [(ngModel)]="password"
+      />
+      <span class="eyes-pass" (click)="viewpass()"
+        ><i [ngClass]="visible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i
+      ></span>
     </div>
+
     <div>
-      <div class ="bottom">
+      <div class="bottom">
         <button class="btnInicio">Iniciar Sesión</button>
         <span class="error-form">{{ error }}</span>
       </div>
     </div>
     <div class="aForgetPass">
-      <a tabindex="0" aria-label="Enlace para recordar la contraseña" (click)="verOlvidado()">He olvidado la
-        contraseña</a>
+      <a
+        tabindex="0"
+        aria-label="Enlace para recordar la contraseña"
+        (click)="verOlvidado()"
+        >He olvidado la contraseña</a
+      >
       <a routerLink="/register">Registrarse</a>
     </div>
   </form>
@@ -27,7 +49,15 @@
   <form (ngSubmit)="recordarPassword()">
     <div class="input">
       <label for="usuario-form">E-mail de Recuperación</label>
-      <input type="email" id="mail-form" name="mail" placeholder="ejemplo@ejemplo.com" [(ngModel)]="mail" required />
+      <input
+        class="input"
+        type="email"
+        id="mail-form"
+        name="mail"
+        placeholder="ejemplo@ejemplo.com"
+        [(ngModel)]="mail"
+        required
+      />
     </div>
     <div>
       <button [disabled]="formularioInvalido()" class="btnInicio">
@@ -41,14 +71,17 @@
     <h2>Lectura fácil:</h2>
     <p>
       En esta página podrás conectarte
-      <br>
+      <br />
       siepre que te hayas registrado antes
-      <br>
+      <br />
       Si no lo has hecho todavía,
-      <br>
+      <br />
       puedes hacerlo en el enlace de registrarse.
     </p>
   </div>
-
 </section>
-<app-modal *ngIf="mostrarModal" [mensaje]="mensajeModal" (cerrar)="mostrarModal = false"></app-modal>
+<app-modal
+  *ngIf="mostrarModal"
+  [mensaje]="mensajeModal"
+  (cerrar)="mostrarModal = false"
+></app-modal>
