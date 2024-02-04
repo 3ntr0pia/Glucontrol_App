@@ -70,6 +70,7 @@ export class Paso3Component {
 
   registroUsuario() {
     this.addMedicacion();
+    
     this.registroFinal = {
       avatar: this.datosRegistro.avatar,
       userName: this.datosRegistro.username,
@@ -84,7 +85,7 @@ export class Paso3Component {
       altura: this.datosRegistro.mediciones.altura,
       actividad: this.datosRegistro.mediciones.actividad,
       tipoDiabetes: this.datosRegistro.mediciones.tipoDiabetes.tipo,
-      medicacion: this.datosRegistro.mediciones.tipoDiabetes.medicacion,
+      medicacion: this.datosRegistro.mediciones.tipoDiabetes.medicacion.map((medicacion: string) => medicacion.trim().toLowerCase()),
       insulina: this.datosRegistro.mediciones.tipoDiabetes.insulina,
     };
     this.registrar.emit(this.registroFinal);

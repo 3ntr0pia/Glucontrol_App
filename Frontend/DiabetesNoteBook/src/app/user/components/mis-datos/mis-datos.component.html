@@ -67,20 +67,21 @@
         </section>
 
         <section>
-          <label for="apellido2">Segundo Apellido
-            <span class="error-form" *ngIf="apellido2.valid && apellido2.touched">Segundo apellido
+          <label for="apellido2">Segundo Apellido 
+            <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched">Segundo apellido
               obligatorio</span></label>
           <div>
-            <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" name="apellido2"
-              #apellido2="ngModel" required />
+            <input id="apellido2" type="apellido2" [(ngModel)]="usuario.segundoApellido" #apellido2="ngModel"
+             name="apellido2" required />
           </div>
         </section>
 
         <fieldset>
           <legend class="legend"></legend>
           <label for="edad">Edad</label>
+          <span class="error-form" *ngIf="!edad.valid && edad.touched">Introduce tu edad</span>
           <div>
-            <input type="number" [(ngModel)]="usuario.edad" name="edad" required />
+            <input type="number" [(ngModel)]="usuario.edad" name="edad" required #edad='ngModel'/>
           </div>
         </fieldset>
 

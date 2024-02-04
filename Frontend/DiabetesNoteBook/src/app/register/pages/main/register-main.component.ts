@@ -40,6 +40,7 @@ export class RegisterMainComponent {
 
   retrocederPaso(): void {
     if (this.paso > 1) {
+      this.datosRegistro.mediciones.tipoDiabetes.medicacion = [];
       this.paso--;
     }
   }

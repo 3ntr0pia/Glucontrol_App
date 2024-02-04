@@ -4,7 +4,7 @@
   --main--colorBackGroundElements: #effbff;
   --main--colorHoverBtnAccept: #80f9c0;
   --main--colorErrorOrDenegate: #940505;
-  --main--colorBacGroundForm: #f3f9ea;
+  --main--colorBacGroundForm: #eef7df;
   accent-color: var(--main--colorHoverBtnAccept);
 }
 @font-face {
