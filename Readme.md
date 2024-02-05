@@ -77,6 +77,10 @@ El frontend de **DiabetesNoteBook** ofrece una experiencia de usuario rica e int
 
 - **Vademécum**: Conecta con la API de CIMA para proporcionar información detallada sobre medicamentos, facilitando a los usuarios el acceso a información vital para el manejo de su salud.
 
+### Seguridad y Rendimiento con Guards y Lazy Routing
+
+- Incorporamos Guards para controlar el acceso a rutas específicas, asegurando que solo usuarios autorizados puedan acceder a información sensible, reforzando la seguridad de la aplicación. Además, utilizamos Lazy Routing para optimizar el rendimiento, cargando módulos de forma perezosa solo cuando son necesarios. Esta estrategia reduce el tiempo de carga inicial, mejorando la experiencia de usuario en dispositivos con recursos limitados.
+
 ### Directivas y Pipes
 
 - **LazyLoadImageDirective**: Mejora el rendimiento de la aplicación mediante la carga diferida de imágenes, reduciendo el tiempo de carga inicial y el consumo de datos.
