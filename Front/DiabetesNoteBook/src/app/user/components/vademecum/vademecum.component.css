@@ -20,6 +20,10 @@
   align-items: center;
 }
 
+fieldset {
+  border: none;
+}
+
 img {
   width: 5em;
 }
@@ -138,5 +142,4 @@ tr:hover {
   .wrapper {
     margin-top: -10em;
   }
-  
 }

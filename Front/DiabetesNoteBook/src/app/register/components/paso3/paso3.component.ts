@@ -48,6 +48,8 @@ export class Paso3Component {
     },
   };
 
+  @Input()  error : string = '';
+
   registroFinal: IFinalRegister = {
     avatar: '',
     userName: '',

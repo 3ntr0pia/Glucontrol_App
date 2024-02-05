@@ -112,6 +112,10 @@ export class VademecumComponent {
   addMedicamento() {
     const nuevoMedicamentoLowerCase = this.nuevoMedicamento.toLocaleLowerCase();
 
+    if(this.nuevoMedicamento === ''){
+      this.error = 'El campo no puede estar vacío.';
+      return;
+    }
     if (!this.medicamentosFromBackend.includes(nuevoMedicamentoLowerCase)) {
       this.medicamentosFromBackend.push(nuevoMedicamentoLowerCase);
       this.nuevoMedicamento = '';

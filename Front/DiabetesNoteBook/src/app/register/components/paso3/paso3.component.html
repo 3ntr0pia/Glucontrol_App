@@ -1,82 +1,77 @@
-
 <div class="container">
 
   <section class="formContainer">
-  
+
     <form class="formulario" (ngSubmit)="registroUsuario()">
       <section class="fieldset-datos">
-      <div>
-        
-        <h2 aria-label="registro">Registro</h2>
-            <h3 aria-label="Paso 3 de 3. Datos relacionados con la diabetes">Datos relacionados con la diabetes</h3>
-  
+        <div>
+
+          <h2>Registro</h2>
+          <h3>Paso 3 de 3. Datos relacionados con la diabetes</h3>
+
           <fieldset>
             <legend>Tipo de diabetes</legend>
             <label for="tipo"></label>
-            <select
-            [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo"
-            name="tipo"
-            required
-            >
-            <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
-            <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
-            <option [value]="TipoDiabetes.gestacional">Gestacional</option>
-          </select>
-        </fieldset>
-        </div>
-  
-        <div>
-          <label for="medicacion">Medicación</label><br>
-          <textarea
-            maxlength="120"
-            placeholder="Medicación más relevante"
-            [(ngModel)]="medicacionString"
-            name="medicacion"
-            required
-          ></textarea>
-        </div>
-  
-        <div>
-          <fieldset>
-            <legend>¿Toma insulina?</legend>
-          <label for="insulina"></label>
-          <input
-            type="checkbox"
-            [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina"
-            name="insulina"
-            required
-          /> Sí
+            <select [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.tipo" name="tipo" required>
+              <option [value]="TipoDiabetes.tipo1">Tipo 1</option>
+              <option [value]="TipoDiabetes.tipo2">Tipo 2</option>
+              <option [value]="TipoDiabetes.gestacional">Gestacional</option>
+            </select>
           </fieldset>
         </div>
-  
+
         <div>
-          <label class="accept" for="medicacion"
-            >Acepto recibir un correo de confirmación</label
-          >
-          <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
+          <label for="medicacion">Medicación</label><br>
+
+          <textarea maxlength="120" placeholder="Medicación más relevante separada por comas"
+            [(ngModel)]="medicacionString" name="medicacion" aria-label="Medicación más relevante separada por comas."
+            required></textarea>
         </div>
-  
+
+        <div>
+          <fieldset>
+            <legend>Indica si tomas insulina</legend>
+            <label for="insulina"></label>
+            <input type="checkbox" [(ngModel)]="datosRegistro.mediciones.tipoDiabetes.insulina" name="insulina" /> Sí
+          </fieldset>
+        </div>
+
+        <div>
+          <fieldset>
+            <legend>Acepto recibir un correo de confirmación</legend>
+            <label class="accept" for="medicacion">Acepto recibir un correo de confirmación</label>
+            <input type="checkbox" [(ngModel)]="aceptar" name="aceptar" required />
+          </fieldset>
+        </div>
+        <span class="error-form">{{error}} </span>
         <button class="btn" type="submit" [disabled]="!aceptar">Completar</button>
         <button class="btn" (click)="retroceder.emit()">Volver</button>
+
+        <!-- añado ésto: -->
+        <span class="error'form" tabindex="0">
+          <img class="alerta"lazyload="/assets/alert_line.svg" alt="" />Confirma el registro en el correo recibido (acuérdate de
+          revisar tu bandeja de spam).
+        </span>
+
       </section>
     </form>
-  
-    
+
+
     <figure class="lateral">
-      
-        <img lazyload="/assets/tipos.png" alt="tipos diabetes">
-      
-      <div class='lectura-facil'>
+
+      <img lazyload="/assets/tipos.png" alt="tipos diabetes">
+
+      <div class='lectura-facil' tabindex="1">
         <h2><i class="bi bi-universal-access-circle "></i> Lectura fácil:</h2>
         <p>
           Este es el último paso del formulario.
-          Aqui debes indicar el tipo de diabetes 
+          Aqui debes indicar el tipo de diabetes
           que tienes, la medicación que
           tomas (OJO! Separado por comas) y si tomas insulina.
         </p>
       </div>
     </figure>
-    
-  
+
+
   </section>
 </div>

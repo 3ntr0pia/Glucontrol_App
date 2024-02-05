@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'mis-datos', pathMatch: 'full' },
       { path: 'mis-datos', component: MisDatosComponent , title: 'Mis datos | Glucontrol '},
-      { path : 'mediciones', component: MedicionesComponent , title: 'Mis mediciones | Glucontrol '},
+      { path : 'mediciones', component: MedicionesComponent , title: 'Mediciones | Glucontrol '},
       { path: 'vademecum', component: VademecumComponent , title: 'Vademecum | Glucontrol '},
       { path: 'ayuda', component: AyudaComponent , title: 'Ayuda | Glucontrol '},
       

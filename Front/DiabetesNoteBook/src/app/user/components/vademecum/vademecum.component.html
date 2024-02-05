@@ -1,52 +1,58 @@
 <div class="wrapper">
-  <button (click)="modalAcc()" class='accesibilidadButton'><i class="bi bi-universal-access-circle "></i><span
-      *ngIf='accModal'>Cerrar</span></button>
+  <button (click)="modalAcc()" class='accesibilidadButton' title="Acceder a lectura fácil"><i class="bi bi-universal-access-circle "></i><span
+      *ngIf='accModal' title="Salir de lectura fácil">Cerrar</span></button>
 
   <div class="header">
-    <h1>Tus medicamentos</h1>
+    <h2>Vademecum</h2> <!-- veo más lógico popner el nombre del navbar, q no sé si se puede cambiar-->
     <p>Selecciona uno de tus medicamentos registrados para obtener más información</p>
-
-
   </div>
 
   <div class="form">
     <div class="form-group">
 
       <div>
-        <label for="medicamento">Lista medicamentos</label>
-        <select class='form-select' name="listaMedicamentos" id="listaMedicamentos"
+        <fieldset>
+          <legend class="visually-hidden">Selecciona el medicamento de tu lista de medicamentos</legend>
+          <label for="medicamento">Lista medicamentos</label>
+          <select class='form-select' name="listaMedicamentos" id="listaMedicamentos"
           [(ngModel)]='medicamentoSeleccionado' name="medicamentoSeleccionado" (change)='medicamentoChange()'>
           <option  selected>Selecciona un medicamento</option>
           <option *ngFor="let med of medicamentosFromBackend"> {{med}} </option>
         </select>
-
+      </fieldset>
       </div>
 
       <form class="nuevoMedicamento" (ngSubmit)="addMedicamento()">
         <label for="nuevoMedicamento"> Medicamento a añadir o eliminar</label>
-        <input type="text" [(ngModel)]='nuevoMedicamento' name='nuevoMedicamento'>
+        <input type="text" [(ngModel)]='nuevoMedicamento' aria-label="puedes añadir o eliminar un medicamento" name='nuevoMedicamento' required>
         <p class='error-form'>{{error}}</p>
-        <button class="btn" type="submit">
-          Añadir medicamento
+        <button class="btn" type="submit" title="en este botón puedes añadir un medicamento nuevo">
+          Añadir <!--añadir o eliminar 'medicamento' es redundante-->
         </button>
-        <button class="btn" type="button" (click)="eliminarMedicamento(nuevoMedicamento)">
-          Eliminar medicamento
+        <button class="btn" type="button" (click)="eliminarMedicamento(nuevoMedicamento)"  title="en este botón puedes eliminar uno de tus medicamentos">
+          Eliminar
         </button>
         
       </form>
       
     </div>
 
-    <div class="checks">
-      <div class="form-group-check">
-        <label for="sinReceta">Necesita Receta</label>
-        <input type="checkbox" id="Receta" [(ngModel)]="Receta">
+    <div class="checks ">
+      <fieldset>
+        <legend class="visually-hidden">Indica si el medicamento necesita receta o no</legend>
+        <div class="form-group-check">
+          <label for="sinReceta">Necesita Receta</label>
+          <input type="checkbox" id="Receta" [(ngModel)]="Receta">
+        </div>
+      </fieldset>
 
-      </div>
-
       <div class="form-group-check">
-        <label for="genericos"> Solo Genéricos</label>
-        <input type="checkbox" id="genericos" [(ngModel)]="Genericos">
+        <fieldset>
+          <legend class="visually-hidden">Selecciona si sólo buscas los medicamentos genéricos con este principio activo</legend>
+          <input type="checkbox" id="genericos" [(ngModel)]="Genericos">
+          <label for="genericos"> Solo Genéricos</label>
+          
+        </fieldset>
       </div>
     </div>
   </div>
@@ -54,6 +60,7 @@
 
   <div class="tabla">
 <table class="table table-hover">
+   <caption class='visually-hidden'>Lista oficial de medicamentos (vademecum)</caption>
     <thead class="thead-dark">
       <tr>
         <th scope="col">Nombre</th>

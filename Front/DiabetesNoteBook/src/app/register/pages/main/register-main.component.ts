@@ -14,7 +14,7 @@ export class RegisterMainComponent {
   public Sexo = Sexo;
   public Actividad = Actividad;
   public TipoDiabetes = TipoDiabetes;
-
+  error: string = '';
   datosRegistro: IRegister = {
     username: '',
     avatar: '',
@@ -65,7 +65,10 @@ export class RegisterMainComponent {
         console.log(data);
         this.router.navigate(['/login']);
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        this.error = err.error.errors.email;
+        console.log(err);
+      },
       complete: () => console.log('Operation completed'),
     });
   }
