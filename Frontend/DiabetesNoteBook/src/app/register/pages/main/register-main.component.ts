@@ -44,7 +44,7 @@ export class RegisterMainComponent {
       this.paso--;
     }
   }
-  paso: number = 1;
+  paso: number = 3;
 
   siguientePaso(info: IRegister): void {
     //this.datosRegistro = info;  SE CARGA TODO EL OBJETO;

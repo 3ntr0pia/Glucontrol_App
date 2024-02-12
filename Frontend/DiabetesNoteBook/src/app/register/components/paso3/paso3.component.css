@@ -70,6 +70,7 @@ legend {
 .formulario textarea {
   width: 12rem;
   height: 8rem;
+  padding: 0.5em;
   border-radius: 7px;
   color: var(--main--colorForeground);
   background-color: var(--main--colorBackGroundElements);
@@ -92,6 +93,11 @@ legend {
 }
 .btn:hover {
   background-color: var(--main--colorHoverBtnAccept);
+}
+.info {
+  font-style: italic;
+  font-size: 0.75em;
+  font-weight: 700;
 }
 .alerta {
   width: 1em;
