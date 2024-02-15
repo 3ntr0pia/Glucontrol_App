@@ -32,7 +32,6 @@ export class VademecumComponent {
     insulina: false,
   };
 
-  medicamentoSeleccionado: string = '';
   medicamentosArray: IMedicamento[] = [];
   Receta: boolean = true;
   Genericos: boolean = false;
@@ -60,15 +59,14 @@ export class VademecumComponent {
     console.log(this.accModal);
   }
 
-  medicamentoChange() {
-    if (this.medicamentoSeleccionado) {
-      this.buscarMedicamentos(this.medicamentoSeleccionado);
+  medicamentoChange(medicamentoSeleccionado: string) {
+    if (medicamentoSeleccionado) {
+      this.buscarMedicamentos(medicamentoSeleccionado);
     }
   }
 
-  buscarMedicamentos(nombre: string) {
-    nombre = this.medicamentoSeleccionado;
-    this.vademecum.getMedicamentoInfo(nombre).subscribe({
+  buscarMedicamentos(medicamento: string) {
+    this.vademecum.getMedicamentoInfo(medicamento).subscribe({
       next: (res: IRespuestaServicio) => {
         this.medicamentosArray = res.resultados;
         console.log(this.medicamentosArray);
@@ -112,11 +110,12 @@ export class VademecumComponent {
   addMedicamento() {
     const nuevoMedicamentoLowerCase = this.nuevoMedicamento.toLocaleLowerCase();
 
-    if(this.nuevoMedicamento === ''){
+    if (this.nuevoMedicamento === '') {
       this.error = 'El campo no puede estar vacío.';
       return;
     }
     if (!this.medicamentosFromBackend.includes(nuevoMedicamentoLowerCase)) {
+      //medicamentoFromBackend es un string[]
       this.medicamentosFromBackend.push(nuevoMedicamentoLowerCase);
       this.nuevoMedicamento = '';
       this.usuario.medicacion = this.medicamentosFromBackend.join(',');
