@@ -9,5 +9,5 @@ public partial class Medicacione
 
     public string Nombre { get; set; } = null!;
 
-    public virtual ICollection<PersonaMedicacion> PersonaMedicacions { get; set; } = new List<PersonaMedicacion>();
+    public virtual ICollection<UsuarioMedicacion> UsuarioMedicacions { get; set; } = new List<UsuarioMedicacion>();
 }

@@ -4,8 +4,7 @@ namespace DiabetesNoteBook.Application.Interfaces
 {
     public interface IEmailService
     {
-        Task SendEmailAsyncRegister(DTOEmail userData);
+        Task SendEmailAsyncRegister(DTOEmail userDataRegister);
         Task SendEmailAsyncChangePassword(DTOEmail userData);
-        Task SendEmailAsyncEmailChanged(DTOEmailNotification emailNotification);
     }
 }

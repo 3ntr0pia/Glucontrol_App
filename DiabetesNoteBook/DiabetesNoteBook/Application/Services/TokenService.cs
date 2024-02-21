@@ -21,7 +21,6 @@ namespace DiabetesNoteBook.Application.Services
         public async Task<DTOLoginResponse> GenerarToken(Usuario credencialesUsuario)
         {
 
-            var personaDB = await _context.Personas.FirstOrDefaultAsync(x => x.UserId == credencialesUsuario.Id);
             var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == credencialesUsuario.Id);
 
             var claims = new List<Claim>()
@@ -43,9 +42,9 @@ namespace DiabetesNoteBook.Application.Services
                 Token = tokenString,
                 Rol = credencialesUsuario.Rol,
                 Id = credencialesUsuario.Id,
-                Nombre = personaDB.Nombre,
-                PrimerApellido = personaDB.PrimerApellido,
-                SegundoApellido = personaDB.SegundoApellido,
+                Nombre = credencialesUsuario.Nombre,
+                PrimerApellido = credencialesUsuario.PrimerApellido,
+                SegundoApellido = credencialesUsuario.SegundoApellido,
                 Avatar = usuarioDB.Avatar
             };
         }

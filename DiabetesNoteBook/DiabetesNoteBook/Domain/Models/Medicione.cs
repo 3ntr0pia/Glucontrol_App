@@ -31,7 +31,7 @@ public partial class Medicione
 
     public string Notas { get; set; } = null!;
 
-    public int IdPersona { get; set; }
+    public int IdUsuario { get; set; }
 
-    public virtual Persona IdPersonaNavigation { get; set; } = null!;
+    public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
 }

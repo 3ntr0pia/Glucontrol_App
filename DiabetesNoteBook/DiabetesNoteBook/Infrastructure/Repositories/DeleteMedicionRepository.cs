@@ -3,7 +3,7 @@ using DiabetesNoteBook.Infrastructure.Interfaces;
 
 namespace DiabetesNoteBook.Infrastructure.Repositories
 {
-    public class DeleteMedicionRepository:IDeleteMedicion
+    public class DeleteMedicionRepository : IDeleteMedicion
     {
         private readonly DiabetesNoteBookContext _context;
 

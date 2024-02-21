@@ -35,7 +35,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _changePassMail = changePassMail;
         }
 
-        [AllowAnonymous]
         [HttpPut("changePassword")]
         public async Task<ActionResult> ChangePassword([FromBody] DTOCambioPassPorId userData)
         {
@@ -63,7 +62,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 await _operationsService.AddOperacion(new DTOOperation
                 {
-                    Operacion = "Nuevo registro",
+                    Operacion = "Cambio pass logado",
                     UserId = usuarioDB.Id
                 });
 
@@ -82,6 +81,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
                 var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == usuario.Email);
+
+                if (usuarioDB.Email == usuario.Email)
+                {
+                    return Unauthorized("Este email no se encuentra registrado.");
+                }
 
                 if (usuarioDB.BajaUsuario == true)
                 {
@@ -124,7 +128,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
         [AllowAnonymous]
         [HttpPost("changePasswordMailConEnlace")]
-        public async Task<ActionResult<Response>> Reset( [FromBody] DTOUsuarioChangePasswordMailConEnlace cambiopass)
+        public async Task<ActionResult<Response>> Reset([FromBody] DTOUsuarioChangePasswordMailConEnlace cambiopass)
         {
             try
             {
@@ -145,8 +149,8 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     await _changePassMail.ChangePassEnlaceMail(new DTOUsuarioChangePasswordMailConEnlace
                     {
                         NewPass = cambiopass.NewPass,
-                        Token=cambiopass.Token
-                       
+                        Token = cambiopass.Token
+
                     });
 
                     return Ok("Password cambiado con exito");

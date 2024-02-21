@@ -27,5 +27,29 @@ public partial class Usuario
 
     public DateTime? FechaEnlaceCambioPass { get; set; }
 
-    public virtual ICollection<Persona> Personas { get; set; } = new List<Persona>();
+    public string Nombre { get; set; } = null!;
+
+    public string PrimerApellido { get; set; } = null!;
+
+    public string SegundoApellido { get; set; } = null!;
+
+    public string Sexo { get; set; } = null!;
+
+    public int Edad { get; set; }
+
+    public decimal Peso { get; set; }
+
+    public decimal Altura { get; set; }
+
+    public string TipoDiabetes { get; set; } = null!;
+
+    public string Actividad { get; set; } = null!;
+
+    public bool Insulina { get; set; }
+
+    public virtual ICollection<Medicione> Mediciones { get; set; } = new List<Medicione>();
+
+    public virtual ICollection<Operacione> Operaciones { get; set; } = new List<Operacione>();
+
+    public virtual ICollection<UsuarioMedicacion> UsuarioMedicacions { get; set; } = new List<UsuarioMedicacion>();
 }
