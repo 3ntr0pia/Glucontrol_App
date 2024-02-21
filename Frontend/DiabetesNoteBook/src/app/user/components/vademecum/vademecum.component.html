@@ -24,24 +24,10 @@
           <legend class="visually-hidden">
             Selecciona el medicamento de tu lista de medicamentos
           </legend>
-          <!-- <label for="medicamento">Lista medicamentos</label>
-          <select
-            class="form-select"
-            name="listaMedicamentos"
-            id="listaMedicamentos"
-            [(ngModel)]="medicamentoSeleccionado"
-            name="medicamentoSeleccionado"
-            (change)="medicamentoChange()"
-          >
-            <option selected>Selecciona un medicamento</option>
-            <option *ngFor="let med of medicamentosFromBackend">
-              {{ med }}
-            </option>
-          </select> -->
           <table>
             <thead>
               <th>Nombre del medicamento</th>
-              <th>info</th>
+              <th>información</th>
               <th>eliminar</th>
             </thead>
             <tbody>
@@ -50,12 +36,12 @@
                   {{ med }}
                 </td>
                 <td>
-                  <button (click)="medicamentoChange(med)">
+                  <button class="btn-icon" (click)="medicamentoChange(med)">
                     <i class="bi bi-info-circle"></i>
                   </button>
                 </td>
                 <td>
-                  <button (click)="eliminarMedicamento(med)">
+                  <button class="btn-icon" (click)="eliminarMedicamento(med)">
                     <i class="bi bi-trash"></i>
                   </button>
                 </td>
@@ -66,11 +52,11 @@
       </div>
 
       <form class="nuevoMedicamento" (ngSubmit)="addMedicamento()">
-        <label for="nuevoMedicamento"> Medicamento a añadir o eliminar</label>
+        <label for="nuevoMedicamento"> Añadir medicamento nuevo</label>
         <input
           type="text"
           [(ngModel)]="nuevoMedicamento"
-          aria-label="puedes añadir o eliminar un medicamento"
+          aria-label="puedes añadir un medicamento"
           name="nuevoMedicamento"
           required
         />
@@ -81,7 +67,6 @@
           title="en este botón puedes añadir un medicamento nuevo"
         >
           Añadir
-          <!--añadir o eliminar 'medicamento' es redundante-->
         </button>
       </form>
     </div>

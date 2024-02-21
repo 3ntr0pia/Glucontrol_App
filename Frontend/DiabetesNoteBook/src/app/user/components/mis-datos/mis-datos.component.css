@@ -114,7 +114,7 @@ select {
 
 .datos {
   grid-area: formulario;
-  width: 80%;
+  width: 90%;
   height: 80%;
   padding: 2rem;
   display: flex;
@@ -130,6 +130,9 @@ select {
 .datos h2 {
   font-size: 28px;
   text-align: center;
+}
+.disable {
+  display: none;
 }
 .datos label {
   margin-top: 1rem;

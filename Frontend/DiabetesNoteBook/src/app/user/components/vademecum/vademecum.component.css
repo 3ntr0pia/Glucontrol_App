@@ -44,6 +44,12 @@ card-list {
   justify-content: space-around;
 }
 
+.btn-icon {
+  width: 0.5em;
+  height: 0.5em;
+  border: none;
+}
+
 .addMedicamento {
   width: 100%;
   display: flex;
@@ -58,7 +64,8 @@ card-list {
   display: flex;
   flex-direction: row;
   width: 80vw;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 2em;
   margin-top: 3em;
 }
 .checks {
