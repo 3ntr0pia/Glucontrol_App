@@ -342,3 +342,15 @@ The method or operation is not implemented.
 POST
 System.Private.CoreLib
 The request stream was aborted.
+::1
+21/02/2024 20:11:49
+/api/ChangePasswordControllers/changePasswordMail
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Value cannot be null. (Parameter 'provider')
+::1
+22/02/2024 13:53:31
+/api/Users/registro
+POST
+Microsoft.EntityFrameworkCore
+The instance of entity type 'Usuario' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.

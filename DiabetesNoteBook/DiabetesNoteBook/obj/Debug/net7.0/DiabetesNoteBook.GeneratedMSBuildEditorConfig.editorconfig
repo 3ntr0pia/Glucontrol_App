@@ -17,3 +17,11 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook
 build_property._RazorSourceGeneratorDebug = 
+
+[D:/Curso/ProyectoFinal/DiabetesNoteBook/DiabetesNoteBook/Views/RecoverPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3ZlclBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Curso/ProyectoFinal/DiabetesNoteBook/DiabetesNoteBook/Views/ViewRegisterEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld1JlZ2lzdGVyRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

@@ -73,6 +73,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpDelete("eliminarmedicion")]
         public async Task<ActionResult> DeleteMedicion(DTOEliminarMedicion Id)
         {

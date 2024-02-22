@@ -1568,3 +1568,5 @@ D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\refint
 D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\DiabetesNoteBook.pdb
 D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\DiabetesNoteBook.genruntimeconfig.cache
 D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\ref\DiabetesNoteBook.dll
+D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\DiabetesNoteBook.RazorAssemblyInfo.cache
+D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\DiabetesNoteBook.RazorAssemblyInfo.cs

@@ -10,6 +10,10 @@ using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
 using DiabetesNoteBook.Application.Filters;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.ViewFeatures.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionString;
@@ -41,7 +45,7 @@ builder.Services.AddDbContext<DiabetesNoteBookContext>(options =>
 
 builder.Services.AddTransient<HashService>();
 builder.Services.AddTransient<TokenService>();
-builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<INewRegister, NewRegisterService>();
 builder.Services.AddTransient<IConfirmEmailService, ConfirmEmailService>();
 builder.Services.AddTransient<IChangePassService, ChangePassService>();
@@ -57,7 +61,7 @@ builder.Services.AddTransient<IUserDeregistration, UserDeregistration>();
 builder.Services.AddTransient<IUserDeregistrationService, UserDeregistrationService>();
 builder.Services.AddTransient<IDeleteUserService, DeleteUserService>();
 builder.Services.AddTransient<IDeleteUser, DeleteUserRepository>();
-builder.Services.AddTransient<IChangeUserDataService, ChangeUserDataService>();
+builder.Services.AddScoped<IChangeUserDataService, ChangeUserDataService>();
 builder.Services.AddTransient<IChangeUserData, ChangeUserData>();
 builder.Services.AddTransient<ISaveNuevaMedicion, SaveNuevaMedicionRepository>();
 builder.Services.AddTransient<INuevaMedicionService, NuevaMedicionService>();
@@ -65,6 +69,9 @@ builder.Services.AddTransient<IDeleteMedicion, DeleteMedicionRepository>();
 builder.Services.AddTransient<IDeleteMedicionService, DeleteMedicionService>();
 builder.Services.AddTransient<INewMedicacion, NewMedicationRepository>();
 builder.Services.AddTransient<INewUsuarioMedicacion, SaveUsuarioMedicacionRepository>();
+builder.Services.AddMvc();
+builder.Services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+
 
 builder.Services.AddCors(options =>
 {

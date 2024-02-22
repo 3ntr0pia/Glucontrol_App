@@ -82,7 +82,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             {
                 var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == usuario.Email);
 
-                if (usuarioDB.Email == usuario.Email)
+                if (usuarioDB.Email is null)
                 {
                     return Unauthorized("Este email no se encuentra registrado.");
                 }
@@ -94,14 +94,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 if (usuarioDB != null)
                 {
-                    DateTime fecha = DateTime.Now.AddHours(+1);
-                    Guid miGuid = Guid.NewGuid();
-                    string textoEnlace = Convert.ToBase64String(miGuid.ToByteArray());
-                    textoEnlace = textoEnlace.Replace("=", "").Replace("+", "").Replace("/", "").Replace("?", "").Replace("&", "").Replace("!", "").Replace("¡", "");
-                    usuarioDB.EnlaceCambioPass = textoEnlace;
-                    usuarioDB.FechaEnlaceCambioPass = fecha;
-
-                    var ruta = $"Para restablecer su contraseña haga click en este enlace: {_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/api/ChangePasswordControllers/changePasswordMail?enlace={textoEnlace}";
 
                     await _emailService.SendEmailAsyncChangePassword(new DTOEmail
                     {
