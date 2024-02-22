@@ -7,7 +7,6 @@ namespace DiabetesNoteBook.Application.DTOs
         public int? Id { get; set; }
         public string Avatar { get; set; }
         [UserValidation]
-        public string UserName { get; set; }
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
@@ -17,8 +16,10 @@ namespace DiabetesNoteBook.Application.DTOs
         public decimal Altura { get; set; }
         public string Actividad { get; set; }
         public string TipoDiabetes { get; set; }
-        public string Medicacion { get; set; }
+        public string[] Medicacion { get; set; }
         public bool Insulina { get; set; }
+        [EmailValidation]
+        public string Email { get; set; }
 
     }
 }

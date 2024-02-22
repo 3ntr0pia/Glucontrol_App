@@ -270,3 +270,75 @@ MailKit
 534: 5.7.9 Please log in with your web browser and then try again. For more
 5.7.9 information, go to
 5.7.9  https://support.google.com/mail/?p=WebLoginRequired cl1-20020a5d5f01000000b0033afcc899c1sm3421744wrb.13 - gsmtp
+::1
+16/02/2024 10:19:49
+/api/Users/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IUserDeregistrationService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+::1
+16/02/2024 10:23:29
+/api/Users/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IUserDeregistrationService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+::1
+16/02/2024 10:39:42
+/api/Users/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IConfirmEmailService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+::1
+16/02/2024 10:47:09
+/api/Users/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IUserDeregistrationService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+::1
+16/02/2024 10:51:37
+/api/Users/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IUserDeregistrationService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+::1
+16/02/2024 10:55:21
+/api/Users/registro
+POST
+Microsoft.Extensions.DependencyInjection.Abstractions
+Unable to resolve service for type 'DiabetesNoteBook.Application.Interfaces.IDeleteUserService' while attempting to activate 'DiabetesNoteBook.Infrastructure.Controllers.UsersController'.
+::1
+16/02/2024 12:51:02
+/api/Users/registro
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+20/02/2024 15:46:43
+/api/Users/elimnarUsuario
+DELETE
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+20/02/2024 15:50:18
+/api/Users/elimnarUsuario
+DELETE
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+20/02/2024 20:32:38
+/api/Mediciones
+POST
+Microsoft.EntityFrameworkCore.Relational
+An error occurred while saving the entity changes. See the inner exception for details.
+::1
+21/02/2024 9:56:53
+/api/Users/cambiardatosusuario
+PUT
+DiabetesNoteBook
+The method or operation is not implemented.
+::1
+21/02/2024 10:16:28
+/api/ChangePasswordControllers/changePasswordMailConEnlace
+POST
+System.Private.CoreLib
+The request stream was aborted.

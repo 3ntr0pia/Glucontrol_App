@@ -32,7 +32,7 @@ namespace DiabetesNoteBook.Application.Services
             await _changePassword.SaveNewPassword(usuarioDB);
         }
 
-        
+
 
     }
 }
