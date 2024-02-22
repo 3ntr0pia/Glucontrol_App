@@ -106,8 +106,6 @@ namespace DiabetesNoteBook.Application.Services
                     usuarioUpdate.Email = changeUserData.Email;
                     usuarioUpdate.ConfirmacionEmail = false;
 
-                    await _changeUserData.SaveChangeUserData(usuarioUpdate);
-
                     await _emailService.SendEmailAsyncRegister(new DTOEmail
                     {
                         ToEmail = changeUserData.Email
@@ -115,6 +113,8 @@ namespace DiabetesNoteBook.Application.Services
                 }
 
             }
+
+            await _changeUserData.SaveChangeUserData(usuarioUpdate);
 
             var medicamentos = changeUserData.Medicacion.SelectMany(m => m.Split(','));
 

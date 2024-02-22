@@ -91,7 +91,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 });
 
                 return Ok();
-        }
+            }
             catch
             {
                 return BadRequest("En estos momentos no se ha podido realizar le registro, por favor, intentelo más tarde.");
@@ -259,6 +259,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPut("cambiardatosusuario")]
         public async Task<ActionResult> UserPUT([FromBody] DTOChangeUserData userData)
         {
@@ -266,11 +267,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
                 var usuarioUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
-
-                if (userData.Email == usuarioUpdate.Email)
-                {
-                    return NotFound("El email ya existe.");
-                }
 
                 await _changeUserDataService.ChangeUserData(new DTOChangeUserData
                 {
