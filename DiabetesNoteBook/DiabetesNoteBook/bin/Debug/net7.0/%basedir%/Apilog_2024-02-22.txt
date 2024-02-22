@@ -1,0 +1,3 @@
+ERROR 2024-02-22 19:01:30 – Clase: DiabetesNoteBook.Infrastructure.Controllers.UsersController - Mensaje: Error al procesar el registro
+System.Exception: Exception of type 'System.Exception' was thrown.
+   at DiabetesNoteBook.Infrastructure.Controllers.UsersController.UserRegistration(DTORegister userData) in D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\Infrastructure\Controllers\UsersController.cs:line 54
