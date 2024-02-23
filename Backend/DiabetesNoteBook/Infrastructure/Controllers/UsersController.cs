@@ -5,7 +5,6 @@ using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Services;
-using System.Text;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
@@ -24,11 +23,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IUserDeregistrationService _userDeregistrationService;
         private readonly IDeleteUserService _deleteUserService;
         private readonly IChangeUserDataService _changeUserDataService;
+        private readonly ILogger<UsersController> _logger;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
             IOperationsService operationsService, INewRegister newRegisterService, 
             IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService,
-            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService)
+            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService, ILogger<UsersController> logger)
         {
             _context = context;
             _hashService = hashService;
@@ -40,15 +40,17 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _userDeregistrationService = userDeregistrationService;
             _deleteUserService = deleteUserService;
             _changeUserDataService = changeUserDataService;
+            _logger = logger;
         }
 
         [AllowAnonymous]
         [HttpPost("registro")]
         public async Task<ActionResult> UserRegistration([FromBody] DTORegister userData)
         {
-
+            
             try
             {
+
                 var usuarioDBUser = _context.Usuarios.FirstOrDefault(x => x.UserName == userData.UserName);
 
                 var usuarioDBEmail = _context.Usuarios.FirstOrDefault(x => x.Email == userData.Email);
@@ -92,9 +94,10 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
-            {
-                return BadRequest("En estos momentos no se ha podido realizar le registro, por favor, intentelo más tarde.");
+            catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error al procesar el registro");
+				return BadRequest("En estos momentos no se ha podido realizar le registro, por favor, intentelo más tarde.");
             }
         }
 

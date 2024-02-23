@@ -43,6 +43,7 @@ builder.Services.AddDbContext<DiabetesNoteBookContext>(options =>
 }
 );
 
+builder.Logging.AddLog4Net();
 builder.Services.AddTransient<HashService>();
 builder.Services.AddTransient<TokenService>();
 builder.Services.AddTransient<IEmailService, EmailService>();

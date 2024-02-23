@@ -1570,3 +1570,7 @@ D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\Diabet
 D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\ref\DiabetesNoteBook.dll
 D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\DiabetesNoteBook.RazorAssemblyInfo.cache
 D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\obj\Debug\net7.0\DiabetesNoteBook.RazorAssemblyInfo.cs
+D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\bin\Debug\net7.0\log4net.config
+D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\bin\Debug\net7.0\log4net.dll
+D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\bin\Debug\net7.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
