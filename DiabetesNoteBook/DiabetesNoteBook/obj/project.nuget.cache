@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4OlJG40G1fRfcqhhxKL8fkmca7YSVwOfieIiFrMszHSMWEfT6MJNT4dn4c4q9k5p1QYotVc+98HWWCcGZTPpGg==",
+  "dgSpecHash": "h2XC7fBE9Wr0oJuWDK2xm6sr4TBL/OfKJmef+Vt6Yg8PoXDlqq3XZ4p4QsC/m05LWnCwD8V56JtKC+KAV2epPA==",
   "success": true,
-  "projectFilePath": "D:\\Curso\\ProyectoFinal\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\DiabetesNoteBook\\DiabetesNoteBook\\DiabetesNoteBook.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
