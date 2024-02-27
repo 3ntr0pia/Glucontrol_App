@@ -1,8 +1,0 @@
-Scaffold-DbContext "Data Source=(localdb)\mssqllocaldb;Initial Catalog=MiAlmacen;Integrated Security=True;TrustServerCertificate=True" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force -project WebAPIAlmacenPersonalizacion
-Data Source= Ponemos nuestra base de datos
-Initial Catalog=Base de datos
--Provider hace referencia al motor de base de datos a emplear en caso SQL Server. Para otras bases de datos buscar documentacion
--OutputDir= Si queremos cambiar el nombre a la carpeta donde van a ir los modelos, cambiamos models por otro nombre
--force sobreescribe los modelos anteriores
-WebApiAlmacen sera el proyecto donde integrara los modelos
-Scaffold-DbContext "Data Source=DESKTOP-2TL9C3O\SQLEXPRESS;Initial Catalog=MiAlmacen;Integrated Security=True;TrustServerCertificate=True" -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force -project WebAPIAlmacen
