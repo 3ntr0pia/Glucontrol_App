@@ -19,15 +19,18 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IOperationsService _operationsService;
         private readonly INuevaMedicionService _medicion;
         private readonly IDeleteMedicionService _deleteMedicion;
+        private readonly ILogger<UsersController> _logger;
 
 
         public MedicionesController(DiabetesNoteBookContext context, IOperationsService operationsService, 
-            INuevaMedicionService nuevaMedicion, IDeleteMedicionService deleteMedicion)
+            INuevaMedicionService nuevaMedicion, IDeleteMedicionService deleteMedicion, ILogger<UsersController> logger)
         {
             _context = context;
             _operationsService = operationsService;
             _medicion = nuevaMedicion;
             _deleteMedicion = deleteMedicion;
+            _logger = logger;
+
         }
 
         [HttpPost]
@@ -65,10 +68,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     Operacion = "Persona agregada",
                     UserId = userExist.Id
                 });
+
                 return Ok("Medicion guardada con exito ");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar la nueva medición");
                 return BadRequest("En estos momentos no se ha podido realizar la insercción de la medición, por favor, intentelo más tarde.");
             }
         }
@@ -94,13 +99,13 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 await _operationsService.AddOperacion(new DTOOperation
                 {
                     Operacion = "Eliminar medicion",
-                    UserId = medicionExist.IdUsuario
+                    UserId = medicionExist.Id
                 });
-
                 return Ok("Eliminacion realizada con exito");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar el borrado de la medición");
                 return BadRequest("En estos momentos no se ha podido realizar la ieliminación de la medición, por favor, intentelo más tarde.");
             }
         }
@@ -127,8 +132,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok(mediciones);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar la solicitud de las  mediciones");
                 return BadRequest("En estos momentos no se ha podido consultar los datos de la persona, por favor, intentelo más tarde.");
             }
 

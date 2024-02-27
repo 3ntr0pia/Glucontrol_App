@@ -5,7 +5,6 @@ using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Services;
-using DiabetesNoteBook.Application.Services.Generics;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
@@ -25,13 +24,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IDeleteUserService _deleteUserService;
         private readonly IChangeUserDataService _changeUserDataService;
         private readonly ILogger<UsersController> _logger;
-        private readonly UserDataService _userDataService;
 
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
             IOperationsService operationsService, INewRegister newRegisterService, 
             IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService,
-            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService, ILogger<UsersController> logger,
-            UserDataService userDataService)
+            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService, ILogger<UsersController> logger)
         {
             _context = context;
             _hashService = hashService;
@@ -44,7 +41,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _deleteUserService = deleteUserService;
             _changeUserDataService = changeUserDataService;
             _logger = logger;
-            _userDataService = userDataService;
         }
 
         [AllowAnonymous]
@@ -55,7 +51,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var usuarioDBUser =  _userDataService.ObtenerDatosUsuario(userData);
+                var usuarioDBUser = _context.Usuarios.FirstOrDefault(x => x.UserName == userData.UserName);
 
                 var usuarioDBEmail = _context.Usuarios.FirstOrDefault(x => x.Email == userData.Email);
 
@@ -138,8 +134,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 return Ok();
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de confirmación");
                 return BadRequest("En estos momentos no se ha podido validar el registro, por favor, intentelo de nuevo más tarde.");
             }
         }
@@ -189,8 +186,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 }
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de logado");
                 return BadRequest("En estos momentos no se ha podido realizar el login, por favor, intentelo más tarde.");
             }
 
@@ -228,8 +226,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de baja");
                 return BadRequest("En estos momentos no se ha podido dar de baja el usuario, por favor, intentelo más tarde.");
             }
 
@@ -260,8 +259,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de eliminación de usuario");
                 return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
             }
         }
@@ -301,8 +301,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de eliminación actualización de usuario");
                 return BadRequest("En estos momentos no se ha podido actualizar el usuario, por favor, intentelo más tarde.");
             }
 
