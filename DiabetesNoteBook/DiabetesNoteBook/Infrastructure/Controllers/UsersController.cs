@@ -134,8 +134,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 return Ok();
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de confirmación");
                 return BadRequest("En estos momentos no se ha podido validar el registro, por favor, intentelo de nuevo más tarde.");
             }
         }
@@ -185,8 +186,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 }
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de logado");
                 return BadRequest("En estos momentos no se ha podido realizar el login, por favor, intentelo más tarde.");
             }
 
@@ -224,8 +226,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de baja");
                 return BadRequest("En estos momentos no se ha podido dar de baja el usuario, por favor, intentelo más tarde.");
             }
 
@@ -256,8 +259,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de eliminación de usuario");
                 return BadRequest("En estos momentos no se ha podido eliminar el usuario, por favor, intentelo más tarde.");
             }
         }
@@ -297,8 +301,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar de eliminación actualización de usuario");
                 return BadRequest("En estos momentos no se ha podido actualizar el usuario, por favor, intentelo más tarde.");
             }
 
