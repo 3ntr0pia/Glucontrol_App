@@ -23,6 +23,16 @@ namespace DiabetesNoteBook.Application.Services
 
             var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == credencialesUsuario.Id);
 
+            var medicationsIDs = await _context.UsuarioMedicacions
+                .Where(x => x.IdUsuario == usuarioDB.Id)
+                .Select(x => x.IdMedicacion)
+                .ToListAsync();
+
+            var medicationNames = await _context.Medicaciones
+                .Where(m => medicationsIDs.Contains(m.IdMedicacion))
+                .Select(m => m.Nombre)
+                .ToListAsync();
+
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Role, credencialesUsuario.Rol)
@@ -39,13 +49,22 @@ namespace DiabetesNoteBook.Application.Services
 
             return new DTOLoginResponse()
             {
+                Id = credencialesUsuario.Id,
                 Token = tokenString,
                 Rol = credencialesUsuario.Rol,
-                Id = credencialesUsuario.Id,
                 Nombre = credencialesUsuario.Nombre,
                 PrimerApellido = credencialesUsuario.PrimerApellido,
                 SegundoApellido = credencialesUsuario.SegundoApellido,
-                Avatar = usuarioDB.Avatar
+                Avatar = usuarioDB.Avatar,
+                UserName = usuarioDB.UserName,
+                Sexo = usuarioDB.Sexo,
+                Edad = usuarioDB.Edad,
+                Peso = usuarioDB.Peso,
+                Altura = usuarioDB.Altura,
+                Actividad = usuarioDB.Actividad,
+                TipoDiabetes = usuarioDB.TipoDiabetes,
+                Medicación = medicationNames.ToArray(),
+                Insulina = usuarioDB.Insulina
             };
         }
     }

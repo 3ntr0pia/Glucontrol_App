@@ -21,10 +21,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IChangePassService _changePassService;
         private readonly IOperationsService _operationsService;
         private readonly IChangePassMail _changePassMail;
+        private readonly ILogger<UsersController> _logger;
 
         public ChangePasswordControllers(DiabetesNoteBookContext context, HashService hashService,
             IHttpContextAccessor httpContextAccessor, IEmailService emailService, IChangePassService changePassService,
-            IOperationsService operationsService, IChangePassMail changePassMail)
+            IOperationsService operationsService, IChangePassMail changePassMail, ILogger<UsersController> logger)
         {
             _context = context;
             _hashService = hashService;
@@ -33,6 +34,8 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             _changePassService = changePassService;
             _operationsService = operationsService;
             _changePassMail = changePassMail;
+            _logger = logger;
+
         }
 
         [HttpPut("changePassword")]
@@ -68,8 +71,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return Ok("Password cambiado con exito");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar al cambiar la contraseña");
                 return BadRequest("En estos momentos no se ha podido realizar el cambio de contraseña, por favor, intentelo más tarde.");
             }
         }
@@ -112,8 +116,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                 return BadRequest("Email no encontrado.");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar el envio de instrucciones");
                 return BadRequest("En este momento no puedo enviar las intrucciones, intentalo más tarde por favor.");
             }
         }
@@ -157,8 +162,9 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 return Ok("El token no existe o ha caducado.");
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar el reset del email.");
                 return BadRequest("En este momento no se puede actualizar tu contraseña, intentelo más tarde por favor.");
             }
         }

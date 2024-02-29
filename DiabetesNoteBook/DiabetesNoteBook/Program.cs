@@ -9,10 +9,7 @@ using DiabetesNoteBook.Infrastructure.Repositories;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
-using DiabetesNoteBook.Application.Filters;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Infrastructure;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,7 +30,6 @@ else
 
 builder.Services.AddControllers(options =>
 {
-    options.Filters.Add<FiltroExcepcion>();
 }).AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContext<DiabetesNoteBookContext>(options =>
@@ -72,6 +68,10 @@ builder.Services.AddTransient<INewMedicacion, NewMedicationRepository>();
 builder.Services.AddTransient<INewUsuarioMedicacion, SaveUsuarioMedicacionRepository>();
 builder.Services.AddMvc();
 builder.Services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+builder.Services.AddTransient<INewMedicationService, NewMedicationService>();
+builder.Services.AddTransient<IConsultMedication, ConsultMedication>();
+builder.Services.AddTransient<IDeleteUserMedication, DeleteUserMedication>();
+builder.Services.AddTransient<IDeleteMedication, DeleteMedicationService>();
 
 
 builder.Services.AddCors(options =>
