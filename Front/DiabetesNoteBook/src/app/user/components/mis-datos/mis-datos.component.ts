@@ -52,13 +52,12 @@ export class MisDatosComponent implements OnInit {
     private usuarioService: UsuarioService,
     private authService: AuthServiceService
   ) {}
-
+  //optencion de los datos de usuario
   ngOnInit(): void {
     this.authService.user.subscribe((user) => {
-      console.log(user);
       this.usuarioLogeado = user;
       if (this.usuarioLogeado) {
-        this.getUsuarioInfo(this.usuarioLogeado);
+        this.showUsuarioInfo(this.usuarioLogeado);
       }
     });
   }
@@ -83,10 +82,9 @@ export class MisDatosComponent implements OnInit {
     this.nuevoPeso = peso;
   }
 
-  getUsuarioInfo(user: IUserLoginResponse): void {
+  showUsuarioInfo(user: IUserLoginResponse): void {
     this.authService.loginUser(user).subscribe({
       next: (res) => {
-        // 0 seria el usuario y 1 la persona
         this.usuario = {
           id: res.id,
           avatar: res.avatar,
@@ -120,7 +118,7 @@ export class MisDatosComponent implements OnInit {
           medicacion: res.medicacion,
           insulina: res.insulina,
         };
-
+        console.log('ShowUser: ', res);
         console.log('Usuario:', this.usuario);
 
         //Esto se puede hacer tambien con el operador spread pero no seria tan preciso

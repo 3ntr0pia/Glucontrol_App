@@ -249,7 +249,7 @@ export class MedicionesComponent {
     //             rotation: 0,
     //           },
     //         },
-    //         data: [[{ yAxis: 210 }, { yAxis: 180 }]],
+    //         data: [[{ yAxis: 400 }, { yAxis: 180 }]],
     //       },
     //     },
     //     {
@@ -261,7 +261,7 @@ export class MedicionesComponent {
     //         itemStyle: {
     //           color: 'rgba(255, 0, 0, 0.2)',
     //         },
-    //         data: [[{ yAxis: 0 }, { yAxis: 70 }]],
+    //         data: [[{ yAxis: 30 }, { yAxis: 70 }]],
     //       },
     //     },
     //   ],
