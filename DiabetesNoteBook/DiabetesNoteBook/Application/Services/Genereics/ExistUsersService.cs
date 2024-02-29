@@ -15,17 +15,32 @@ namespace DiabetesNoteBook.Application.Services.Genereics
             _logger = logger;
         }
 
-        public async Task<bool> IdExists(int id)
+        public async Task<bool> UserNameExist(string userName)
         {
             try
             {
-                var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == id);
+                var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.UserName == userName);
 
                 return usuarioDB != null;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al procesar el registro");
+                _logger.LogError(ex, "Error al procesar la consulta de nombre de usuario existente");
+                throw new Exception("Error al procesar la solicitud");
+            }
+        }
+
+        public async Task<bool> EmailExist(string email)
+        {
+            try
+            {
+                var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == email);
+
+                return usuarioDB != null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al procesar la consulta de email existente");
                 throw new Exception("Error al procesar la solicitud");
             }
         }
