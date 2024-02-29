@@ -1,7 +1,7 @@
 // Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -17,6 +17,7 @@ import { NavbarComponent } from './global/navbar/navbar.component';
 import { FiltroGenericosPipe } from '../pipes/filtro-genericos.pipe';
 import { FiltroSinRecetaPipe } from '../pipes/filtro-sin-receta.pipe';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,15 +30,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     FiltroSinRecetaPipe,
     MedicionesComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    FormsModule,
-    SharedModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-  ],
+  imports: [CommonModule, UserRoutingModule, FormsModule, SharedModule],
   exports: [MainComponent],
 })
 export class UserModule {}

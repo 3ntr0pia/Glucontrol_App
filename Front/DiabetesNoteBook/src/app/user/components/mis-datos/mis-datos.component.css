@@ -260,7 +260,9 @@ select {
 .success-form {
   color: green;
 }
-
+.userName {
+  display: none;
+}
 @media (max-width: 1600px) {
   .triangle {
     height: 85%;

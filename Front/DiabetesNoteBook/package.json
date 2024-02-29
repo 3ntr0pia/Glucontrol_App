@@ -21,8 +21,6 @@
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.1",
-    "echarts": "^5.4.3",
-    "ngx-echarts": "^17.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
