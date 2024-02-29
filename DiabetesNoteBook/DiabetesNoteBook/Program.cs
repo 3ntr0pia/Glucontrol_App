@@ -10,6 +10,7 @@ using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using DiabetesNoteBook.Application.Services.Genereics;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -72,6 +73,7 @@ builder.Services.AddTransient<INewMedicationService, NewMedicationService>();
 builder.Services.AddTransient<IConsultMedication, ConsultMedication>();
 builder.Services.AddTransient<IDeleteUserMedication, DeleteUserMedication>();
 builder.Services.AddTransient<IDeleteMedication, DeleteMedicationService>();
+builder.Services.AddScoped<ExistUsersService>();
 
 
 builder.Services.AddCors(options =>
