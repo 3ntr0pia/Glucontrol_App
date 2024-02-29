@@ -16,7 +16,7 @@ import { NavbarComponent } from './global/navbar/navbar.component';
 // Pipes
 import { FiltroGenericosPipe } from '../pipes/filtro-genericos.pipe';
 import { FiltroSinRecetaPipe } from '../pipes/filtro-sin-receta.pipe';
-import { NgxEchartsModule } from 'ngx-echarts';
+
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
