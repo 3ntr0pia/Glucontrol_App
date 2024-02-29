@@ -12,7 +12,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class MedicacionesController : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
