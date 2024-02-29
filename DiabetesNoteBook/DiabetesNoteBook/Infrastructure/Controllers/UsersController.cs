@@ -5,15 +5,17 @@ using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Services;
+using DiabetesNoteBook.Application.Services.Genereics;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsersController : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
+        private readonly ExistUsersService _existUsersService;
         private readonly HashService _hashService;
         private readonly TokenService _tokenService;
         private readonly IOperationsService _operationsService;
@@ -28,9 +30,10 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
             IOperationsService operationsService, INewRegister newRegisterService, 
             IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService,
-            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService, ILogger<UsersController> logger)
+            IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService, ILogger<UsersController> logger, ExistUsersService existUsersService)
         {
             _context = context;
+            _existUsersService = existUsersService;
             _hashService = hashService;
             _tokenService = tokenService;
             _operationsService = operationsService;
@@ -51,11 +54,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var usuarioDBUser = _context.Usuarios.FirstOrDefault(x => x.UserName == userData.UserName);
+                var usuarioDBUser = await _existUsersService.UserNameExist(userData.UserName);
 
-                var usuarioDBEmail = _context.Usuarios.FirstOrDefault(x => x.Email == userData.Email);
+                if (usuarioDBUser is true)
+                {
+                    return BadRequest("El usuario ya se encuentra registrado");
+                }
 
-                if (usuarioDBEmail != null)
+                var usuarioDBEmail = await _existUsersService.EmailExist(userData.Email);
+
+                if (usuarioDBEmail is true)
                 {
                     return BadRequest("El email ya se encuentra registrado");
                 }
