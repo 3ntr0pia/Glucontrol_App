@@ -1,0 +1,128 @@
+<div class="form-container">
+  <div class="visually-hidden" role="alert" aria-live="polite" *ngIf="formulario.invalid && formulario.touched">
+    <h2>Errores cometidos:</h2>
+    <p class="error-form" *ngIf="!nombre.valid && nombre.touched">
+      Introduce tu nombre.
+    </p>
+    <p class="error-form" *ngIf="!userName.valid && userName.touched">
+      Elija su nombre de usuario. Debe tener entre 6 y 18 caracteres, pudiendo
+      contener letras, números, y guiones medios y guiones bajos.
+    </p>
+    <p class="error-form" *ngIf="!apellido.valid && apellido.touched">
+      Introduce tu primer apellido.
+    </p>
+    <p class="error-form" *ngIf="!apellido2.valid && apellido2.touched">
+      Introduce tu segundo apellido.
+    </p>
+    <p class="error-form" *ngIf="!email.valid && email.touched">
+      Introduce un e-mail con un formato válido.
+    </p>
+    <p class="error-form" *ngIf="!password.valid && password.touched">
+      Introduce tu contraseña debe tener al menos 8 caracteres, incluyendo
+      mayúsculas, minúsculas, números y caracteres especiales.
+    </p>
+    <p class="error-form" *ngIf="!password2.valid && password2.touched">
+      Repite tu contraseña.
+    </p>
+  </div>
+
+  <div class="formulario">
+    <form #formulario="ngForm" (ngSubmit)="siguientePaso.emit(datosRegistro)">
+      <section class="fieldset-datos">
+        <h2>Registro</h2>
+        <h3>Paso 1 de 3. Datos personales</h3>
+        <div>
+          <label for="nombre">Nombre
+            <span class="error-form" *ngIf="!nombre.valid && nombre.touched"><img lazyload="/assets/alert_line.svg"
+                alt="error" />Nombre
+              obligatorio.</span></label>
+          <input id="nombre" type="nombre" [(ngModel)]="datosRegistro.nombre" name="nombre" #nombre="ngModel"
+            required />
+        </div>
+        <div>
+          <label for="userName">Nombre de usuario
+            <span class="error-form" *ngIf="!userName.valid && userName.touched"><img lazyload="/assets/alert_line.svg"
+                alt="error" />Elija su
+              nombre de usuario.</span></label>
+          <input id="userName" type="userName" [(ngModel)]="datosRegistro.username" name="userName" #userName="ngModel"
+            aria-label="El nombre de usuario debe tener entre 6 y 18 caracteres, incluyendo
+          letras, números, guiones y guiones bajos." required />
+          <span class="error-form" *ngIf="!validarUsuario(datosRegistro.username) && userName.touched">
+            El nombre de usuario debe tener entre 6 y 18 caracteres, pudiendo
+            contener letras, números, y guiones.
+          </span>
+        </div>
+        <div>
+          <label for="apellido">Primer Apellido
+            <span class="error-form" *ngIf="!apellido.valid && apellido.touched"><img lazyload="/assets/alert_line.svg"
+                alt="error" />Primer
+              apellido obligatorio.</span></label>
+          <input id="apellido" type="apellido" [(ngModel)]="datosRegistro.apellido" #apellido="ngModel" name="apellido"
+            required />
+        </div>
+        <div>
+          <label for="apellido2">Segundo Apellido
+            <span class="error-form" *ngIf="!apellido2.valid && apellido2.touched"><img
+                lazyload="/assets/alert_line.svg" alt="error" />Segundo
+              apellido obligatorio.</span></label>
+          <input id="apellido2" type="apellido2" [(ngModel)]="datosRegistro.apellido2" name="apellido2"
+            #apellido2="ngModel" required />
+        </div>
+        <div>
+          <label for="email">E-mail
+            <span class="error-form" *ngIf="!email.valid && email.touched"><img lazyload="/assets/alert_line.svg"
+                alt="error" />E-mail
+              obligatorio.</span></label>
+          <input id="email" type="email" [(ngModel)]="datosRegistro.email" name="email" #email="ngModel"
+            placeholder="nombre@dominio.com" required />
+          <span class="error-form" *ngIf="!validarEmail(datosRegistro.email) && email.touched">
+            El e-mail debe tener un formato válido.
+          </span>
+        </div>
+        <div>
+          <label for="password">Contraseña
+            <span class="error-form" *ngIf="!password.valid && password.touched"><img lazyload="/assets/alert_line.svg"
+                alt="error" /> Contraseña
+              obligatoria.</span></label>
+          <input id="password" type="password" [(ngModel)]="datosRegistro.password" name="password" #password="ngModel"
+            min="8" placeholder="Ejemplo: FullStack@05/02/2024" aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+          mayúscula, una minúscula, un número y un carácter especial." required />
+        </div>
+        <span class="error-form" *ngIf="!validarPassword(datosRegistro.password) && password.touched">
+          La contraseña debe tener al menos 8 caracteres, incluyendo una
+          mayúscula, una minúscula, un número y un carácter especial.
+        </span>
+        <div>
+          <label for="password2">Repita su contraseña.
+            <span class="error-form" *ngIf="!password2.valid && password2.touched"><img
+                lazyload="/assets/alert_line.svg" alt="error" />Repita su
+              contraseña.</span></label>
+          <input id="password2" type="password" [(ngModel)]="datosRegistro.password2" name="password2"
+            #password2="ngModel" min="8" placeholder="Ejemplo: FullStack@05/02/2024" aria-label="La contraseña debe tener al menos 8 caracteres, incluyendo una
+          mayúscula, una minúscula, un número y un carácter especial." required />
+          <span class="error-form" *ngIf="password2.value != password.value && password.valid">
+            Las contraseñas no coinciden.
+          </span>
+        </div>
+        <button type="submit" [disabled]="formularioInvalido()" class="btnNext" aria-label="siguiente paso">
+          Siguiente
+        </button>
+
+      </section>
+    </form>
+  </div>
+  <div class="avatar">
+    <app-generador-avatar (avatarGenerado)="setAvatar($event)"></app-generador-avatar>
+    <div class="lectura-facil" tabindex="0">
+      <h2><i class="bi bi-universal-access-circle "></i> Lectura fácil </h2>
+      <p>
+        Aquí tienes un formulario. Serán tres pasos. Tienes que rellenar todos
+        los campos para poder registrarte. En este paso tienes que rellenar tus
+        datos personales. Después de hacerlo, debes darle al botón 'genera tu
+        avatar' todas las veces que quieras, hasta encontrar el que quieras.
+      </p>
+    </div>
+  </div>
+
+  <div></div>
+</div>

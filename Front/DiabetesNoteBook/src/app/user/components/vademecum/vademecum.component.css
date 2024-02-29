@@ -1,0 +1,145 @@
+.lectura-facil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+fieldset {
+  border: none;
+}
+
+img {
+  width: 5em;
+}
+
+card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.wrapper {
+  padding: 2em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+}
+
+.addMedicamento {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.form {
+  width: 100%;
+}
+.form-group {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  justify-content: space-between;
+  margin-top: 3em;
+}
+.checks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1em;
+}
+
+.form-group-check {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: row-reverse;
+  margin-right: 1em;
+}
+
+.form-group-check input[type="checkbox"] {
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 1em;
+}
+
+input,
+select {
+  width: 80%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+select::-ms-expand {
+  background-color: var(--main--colorBackGroundElements);
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--main--colorBacGroundForm);
+}
+
+thead {
+  background-color: #b8ffde;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+tr:hover {
+  background-color: #f8efd5;
+}
+
+@media (width < 1030px) {
+  .wrapper {
+    margin-top: -10em;
+  }
+}
+@media (width < 1000px) {
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .chama {
+    display: none;
+  }
+}
+@media (width <= 500px) {
+  .wrapper {
+    margin-top: -10em;
+  }
+}
