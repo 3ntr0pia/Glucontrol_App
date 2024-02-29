@@ -9,17 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DiabetesNoteBook
 build_property.RootNamespace = DiabetesNoteBook
-build_property.ProjectDir = C:\Users\Javier\Desktop\proyecto\Glucontrol_App\DiabetesNoteBook\DiabetesNoteBook\
+build_property.ProjectDir = D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Javier\Desktop\proyecto\Glucontrol_App\DiabetesNoteBook\DiabetesNoteBook
+build_property.MSBuildProjectDirectory = D:\Curso\ProyectoFinal\DiabetesNoteBook\DiabetesNoteBook
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Javier/Desktop/proyecto/Glucontrol_App/DiabetesNoteBook/DiabetesNoteBook/Views/RecoverPassword.cshtml]
+[D:/Curso/ProyectoFinal/DiabetesNoteBook/DiabetesNoteBook/Views/RecoverPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3ZlclBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Javier/Desktop/proyecto/Glucontrol_App/DiabetesNoteBook/DiabetesNoteBook/Views/ViewRegisterEmail.cshtml]
+[D:/Curso/ProyectoFinal/DiabetesNoteBook/DiabetesNoteBook/Views/ViewRegisterEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlld1JlZ2lzdGVyRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
