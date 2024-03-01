@@ -116,34 +116,7 @@ namespace DiabetesNoteBook.Application.Services
 
             await _changeUserData.SaveChangeUserData(usuarioUpdate);
 
-            var medicamentos = changeUserData.Medicacion.SelectMany(m => m.Split(','));
-
-            foreach (var medicacionNombre in medicamentos)
-            {
-                var nombreMedicacion = medicacionNombre.Trim();
-                var medicacionExistente = await _context.Medicaciones.FirstOrDefaultAsync(m => m.Nombre == nombreMedicacion);
-                if (medicacionExistente == null)
-                {
-                    var nuevaMedicacion = new Medicacione { Nombre = nombreMedicacion };
-                    _context.Medicaciones.Add(nuevaMedicacion);
-                    await _newMedicationRepository.SaveNewMedication(nuevaMedicacion);
-                }
-            }
-
-            foreach (var medicacionNombre in medicamentos)
-            {
-                var nombreMedicacion = medicacionNombre.Trim();
-                var medicacion = await _context.Medicaciones.FirstOrDefaultAsync(m => m.Nombre == nombreMedicacion);
-
-                var usuarioMedicacion = new UsuarioMedicacion
-                {
-                    IdUsuario = usuarioUpdate.Id,
-                    IdMedicacion = medicacion.IdMedicacion
-                };
-
-                _context.UsuarioMedicacions.Add(usuarioMedicacion);
-                await _saveUsuarioMedicacionRepository.SaveNuevaUsuarioMedicacion(usuarioMedicacion);
-            }
+            
 
         }
 

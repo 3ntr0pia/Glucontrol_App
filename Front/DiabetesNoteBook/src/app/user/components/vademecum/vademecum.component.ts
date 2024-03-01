@@ -46,10 +46,10 @@ export class VademecumComponent {
     private authService: AuthServiceService
   ) {}
 
-  ngOnInit(): void {
-    this.getUserData();
-    console.log(this.usuario);
-  }
+  // ngOnInit(): void {
+  //   this.getUserData();
+  //   console.log(this.usuario);
+  // }
 
   modalAcc() {
     if (this.accModal) {
@@ -79,40 +79,40 @@ export class VademecumComponent {
     });
   }
 
-  getUserData() {
-    this.userService
-      .getUsuarioYPersonaInfo(this.authService.userValue!.id)
-      .subscribe({
-        next: (res) => {
-          this.usuario = {
-            id: res[0].id,
-            avatar: res[0].avatar,
-            userName: res[0].userName,
-            nombre: res[1].nombre,
-            primerApellido: res[1].primerApellido,
-            segundoApellido: res[1].segundoApellido,
-            sexo: res[1].sexo,
-            edad: res[1].edad,
-            peso: res[1].peso,
-            altura: res[1].altura,
-            actividad: res[1].actividad,
-            tipoDiabetes: res[1].tipoDiabetes,
-            medicacion: res[1].medicacion,
-            insulina: res[1].insulina,
-          };
-          this.medicamentosFromBackend = this.usuario.medicacion.split(',');
-          console.log(this.usuario);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-  }
+  // getUserData() {
+  //   this.userService
+  //     .getUsuarioYPersonaInfo(this.authService.userValue!.id)
+  //     .subscribe({
+  //       next: (res) => {
+  //         this.usuario = {
+  //           id: res[0].id,
+  //           avatar: res[0].avatar,
+  //           userName: res[0].userName,
+  //           nombre: res[1].nombre,
+  //           primerApellido: res[1].primerApellido,
+  //           segundoApellido: res[1].segundoApellido,
+  //           sexo: res[1].sexo,
+  //           edad: res[1].edad,
+  //           peso: res[1].peso,
+  //           altura: res[1].altura,
+  //           actividad: res[1].actividad,
+  //           tipoDiabetes: res[1].tipoDiabetes,
+  //           medicacion: res[1].medicacion,
+  //           insulina: res[1].insulina,
+  //         };
+  //         this.medicamentosFromBackend = this.usuario.medicacion.split(',');
+  //         console.log(this.usuario);
+  //       },
+  //       error: (err) => {
+  //         console.log(err);
+  //       },
+  //     });
+  // }
 
   addMedicamento() {
     const nuevoMedicamentoLowerCase = this.nuevoMedicamento.toLocaleLowerCase();
 
-    if(this.nuevoMedicamento === ''){
+    if (this.nuevoMedicamento === '') {
       this.error = 'El campo no puede estar vacío.';
       return;
     }

@@ -7,6 +7,7 @@ export interface ILogin {
 export interface IUserLoginResponse {
   UserName: string;
   Password: string;
+  email: string;
   token: string;
   rol: string;
   id: number;
