@@ -11,14 +11,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UsersController : ControllerBase
     {
-        private readonly DiabetesNoteBookContext _context;
         private readonly ExistUsersService _existUsersService;
         private readonly HashService _hashService;
         private readonly TokenService _tokenService;
-        private readonly IOperationsService _operationsService;
         private readonly INewRegister _newRegisterService;
         private readonly IEmailService _emailService;
         private readonly IConfirmEmailService _confirmEmailService;
@@ -27,16 +25,13 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         private readonly IChangeUserDataService _changeUserDataService;
         private readonly ILogger<UsersController> _logger;
 
-        public UsersController(DiabetesNoteBookContext context, TokenService tokenService, HashService hashService,
-            IOperationsService operationsService, INewRegister newRegisterService, 
+        public UsersController(TokenService tokenService, HashService hashService,INewRegister newRegisterService, 
             IEmailService emailService, IConfirmEmailService confirmEmailService, IUserDeregistrationService userDeregistrationService,
             IDeleteUserService deleteUserService, IChangeUserDataService changeUserDataService, ILogger<UsersController> logger, ExistUsersService existUsersService)
         {
-            _context = context;
             _existUsersService = existUsersService;
             _hashService = hashService;
             _tokenService = tokenService;
-            _operationsService = operationsService;
             _emailService = emailService;
             _confirmEmailService = confirmEmailService;
             _newRegisterService = newRegisterService;
@@ -92,14 +87,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     ToEmail = userData.Email
                 });
 
-                var usuarioDBId = _context.Usuarios.FirstOrDefault(x => x.Email == userData.Email);
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Nuevo registro",
-                    UserId = usuarioDBId.Id
-                });
-
                 return Ok();
             }
             catch (Exception ex)
@@ -116,14 +103,15 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             
             try
             {
-                var usuarioDB = _context.Usuarios.FirstOrDefault(x => x.Id == confirmacion.UserId);
 
-                if (usuarioDB.ConfirmacionEmail != false)
+                var usuarioDBUser = await _existUsersService.UserExistById(confirmacion.UserId);
+
+                if (usuarioDBUser.ConfirmacionEmail != false)
                 {
                     return BadRequest ("Usuario ya validado con anterioridad");
                 }
 
-                if (usuarioDB.EnlaceCambioPass != confirmacion.Token)
+                if (usuarioDBUser.EnlaceCambioPass != confirmacion.Token)
                 {
                     return BadRequest ("Token no valido");
                 }
@@ -131,12 +119,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 await _confirmEmailService.ConfirmEmail(new DTOConfirmRegistrtion
                 {
                     UserId = confirmacion.UserId
-                });
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Confirmar email",
-                    UserId = usuarioDB.Id
                 });
 
                 return Ok();
@@ -157,34 +139,30 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.UserName == usuario.UserName);
+                var userExist = await _existUsersService.UserNameExist(usuario.UserName);
 
-                if (usuarioDB == null)
+                if (userExist == null)
                 {
                     return Unauthorized("Usuario no encontrado.");
                 }
 
-                if (usuarioDB.ConfirmacionEmail != true)
+                var userConfirm = await _existUsersService.UserExistByUserName(usuario.UserName);
+
+                if (userConfirm.ConfirmacionEmail != true)
                 {
                     return Unauthorized("Usuario no confirmado, por favor acceda a su correo y valida su registro.");
                 }
 
-                if (usuarioDB.BajaUsuario == true)
+                if (userConfirm.BajaUsuario == true)
                 {
                     return Unauthorized("El usuario se encuentra dado de baja.");
                 }
 
-                var resultadoHash = _hashService.Hash(usuario.Password, usuarioDB.Salt);
+                var resultadoHash = _hashService.Hash(usuario.Password, userConfirm.Salt);
 
-                if (usuarioDB.Password == resultadoHash.Hash)
+                if (userConfirm.Password == resultadoHash.Hash)
                 {
-                    var response = await _tokenService.GenerarToken(usuarioDB);
-
-                    await _operationsService.AddOperacion(new DTOOperation
-                    {
-                        Operacion = "Login",
-                        UserId = usuarioDB.Id
-                    });
+                    var response = await _tokenService.GenerarToken(userConfirm);
 
                     return Ok(response);
                 }
@@ -209,14 +187,14 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == Id.Id);
+                var usuarioDBUser = await _existUsersService.UserExistById(Id.Id);
 
-                if (userExist == null)
+                if (usuarioDBUser == null)
                 {
                     return Unauthorized("Usuario no encontrado");
                 }
 
-                if (userExist.BajaUsuario == true)
+                if (usuarioDBUser.BajaUsuario == true)
                 {
                     return Unauthorized("Usuario dado de baja con anterioridad");
                 }
@@ -224,12 +202,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                 await _userDeregistrationService.UserDeregistration(new DTOUserDeregistration
                 {
                     Id = Id.Id
-                });
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Baja usuario",
-                    UserId = userExist.Id
                 });
 
                 return Ok();
@@ -248,7 +220,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
             try
             {
-                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == Id.Id);
+                var userExist = await _existUsersService.UserExistById(Id.Id);
 
                 if (userExist == null)
                 {
@@ -281,7 +253,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
             try
             {
-                var usuarioUpdate = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
+                var userExist = await _existUsersService.UserExistById(userData.Id);
 
                 await _changeUserDataService.ChangeUserData(new DTOChangeUserData
                 {
@@ -298,12 +270,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     TipoDiabetes = userData.TipoDiabetes,
                     Insulina = userData.Insulina,
                     Email = userData.Email
-                });
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Actualizar usuario",
-                    UserId = usuarioUpdate.Id
                 });
 
                 return Ok();

@@ -18,5 +18,6 @@
         public string TipoDiabetes { get; set; }
         public string[] Medicación { get; set; }
         public bool Insulina { get; set; }
+        public string Email { get; set; }
     }
 }
