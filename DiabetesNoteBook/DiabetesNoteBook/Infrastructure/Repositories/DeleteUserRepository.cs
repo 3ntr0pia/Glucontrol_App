@@ -15,7 +15,6 @@ namespace DiabetesNoteBook.Infrastructure.Repositories
         {
             _context.Mediciones.RemoveRange(delete.Mediciones);
             _context.UsuarioMedicacions.RemoveRange(delete.UsuarioMedicacions);
-            _context.Operaciones.RemoveRange(delete.Operaciones);
             _context.Usuarios.Remove(delete);
             await _context.SaveChangesAsync();
         }

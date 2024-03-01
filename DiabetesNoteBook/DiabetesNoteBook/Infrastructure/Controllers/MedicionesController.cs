@@ -13,25 +13,20 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class MedicionesController : ControllerBase
     {
-        private readonly DiabetesNoteBookContext _context;
         private readonly ExistUsersService _existUsersService;
         private readonly ExistMedicionesService _existMedicionesService;
-        private readonly IOperationsService _operationsService;
         private readonly INuevaMedicionService _medicion;
         private readonly IDeleteMedicionService _deleteMedicion;
         private readonly ILogger<UsersController> _logger;
 
 
-        public MedicionesController(DiabetesNoteBookContext context, IOperationsService operationsService, 
-            INuevaMedicionService nuevaMedicion, IDeleteMedicionService deleteMedicion, ILogger<UsersController> logger,
+        public MedicionesController(INuevaMedicionService nuevaMedicion, IDeleteMedicionService deleteMedicion, ILogger<UsersController> logger,
             ExistUsersService existUsersService, ExistMedicionesService existMedicionesService)
         {
-            _context = context;
             _existUsersService = existUsersService;
-            _operationsService = operationsService;
             _medicion = nuevaMedicion;
             _deleteMedicion = deleteMedicion;
             _logger = logger;
@@ -111,7 +106,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
             try
             {
-                var medicionExist = await _existUsersService.UserExistById(userData.Id);
+                var medicionExist = await _existMedicionesService.MedicionesPorUserId(userData.Id);
 
                 if (medicionExist == null)
                 {
