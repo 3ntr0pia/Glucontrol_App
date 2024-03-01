@@ -49,7 +49,5 @@ public partial class Usuario
 
     public virtual ICollection<Medicione> Mediciones { get; set; } = new List<Medicione>();
 
-    public virtual ICollection<Operacione> Operaciones { get; set; } = new List<Operacione>();
-
     public virtual ICollection<UsuarioMedicacion> UsuarioMedicacions { get; set; } = new List<UsuarioMedicacion>();
 }

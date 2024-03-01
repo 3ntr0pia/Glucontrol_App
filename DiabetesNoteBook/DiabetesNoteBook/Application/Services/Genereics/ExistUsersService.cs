@@ -1,4 +1,5 @@
-﻿using DiabetesNoteBook.Domain.Models;
+﻿using DiabetesNoteBook.Application.DTOs;
+using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,5 +77,34 @@ namespace DiabetesNoteBook.Application.Services.Genereics
             }
         }
 
+        public async Task<bool> UserExistByEmail(string email)
+        {
+            try
+            {
+                var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.ConfirmacionEmail == true);
+
+                return usuarioDB != null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al procesar la consulta de email de usuario existente");
+                throw new Exception("Error al procesar la solicitud");
+            }
+        }
+
+        public async Task<Usuario> UserTokenExist(DTOUsuarioChangePasswordMailConEnlace userName)
+        {
+            try
+            {
+                var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.EnlaceCambioPass == userName.Token);
+
+                return usuarioDB;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al procesar la consulta de id de usuario existente");
+                throw new Exception("Error al procesar la solicitud");
+            }
+        }
     }
 }

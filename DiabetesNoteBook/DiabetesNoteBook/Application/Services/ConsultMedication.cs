@@ -17,18 +17,17 @@ namespace DiabetesNoteBook.Application.Services
 
         public async Task<List<string>> GetMedication(DTOMedicacion userData)
         {
-            var medicationsIDs = await _context.UsuarioMedicacions
+            var medicationNames = await _context.UsuarioMedicacions
                 .Where(x => x.IdUsuario == userData.Id)
-                .Select(x => x.IdMedicacion)
-                .ToListAsync();
-
-            var medicationNames = await _context.Medicaciones
-                .Where(m => medicationsIDs.Contains(m.IdMedicacion))
-                .Select(m => m.Nombre)
+                .Join(_context.Medicaciones,
+                    usuarioMedicacion => usuarioMedicacion.IdMedicacion,
+                    medicacion => medicacion.IdMedicacion,
+                    (usuarioMedicacion, medicacion) => medicacion.Nombre)
                 .ToListAsync();
 
             return medicationNames;
         }
+
 
     }
 }
