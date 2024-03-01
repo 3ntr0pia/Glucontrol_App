@@ -74,6 +74,7 @@ builder.Services.AddTransient<IConsultMedication, ConsultMedication>();
 builder.Services.AddTransient<IDeleteUserMedication, DeleteUserMedication>();
 builder.Services.AddTransient<IDeleteMedication, DeleteMedicationService>();
 builder.Services.AddScoped<ExistUsersService>();
+builder.Services.AddScoped<ExistMedicionesService>();
 
 
 builder.Services.AddCors(options =>

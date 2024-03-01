@@ -1,5 +1,6 @@
 ﻿using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Infrastructure.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiabetesNoteBook.Application.Services.Genereics
@@ -41,6 +42,36 @@ namespace DiabetesNoteBook.Application.Services.Genereics
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al procesar la consulta de email existente");
+                throw new Exception("Error al procesar la solicitud");
+            }
+        }
+
+        public async Task<Usuario> UserExistById(int id)
+        {
+            try
+            {
+                var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
+
+                return usuarioDB;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al procesar la consulta de id de usuario existente");
+                throw new Exception("Error al procesar la solicitud");
+            }
+        }
+
+        public async Task<Usuario> UserExistByUserName(string userName)
+        {
+            try
+            {
+                var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.UserName == userName);
+
+                return usuarioDB;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al procesar la consulta de id de usuario existente");
                 throw new Exception("Error al procesar la solicitud");
             }
         }
