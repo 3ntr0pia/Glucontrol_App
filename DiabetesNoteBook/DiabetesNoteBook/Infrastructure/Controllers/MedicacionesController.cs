@@ -17,7 +17,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
     public class MedicacionesController : ControllerBase
     {
         private readonly ExistUsersService _existUsersService;
-        private readonly ExistMedicationService _existMedicationService;
         private readonly ILogger<UsersController> _logger;
         private readonly INewMedicationService _newMedicationService;
         private readonly IConsultMedication _consultMedication;
@@ -25,15 +24,13 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
         public MedicacionesController(ILogger<UsersController> logger,
             INewMedicationService newMedicationService, IConsultMedication consultMedication, 
-            IDeleteMedication deleteMedication, ExistUsersService existUsersService,
-            ExistMedicationService existMedicationService)
+            IDeleteMedication deleteMedication, ExistUsersService existUsersService)
         {
             _logger = logger;
             _newMedicationService = newMedicationService;
             _consultMedication = consultMedication;
             _deleteMedication = deleteMedication;
             _existUsersService = existUsersService;
-            _existMedicationService = existMedicationService;
         }
 
         [HttpPost("postMedication")]

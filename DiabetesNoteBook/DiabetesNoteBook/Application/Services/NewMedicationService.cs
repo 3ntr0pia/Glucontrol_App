@@ -27,6 +27,7 @@ namespace DiabetesNoteBook.Application.Services
             foreach (var medicacionNombre in medicamentos)
             {
                 var nombreMedicacion = medicacionNombre.Trim();
+
                 var medicacionExistente = await _context.Medicaciones.FirstOrDefaultAsync(m => m.Nombre == nombreMedicacion);
                
                 if (medicacionExistente == null)
