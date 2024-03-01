@@ -55,10 +55,22 @@ export class MisDatosComponent implements OnInit {
   //optencion de los datos de usuario
   ngOnInit(): void {
     this.authService.user.subscribe((user) => {
-      this.usuarioLogeado = user;
-      if (this.usuarioLogeado) {
-        this.showUsuarioInfo(this.usuarioLogeado);
-      }
+      this.usuario!.id = user!.id;
+      this.usuario!.nombre = user!.nombre;
+      this.usuario!.userName = user!.UserName;
+      this.usuario!.primerApellido = user!.primerApellido;
+      this.usuario!.segundoApellido = user!.segundoApellido;
+      this.usuario!.edad = user!.edad;
+      this.usuario!.sexo = user!.sexo;
+      this.usuario!.tipoDiabetes = user!.tipoDiabetes;
+      this.usuario!.actividad = user!.actividad;
+      this.usuario!.insulina = user!.insulina;
+      this.usuario!.altura = user!.altura;
+      this.usuario!.peso = user!.peso;
+
+      // if (this.usuarioLogeado) {
+      //   this.showUsuarioInfo(this.usuarioLogeado);
+      // }
     });
   }
 
@@ -82,52 +94,52 @@ export class MisDatosComponent implements OnInit {
     this.nuevoPeso = peso;
   }
 
-  showUsuarioInfo(user: IUserLoginResponse): void {
-    this.authService.loginUser(user).subscribe({
-      next: (res) => {
-        this.usuario = {
-          id: res.id,
-          avatar: res.avatar,
-          userName: res.userName,
-          nombre: res.nombre,
-          primerApellido: res.primerApellido,
-          segundoApellido: res.segundoApellido,
-          sexo: res.sexo,
-          edad: res.edad,
-          peso: res.peso,
-          altura: res.altura,
-          actividad: res.actividad,
-          tipoDiabetes: res.tipoDiabetes,
-          medicacion: res.medicacion,
-          insulina: res.insulina,
-        };
+  // showUsuarioInfo(user: IUserLoginResponse): void {
+  //   this.authService.loginUser(user).subscribe({
+  //     next: (res) => {
+  //       this.usuario = {
+  //         id: res.id,
+  //         avatar: res.avatar,
+  //         userName: res.userName,
+  //         nombre: res.nombre,
+  //         primerApellido: res.primerApellido,
+  //         segundoApellido: res.segundoApellido,
+  //         sexo: res.sexo,
+  //         edad: res.edad,
+  //         peso: res.peso,
+  //         altura: res.altura,
+  //         actividad: res.actividad,
+  //         tipoDiabetes: res.tipoDiabetes,
+  //         medicacion: res.medicacion,
+  //         insulina: res.insulina,
+  //       };
 
-        this.estadoInicialUsuario = {
-          id: res.id,
-          avatar: res.avatar,
-          userName: res.userName,
-          nombre: res.nombre,
-          primerApellido: res.primerApellido,
-          segundoApellido: res.segundoApellido,
-          sexo: res.sexo,
-          edad: res.edad,
-          peso: res.peso,
-          altura: res.altura,
-          actividad: res.actividad,
-          tipoDiabetes: res.tipoDiabetes,
-          medicacion: res.medicacion,
-          insulina: res.insulina,
-        };
-        console.log('ShowUser: ', res);
-        console.log('Usuario:', this.usuario);
+  //       this.estadoInicialUsuario = {
+  //         id: res.id,
+  //         avatar: res.avatar,
+  //         userName: res.userName,
+  //         nombre: res.nombre,
+  //         primerApellido: res.primerApellido,
+  //         segundoApellido: res.segundoApellido,
+  //         sexo: res.sexo,
+  //         edad: res.edad,
+  //         peso: res.peso,
+  //         altura: res.altura,
+  //         actividad: res.actividad,
+  //         tipoDiabetes: res.tipoDiabetes,
+  //         medicacion: res.medicacion,
+  //         insulina: res.insulina,
+  //       };
+  //       console.log('ShowUser: ', res);
+  //       console.log('Usuario:', this.usuario);
 
-        //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
-  }
+  //       //Esto se puede hacer tambien con el operador spread pero no seria tan preciso
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //     },
+  //   });
+  // }
 
   reestablecerFormulario(): void {
     this.usuario = { ...this.estadoInicialUsuario };
@@ -163,7 +175,6 @@ export class MisDatosComponent implements OnInit {
       this.error = 'Formulario invalido';
       return;
     }
-    console.log(this.usuario);
 
     this.usuarioService.actualizarUsuario(this.usuario).subscribe({
       next: (res) => {
@@ -188,7 +199,7 @@ export class MisDatosComponent implements OnInit {
   validarFormulario(usuario: IUsuarioUpdate): boolean {
     return (
       usuario.nombre.trim() !== '' &&
-      usuario.userName.trim() !== '' &&
+      usuario.userName?.trim() !== '' &&
       usuario.primerApellido.trim() !== '' &&
       usuario.segundoApellido.trim() !== '' &&
       usuario.edad > 0 &&

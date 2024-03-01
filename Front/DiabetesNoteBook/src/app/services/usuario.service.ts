@@ -28,7 +28,7 @@ export class UsuarioService {
 
   actualizarUsuario(usuario: IUsuarioUpdate): Observable<IUsuarioUpdate> {
     return this.http.put<IUsuarioUpdate>(
-      `${this.API_URL}/Users/cambiardatosusuarioypersona`,
+      `${this.API_URL}/Users/cambiardatosusuario`,
       usuario
     );
   }
