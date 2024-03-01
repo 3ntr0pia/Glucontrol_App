@@ -1,6 +1,7 @@
 ﻿using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
+using DiabetesNoteBook.Application.Services.Genereics;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -12,10 +13,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class MedicionesController : ControllerBase
     {
         private readonly DiabetesNoteBookContext _context;
+        private readonly ExistUsersService _existUsersService;
+        private readonly ExistMedicionesService _existMedicionesService;
         private readonly IOperationsService _operationsService;
         private readonly INuevaMedicionService _medicion;
         private readonly IDeleteMedicionService _deleteMedicion;
@@ -23,13 +26,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
 
         public MedicionesController(DiabetesNoteBookContext context, IOperationsService operationsService, 
-            INuevaMedicionService nuevaMedicion, IDeleteMedicionService deleteMedicion, ILogger<UsersController> logger)
+            INuevaMedicionService nuevaMedicion, IDeleteMedicionService deleteMedicion, ILogger<UsersController> logger,
+            ExistUsersService existUsersService, ExistMedicionesService existMedicionesService)
         {
             _context = context;
+            _existUsersService = existUsersService;
             _operationsService = operationsService;
             _medicion = nuevaMedicion;
             _deleteMedicion = deleteMedicion;
             _logger = logger;
+            _existMedicionesService = existMedicionesService;
 
         }
 
@@ -39,7 +45,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var userExist = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == mediciones.Id_Usuario);
+                var userExist = await _existUsersService.UserExistById(mediciones.Id_Usuario);
 
                 if (userExist == null)
                 {
@@ -63,12 +69,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     Id_Usuario = mediciones.Id_Usuario
                 });
 
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Persona agregada",
-                    UserId = userExist.Id
-                });
-
                 return Ok("Medicion guardada con exito ");
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var medicionExist = await _context.Mediciones.FirstOrDefaultAsync(x => x.Id == Id.Id);
+                var medicionExist = await _existMedicionesService.MedicionesPorId(Id.Id);
 
                 if (medicionExist == null)
                 {
@@ -96,11 +96,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     Id = Id.Id
                 });
 
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Eliminar medicion",
-                    UserId = medicionExist.Id
-                });
                 return Ok("Eliminacion realizada con exito");
             }
             catch (Exception ex)
@@ -116,21 +111,14 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
             try
             {
-                var mediciones = await _context.Mediciones.Where(m => m.IdUsuarioNavigation.Id == userData.Id).ToListAsync();
+                var medicionExist = await _existUsersService.UserExistById(userData.Id);
 
-                if (mediciones == null)
+                if (medicionExist == null)
                 {
                     return NotFound("Datos de medicion no encontrados");
                 }
 
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Consulta medicion por id de usuario",
-                    UserId = userData.Id
-                });
-
-
-                return Ok(mediciones);
+                return Ok(medicionExist);
             }
             catch (Exception ex)
             {

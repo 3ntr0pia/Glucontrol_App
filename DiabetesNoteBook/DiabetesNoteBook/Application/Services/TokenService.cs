@@ -64,7 +64,8 @@ namespace DiabetesNoteBook.Application.Services
                 Actividad = usuarioDB.Actividad,
                 TipoDiabetes = usuarioDB.TipoDiabetes,
                 Medicación = medicationNames.ToArray(),
-                Insulina = usuarioDB.Insulina
+                Insulina = usuarioDB.Insulina,
+                Email = usuarioDB.Email
             };
         }
     }
