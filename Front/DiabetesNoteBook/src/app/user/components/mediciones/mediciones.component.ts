@@ -7,7 +7,6 @@ import {
 } from 'src/app/interfaces/mediciones.interface';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { MedicionesService } from 'src/app/services/mediciones.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-mediciones',
@@ -23,8 +22,9 @@ export class MedicionesComponent {
   mensajeModal: string = '';
 
   usuarioLogeadoPersonaId: number = 0;
+  usuarioid!: number;
   nuevaMedicion: IMedicionesAzucar = {
-    id: 0,
+    id_Usuario: 0,
     fecha: new Date(),
     regimen: Regimen.Desayuno,
     preMedicion: 0,
@@ -36,7 +36,6 @@ export class MedicionesComponent {
     postDeporte: 0,
     notas: '',
     racionHc: 0,
-    id_Persona: 0,
   };
   // chartOption: EChartsOption = {};
   elementoPagina: IMedicionesAzucar[] = [];
@@ -46,8 +45,7 @@ export class MedicionesComponent {
   accModal: boolean = false;
   constructor(
     private medicionesService: MedicionesService,
-    private authService: AuthServiceService,
-    private usuarioService: UsuarioService
+    private authService: AuthServiceService
   ) {
     //Poner aqui cualquier cosa hace que se ejecute al inicio, a diferencia de ngOnInit que se ejecuta cuando se carga la vista
     // this.chartOption = {};
@@ -63,8 +61,13 @@ export class MedicionesComponent {
   }
 
   ngOnInit() {
-    this.getMediciones(this.authService.userValue!.id);
-    this.getPersonaID();
+    this.authService.user.subscribe((user) => {
+      this.usuarioLogeadoPersonaId = user!.id;
+      this.nuevaMedicion.id_Usuario = user!.id;
+    });
+
+    console.log(this.usuarioLogeadoPersonaId);
+    this.getMediciones(this.usuarioLogeadoPersonaId);
     this.nuevaMedicion.fecha = new Date();
     this.elementoPagina.reverse();
     console.log(this.elementoPagina);
@@ -90,18 +93,6 @@ export class MedicionesComponent {
 
   onFechaChange(newValue: string) {
     this.nuevaMedicion.fecha = new Date(newValue);
-  }
-
-  getPersonaID() {
-    this.usuarioService
-      .getUsuarioYPersonaInfo(this.authService.userValue!.id)
-      .subscribe({
-        next: (res) => {
-          this.usuarioLogeadoPersonaId = res[1].id as number;
-          this.nuevaMedicion.id_Persona = this.usuarioLogeadoPersonaId;
-        },
-        error: (error) => console.error(error),
-      });
   }
 
   calcularTotalDePaginas() {
@@ -269,6 +260,8 @@ export class MedicionesComponent {
   }
 
   getMediciones(userId: number) {
+    console.log('UserID en Getmedicion', userId);
+
     this.medicionesService.getMediciones(userId).subscribe({
       next: (mediciones) => {
         console.log('Datos recibidos del servidor:', mediciones);
@@ -285,14 +278,16 @@ export class MedicionesComponent {
   }
 
   postMedicion() {
+    console.log('Prepara postMedicion', this.nuevaMedicion);
     this.medicionesService.postMediciones(this.nuevaMedicion).subscribe({
       next: (res) => {
-        this.getMediciones(this.authService.userValue!.id);
+        this.getMediciones(this.usuarioLogeadoPersonaId);
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
 
         // this.verificarLimitesEnMediciones();
+        console.log('res en postMediciones', res);
       },
       error: (error) => {
         console.error(error);

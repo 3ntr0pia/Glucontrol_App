@@ -8,6 +8,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Sexo } from 'src/app/enums/register.enum';
 import { IUsuarioUpdate } from 'src/app/interfaces/usuario.interface';
+import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
+import { MedicacionService } from 'src/app/services/medicacion.service';
 
 @Component({
   selector: 'app-vademecum',
@@ -32,6 +34,8 @@ export class VademecumComponent {
     insulina: false,
   };
 
+  userId!: number;
+
   medicamentoSeleccionado: string = '';
   medicamentosArray: IMedicamento[] = [];
   Receta: boolean = true;
@@ -43,13 +47,17 @@ export class VademecumComponent {
   constructor(
     private vademecum: VademecumService,
     private userService: UsuarioService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private medicamentoService: MedicacionService
   ) {}
 
-  // ngOnInit(): void {
-  //   this.getUserData();
-  //   console.log(this.usuario);
-  // }
+  ngOnInit(): void {
+    this.getUserID(this.userId);
+    console.log(this.userId);
+
+    // this.getUserData(this.usuario);
+    console.log(this.usuario);
+  }
 
   modalAcc() {
     if (this.accModal) {
@@ -78,35 +86,43 @@ export class VademecumComponent {
       },
     });
   }
+  getUserID(userId: number) {
+    this.authService.user.subscribe({
+      next: (user) => {
+        userId != user?.id;
+      },
+    });
+  }
+  getMedicamento(userId: number) {
+    this.medicamentoService.getMedicaciones(userId).subscribe({});
+  }
 
-  // getUserData() {
-  //   this.userService
-  //     .getUsuarioYPersonaInfo(this.authService.userValue!.id)
-  //     .subscribe({
-  //       next: (res) => {
-  //         this.usuario = {
-  //           id: res[0].id,
-  //           avatar: res[0].avatar,
-  //           userName: res[0].userName,
-  //           nombre: res[1].nombre,
-  //           primerApellido: res[1].primerApellido,
-  //           segundoApellido: res[1].segundoApellido,
-  //           sexo: res[1].sexo,
-  //           edad: res[1].edad,
-  //           peso: res[1].peso,
-  //           altura: res[1].altura,
-  //           actividad: res[1].actividad,
-  //           tipoDiabetes: res[1].tipoDiabetes,
-  //           medicacion: res[1].medicacion,
-  //           insulina: res[1].insulina,
-  //         };
-  //         this.medicamentosFromBackend = this.usuario.medicacion.split(',');
-  //         console.log(this.usuario);
-  //       },
-  //       error: (err) => {
-  //         console.log(err);
-  //       },
-  //     });
+  // getUserData(user:unknown) {
+  //   this.authService.loginUser(user).subscribe({
+  //     next: (res) => {
+  //       this.usuario = {
+  //         id: res.id,
+  //         avatar: res.avatar,
+  //         userName: res.userName,
+  //         nombre: res.nombre,
+  //         primerApellido: res.primerApellido,
+  //         segundoApellido: res.segundoApellido,
+  //         sexo: res.sexo,
+  //         edad: res.edad,
+  //         peso: res.peso,
+  //         altura: res.altura,
+  //         actividad: res.actividad,
+  //         tipoDiabetes: res.tipoDiabetes,
+  //         medicacion: res.medicacion,
+  //         insulina: res.insulina,
+  //       };
+  //       this.medicamentosFromBackend = this.usuario.medicacion.split(',');
+  //       console.log(this.usuario);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
   // }
 
   addMedicamento() {

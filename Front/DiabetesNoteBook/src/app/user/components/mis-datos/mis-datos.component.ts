@@ -72,8 +72,6 @@ export class MisDatosComponent implements OnInit {
   //optencion de los datos de usuario
   ngOnInit(): void {
     this.authService.user.subscribe((user) => {
-      console.log('user', user);
-
       this.usuario!.id = user!.id;
       this.usuario!.email = user!.email;
       this.usuario!.avatar = user!.avatar;
