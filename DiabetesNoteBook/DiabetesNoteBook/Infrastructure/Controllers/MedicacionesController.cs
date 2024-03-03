@@ -1,6 +1,7 @@
 ﻿using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
+using DiabetesNoteBook.Application.Services.Genereics;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -15,44 +16,35 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
     [Authorize]
     public class MedicacionesController : ControllerBase
     {
-        private readonly DiabetesNoteBookContext _context;
+        private readonly ExistUsersService _existUsersService;
         private readonly ILogger<UsersController> _logger;
         private readonly INewMedicationService _newMedicationService;
-        private readonly IOperationsService _operationsService;
         private readonly IConsultMedication _consultMedication;
         private readonly IDeleteMedication _deleteMedication;
 
-        public MedicacionesController(DiabetesNoteBookContext context, ILogger<UsersController> logger,
-            INewMedicationService newMedicationService, IOperationsService operationsService,
-            IConsultMedication consultMedication, IDeleteMedication deleteMedication)
+        public MedicacionesController(ILogger<UsersController> logger,
+            INewMedicationService newMedicationService, IConsultMedication consultMedication, 
+            IDeleteMedication deleteMedication, ExistUsersService existUsersService)
         {
-            _context = context;
             _logger = logger;
             _newMedicationService = newMedicationService;
-            _operationsService = operationsService;
             _consultMedication = consultMedication;
             _deleteMedication = deleteMedication;
+            _existUsersService = existUsersService;
         }
 
         [HttpPost("postMedication")]
         public async Task<ActionResult> PostMedication([FromBody] DTOMedicacion userData)
         {
-
             try
             {
 
-                var userExist = _context.Usuarios.FirstOrDefault(x => x.Id == userData.Id);
+                var UserExist = await _existUsersService.UserExistById(userData.Id);
 
                 await _newMedicationService.NewRegister(new DTOMedicacion
                 {
                     Id = userData.Id,
                     medicacion = userData.medicacion,
-                });
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Nueva medicación",
-                    UserId = userExist.Id
                 });
 
                 return Ok();
@@ -71,17 +63,11 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var userExist = _context.Usuarios.FirstOrDefault(x => x.Id == id);
+                var UserExist = await _existUsersService.UserExistById(id);
 
                 var medicationNames = await _consultMedication.GetMedication(new DTOMedicacion
                 {
                     Id = id
-                });
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Consulta medicación",
-                    UserId = id
                 });
 
                 return Ok(medicationNames);
@@ -100,18 +86,12 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
             try
             {
 
-                var userExist = _context.UsuarioMedicacions.FirstOrDefault(x => x.IdMedicacion == UserData.medicationId && x.IdUsuario == UserData.userId);
+                var usuarioDBUser = await _existUsersService.UserExistById(UserData.userId);
 
                 await _deleteMedication.DeleteMedication(new DTODeleteMedication
                 {
                     userId = UserData.userId,
                     medicationId = UserData.medicationId
-                });
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Eliminar medicación",
-                    UserId = UserData.userId
                 });
 
                 return Ok();

@@ -116,9 +116,9 @@ namespace DiabetesNoteBook.Application.Services
 
             await _changeUserData.SaveChangeUserData(usuarioUpdate);
 
-            
-
         }
 
     }
+
 }
+

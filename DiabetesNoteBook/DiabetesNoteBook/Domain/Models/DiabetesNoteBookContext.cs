@@ -19,8 +19,6 @@ public partial class DiabetesNoteBookContext : DbContext
 
     public virtual DbSet<Medicione> Mediciones { get; set; }
 
-    public virtual DbSet<Operacione> Operaciones { get; set; }
-
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     public virtual DbSet<UsuarioMedicacion> UsuarioMedicacions { get; set; }
@@ -72,21 +70,6 @@ public partial class DiabetesNoteBookContext : DbContext
                 .HasForeignKey(d => d.IdUsuario)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Medicione__Id_Us__5AB9788F");
-        });
-
-        modelBuilder.Entity<Operacione>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Operacio__3214EC07E8326C3B");
-
-            entity.Property(e => e.Controller).HasMaxLength(50);
-            entity.Property(e => e.FechaAccion).HasColumnType("datetime");
-            entity.Property(e => e.IdUsuario).HasColumnName("Id_Usuario");
-            entity.Property(e => e.Ip).HasMaxLength(50);
-            entity.Property(e => e.Operacion).HasMaxLength(50);
-
-            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Operaciones)
-                .HasForeignKey(d => d.IdUsuario)
-                .HasConstraintName("FK__Operacion__Id_Us__5D95E53A");
         });
 
         modelBuilder.Entity<Usuario>(entity =>

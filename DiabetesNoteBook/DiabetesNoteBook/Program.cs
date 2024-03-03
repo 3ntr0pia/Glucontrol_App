@@ -50,8 +50,6 @@ builder.Services.AddTransient<IChangePassService, ChangePassService>();
 builder.Services.AddTransient<INewRegisterRepository, NewRegisterRepository>();
 builder.Services.AddTransient<IConfirmationRegisterRepository, ConfirmationRegisterRepository>();
 builder.Services.AddTransient<INewStringGuid, NewStringGuid>();
-builder.Services.AddTransient<IOperationsService, OperationsService>();
-builder.Services.AddTransient<IAddOperation, AddOperation>();
 builder.Services.AddTransient<IChangePassword, ChangePassword>();
 builder.Services.AddTransient<IChangePassMail, ChangePassEnlace>();
 builder.Services.AddTransient<IChangePasswordMail, ChangePasswordMail>();
@@ -75,6 +73,8 @@ builder.Services.AddTransient<IDeleteUserMedication, DeleteUserMedication>();
 builder.Services.AddTransient<IDeleteMedication, DeleteMedicationService>();
 builder.Services.AddScoped<ExistUsersService>();
 builder.Services.AddScoped<ExistMedicionesService>();
+builder.Services.AddScoped<ExistMedicationService>();
+
 
 
 builder.Services.AddCors(options =>

@@ -94,7 +94,7 @@ namespace DiabetesNoteBook.Application.Services
 
             var model = new DTOEmail
             {
-                RecoveryLink = $"{_httpContextAccessor.HttpContext.Request.Scheme}://{_httpContextAccessor.HttpContext.Request.Host}/shared/recover-pass/{textoEnlace}?redirect=true",
+                RecoveryLink = $"http://localhost:4200/shared/recover-pass/{textoEnlace}",
             };
 
             await _newStringGuid.SaveNewStringGuid(usuarioDB);

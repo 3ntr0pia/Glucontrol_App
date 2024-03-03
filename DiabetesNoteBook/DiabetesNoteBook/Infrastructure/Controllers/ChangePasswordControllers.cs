@@ -6,6 +6,7 @@ using Azure;
 using DiabetesNoteBook.Application.DTOs;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
+using DiabetesNoteBook.Application.Services.Genereics;
 
 namespace DiabetesNoteBook.Infrastructure.Controllers
 {
@@ -14,28 +15,23 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
     [Authorize]
     public class ChangePasswordControllers : ControllerBase
     {
-        private readonly DiabetesNoteBookContext _context;
         private readonly HashService _hashService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ExistUsersService _existUsersService;
         private readonly IEmailService _emailService;
         private readonly IChangePassService _changePassService;
-        private readonly IOperationsService _operationsService;
         private readonly IChangePassMail _changePassMail;
         private readonly ILogger<UsersController> _logger;
 
-        public ChangePasswordControllers(DiabetesNoteBookContext context, HashService hashService,
-            IHttpContextAccessor httpContextAccessor, IEmailService emailService, IChangePassService changePassService,
-            IOperationsService operationsService, IChangePassMail changePassMail, ILogger<UsersController> logger)
+        public ChangePasswordControllers(HashService hashService,
+            IEmailService emailService, IChangePassService changePassService,
+            IChangePassMail changePassMail, ILogger<UsersController> logger, ExistUsersService existUsersService)
         {
-            _context = context;
             _hashService = hashService;
-            _httpContextAccessor = httpContextAccessor;
             _emailService = emailService;
             _changePassService = changePassService;
-            _operationsService = operationsService;
             _changePassMail = changePassMail;
             _logger = logger;
-
+            _existUsersService = existUsersService;
         }
 
         [HttpPut("changePassword")]
@@ -43,7 +39,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         {
             try
             {
-                var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Id == userData.Id);
+                var usuarioDB = await _existUsersService.UserExistById(userData.Id);
 
                 if (usuarioDB == null)
                 {
@@ -63,12 +59,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     NewPass = userData.NewPass
                 });
 
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Cambio pass logado",
-                    UserId = usuarioDB.Id
-                });
-
                 return Ok("Password cambiado con exito");
             }
             catch (Exception ex)
@@ -84,14 +74,16 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         {
             try
             {
-                var usuarioDB = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.Email == usuario.Email);
+                var usuarioDB = await _existUsersService.EmailExist(usuario.Email);
 
-                if (usuarioDB.Email is null)
+                if (usuarioDB is false)
                 {
                     return Unauthorized("Este email no se encuentra registrado.");
                 }
 
-                if (usuarioDB.BajaUsuario == true)
+                var usuarioDBEmail = await _existUsersService.UserExistByEmail(usuario.Email);
+                
+                if (usuarioDBEmail is false)
                 {
                     return Unauthorized("Usuario dado de baja con anterioridad");
                 }
@@ -102,12 +94,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
                     await _emailService.SendEmailAsyncChangePassword(new DTOEmail
                     {
                         ToEmail = usuario.Email
-                    });
-
-                    await _operationsService.AddOperacion(new DTOOperation
-                    {
-                        Operacion = "Cambio contraseña",
-                        UserId = usuarioDB.Id
                     });
 
                     return Ok("Se enviaron las instrucciones a tu correo para restablecer la contraseña. Recuerda revisar la bandeja de Spam.");
@@ -129,7 +115,7 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
         {
             try
             {
-                var userTokenExiste = await _context.Usuarios.AsTracking().FirstOrDefaultAsync(x => x.EnlaceCambioPass == cambiopass.Token);
+                var userTokenExiste = await _existUsersService.UserTokenExist(cambiopass);
 
                 var resultadoHash = _hashService.Hash(cambiopass.NewPass, userTokenExiste.Salt);
 
@@ -152,12 +138,6 @@ namespace DiabetesNoteBook.Infrastructure.Controllers
 
                     return Ok("Password cambiado con exito");
                 }
-
-                await _operationsService.AddOperacion(new DTOOperation
-                {
-                    Operacion = "Reseteo contraseña",
-                    UserId = userTokenExiste.Id
-                });
 
                 return Ok("El token no existe o ha caducado.");
 
