@@ -1,0 +1,122 @@
+:root {
+  --main--colorBackGround: #68c2f1;
+  --main--colorForeground: #002d52;
+  --main--colorBackGroundElements: #effbff;
+  --main--colorHoverBtnAccept: #80f9c0;
+  --main--colorErrorOrDenegate: #940505;
+  --main--colorBacGroundForm: #eef7df;
+  accent-color: var(--main--colorHoverBtnAccept);
+}
+@font-face {
+  font-family: "Atkinson-Hyperlegible-Regular";
+  src: url("/assets/fonts/Atkinson-Hyperlegible-Regular-102a.woff2")
+      format("woff2"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.woff") format("woff"),
+    url("/assets/fonts/Atkinson-Hyperlegible-Regular-102.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Atkinson-Hyperlegible-Regular";
+}
+body {
+  /* width: 100vw;
+  height: 100vh; */
+  background-color: var(--main--colorBackGround);
+  /* overflow: hidden; */
+}
+
+input {
+  width: 30%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 1em;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.lectura-facil {
+  font-family: "Atkinson-Hyperlegible-Regular";
+  color: var(--main--colorForeground);
+  background-color: var(--main--colorBackGroundElements);
+  text-align: center;
+  border-radius: 10px;
+  padding: 1em;
+  margin: 2em;
+  line-height: 2em;
+  letter-spacing: 2px;
+  min-width: 24em;
+  z-index: 1000;
+}
+
+.error-form {
+  color: var(--main--colorErrorOrDenegate);
+  font-weight: 600;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.btn {
+  min-width: 5rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+.accesibilidadButton {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: large;
+  border: none;
+  font-size: 2.5em;
+  text-align: center;
+  color: #002d52;
+  z-index: 1000;
+  background: transparent;
+}
+
+.accesibilidadButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

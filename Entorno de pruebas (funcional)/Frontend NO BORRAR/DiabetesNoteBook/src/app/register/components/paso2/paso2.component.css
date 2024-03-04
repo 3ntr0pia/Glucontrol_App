@@ -1,0 +1,139 @@
+.contenedor {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.formulario {
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lectura-facil{
+  width: 70%;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  border: none;
+}
+
+.fieldset-datos {
+  width: 100%;
+  height: 100%;
+  background-color: var(--main--colorBacGroundForm);
+  padding: 3rem;
+  border-radius: 1rem;
+  color: var(--main--colorForeground);
+  font-weight: 600;
+}
+
+.botones {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.fieldset-datos legend {
+  font-size: 0.8em;
+}
+
+.formulario select {
+  width: 30%;
+  height: 5%;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  padding: 1px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.persona {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.persona i {
+  font-size: 2rem;
+}
+
+.bajo {
+  transform: scaleY(0.9);
+}
+
+.medio {
+  transform: scaleY(1);
+}
+
+.alto {
+  transform: scaleY(1.2);
+}
+
+.btn {
+  position: relative;
+  top: 1rem;
+  left: 20%;
+  padding: 0.2rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-left: 2rem;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: large;
+  color: var(--main--colorForeground);
+}
+select {
+  background-color: white;
+}
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+
+@media (width <= 1000px) {
+  .fieldset-datos {
+    
+    width: 80%;
+    margin: 1em;
+  
+
+  }
+
+}
+
+@media (width <= 950px) {
+  .contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  .fieldset-datos {
+    width: 95%;
+    
+  }
+}
+
+@media (width <= 640px) {
+  .contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  .fieldset-datos {
+    width: 95%;
+    
+  }
+}

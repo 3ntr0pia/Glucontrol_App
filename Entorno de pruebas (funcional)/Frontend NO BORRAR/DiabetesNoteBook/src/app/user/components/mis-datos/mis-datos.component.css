@@ -1,0 +1,365 @@
+.lectura-facil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+fieldset {
+  border: none;
+}
+.wrapper {
+  width: 80vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0px 0px;
+  grid-template-areas:
+    "avatar formulario"
+    "calculadora formulario";
+}
+.avatar {
+  grid-area: avatar;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bocadillo {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenido-bocadillo {
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-90deg);
+  width: 100%;
+  text-align: center;
+}
+.contenido-bocadillo h1 {
+  font-size: 100%;
+}
+
+.contenido-bocadillo button {
+  margin: 1em;
+}
+
+select {
+  background-color: white;
+}
+
+.triangle {
+  position: relative;
+  left: 9rem;
+  background: var(--main--colorBackGroundElements);
+  width: 20vw;
+  height: 50vh;
+  border-radius: 20%;
+  transform: rotate(90deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.triangle::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 70px 50px 0 50px;
+  border-color: var(--main--colorBackGroundElements) transparent transparent
+    transparent;
+  left: 50%;
+  transform: translateX(-75%) translateY(100%);
+}
+.generarAvatar {
+  position: relative;
+
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.datos {
+  grid-area: formulario;
+  width: 80%;
+  height: 80%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  background-color: var(--main--colorBacGroundForm);
+  align-self: center;
+}
+.datos h2 {
+  font-size: 28px;
+  text-align: center;
+}
+.datos label {
+  margin-top: 1rem;
+}
+
+.datos input {
+  width: 50%;
+  border: 1px solid black;
+}
+.datos select {
+  width: 50%;
+  height: 28px;
+
+  border: 1px solid black;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.check-box {
+  margin-top: 1rem;
+}
+.check-box input {
+  height: 1rem;
+  position: relative;
+  top: 3px;
+  right: 5rem;
+}
+
+.btn {
+  min-width: 5rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: small;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+.btn:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+.calculadora {
+  grid-area: calculadora;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  bottom: 3em;
+}
+.calculadora h1 {
+  text-align: center;
+}
+
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalPass {
+  background-color: var(--main--colorBackGround);
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 30%;
+  min-height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.modalPass form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalPass input {
+  width: 50%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fondoModal button {
+  width: 7rem;
+  padding: 0.6rem;
+  margin-top: 1rem;
+  margin-right: 0.4rem;
+  font-size: smaller;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+}
+
+#seve {
+  width: 8rem;
+}
+
+#clean:hover {
+  background-color: #ed982a;
+}
+#change-pass {
+  width: 9rem;
+  margin-left: 0.5rem;
+}
+
+.success-form {
+  color: green;
+}
+
+@media (max-width: 1600px) {
+  .triangle {
+    height: 85%;
+    width: 60%;
+    margin-top: 2em;
+    margin-left: -1em;
+  }
+}
+
+@media (max-width: 1350px) {
+  .wrapper {
+    gap: 4em;
+  }
+
+  .datos {
+    width: 100%;
+  }
+
+  .triangle {
+    height: 85%;
+    width: 80%;
+    margin-top: 2em;
+    margin-left: -3em;
+  }
+
+  .avatar {
+    height: 100%;
+  }
+  .calculadora {
+    height: 100%;
+    width: 100%;
+    margin-left: 2.7em;
+  }
+}
+@media (max-width: 1029px) {
+  .wrapper {
+    width: 95%;
+    min-height: 100vh;
+    overflow-x: none;
+    margin-top: -9em;
+  }
+  .triangle {
+    rotate: 90deg;
+    margin-bottom: 3em;
+  }
+  .contenido-bocadillo {
+    rotate: -90deg;
+  }
+
+  .triangle::before {
+    border-width: 30px 50px 0 50px;
+
+    left: 50%;
+    transform: translateX(0%) translateY(100%);
+  }
+}
+@media (max-width: 900px) {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  .datos {
+    width: 70%;
+    height: 100%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .triangle {
+    order: -2;
+    margin-right: 12em;
+    margin-top: 14em;
+  }
+
+  .triangle::before {
+    visibility: hidden;
+  }
+
+  .calculadora {
+    order: -1;
+    margin-top: 11em;
+  }
+  .avatar {
+    order: -2;
+  }
+}
+
+@media (max-width: 500px) {
+  .generarAvatar {
+    width: 100%;
+    height: 100%;
+  }
+
+  .datos {
+    width: 85%;
+  }
+}

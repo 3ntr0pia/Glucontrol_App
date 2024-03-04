@@ -1,0 +1,29 @@
+
+
+  <section class="main-register">
+    <article class="info">
+      <img class="logo" lazyload="/assets/logoTexto.svg" alt="" />
+
+        <img routerLink="/login" lazyload="assets/logo.png" class='logoImage' alt="ir a inicio" />
+
+      <h1>Te damos la bienvenida a nuestra comunidad</h1>
+      <h2 class="visually-hidden">Registro. Son 3 pasos.</h2>
+      <p>
+        Aquí podrás registrarte para que la aplicación haga el seguimiento con tus
+        mediciones.
+      </p>
+    </article>
+
+    <article class="form">
+      <div [ngSwitch]="paso">
+        <register-paso1 class="paso1" *ngSwitchCase="1" (siguientePaso)="siguientePaso($event)"
+          [datosRegistro]="datosRegistro"></register-paso1>
+        <register-paso2 *ngSwitchCase="2" [datosRegistro]="datosRegistro" (siguientePaso)="siguientePaso($event)"
+          (retroceder)="retrocederPaso()"></register-paso2>
+        <register-paso3 *ngSwitchCase="3" [error]="error" [datosRegistro]="datosRegistro" (registrar)="registroUsuario($event)"
+          (retroceder)="retrocederPaso()">
+        </register-paso3>
+      </div>
+    </article>
+  </section>
+
