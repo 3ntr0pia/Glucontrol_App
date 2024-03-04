@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { IUserLoginResponse } from 'src/app/interfaces/loginResponse.interface';
 import {
+  IArrayMedicionesAzucar,
   IMedicionesAzucar,
   Regimen,
 } from 'src/app/interfaces/mediciones.interface';
@@ -20,14 +21,15 @@ export class MedicionesComponent {
   mediciones: IMedicionesAzucar[] = [];
   mostrarModal: boolean = false;
   mensajeModal: string = '';
-
+  arrayMediciones: IArrayMedicionesAzucar[] = [];
   usuarioLogeadoPersonaId: number = 0;
   usuarioid!: number;
   nuevaMedicion: IMedicionesAzucar = {
-    id_Usuario: 0,
+    id: 0,
     fecha: new Date(),
     regimen: Regimen.Desayuno,
     preMedicion: 0,
+    postMedicion: 0,
     glucemiaCapilar: 0,
     bolusComida: 0,
     bolusCorrector: 0,
@@ -36,6 +38,7 @@ export class MedicionesComponent {
     postDeporte: 0,
     notas: '',
     racionHc: 0,
+    idUsuario: 0,
   };
   // chartOption: EChartsOption = {};
   elementoPagina: IMedicionesAzucar[] = [];
@@ -63,12 +66,15 @@ export class MedicionesComponent {
   ngOnInit() {
     this.authService.user.subscribe((user) => {
       this.usuarioLogeadoPersonaId = user!.id;
-      this.nuevaMedicion.id_Usuario = user!.id;
+      this.nuevaMedicion.idUsuario = user!.id;
     });
 
-    console.log(this.usuarioLogeadoPersonaId);
     this.getMediciones(this.usuarioLogeadoPersonaId);
+
+    console.log('elementos pagina', this.elementoPagina);
+
     this.nuevaMedicion.fecha = new Date();
+
     this.elementoPagina.reverse();
     console.log(this.elementoPagina);
   }
@@ -265,10 +271,11 @@ export class MedicionesComponent {
     this.medicionesService.getMediciones(userId).subscribe({
       next: (mediciones) => {
         console.log('Datos recibidos del servidor:', mediciones);
+
         if (mediciones.length == 0) {
           this.elementoPagina = [];
         }
-        this.mediciones = mediciones.reverse();
+        this.elementoPagina = mediciones;
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
@@ -285,7 +292,22 @@ export class MedicionesComponent {
         this.prepararDatosGrafico();
         this.calcularTotalDePaginas();
         this.cambiarPagina(this.paginaActual);
-
+        this.nuevaMedicion = {
+          id: 0,
+          fecha: new Date(),
+          regimen: Regimen.Desayuno,
+          preMedicion: 0,
+          postMedicion: 0,
+          glucemiaCapilar: 0,
+          bolusComida: 0,
+          bolusCorrector: 0,
+          preDeporte: 0,
+          duranteDeporte: 0,
+          postDeporte: 0,
+          notas: '',
+          racionHc: 0,
+          idUsuario: this.usuarioLogeadoPersonaId,
+        };
         // this.verificarLimitesEnMediciones();
         console.log('res en postMediciones', res);
       },
@@ -299,7 +321,7 @@ export class MedicionesComponent {
     this.medicionesService.deleteMediciones(idMedicion).subscribe({
       next: (res) => {
         console.log(res);
-        this.getMediciones(this.authService.userValue!.id);
+        this.getMediciones(this.usuarioLogeadoPersonaId);
 
         this.calcularTotalDePaginas();
         if (this.paginaActual > this.numeroTotalDePaginas) {

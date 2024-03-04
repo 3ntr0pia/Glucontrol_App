@@ -17,8 +17,8 @@ export class MedicionesService {
 
   constructor(private http: HttpClient) {}
 
-  getMediciones(userId: number): Observable<IMedicionesAzucar> {
-    return this.http.get<IMedicionesAzucar>(
+  getMediciones(userId: number): Observable<IMedicionesAzucar[]> {
+    return this.http.get<IMedicionesAzucar[]>(
       `${this.API_URL}/Mediciones/getmedicionesporidusuario/${userId}`
     );
   }

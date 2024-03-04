@@ -266,39 +266,41 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let medicion of elementoPagina">
-            <td>{{ medicion.fecha | date : "short" }}</td>
-            <td>
-              {{
-                medicion.preMedicion > 0
-                  ? medicion.preMedicion
-                  : medicion.glucemiaCapilar
-              }}
-            </td>
-            <td class="chama" scope="row">{{ medicion.regimen }}</td>
-            <td class="chama" scope="row">{{ medicion.bolusComida }}</td>
-            <td class="chama" scope="row">{{ medicion.bolusCorrector }}</td>
-            <td>{{ medicion.racionHc }}</td>
-            <td class="chama" scope="row">{{ medicion.preDeporte }}</td>
-            <td class="chama" scope="row">{{ medicion.duranteDeporte }}</td>
-            <td class="chama" scope="row">{{ medicion.postDeporte }}</td>
-            <td class="chama" scope="row">
-              <a
-                (click)="abrirNotasModal(medicion)"
-                [ngClass]="{
-                  'bi bi-file-earmark ': medicion.notas != '',
-                  'bi bi-file-earmark-x  text-danger': !medicion.notas
-                }"
-              ></a>
-            </td>
-            <td class="botones">
-              <div>
-                <button (click)="deleteMedicion(medicion.id_Usuario)">
-                  Eliminar
-                </button>
-              </div>
-            </td>
-          </tr>
+          <ng-container *ngFor="let medicion of mediciones">
+            <tr>
+              <td>{{ medicion.fecha | date : "short" }}</td>
+              <td>
+                {{
+                  medicion.preMedicion > 0
+                    ? medicion.preMedicion
+                    : medicion.glucemiaCapilar
+                }}
+              </td>
+              <td class="chama" scope="row">{{ medicion.regimen }}</td>
+              <td class="chama" scope="row">{{ medicion.bolusComida }}</td>
+              <td class="chama" scope="row">{{ medicion.bolusCorrector }}</td>
+              <td>{{ medicion.racionHc }}</td>
+              <td class="chama" scope="row">{{ medicion.preDeporte }}</td>
+              <td class="chama" scope="row">{{ medicion.duranteDeporte }}</td>
+              <td class="chama" scope="row">{{ medicion.postDeporte }}</td>
+              <td class="chama" scope="row">
+                <a
+                  (click)="abrirNotasModal(medicion)"
+                  [ngClass]="{
+                    'bi bi-file-earmark ': medicion.notas != '',
+                    'bi bi-file-earmark-x  text-danger': !medicion.notas
+                  }"
+                ></a>
+              </td>
+              <td class="botones">
+                <div>
+                  <button (click)="deleteMedicion(medicion.idUsuario)">
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
         </tbody>
       </table>
     </div>
