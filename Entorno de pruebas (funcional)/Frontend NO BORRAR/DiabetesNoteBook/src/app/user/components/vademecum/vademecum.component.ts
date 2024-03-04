@@ -32,7 +32,7 @@ export class VademecumComponent {
     medicacion: [],
     insulina: false,
   };
-
+  med: string = '';
   medicamentoSeleccionado: string = '';
   medicamentosArray: IMedicamento[] = [];
   Receta: boolean = true;
@@ -61,7 +61,8 @@ export class VademecumComponent {
     console.log(this.accModal);
   }
 
-  medicamentoChange() {
+  medicamentoChange(med: string) {
+    this.medicamentoSeleccionado = med;
     if (this.medicamentoSeleccionado) {
       this.buscarMedicamentos(this.medicamentoSeleccionado);
     }
@@ -69,9 +70,11 @@ export class VademecumComponent {
 
   buscarMedicamentos(nombre: string) {
     nombre = this.medicamentoSeleccionado;
+    console.log('nombre medicamento', nombre);
     this.vademecum.getMedicamentoInfo(nombre).subscribe({
       next: (res: IRespuestaServicio) => {
         this.medicamentosArray = res.resultados;
+
         console.log(this.medicamentosArray);
       },
       error: (error) => {

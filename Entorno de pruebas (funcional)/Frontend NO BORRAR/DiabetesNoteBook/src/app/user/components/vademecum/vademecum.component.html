@@ -36,7 +36,7 @@
               <tr *ngFor="let med of medicamentosFromBackend">
                 <td>{{ med }}</td>
                 <td>
-                  <button (click)="medicamentoChange()">
+                  <button (click)="medicamentoChange(med)">
                     <i class="bi bi-info-circle"></i>
                   </button>
                 </td>
