@@ -1,0 +1,63 @@
+input {
+  width: 25%;
+  height: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--main--colorBackGroundElements);
+  padding: 10px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.persona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+}
+.monigote {
+  margin-top: 1em;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  left: 2rem;
+}
+
+.data input {
+  border: 1px solid black;
+  width: 30%;
+}
+
+.error p {
+  font-size: 0.8em;
+  max-width: 80%;
+}
+.error-form {
+  color: var(--main--colorErrorOrDenegate);
+}

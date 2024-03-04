@@ -1,0 +1,131 @@
+.botoncicos{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.accesibilidadButton{
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.lectura-facil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.fondoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionLogin {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  color: var(--main--colorForeground);
+  font-family: "Akinson-Hyperlegible-Regular";
+}
+
+.error-form {
+  color: var(--main--colorErrorOrDenegate);
+  font-style: italic;
+}
+.input input {
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-shadow: #d9dbda;
+  background-color: var(--main--colorBackGroundElements);
+  border: 0.5px solid #002d52;
+}
+
+.btnInicio {
+  
+  padding: 0.2rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main--colorBackGroundElements);
+  font-size: large;
+  color: var(--main--colorForeground);
+
+}
+.btnInicio:hover {
+  background-color: var(--main--colorHoverBtnAccept);
+}
+
+/* .aBack {
+  position: relative;
+  top: 0.7rem;
+  margin: 1rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: large;
+  background-color: var(--main--colorBackGroundElements);
+  color: var(--main--colorForeground);
+} */
+
+/* .aBack:hover {
+  text-decoration: underline;
+} */
+
+.aForgetPass a {
+  position: relative;
+  top: 1.2rem;
+  margin: 0.25rem;
+  text-decoration: none;
+  color: var(--main--colorForeground);
+}
+
+.easy-reading {
+  position: relative;
+  top: 1rem;
+  right: 3rem;
+}
+
+.aForgetPass a:hover {
+  text-decoration: underline;
+}
+
+.bottom {
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (width < 750px) {
+  .btnInicio {
+    left: 5rem;
+  }
+}
+@media (390px < width < 560px) {
+  .btnInicio {
+    left: 3rem;
+  }
+  .aForgetPass {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (width < 390px) {
+  .btnInicio {
+    left: 2rem;
+  }
+}

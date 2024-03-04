@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "mvqxGa3d1Kd+LMLnRNzCpcpCezmV5PGinkFv0Wg9n0o=",
+  "Source": "DiabetesNoteBook",
+  "BasePath": "_content/DiabetesNoteBook",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DiabetesNoteBook\\wwwroot",
+      "Source": "DiabetesNoteBook",
+      "ContentRoot": "C:\\Users\\Javier\\Desktop\\Entorno de pruebas (funcional)\\Backend NO BORRAR\\DiabetesNoteBook\\wwwroot\\",
+      "BasePath": "_content/DiabetesNoteBook",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Javier\\Desktop\\Entorno de pruebas (funcional)\\Backend NO BORRAR\\DiabetesNoteBook\\wwwroot\\logErrores.txt",
+      "SourceId": "DiabetesNoteBook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Javier\\Desktop\\Entorno de pruebas (funcional)\\Backend NO BORRAR\\DiabetesNoteBook\\wwwroot\\",
+      "BasePath": "_content/DiabetesNoteBook",
+      "RelativePath": "logErrores.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logErrores.txt"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<nav class="navbar">
+
+  <section class="nav-container">
+    <img class="img-avatar" [src]="usuarioLogeado?.avatar" alt="avatar" />
+    
+    
+    <section class="section-names">
+      <p>
+        {{ usuarioLogeado?.nombre }}
+        {{ usuarioLogeado?.primerApellido }}
+        {{ usuarioLogeado?.segundoApellido }}
+      </p>
+    </section>
+
+    <h1 aria-label="Menú" class='visually-hidden'>Menú</h1>
+    <section class="section-list">
+      <ul>
+        <li><a class="link-nav" routerLink="mis-datos">Mis Datos</a></li>
+        <li><a class="link-nav" routerLink="mediciones">Mediciones</a></li>
+        <li><a class="link-nav" routerLink="vademecum">Vademecum</a></li>
+        <!-- <li><a class="link-nav" routerLink="ayuda">Ayuda</a></li> -->
+      </ul>
+    </section>
+  </section>
+  <button class="btn-desconcted" (click)="logout()">Desconectar</button>
+</nav>
