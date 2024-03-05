@@ -204,7 +204,7 @@ export class MisDatosComponent implements OnInit {
           primerApellido: this.usuario.primerApellido,
           segundoApellido: this.usuario.segundoApellido,
         };
-
+        this.getUsuarioInfo(this.usuarioLogeado.id);
         // Actualizar la información del usuario en el servicio de autenticación
         this.authService.updateUser(this.usuarioLogeado);
       },

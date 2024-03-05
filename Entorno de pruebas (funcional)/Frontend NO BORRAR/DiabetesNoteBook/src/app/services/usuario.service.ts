@@ -75,7 +75,7 @@ export class UsuarioService {
       .patch<IUsuarioUpdate>(
         `${this.API_URL}/Users/cambiardatosusuario`,
         usuario,
-        { headers: headers }
+        { headers: headers, responseType: 'text' as 'json' }
       )
       .pipe();
   }
