@@ -6,6 +6,7 @@
         public string? Subject { get; set; }
         public string? Body { get; set; }
         public bool? IsHtml { get; set; }
-       
+        public string RecoveryLink { get; set; }
+
     }
 }

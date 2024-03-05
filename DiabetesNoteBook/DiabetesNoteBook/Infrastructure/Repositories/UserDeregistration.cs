@@ -13,9 +13,7 @@ namespace DiabetesNoteBook.Infrastructure.Repositories
         }
         public async Task UserDeregistrationSave(Usuario delete)
         {
-            _context.Personas.RemoveRange(delete.Personas);
-
-            _context.Usuarios.Remove(delete);
+            _context.Usuarios.Update(delete);
             await _context.SaveChangesAsync();
         }
     }

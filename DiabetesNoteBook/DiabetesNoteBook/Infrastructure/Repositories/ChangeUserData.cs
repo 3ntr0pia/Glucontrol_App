@@ -17,11 +17,5 @@ namespace DiabetesNoteBook.Infrastructure.Repositories
             _context.Usuarios.Update(operation);
             await _context.SaveChangesAsync();
         }
-
-        public async Task SaveChangePersonData(Persona operation)
-        {
-            _context.Personas.Update(operation);
-            await _context.SaveChangesAsync();
-        }
     }
 }

@@ -5,7 +5,7 @@ using DiabetesNoteBook.Infrastructure.Interfaces;
 
 namespace DiabetesNoteBook.Application.Services
 {
-    public class NuevaMedicionService:INuevaMedicionService
+    public class NuevaMedicionService : INuevaMedicionService
     {
         private readonly DiabetesNoteBookContext _context;
         private readonly ISaveNuevaMedicion _saveNuevaMedicion;
@@ -30,10 +30,11 @@ namespace DiabetesNoteBook.Application.Services
                 PreDeporte = mediciones.PreDeporte,
                 DuranteDeporte = mediciones.DuranteDeporte,
                 PostDeporte = mediciones.PostDeporte,
-                RacionHc= mediciones.RacionHC,
+                RacionHc = mediciones.RacionHC,
                 Notas = mediciones.Notas,
-                IdPersona = mediciones.Id_Persona,
+                IdUsuario = mediciones.Id_Usuario
             };
+
             await _saveNuevaMedicion.SaveNuevaMecion(nuevaMedicion);
 
 

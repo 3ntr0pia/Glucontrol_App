@@ -15,6 +15,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.13",
           "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
           "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "Microsoft.Extensions.Logging.Log4Net.AspNetCore": "8.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.11",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
@@ -601,6 +602,17 @@
         "resources": {
           "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
             "locale": "zh-Hant"
+          }
+        }
+      },
+      "log4net/2.0.15": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/log4net.dll": {
+            "assemblyVersion": "2.0.15.0",
+            "fileVersion": "2.0.15.0"
           }
         }
       },
@@ -1287,6 +1299,17 @@
           "Microsoft.Extensions.Primitives": "7.0.0"
         }
       },
+      "Microsoft.Extensions.Configuration.Binder/7.0.4": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.Binder.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.423.11508"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration.FileExtensions/7.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "7.0.0",
@@ -1345,6 +1368,21 @@
         }
       },
       "Microsoft.Extensions.Logging.Abstractions/7.0.0": {},
+      "Microsoft.Extensions.Logging.Log4Net.AspNetCore/8.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "7.0.4",
+          "Microsoft.Extensions.Logging": "7.0.0",
+          "log4net": "2.0.15"
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.0.0"
+          }
+        }
+      },
       "Microsoft.Extensions.Options/7.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
@@ -3026,6 +3064,13 @@
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
     },
+    "log4net/2.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GahnO9ZgFka+xYcFwAfIFjW+k86P2nxFoaEpH6t3v4hiGj7tv2ksVZphxCVIHmJxoySS0HeU3dgCW+bSCcfD0A==",
+      "path": "log4net/2.0.15",
+      "hashPath": "log4net.2.0.15.nupkg.sha512"
+    },
     "MailKit/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -3271,6 +3316,13 @@
       "path": "microsoft.extensions.configuration.abstractions/7.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512"
     },
+    "Microsoft.Extensions.Configuration.Binder/7.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8+XPvJnHZsYgHOQlcMuQe7QNF5KdVKHH1F/wW3nd8/u81Gk/XFAYMDP0Lpz18h7/AM95M662vvqMorcYxCBB4w==",
+      "path": "microsoft.extensions.configuration.binder/7.0.4",
+      "hashPath": "microsoft.extensions.configuration.binder.7.0.4.nupkg.sha512"
+    },
     "Microsoft.Extensions.Configuration.FileExtensions/7.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3340,6 +3392,13 @@
       "sha512": "sha512-kmn78+LPVMOWeITUjIlfxUPDsI0R6G0RkeAMBmQxAJ7vBJn4q2dTva7pWi65ceN5vPGjJ9q/Uae2WKgvfktJAw==",
       "path": "microsoft.extensions.logging.abstractions/7.0.0",
       "hashPath": "microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Log4Net.AspNetCore/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NShPLGSM/PBGJIOK/cmlh3a+QlrtCLcSpb+vfqwxRmZK38Cy4prsOjuODpAIvqWL93zt9PZOTcHOVqyaQRNuEg==",
+      "path": "microsoft.extensions.logging.log4net.aspnetcore/8.0.0",
+      "hashPath": "microsoft.extensions.logging.log4net.aspnetcore.8.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Options/7.0.0": {
       "type": "package",

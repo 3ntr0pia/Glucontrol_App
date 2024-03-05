@@ -1,0 +1,68 @@
+﻿@using DiabetesNoteBook.Application.DTOs
+@model List<DiabetesNoteBook.Application.DTOs.DTOMediciones>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mediciones</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #000000 !important;
+        }
+
+        th, td {
+            border: 1px solid #000000 !important;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #8a8990 !important;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mediciones</h2>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Regimen</th>
+            <th>Pre Medición</th>
+            <th>Post Medición</th>
+            <th>Glucemia Capilar</th>
+            <th>Bolus Comida</th>
+            <th>Bolus Corrector</th>
+            <th>Pre Deporte</th>
+            <th>Durante Deporte</th>
+            <th>Post Deporte</th>
+            <th>Racion HC</th>
+            <th>Notas</th>
+          
+        </tr>
+        <tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Fecha</td>
+                <td>@item.Regimen</td>
+                <td>@item.PreMedicion</td>
+                <td>@item.PostMedicion</td>
+                <td>@item.GlucemiaCapilar</td>
+                <td>@item.BolusComida</td>
+                <td>@item.BolusCorrector</td>
+                <td>@item.PreDeporte</td>
+                <td>@item.DuranteDeporte</td>
+                <td>@item.PostDeporte</td>
+                <td>@item.RacionHC</td>
+                <td>@item.Notas</td>
+            </tr>
+            }
+
+           
+       
+    </table>
+</body>
+</html>

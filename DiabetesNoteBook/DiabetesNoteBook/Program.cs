@@ -9,7 +9,9 @@ using DiabetesNoteBook.Infrastructure.Repositories;
 using DiabetesNoteBook.Domain.Models;
 using DiabetesNoteBook.Application.Interfaces;
 using DiabetesNoteBook.Application.Services;
-using DiabetesNoteBook.Application.Filters;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using DiabetesNoteBook.Application.Services.Genereics;
+
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionString;
@@ -29,7 +31,6 @@ else
 
 builder.Services.AddControllers(options =>
 {
-    options.Filters.Add<FiltroExcepcion>();
 }).AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContext<DiabetesNoteBookContext>(options =>
@@ -39,17 +40,16 @@ builder.Services.AddDbContext<DiabetesNoteBookContext>(options =>
 }
 );
 
+builder.Logging.AddLog4Net();
 builder.Services.AddTransient<HashService>();
 builder.Services.AddTransient<TokenService>();
-builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<INewRegister, NewRegisterService>();
 builder.Services.AddTransient<IConfirmEmailService, ConfirmEmailService>();
 builder.Services.AddTransient<IChangePassService, ChangePassService>();
 builder.Services.AddTransient<INewRegisterRepository, NewRegisterRepository>();
 builder.Services.AddTransient<IConfirmationRegisterRepository, ConfirmationRegisterRepository>();
 builder.Services.AddTransient<INewStringGuid, NewStringGuid>();
-builder.Services.AddTransient<IOperationsService, OperationsService>();
-builder.Services.AddTransient<IAddOperation, AddOperation>();
 builder.Services.AddTransient<IChangePassword, ChangePassword>();
 builder.Services.AddTransient<IChangePassMail, ChangePassEnlace>();
 builder.Services.AddTransient<IChangePasswordMail, ChangePasswordMail>();
@@ -57,12 +57,25 @@ builder.Services.AddTransient<IUserDeregistration, UserDeregistration>();
 builder.Services.AddTransient<IUserDeregistrationService, UserDeregistrationService>();
 builder.Services.AddTransient<IDeleteUserService, DeleteUserService>();
 builder.Services.AddTransient<IDeleteUser, DeleteUserRepository>();
-builder.Services.AddTransient<IChangeUserDataService, ChangeUserDataService>();
+builder.Services.AddScoped<IChangeUserDataService, ChangeUserDataService>();
 builder.Services.AddTransient<IChangeUserData, ChangeUserData>();
-builder.Services.AddTransient<ISaveNuevaMedicion,SaveNuevaMedicionRepository>();
-builder.Services.AddTransient<INuevaMedicionService,NuevaMedicionService>();
+builder.Services.AddTransient<ISaveNuevaMedicion, SaveNuevaMedicionRepository>();
+builder.Services.AddTransient<INuevaMedicionService, NuevaMedicionService>();
 builder.Services.AddTransient<IDeleteMedicion, DeleteMedicionRepository>();
 builder.Services.AddTransient<IDeleteMedicionService, DeleteMedicionService>();
+builder.Services.AddTransient<INewMedicacion, NewMedicationRepository>();
+builder.Services.AddTransient<INewUsuarioMedicacion, SaveUsuarioMedicacionRepository>();
+builder.Services.AddMvc();
+builder.Services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+builder.Services.AddTransient<INewMedicationService, NewMedicationService>();
+builder.Services.AddTransient<IConsultMedication, ConsultMedication>();
+builder.Services.AddTransient<IDeleteUserMedication, DeleteUserMedication>();
+builder.Services.AddTransient<IDeleteMedication, DeleteMedicationService>();
+builder.Services.AddScoped<ExistUsersService>();
+builder.Services.AddScoped<ExistMedicionesService>();
+builder.Services.AddScoped<ExistMedicationService>();
+
+
 
 builder.Services.AddCors(options =>
 {

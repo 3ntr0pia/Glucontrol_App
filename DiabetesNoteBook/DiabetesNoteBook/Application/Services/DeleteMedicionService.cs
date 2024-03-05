@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DiabetesNoteBook.Application.Services
 {
-    public class DeleteMedicionService:IDeleteMedicionService
+    public class DeleteMedicionService : IDeleteMedicionService
     {
         private readonly DiabetesNoteBookContext _context;
         private readonly IDeleteMedicion _deleteMedicion;

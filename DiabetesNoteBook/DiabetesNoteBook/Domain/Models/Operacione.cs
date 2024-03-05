@@ -16,4 +16,6 @@ public partial class Operacione
     public string? Ip { get; set; }
 
     public int? IdUsuario { get; set; }
+
+    public virtual Usuario? IdUsuarioNavigation { get; set; }
 }

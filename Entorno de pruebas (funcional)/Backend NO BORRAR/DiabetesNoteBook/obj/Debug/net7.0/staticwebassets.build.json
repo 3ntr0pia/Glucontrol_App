@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "DxWIzyn3D3UjVBBGjwT/jJ6/AttLGCtvxx0a2zHbqHI=",
+  "Source": "DiabetesNoteBook",
+  "BasePath": "_content/DiabetesNoteBook",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "DiabetesNoteBook\\wwwroot",
+      "Source": "DiabetesNoteBook",
+      "ContentRoot": "C:\\Users\\guill\\OneDrive\\Escritorio\\Glucontrol NO BORRAR\\Backend NO BORRAR\\DiabetesNoteBook\\wwwroot\\",
+      "BasePath": "_content/DiabetesNoteBook",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\guill\\OneDrive\\Escritorio\\Glucontrol NO BORRAR\\Backend NO BORRAR\\DiabetesNoteBook\\wwwroot\\logErrores.txt",
+      "SourceId": "DiabetesNoteBook",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\guill\\OneDrive\\Escritorio\\Glucontrol NO BORRAR\\Backend NO BORRAR\\DiabetesNoteBook\\wwwroot\\",
+      "BasePath": "_content/DiabetesNoteBook",
+      "RelativePath": "logErrores.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logErrores.txt"
+    }
+  ]
+}

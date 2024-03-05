@@ -20,7 +20,9 @@ namespace DiabetesNoteBook.Application.Services
         public async Task UserDeregistration(DTOUserDeregistration delete)
         {
 
-            var usuarioDB = await _context.Usuarios.Include(x => x.Personas).FirstOrDefaultAsync(x => x.Id == delete.Id);
+            var usuarioDB = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == delete.Id);
+
+            usuarioDB.BajaUsuario = true;
 
             await _userDeregistration.UserDeregistrationSave(usuarioDB);
         }
